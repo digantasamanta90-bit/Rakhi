@@ -89,6 +89,13 @@ export class SceneController {
       prevEl.classList.remove('exiting');
     }
 
+    // Ensure all other scenes are completely inactive to avoid any overlap
+    document.querySelectorAll('.scene-container').forEach(el => {
+      if (el !== nextEl) {
+        el.classList.remove('active', 'exiting');
+      }
+    });
+
     if (nextEl) {
       nextEl.classList.add('active');
       this.updateProgressBar(sceneNumber);
@@ -112,5 +119,24 @@ export class SceneController {
     if (state.currentScene > 1) {
       this.goToScene(state.currentScene - 1);
     }
+  }
+
+  reset() {
+    state.resetForReplay();
+
+    // Immediately remove active/exiting state from all scene containers
+    document.querySelectorAll('.scene-container').forEach(el => {
+      el.classList.remove('active', 'exiting');
+    });
+
+    // Re-instantiate all scenes fresh with fresh event handlers and resets
+    for (let i = 1; i <= this.totalScenes; i++) {
+      if (this.sceneFactories[i]) {
+        this.sceneInstances[i] = this.sceneFactories[i](this);
+      }
+    }
+
+    this.renderProgressBar();
+    this.goToScene(1, false);
   }
 }

@@ -29,8 +29,12 @@ class InteractionState {
     this.listeners.forEach(cb => cb(event, data));
   }
 
-  unlockAchievement(id, title, description, icon = '🏆') {
-    if (this.achievements.has(id)) return false;
+  showToast(title, description, icon = '✨') {
+    this.notify('toast_triggered', { title, description, icon });
+  }
+
+  unlockAchievement(id, title, description, icon = '🏆', repeatable = false) {
+    if (!repeatable && this.achievements.has(id)) return false;
     this.achievements.add(id);
     this.notify('achievement_unlocked', { id, title, description, icon });
     return true;
@@ -50,6 +54,8 @@ class InteractionState {
     this.isTransitioning = false;
     this.doNotPressCount = 0;
     this.finaleCompleted = false;
+    this.achievements.clear();
+    this.discoveries.clear();
     this.notify('replay_reset');
   }
 }

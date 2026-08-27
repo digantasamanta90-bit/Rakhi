@@ -171,7 +171,7 @@ export function createScene06(sceneManager) {
       item.addEventListener('click', () => {
         audio.playSparkleSfx();
         const msg = item.getAttribute('data-msg');
-        state.unlockAchievement('secret_found', 'Secret Discovered', msg, item.textContent);
+        state.showToast('Secret Discovered', msg, item.textContent);
       });
     });
 

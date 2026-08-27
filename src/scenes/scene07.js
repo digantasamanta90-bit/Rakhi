@@ -34,7 +34,7 @@ export function createScene07(sceneManager) {
         <!-- Diganta Node -->
         <div class="bond-node">
           <div class="bond-avatar">👦</div>
-          <span class="bond-label">Diganta</span>
+          <span class="bond-label">Me</span>
         </div>
 
         <!-- Center Master Rakhi -->
@@ -47,7 +47,7 @@ export function createScene07(sceneManager) {
           <div class="bond-avatar">
             <img src="assets/portraits/anwesha12.png" alt="Anwesha" onerror="this.src='assets/portraits/anwesha_calm.png';" />
           </div>
-          <span class="bond-label">Anwesha 🧿</span>
+          <span class="bond-label">You 🧿</span>
         </div>
 
         <!-- Bond Connecting Thread SVG -->
@@ -166,8 +166,7 @@ export function createScene07(sceneManager) {
     if (confirmReplay) {
       confirmReplay.addEventListener('click', () => {
         if (replayModal) replayModal.classList.remove('active');
-        state.resetForReplay();
-        sceneManager.goToScene(1);
+        sceneManager.reset();
       });
     }
 

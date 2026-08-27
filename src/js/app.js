@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Initialize Achievement Notification Manager
   const achievementManager = new AchievementManager();
   state.subscribe((event, data) => {
-    if (event === 'achievement_unlocked') {
+    if (event === 'achievement_unlocked' || event === 'toast_triggered') {
       achievementManager.show(data.title, data.description, data.icon);
     }
   });

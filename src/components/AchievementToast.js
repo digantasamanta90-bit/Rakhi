@@ -18,6 +18,9 @@ export class AchievementManager {
     if (this.titleEl) this.titleEl.textContent = title;
     if (this.descEl) this.descEl.textContent = description;
 
+    // Reset animation if already showing so user sees immediate feedback
+    this.toastEl.classList.remove('show');
+    void this.toastEl.offsetWidth; // force DOM reflow
     this.toastEl.classList.add('show');
 
     if (this.hideTimeout) clearTimeout(this.hideTimeout);
