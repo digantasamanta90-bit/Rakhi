@@ -1,89 +1,87 @@
 :root {
   /* =========================================================
-     COLOR PALETTE: Aesthetic Cinematic Festive Scrapbook
-     Muted, sophisticated, warm, and restrained.
+     COLOR PALETTE: LIGHT, DREAMY, EDITORIAL FESTIVE SCRAPBOOK
+     Warm ivory, soft cream, dusty rose, antique gold accents,
+     soft faded wine/plum typography, and warm cocoa accents.
      ========================================================= */
 
-  /* Primary Deep Wine / Plum Backgrounds */
-  --bg-deep-base: #120810;
-  --bg-plum-dark: #1a0c16;
-  --bg-plum-card: rgba(35, 16, 31, 0.82);
-  --bg-plum-card-solid: #23101f;
-  --bg-plum-border: rgba(212, 175, 55, 0.22);
-  --bg-plum-border-glow: rgba(212, 175, 55, 0.45);
+  /* Primary Light Backgrounds (Paper & Sunlight) */
+  --bg-base: #faf6f0;
+  --bg-cream-soft: #f5efe6;
+  --bg-cream-warm: #ede4d8;
+  --bg-paper-card: rgba(255, 253, 249, 0.92);
+  --bg-paper-card-subtle: rgba(250, 246, 240, 0.75);
 
-  /* Warm Ivory / Cream Text & Surfaces */
-  --text-ivory-light: #fbf7ee;
-  --text-ivory-muted: #e6dbc9;
-  --text-ivory-subtle: #b8a99a;
-  --surface-ivory-card: rgba(251, 247, 238, 0.07);
-  --surface-ivory-hover: rgba(251, 247, 238, 0.14);
+  /* Primary Dark / Typography (Soft Faded Plum & Wine, NOT harsh black) */
+  --text-plum-primary: #3d2436;
+  --text-plum-dark: #2b1726;
+  --text-plum-muted: #6b4d63;
+  --text-plum-subtle: #8e7386;
 
-  /* Muted Rose / Dusty Pink Accents */
-  --rose-accent: #c88294;
-  --rose-light: #e8a7b7;
-  --rose-subtle: rgba(200, 130, 148, 0.18);
+  /* Warm Accent: Dusty Rose / Muted Blush */
+  --rose-primary: #c88294;
+  --rose-light: #e4b5c0;
+  --rose-pale: #fbf0f3;
+  --rose-border: rgba(200, 130, 148, 0.25);
+  --rose-shadow: rgba(200, 130, 148, 0.12);
 
-  /* Antique Gold / Festive Highlights (Restrained, never flood-filled) */
-  --gold-primary: #d4af37;
-  --gold-light: #e8ca68;
-  --gold-dark: #997a23;
-  --gold-glow: rgba(212, 175, 55, 0.35);
-  --gold-subtle: rgba(212, 175, 55, 0.12);
+  /* Festive Accent: Soft Antique Gold (Subtle, thin accents only) */
+  --gold-primary: #c8a248;
+  --gold-light: #dfc278;
+  --gold-dark: #9e7e2c;
+  --gold-subtle: rgba(200, 162, 72, 0.15);
+  --gold-border: rgba(200, 162, 72, 0.3);
 
-  /* Deep Chocolate Brown (Scene 4 gift specific) */
-  --choco-bg: #1f100a;
-  --choco-card: #2d1810;
-  --choco-accent: #8b4513;
-  --choco-gold: #c59b27;
+  /* Scene 1 Ambient Dark Mystery (Twilight / Faded Wine) */
+  --s1-night-bg: #1c0e18;
+  --s1-night-card: rgba(36, 18, 31, 0.9);
+  --s1-text-light: #fcf9f2;
+  --s1-text-muted: #d5c4cb;
 
-  /* Muted Lavender / Dreamy Violet (Digital code motifs) */
-  --lavender-code: #9c92b0;
-  --lavender-glow: rgba(156, 146, 176, 0.25);
-  --lavender-bg: rgba(43, 31, 54, 0.7);
+  /* Scene 4 Gift: Soft Cocoa / Warm Milk Chocolate */
+  --choco-primary: #5c3d2e;
+  --choco-warm: #7a533f;
+  --choco-card: #f7efe7;
+  --choco-border: rgba(92, 61, 46, 0.18);
 
-  /* System Colors */
-  --terminal-green: #5af78e;
-  --terminal-error: #ff5c57;
-  --terminal-bg: rgba(15, 8, 14, 0.92);
+  /* Secondary Accent: Muted Lavender Mist */
+  --lavender-mist: #9f94b0;
+  --lavender-bg: rgba(159, 148, 176, 0.12);
+  --lavender-border: rgba(159, 148, 176, 0.25);
+
+  /* Borders & Dividers */
+  --border-paper: rgba(61, 36, 54, 0.08);
+  --border-delicate: rgba(200, 130, 148, 0.2);
+  --border-gold-fine: rgba(200, 162, 72, 0.35);
 
   /* Typography Families */
-  --font-display: 'Playfair Display', 'Cormorant Garamond', Georgia, serif;
-  --font-body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  --font-code: 'JetBrains Mono', 'Fira Code', Consolas, monospace;
+  --font-display: 'Fraunces', Georgia, serif;
+  --font-body: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-mono: 'JetBrains Mono', Consolas, monospace;
 
-  /* Spacing System */
+  /* Spacing */
   --space-xs: 0.25rem;
   --space-sm: 0.5rem;
   --space-md: 1rem;
   --space-lg: 1.5rem;
   --space-xl: 2rem;
   --space-2xl: 3rem;
-  --space-3xl: 4.5rem;
 
-  /* Transitions & Easings */
+  /* Easings */
   --ease-cinematic: cubic-bezier(0.16, 1, 0.3, 1);
-  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
-  --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-spring: cubic-bezier(0.34, 1.4, 0.64, 1);
+  --ease-soft: cubic-bezier(0.25, 1, 0.5, 1);
 
-  --transition-slow: 1.2s var(--ease-cinematic);
-  --transition-normal: 0.6s var(--ease-cinematic);
-  --transition-fast: 0.25s var(--ease-smooth);
+  /* Diffuse Paper Shadows (Gentle & Organic, NOT heavy casino neon) */
+  --shadow-paper: 0 4px 20px rgba(61, 36, 54, 0.06), 0 1px 4px rgba(61, 36, 54, 0.03);
+  --shadow-float: 0 10px 32px rgba(61, 36, 54, 0.09), 0 2px 8px rgba(61, 36, 54, 0.04);
+  --shadow-modal: 0 20px 60px rgba(43, 23, 38, 0.16), 0 4px 16px rgba(43, 23, 38, 0.08);
 
-  /* Shadows & Depth */
-  --shadow-subtle: 0 4px 20px rgba(0, 0, 0, 0.35);
-  --shadow-elevation: 0 12px 36px rgba(0, 0, 0, 0.55);
-  --shadow-gold-glow: 0 0 28px rgba(212, 175, 55, 0.22);
-  --shadow-rose-glow: 0 0 28px rgba(200, 130, 148, 0.25);
-
-  /* Z-Index Hierarchy */
+  /* Z-Index */
   --z-bg: 0;
   --z-canvas: 5;
-  --z-scene-bg: 10;
-  --z-scene-content: 20;
-  --z-scene-fg: 30;
-  --z-ui-controls: 50;
+  --z-scene: 20;
+  --z-header: 50;
   --z-modal: 100;
   --z-toast: 150;
-  --z-cursor: 999;
 }

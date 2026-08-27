@@ -1,6 +1,6 @@
 /**
  * SCENE 1 — 01_INTRO_INVITATION
- * Cinematic mystery, exact copy, fake system joke, user-controlled CTA.
+ * Twilight mystery, exact copy, playful personal system note, warm invitation CTA.
  */
 
 import { delay, createElement } from '../js/utils.js';
@@ -13,17 +13,17 @@ export function createScene01(sceneManager) {
     <div class="scene-content">
       <div class="intro-glow-point" id="s1-glow"></div>
 
-      <div class="intro-text-wrapper" style="min-height: 120px;">
-        <h1 class="font-display" id="s1-greeting" style="font-size: clamp(1.8rem, 6vw, 2.8rem); opacity: 0; transition: opacity 1.2s ease; margin-bottom: 0.8rem;">
+      <div class="intro-text-wrapper" style="min-height: 110px;">
+        <h1 class="font-display" id="s1-greeting" style="font-size: clamp(1.8rem, 6.5vw, 2.8rem); opacity: 0; transition: opacity 1.2s ease; margin-bottom: 0.6rem; font-style: italic;">
           Hey, Anwesha...
         </h1>
         <p class="body-lead" id="s1-subtext" style="opacity: 0; transition: opacity 1.2s ease;">
           Before you open anything else...<br>
-          <span style="font-style: italic; color: var(--rose-light);">There’s something I wanted you to see first.</span>
+          <span style="font-family: var(--font-display); font-style: italic; color: #f5e6b8;">There’s something I wanted you to see first.</span>
         </p>
       </div>
 
-      <div class="terminal-card" id="s1-terminal" style="opacity: 0; transform: translateY(12px); transition: opacity 0.8s, transform 0.8s;">
+      <div class="terminal-card" id="s1-terminal" style="opacity: 0; transform: translateY(10px); transition: opacity 0.8s, transform 0.8s;">
         <div class="terminal-header">
           <span class="terminal-dot red"></span>
           <span class="terminal-dot yellow"></span>
@@ -35,9 +35,10 @@ export function createScene01(sceneManager) {
         </div>
       </div>
 
-      <div id="s1-cta-wrapper" style="opacity: 0; transition: opacity 0.8s ease; margin-top: 1rem;">
+      <div id="s1-cta-wrapper" style="opacity: 0; transition: opacity 0.8s ease; margin-top: 1.2rem;">
         <button class="btn-primary" id="s1-cta-btn" aria-label="Open your surprise">
-          OPEN YOUR SURPRISE ✨
+          <span>OPEN YOUR SURPRISE</span>
+          <i class="fa-solid fa-sparkles" style="font-size: 0.85rem;" aria-hidden="true"></i> ✨
         </button>
       </div>
     </div>
@@ -57,7 +58,7 @@ export function createScene01(sceneManager) {
     const ctaWrapper = document.getElementById('s1-cta-wrapper');
     const ctaBtn = document.getElementById('s1-cta-btn');
 
-    // 0.0 - 1.5s: Mystery dark glow
+    // 0.0 - 1.5s: Twilight warm glow point
     await delay(600);
     if (glow) glow.classList.add('visible');
 
@@ -69,23 +70,23 @@ export function createScene01(sceneManager) {
     await delay(1800);
     if (subtext) subtext.style.opacity = '1';
 
-    // Terminal System Sequence
-    await delay(2200);
+    // Personal System Note Sequence
+    await delay(2000);
     if (terminal) {
       terminal.style.opacity = '1';
       terminal.style.transform = 'translateY(0)';
     }
 
     const logLines = [
-      { text: 'Initializing surprise...', delayMs: 700, color: 'var(--text-ivory-light)' },
-      { text: 'Finding Anwesha... ✓', delayMs: 800, color: 'var(--terminal-green)' },
-      { text: 'Checking sibling status... ✓', delayMs: 800, color: 'var(--terminal-green)' },
-      { text: 'Preparing Rakhi protocol... ✓', delayMs: 900, color: 'var(--terminal-green)' },
-      { text: 'Calculating how annoying your brother is...', delayMs: 1400, color: 'var(--gold-light)' },
-      { text: 'ERROR 💀', delayMs: 900, color: 'var(--terminal-error)', isGlitch: true },
-      { text: 'Status: Still your brother.', delayMs: 800, color: 'var(--text-ivory-light)' },
-      { text: 'No refunds available.', delayMs: 700, color: 'var(--rose-light)' },
-      { text: 'SURPRISE SUCCESSFULLY PREPARED ✨', delayMs: 600, color: 'var(--gold-light)', isBold: true }
+      { text: 'Initializing surprise...', delayMs: 600, color: 'var(--s1-text-light)' },
+      { text: 'Finding Anwesha... ✓', delayMs: 700, color: '#98c379' },
+      { text: 'Checking sibling status... ✓', delayMs: 700, color: '#98c379' },
+      { text: 'Preparing Rakhi protocol... ✓', delayMs: 800, color: '#98c379' },
+      { text: 'Calculating how annoying your brother is...', delayMs: 1300, color: '#e5c07b' },
+      { text: 'ERROR 💀', delayMs: 800, color: '#e06c75', isGlitch: true },
+      { text: 'Status: Still your brother.', delayMs: 700, color: 'var(--s1-text-light)' },
+      { text: 'No refunds available.', delayMs: 600, color: 'var(--rose-light)' },
+      { text: 'SURPRISE SUCCESSFULLY PREPARED ✨', delayMs: 600, color: '#dfc278', isBold: true }
     ];
 
     for (const item of logLines) {
@@ -106,7 +107,7 @@ export function createScene01(sceneManager) {
     }
 
     // CTA Reveal
-    await delay(800);
+    await delay(700);
     if (ctaWrapper) {
       ctaWrapper.style.opacity = '1';
     }
@@ -116,19 +117,16 @@ export function createScene01(sceneManager) {
       ctaBtn.addEventListener('click', async () => {
         ctaBtn.disabled = true;
         
-        // Play subtle unlock audio & start persistent soundtrack
         audio.playUnlockSfx();
         audio.startMusic();
 
-        // Reveal the global music toggle button
         const musicToggle = document.getElementById('music-toggle');
         if (musicToggle) musicToggle.classList.add('visible');
 
-        // Central light flare animation
         const flare = document.getElementById('screen-flare');
         if (flare) flare.classList.add('trigger');
 
-        await delay(600);
+        await delay(500);
         sceneManager.nextScene();
       });
     }

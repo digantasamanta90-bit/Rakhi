@@ -1,79 +1,68 @@
 /* =========================================================
-   COMPONENTS SYSTEM
-   Buttons, Cards, Modals, Audio Toggle, Achievement Toasts
-   Art directed for Aesthetic Cinematic Festive Scrapbook
+   COMPONENTS SYSTEM — EDITORIAL & HANDMADE AESTHETIC
+   Buttons as invitations, delicate paper cards, quiet music toggle.
    ========================================================= */
 
-/* Primary CTA Button */
+/* Primary Editorial CTA Button ("Come with me" invitation style) */
 .btn-primary {
   position: relative;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: var(--space-sm);
-  padding: 0.9rem 2.2rem;
+  padding: 0.85rem 2rem;
   font-family: var(--font-body);
-  font-size: 1rem;
+  font-size: 0.95rem;
   font-weight: 600;
-  letter-spacing: 0.04em;
-  color: #1a0815;
-  background: linear-gradient(135deg, #fff7d6 0%, var(--gold-light) 60%, #c99b28 100%);
-  border: none;
+  letter-spacing: 0.02em;
+  color: #ffffff;
+  background: linear-gradient(135deg, #4a2b42 0%, var(--text-plum-dark) 100%);
+  border: 1px solid rgba(200, 130, 148, 0.3);
   border-radius: 9999px;
   cursor: pointer;
-  box-shadow: 0 4px 18px rgba(212, 175, 55, 0.35), 0 0 24px rgba(212, 175, 55, 0.2);
-  transition: transform 0.3s var(--ease-spring), box-shadow 0.3s var(--ease-smooth), filter 0.3s;
+  box-shadow: 0 4px 16px rgba(61, 36, 54, 0.15), 0 1px 3px rgba(61, 36, 54, 0.08);
+  transition: transform 0.25s var(--ease-spring), box-shadow 0.25s var(--ease-soft), background 0.25s;
   outline: none;
   text-decoration: none;
-  margin-top: var(--space-lg);
+  margin-top: var(--space-md);
   user-select: none;
-}
-
-.btn-primary::before {
-  content: '';
-  position: absolute;
-  inset: -2px;
-  border-radius: 9999px;
-  background: linear-gradient(135deg, rgba(255,255,255,0.8), rgba(212,175,55,0.4));
-  z-index: -1;
-  opacity: 0.5;
-  filter: blur(4px);
-  transition: opacity 0.3s;
+  min-height: 48px; /* Comfortable mobile touch target */
 }
 
 .btn-primary:hover {
-  transform: translateY(-2px) scale(1.02);
-  box-shadow: 0 8px 24px rgba(212, 175, 55, 0.45), 0 0 32px rgba(212, 175, 55, 0.3);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(61, 36, 54, 0.22);
+  background: linear-gradient(135deg, #56334e 0%, #351c2e 100%);
 }
 
 .btn-primary:active {
   transform: translateY(1px) scale(0.98);
 }
 
-/* Secondary / Ghost Buttons */
+/* Secondary Editorial Ghost Button */
 .btn-secondary {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: var(--space-xs);
-  padding: 0.65rem 1.4rem;
+  padding: 0.6rem 1.25rem;
   font-family: var(--font-body);
-  font-size: 0.9rem;
+  font-size: 0.88rem;
   font-weight: 500;
-  color: var(--text-ivory-light);
-  background: rgba(251, 247, 238, 0.08);
-  border: 1px solid var(--bg-plum-border);
+  color: var(--text-plum-primary);
+  background: rgba(255, 253, 249, 0.9);
+  border: 1px solid var(--border-delicate);
   border-radius: 9999px;
   cursor: pointer;
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  transition: all 0.25s var(--ease-smooth);
+  box-shadow: var(--shadow-paper);
+  transition: all 0.2s var(--ease-soft);
+  min-height: 40px;
 }
 
 .btn-secondary:hover {
-  background: rgba(251, 247, 238, 0.15);
-  border-color: var(--gold-light);
-  color: var(--gold-light);
+  background: #ffffff;
+  border-color: var(--rose-primary);
+  color: var(--rose-primary);
   transform: translateY(-1px);
 }
 
@@ -81,22 +70,23 @@
   transform: scale(0.98);
 }
 
-/* Music Toggle Control */
+/* Music Toggle Control (Minimalist Floating Paper Disc) */
 .music-toggle-btn {
-  width: 40px;
-  height: 40px;
+  width: 36px;
+  height: 36px;
   border-radius: 50%;
-  background: rgba(26, 12, 22, 0.7);
-  border: 1px solid var(--bg-plum-border);
-  color: var(--gold-light);
+  background: rgba(255, 253, 249, 0.88);
+  border: 1px solid var(--border-delicate);
+  color: var(--text-plum-muted);
   display: flex;
   align-items: center;
   justify-content: center;
+  gap: 4px;
   cursor: pointer;
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-  transition: all 0.3s var(--ease-smooth);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  box-shadow: var(--shadow-paper);
+  transition: all 0.25s var(--ease-soft);
   opacity: 0;
   pointer-events: none;
 }
@@ -107,56 +97,62 @@
 }
 
 .music-toggle-btn:hover {
-  transform: scale(1.08);
-  border-color: var(--gold-light);
-  box-shadow: 0 0 16px var(--gold-glow);
+  transform: scale(1.05);
+  color: var(--rose-primary);
+  border-color: var(--rose-primary);
 }
 
-/* Sound Waveform Visualizer inside Music Toggle */
+.music-note-icon {
+  font-size: 0.75rem;
+}
+
+/* Minimal Sound Waveform */
 .music-waveform {
   display: flex;
   align-items: center;
-  gap: 2.5px;
-  height: 14px;
+  gap: 2px;
+  height: 10px;
 }
 
 .waveform-bar {
-  width: 2.5px;
+  width: 2px;
   height: 100%;
-  background: var(--gold-light);
-  border-radius: 2px;
+  background: var(--rose-primary);
+  border-radius: 1px;
   transform-origin: bottom;
-  animation: waveIdle 1.2s infinite ease-in-out alternate;
+  animation: waveSubtle 1.2s infinite ease-in-out alternate;
 }
 
 .music-toggle-btn.muted .waveform-bar {
   animation: none !important;
   height: 2px !important;
+  opacity: 0.3;
+}
+
+.music-toggle-btn.muted .music-note-icon {
   opacity: 0.4;
 }
 
 .waveform-bar:nth-child(1) { animation-delay: 0.1s; height: 40%; }
 .waveform-bar:nth-child(2) { animation-delay: 0.3s; height: 90%; }
 .waveform-bar:nth-child(3) { animation-delay: 0.2s; height: 60%; }
-.waveform-bar:nth-child(4) { animation-delay: 0.4s; height: 100%; }
 
-@keyframes waveIdle {
+@keyframes waveSubtle {
   0% { transform: scaleY(0.3); }
   100% { transform: scaleY(1); }
 }
 
-/* Scrapbook Editorial Card Frame */
+/* Paper Scrapbook Card Frame (Warm, layered, gentle diffuse shadow) */
 .scrapbook-card {
-  background: var(--bg-plum-card);
-  border: 1px solid var(--bg-plum-border);
-  border-radius: 18px;
-  padding: clamp(1.2rem, 4vw, 2rem);
-  box-shadow: var(--shadow-elevation);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
+  background: var(--bg-paper-card);
+  border: 1px solid var(--border-delicate);
+  border-radius: 16px;
+  padding: clamp(1.2rem, 4vw, 1.8rem);
+  box-shadow: var(--shadow-float);
   position: relative;
   overflow: hidden;
-  transition: transform 0.4s var(--ease-cinematic), border-color 0.4s var(--ease-cinematic);
+  text-align: left;
+  transition: transform 0.3s var(--ease-soft), box-shadow 0.3s var(--ease-soft);
 }
 
 .scrapbook-card::before {
@@ -166,54 +162,54 @@
   left: 0;
   right: 0;
   height: 2px;
-  background: linear-gradient(90deg, transparent, var(--gold-light), var(--rose-accent), transparent);
-  opacity: 0.6;
+  background: linear-gradient(90deg, transparent, var(--rose-light), var(--gold-light), transparent);
+  opacity: 0.8;
 }
 
-/* Terminal & Code Card Style */
+/* Stylized System Note Card (Scene 1) */
 .terminal-card {
-  background: var(--terminal-bg);
-  border: 1px solid rgba(212, 175, 55, 0.25);
-  border-radius: 12px;
-  padding: 1.2rem 1.4rem;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6), 0 0 20px rgba(90, 247, 142, 0.08);
+  background: var(--s1-night-card);
+  border: 1px solid rgba(200, 130, 148, 0.25);
+  border-radius: 14px;
+  padding: 1.1rem 1.3rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
   text-align: left;
   width: 100%;
-  max-width: 480px;
+  max-width: 440px;
 }
 
 .terminal-header {
   display: flex;
   align-items: center;
   gap: 6px;
-  margin-bottom: 0.8rem;
-  padding-bottom: 0.5rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  margin-bottom: 0.6rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .terminal-dot {
-  width: 8px;
-  height: 8px;
+  width: 7px;
+  height: 7px;
   border-radius: 50%;
 }
-.terminal-dot.red { background: #ff5f56; }
-.terminal-dot.yellow { background: #ffbd2e; }
-.terminal-dot.green { background: #27c93f; }
+.terminal-dot.red { background: #e06c75; }
+.terminal-dot.yellow { background: #e5c07b; }
+.terminal-dot.green { background: #98c379; }
 
 .terminal-title {
-  font-family: var(--font-code);
+  font-family: var(--font-mono);
   font-size: 0.75rem;
-  color: var(--text-ivory-subtle);
+  color: var(--s1-text-muted);
   margin-left: auto;
 }
 
-/* Modal Overlay & Modal Window */
+/* Modal Overlay & Delicate Stationery Modal */
 .modal-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(10, 4, 9, 0.82);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  background: rgba(33, 17, 29, 0.6);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   z-index: var(--z-modal);
   display: flex;
   align-items: center;
@@ -221,7 +217,7 @@
   padding: 1.2rem;
   opacity: 0;
   visibility: hidden;
-  transition: opacity 0.4s var(--ease-cinematic), visibility 0.4s;
+  transition: opacity 0.3s var(--ease-soft), visibility 0.3s;
 }
 
 .modal-overlay.active {
@@ -230,18 +226,19 @@
 }
 
 .modal-content {
-  background: #1e0d1c;
-  border: 1px solid var(--gold-primary);
-  border-radius: 20px;
-  padding: clamp(1.5rem, 5vw, 2.4rem);
-  max-width: 520px;
+  background: #fffdf9;
+  border: 1px solid var(--border-delicate);
+  border-radius: 18px;
+  padding: clamp(1.4rem, 5vw, 2rem);
+  max-width: 480px;
   width: 100%;
   max-height: 85vh;
   overflow-y: auto;
-  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.8), 0 0 32px rgba(212, 175, 55, 0.25);
-  transform: scale(0.92) translateY(14px);
-  transition: transform 0.4s var(--ease-spring);
+  box-shadow: var(--shadow-modal);
+  transform: scale(0.95) translateY(10px);
+  transition: transform 0.3s var(--ease-spring);
   position: relative;
+  color: var(--text-plum-primary);
 }
 
 .modal-overlay.active .modal-content {
@@ -252,42 +249,44 @@
   position: absolute;
   top: 1rem;
   right: 1rem;
-  width: 32px;
-  height: 32px;
+  width: 30px;
+  height: 30px;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid var(--bg-plum-border);
-  color: var(--text-ivory-light);
+  background: var(--bg-cream-soft);
+  border: 1px solid var(--border-paper);
+  color: var(--text-plum-muted);
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   transition: all 0.2s;
+  font-size: 0.85rem;
 }
 
 .modal-close-btn:hover {
-  background: rgba(255, 255, 255, 0.18);
-  color: var(--gold-light);
+  background: #ffffff;
+  color: var(--rose-primary);
 }
 
-/* Achievement Toast Notification */
+/* Achievement Toast (Delicate Personal Badge Notification) */
 .achievement-toast {
   position: fixed;
-  bottom: 2rem;
+  bottom: 1.5rem;
   left: 50%;
-  transform: translateX(-50%) translateY(100px);
-  background: linear-gradient(135deg, #2b1225 0%, #170914 100%);
-  border: 1px solid var(--gold-light);
-  border-radius: 50px;
-  padding: 0.7rem 1.4rem;
+  transform: translateX(-50%) translateY(80px);
+  background: #fffdf9;
+  border: 1px solid var(--rose-primary);
+  border-radius: 9999px;
+  padding: 0.6rem 1.2rem;
   display: flex;
   align-items: center;
   gap: var(--space-sm);
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6), 0 0 20px var(--gold-glow);
+  box-shadow: 0 8px 24px rgba(61, 36, 54, 0.12);
   z-index: var(--z-toast);
   opacity: 0;
-  transition: transform 0.5s var(--ease-spring), opacity 0.5s;
+  transition: transform 0.4s var(--ease-spring), opacity 0.4s;
   pointer-events: none;
+  max-width: 90vw;
 }
 
 .achievement-toast.show {
@@ -295,20 +294,20 @@
   opacity: 1;
 }
 
-.achievement-icon {
-  font-size: 1.3rem;
+.toast-badge-icon {
+  font-size: 1.1rem;
 }
 
 .achievement-title {
-  font-size: 0.75rem;
+  font-size: 0.72rem;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: var(--gold-light);
+  letter-spacing: 0.08em;
+  color: var(--rose-primary);
   font-weight: 700;
 }
 
 .achievement-desc {
-  font-size: 0.9rem;
-  color: var(--text-ivory-light);
-  font-weight: 500;
+  font-size: 0.85rem;
+  color: var(--text-plum-dark);
+  font-weight: 600;
 }

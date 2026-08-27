@@ -1,26 +1,30 @@
 /* =========================================================
-   SCENE-SPECIFIC STYLES
-   Layouts for Scenes 1 through 7, Scrapbook elements,
-   Portraits, KitKat, Sibling cards, Finale bond.
+   SCENE-SPECIFIC STYLES — MOBILE-FIRST EDITORIAL COMPOSITION
+   Scenes 1 through 7 with open layouts, breathing space,
+   paper frames, and handcrafted details.
    ========================================================= */
 
 /* --- SCENE 1: THE INVITATION --- */
 #scene-01 {
-  background: radial-gradient(circle at 50% 50%, #1c0b19 0%, #120711 60%, #0a0309 100%);
+  background: radial-gradient(circle at 50% 45%, #2a1625 0%, #1c0e18 55%, #140811 100%);
+  color: var(--s1-text-light);
   justify-content: center;
 }
 
-#scene-01 .scene-content {
-  gap: var(--space-lg);
-  max-width: 520px;
+#scene-01 .body-lead {
+  color: var(--s1-text-muted);
+}
+
+#scene-01 .font-display {
+  color: #ffffff;
 }
 
 .intro-glow-point {
-  width: 12px;
-  height: 12px;
+  width: 10px;
+  height: 10px;
   border-radius: 50%;
   background: var(--gold-light);
-  box-shadow: 0 0 30px 10px rgba(212, 175, 55, 0.4);
+  box-shadow: 0 0 24px 8px rgba(223, 194, 120, 0.35);
   margin-bottom: var(--space-md);
   opacity: 0;
   transition: opacity 1.5s ease;
@@ -31,10 +35,11 @@
 }
 
 .terminal-line {
-  margin-bottom: 0.4rem;
+  margin-bottom: 0.35rem;
   opacity: 0;
   transform: translateX(-4px);
   transition: opacity 0.3s, transform 0.3s;
+  font-size: 0.82rem;
 }
 
 .terminal-line.visible {
@@ -42,41 +47,23 @@
   transform: translateX(0);
 }
 
-.terminal-cursor {
-  display: inline-block;
-  width: 7px;
-  height: 14px;
-  background: var(--terminal-green);
-  vertical-align: middle;
-  animation: cursorBlink 0.8s infinite;
-}
-
-@keyframes cursorBlink {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0; }
+#scene-01 .btn-primary {
+  background: linear-gradient(135deg, #dfc278 0%, var(--gold-primary) 100%);
+  color: #2b1726;
+  border: none;
+  box-shadow: 0 4px 16px rgba(200, 162, 72, 0.3);
 }
 
 /* --- SCENE 2: THE GRAND RAKHI REVEAL --- */
 #scene-02 .scene-content {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: var(--space-lg);
-  align-items: center;
-}
-
-@media (min-width: 768px) {
-  #scene-02 .scene-content {
-    grid-template-columns: 1fr 1fr;
-    text-align: left;
-    max-width: 860px;
-  }
+  gap: var(--space-md);
 }
 
 .rakhi-hero-wrapper {
   position: relative;
-  width: 260px;
-  height: 260px;
-  margin: 0 auto;
+  width: 220px;
+  height: 220px;
+  margin: 0.5rem auto;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -86,27 +73,27 @@
 .rakhi-hero-wrapper svg {
   width: 100%;
   height: 100%;
-  filter: drop-shadow(0 8px 24px rgba(212, 175, 55, 0.3));
-  transition: transform 0.4s var(--ease-spring);
+  filter: drop-shadow(0 6px 16px rgba(200, 130, 148, 0.25));
+  transition: transform 0.35s var(--ease-spring);
 }
 
 .rakhi-hero-wrapper:hover svg {
-  transform: scale(1.05);
+  transform: scale(1.04);
 }
 
 .rakhi-hero-wrapper:active svg {
-  transform: scale(0.96);
+  transform: scale(0.97);
 }
 
 .portrait-frame {
   position: relative;
-  width: 200px;
-  height: 250px;
-  margin: 0 auto;
-  border-radius: 24px;
-  background: linear-gradient(135deg, rgba(200,130,148,0.2) 0%, rgba(212,175,55,0.15) 100%);
-  border: 1px solid var(--bg-plum-border);
-  box-shadow: var(--shadow-elevation);
+  width: 180px;
+  height: 220px;
+  margin: 0.5rem auto;
+  border-radius: 20px;
+  background: var(--rose-pale);
+  border: 1px solid var(--border-delicate);
+  box-shadow: var(--shadow-float);
   overflow: hidden;
   display: flex;
   align-items: center;
@@ -117,12 +104,12 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  border-radius: 22px;
-  transition: transform 0.5s var(--ease-cinematic);
+  border-radius: 18px;
+  transition: transform 0.4s var(--ease-soft);
 }
 
 .portrait-frame:hover .portrait-img {
-  transform: scale(1.04);
+  transform: scale(1.03);
 }
 
 .portrait-placeholder {
@@ -130,14 +117,14 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: var(--space-sm);
-  color: var(--rose-light);
+  gap: var(--space-xs);
+  color: var(--rose-primary);
   padding: 1rem;
 }
 
 .portrait-placeholder svg {
-  width: 64px;
-  height: 64px;
+  width: 48px;
+  height: 48px;
   fill: currentColor;
   opacity: 0.85;
 }
@@ -148,74 +135,72 @@
   inset: 0;
   pointer-events: none;
   overflow: hidden;
-  z-index: var(--z-bg);
+  z-index: 1;
 }
 
 .floating-code-tag {
   position: absolute;
-  font-family: var(--font-code);
-  font-size: 0.85rem;
-  color: var(--lavender-code);
-  opacity: 0.35;
-  background: var(--lavender-bg);
-  padding: 4px 10px;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--text-plum-subtle);
+  opacity: 0.6;
+  background: rgba(255, 253, 249, 0.75);
+  padding: 3px 8px;
   border-radius: 6px;
-  border: 1px solid rgba(156, 146, 176, 0.2);
+  border: 1px solid var(--border-paper);
+  box-shadow: var(--shadow-paper);
 }
 
 .evidence-comparison {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: var(--space-md);
+  gap: var(--space-sm);
   margin: var(--space-md) 0;
   text-align: left;
 }
 
 .evidence-col {
-  background: rgba(0, 0, 0, 0.25);
+  background: #f7f1ea;
   padding: var(--space-md);
   border-radius: 12px;
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border: 1px solid var(--border-paper);
 }
 
 .evidence-col.highlight {
-  border-color: var(--gold-light);
-  background: rgba(212, 175, 55, 0.08);
+  border-color: var(--rose-primary);
+  background: var(--rose-pale);
 }
 
 /* --- SCENE 4: THE GIFT (KitKat Rich) --- */
 #scene-04 {
-  background: radial-gradient(circle at 50% 40%, var(--choco-card) 0%, var(--choco-bg) 60%, var(--bg-deep-base) 100%);
+  background: radial-gradient(circle at 50% 30%, #fff9f5 0%, #f7ede3 55%, #ede0d4 100%);
 }
 
 .kitkat-hero-wrapper {
   position: relative;
-  width: 260px;
-  height: 200px;
-  margin: var(--space-md) auto;
+  width: 240px;
+  height: 150px;
+  margin: 0.6rem auto;
   cursor: pointer;
 }
 
 .kitkat-hero-wrapper svg {
   width: 100%;
   height: 100%;
-  filter: drop-shadow(0 12px 28px rgba(0, 0, 0, 0.6));
-  transition: transform 0.4s var(--ease-spring);
+  filter: drop-shadow(0 8px 20px rgba(92, 61, 46, 0.22));
+  transition: transform 0.35s var(--ease-spring);
 }
 
 .kitkat-hero-wrapper:hover svg {
-  transform: translateY(-4px) rotate(-1deg) scale(1.03);
-}
-
-.kitkat-hero-wrapper:active svg {
-  transform: scale(0.97);
+  transform: translateY(-3px) scale(1.02);
 }
 
 .report-table {
   width: 100%;
   text-align: left;
   margin: var(--space-md) 0;
-  font-size: 0.9rem;
+  font-size: 0.88rem;
+  color: var(--text-plum-primary);
 }
 
 .report-table td {
@@ -224,29 +209,33 @@
 }
 
 .report-table td:first-child {
-  color: var(--gold-light);
+  color: var(--text-plum-muted);
   font-weight: 600;
-  width: 40%;
+  width: 38%;
 }
 
-/* --- SCENE 5: THE MESSAGE --- */
+/* --- SCENE 5: THE MESSAGE (Spacious Personal Letter) --- */
+#scene-05 .scene-content {
+  max-width: 500px;
+}
+
 #scene-05 .scrapbook-card {
-  max-width: 540px;
-  text-align: left;
-  border-color: rgba(212, 175, 55, 0.35);
-  background: rgba(30, 14, 27, 0.92);
+  padding: clamp(1.4rem, 5vw, 2.2rem);
+  background: #fffdfa;
+  border-color: var(--rose-border);
 }
 
 .message-paragraph {
   margin-bottom: var(--space-md);
-  line-height: 1.7;
-  color: var(--text-ivory-muted);
+  line-height: 1.75;
+  color: var(--text-plum-primary);
+  font-size: 0.95rem;
 }
 
 .signature-block {
   margin-top: var(--space-lg);
   padding-top: var(--space-md);
-  border-top: 1px dashed var(--bg-plum-border);
+  border-top: 1px dashed var(--border-delicate);
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
@@ -256,34 +245,32 @@
 .sibling-grid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: var(--space-md);
+  gap: var(--space-sm);
   width: 100%;
-  max-width: 600px;
+  max-width: 500px;
   margin: var(--space-md) 0;
 }
 
-@media (min-width: 600px) {
+@media (min-width: 540px) {
   .sibling-grid {
     grid-template-columns: 1fr 1fr;
   }
 }
 
 .sibling-card {
-  background: rgba(35, 16, 31, 0.85);
-  border: 1px solid var(--bg-plum-border);
+  background: var(--bg-paper-card);
+  border: 1px solid var(--border-paper);
   border-radius: 14px;
   padding: var(--space-md);
   text-align: left;
-  cursor: pointer;
-  transition: all 0.3s var(--ease-spring);
-  position: relative;
+  box-shadow: var(--shadow-paper);
+  transition: transform 0.25s var(--ease-soft), box-shadow 0.25s var(--ease-soft), border-color 0.25s;
 }
 
 .sibling-card:hover {
-  transform: translateY(-3px);
-  border-color: var(--gold-light);
-  background: rgba(45, 20, 40, 0.95);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4), 0 0 16px var(--gold-glow);
+  transform: translateY(-2px);
+  border-color: var(--rose-primary);
+  box-shadow: var(--shadow-float);
 }
 
 .sibling-card-header {
@@ -291,8 +278,8 @@
   align-items: center;
   gap: var(--space-xs);
   font-weight: 700;
-  font-size: 0.95rem;
-  color: var(--gold-light);
+  font-size: 0.88rem;
+  color: var(--text-plum-dark);
   margin-bottom: var(--space-xs);
 }
 
@@ -301,31 +288,26 @@
   justify-content: center;
   gap: var(--space-lg);
   margin: var(--space-md) 0;
-  font-size: 1.5rem;
+  font-size: 1.4rem;
 }
 
 .secret-item {
   cursor: pointer;
-  transition: transform 0.3s var(--ease-spring);
-  padding: 6px;
+  transition: transform 0.25s var(--ease-spring);
+  padding: 4px;
 }
 
 .secret-item:hover {
-  transform: scale(1.3) rotate(8deg);
+  transform: scale(1.25);
 }
 
 /* --- SCENE 7: THE FINALE --- */
-.recap-container {
-  min-height: 50px;
-  margin-bottom: var(--space-md);
-}
-
 .bond-wrapper {
   position: relative;
   width: 100%;
-  max-width: 480px;
-  height: 180px;
-  margin: var(--space-md) auto;
+  max-width: 440px;
+  height: 160px;
+  margin: 0.8rem auto;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -340,22 +322,23 @@
 }
 
 .bond-avatar {
-  width: 56px;
-  height: 56px;
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
-  background: rgba(212, 175, 55, 0.15);
-  border: 2px solid var(--gold-light);
+  background: #ffffff;
+  border: 1.5px solid var(--rose-primary);
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--gold-light);
-  box-shadow: 0 0 20px var(--gold-glow);
+  color: var(--text-plum-dark);
+  box-shadow: var(--shadow-paper);
+  font-size: 1.2rem;
 }
 
 .bond-label {
   font-size: 0.8rem;
   font-weight: 600;
-  color: var(--text-ivory-light);
+  color: var(--text-plum-primary);
 }
 
 .bond-thread-svg {

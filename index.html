@@ -3,13 +3,17 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=1.0, user-scalable=no" />
-  <title>For Anwesha, From Your Brother | Happy Raksha Bandhan 🧿</title>
+  <title>For Anwesha, From Your Brother 🧿</title>
   <meta name="description" content="A personalized interactive Rakhi gift experience for Anwesha from Diganta." />
-  <meta name="theme-color" content="#120810" />
+  <meta name="theme-color" content="#FAF6F0" />
 
-  <!-- Google Fonts Preconnect -->
+  <!-- Google Fonts Preconnect & Import: Fraunces & Manrope -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500;1,9..144,600&family=Manrope:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <!-- Font Awesome 6 Free for clean UI icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   
   <!-- Design System Stylesheets -->
   <link rel="stylesheet" href="src/styles/variables.css" />
@@ -21,7 +25,10 @@
 </head>
 <body>
   <div id="app-container">
-    <!-- Ambient Particle Canvas Background -->
+    <!-- Paper Texture & Soft Lighting Overlay -->
+    <div class="paper-texture-overlay" aria-hidden="true"></div>
+
+    <!-- Ambient Particle Canvas Background (Gentle Dust Motes & Soft Petals) -->
     <canvas id="particle-canvas"></canvas>
 
     <!-- Transition Flare Light Overlay -->
@@ -30,14 +37,14 @@
     <!-- Persistent Global Header Navigation / Controls -->
     <header class="global-header">
       <div class="header-left">
-        <!-- Subtle Progress Bar Indicator -->
+        <!-- Subtle Minimal Progress Bar -->
         <nav class="scene-progress-bar" id="progress-bar" aria-label="Experience progress"></nav>
       </div>
       <div class="header-right">
-        <!-- Persistent Music Toggle Button -->
+        <!-- Persistent Music Toggle Button (Minimal Paper Disc) -->
         <button id="music-toggle" class="music-toggle-btn" aria-label="Toggle ambient soundtrack">
+          <i class="fa-solid fa-music music-note-icon" aria-hidden="true"></i>
           <div class="music-waveform" aria-hidden="true">
-            <span class="waveform-bar"></span>
             <span class="waveform-bar"></span>
             <span class="waveform-bar"></span>
             <span class="waveform-bar"></span>
@@ -57,11 +64,11 @@
       <section id="scene-07" class="scene-container" aria-label="Scene 7: The Finale"></section>
     </main>
 
-    <!-- Achievement Toast Notification -->
+    <!-- Achievement Toast Notification (Delicate Personal Badge) -->
     <div id="achievement-toast" class="achievement-toast" role="status" aria-live="polite">
-      <span id="toast-icon" class="achievement-icon">🏆</span>
-      <div>
-        <div id="toast-title" class="achievement-title">ACHIEVEMENT UNLOCKED</div>
+      <div class="toast-badge-icon" id="toast-icon">✨</div>
+      <div class="toast-text-group">
+        <div id="toast-title" class="achievement-title">NOTE UNLOCKED</div>
         <div id="toast-desc" class="achievement-desc">Best Sister Detected</div>
       </div>
     </div>

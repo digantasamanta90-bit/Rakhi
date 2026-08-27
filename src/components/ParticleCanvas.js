@@ -1,7 +1,6 @@
 /**
- * PARTICLE CANVAS COMPONENT
- * Lightweight, GPU-friendly 60fps ambient particle engine
- * Golden dust motes, rose petals, and celebration bursts.
+ * PARTICLE CANVAS COMPONENT — LIGHT & DREAMY AMBIENCE
+ * Subtle warm dust motes, delicate rose petals, and gentle celebration bursts.
  */
 
 export class ParticleCanvas {
@@ -30,38 +29,39 @@ export class ParticleCanvas {
   }
 
   initParticles() {
-    const count = window.innerWidth < 768 ? 24 : 45;
+    // Restrained particle density (Light and airy, not a snow storm)
+    const count = window.innerWidth < 768 ? 16 : 28;
     this.particles = [];
     for (let i = 0; i < count; i++) {
       this.particles.push({
         x: Math.random() * this.width,
         y: Math.random() * this.height,
-        radius: Math.random() * 2 + 0.8,
-        color: Math.random() > 0.4 ? 'rgba(212, 175, 55, ' : 'rgba(200, 130, 148, ',
-        alpha: Math.random() * 0.4 + 0.15,
-        speedY: Math.random() * 0.4 + 0.15,
-        speedX: (Math.random() - 0.5) * 0.3,
+        radius: Math.random() * 2 + 0.6,
+        color: Math.random() > 0.5 ? 'rgba(200, 130, 148, ' : 'rgba(200, 162, 72, ',
+        alpha: Math.random() * 0.25 + 0.1,
+        speedY: Math.random() * 0.3 + 0.1,
+        speedX: (Math.random() - 0.5) * 0.2,
         pulseSpeed: Math.random() * 0.02 + 0.01,
         pulseAngle: Math.random() * Math.PI * 2
       });
     }
   }
 
-  triggerBurst(x, y, count = 25) {
+  triggerBurst(x, y, count = 20) {
     if (this.reducedMotion) return;
     for (let i = 0; i < count; i++) {
       const angle = Math.random() * Math.PI * 2;
-      const speed = Math.random() * 4 + 2;
+      const speed = Math.random() * 3 + 1.5;
       this.bursts.push({
         x: x || this.width / 2,
         y: y || this.height / 2,
         vx: Math.cos(angle) * speed,
         vy: Math.sin(angle) * speed,
-        radius: Math.random() * 3 + 1.5,
-        color: ['#d4af37', '#ffffff', '#e8a7b7', '#fff7d6'][Math.floor(Math.random() * 4)],
+        radius: Math.random() * 2.5 + 1.2,
+        color: ['#c88294', '#dfc278', '#f5efe6', '#c8a248'][Math.floor(Math.random() * 4)],
         alpha: 1,
         life: 1,
-        decay: Math.random() * 0.025 + 0.015
+        decay: Math.random() * 0.02 + 0.015
       });
     }
   }
@@ -69,12 +69,12 @@ export class ParticleCanvas {
   animate() {
     this.ctx.clearRect(0, 0, this.width, this.height);
 
-    // Ambient floating particles
+    // Ambient floating dust motes
     for (const p of this.particles) {
       p.y -= p.speedY;
       p.x += p.speedX;
       p.pulseAngle += p.pulseSpeed;
-      const currentAlpha = p.alpha + Math.sin(p.pulseAngle) * 0.1;
+      const currentAlpha = p.alpha + Math.sin(p.pulseAngle) * 0.06;
 
       if (p.y < -10) p.y = this.height + 10;
       if (p.x < -10) p.x = this.width + 10;
@@ -82,16 +82,16 @@ export class ParticleCanvas {
 
       this.ctx.beginPath();
       this.ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-      this.ctx.fillStyle = `${p.color}${Math.max(0.05, currentAlpha)})`;
+      this.ctx.fillStyle = `${p.color}${Math.max(0.04, currentAlpha)})`;
       this.ctx.fill();
     }
 
-    // Interactive celebration burst particles
+    // Celebration burst particles
     for (let i = this.bursts.length - 1; i >= 0; i--) {
       const b = this.bursts[i];
       b.x += b.vx;
       b.y += b.vy;
-      b.vy += 0.08; // gravity
+      b.vy += 0.06; // gravity
       b.life -= b.decay;
 
       if (b.life <= 0) {
@@ -104,8 +104,6 @@ export class ParticleCanvas {
       this.ctx.beginPath();
       this.ctx.arc(b.x, b.y, b.radius, 0, Math.PI * 2);
       this.ctx.fillStyle = b.color;
-      this.ctx.shadowColor = b.color;
-      this.ctx.shadowBlur = 8;
       this.ctx.fill();
       this.ctx.restore();
     }
