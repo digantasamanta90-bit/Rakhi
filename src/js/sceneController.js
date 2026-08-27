@@ -63,6 +63,12 @@ export class SceneController {
         dot.classList.add('passed');
       }
     }
+
+    // Update global navigation arrows state
+    const navPrev = document.getElementById('nav-prev');
+    const navNext = document.getElementById('nav-next');
+    if (navPrev) navPrev.disabled = targetScene === 1;
+    if (navNext) navNext.disabled = targetScene === this.totalScenes;
   }
 
   async goToScene(sceneNumber, animate = true) {
@@ -99,6 +105,12 @@ export class SceneController {
   nextScene() {
     if (state.currentScene < this.totalScenes) {
       this.goToScene(state.currentScene + 1);
+    }
+  }
+
+  prevScene() {
+    if (state.currentScene > 1) {
+      this.goToScene(state.currentScene - 1);
     }
   }
 }

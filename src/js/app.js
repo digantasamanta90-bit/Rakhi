@@ -34,4 +34,14 @@ document.addEventListener('DOMContentLoaded', () => {
   // Initialize Scenes
   const sceneController = new SceneController();
   sceneController.init();
+
+  // Global Slide Navigation
+  const navPrev = document.getElementById('nav-prev');
+  const navNext = document.getElementById('nav-next');
+  if (navPrev) {
+    navPrev.addEventListener('click', () => sceneController.prevScene());
+  }
+  if (navNext) {
+    navNext.addEventListener('click', () => sceneController.nextScene());
+  }
 });

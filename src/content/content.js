@@ -44,14 +44,14 @@ export const content = {
       "So I suppose I should thank him.",
       "Just this once. Don't get used to it. 💀"
     ],
-    closingJoke: "Anyway... since apparently having a sister wasn't enough, I decided to build an entire website about it.",
+    closingJoke: "Anyway... since apparently having a sister wasn't enough, I decided to build an entire story about it.",
     ctaText: "CONTINUE THE JOURNEY"
   },
 
   // --- SCENE 3: WHY A WEBSITE? ---
   scene3: {
     title: "Now you might be wondering...",
-    headline: "Why the hell is there a website?",
+    headline: "Why the hell is there a webpage?",
     alternatives: [
       "I could've just bought you something.",
       "I could've written a tiny note.",
@@ -125,14 +125,14 @@ export const content = {
     leadQuote: "Okay... jokes aside for a minute. There's something I actually wanted to tell you.",
     messageParagraphs: [
       "This is the first time I’ve made something like this for Rakhi, and honestly, I wasn’t sure how to do it without overthinking every single detail. 😭",
-      "Technically, life didn't start us off as siblings, but somehow along the way, you became my sister. And that’s something I’m genuinely grateful for.",
+      "Technically, life didn't start us off as siblings, but somehow in the path, you became the sister I chose. And that’s something I’m genuinely grateful for.",
       "The gifts are just small tokens, and this website is admittedly an overengineered delivery mechanism 😭, but the care behind it is 100% real.",
       "Stay happy, take care of yourself, and don't change. I'm really glad to have you as my sister."
     ],
     closingJoke: "And unfortunately for you... you're permanently stuck with me as your brother. 💀🧿",
     signature: {
       prefix: "With love,",
-      author: "Your brother, Diganta 🧿"
+      author: "The brother in question \n Diganta 🧿"
     },
     keepButton: "KEEP THIS MESSAGE 🧿",
     keepSuccess: "Saved forever in memory. No refunds. 💀",
@@ -146,8 +146,8 @@ export const content = {
     subtext: "Since you're officially stuck with me now, I feel like you should know what you've signed up for.",
     modeTag: "SIBLING MODE ACTIVATED | Chaos: ENABLED ✓",
     brotherCard: {
-      title: "Your brother",
-      description: "Professional overthinker. Occasional nuisance. Somehow still your brother.",
+      title: "Me",
+      description: "Professional overthinker. Occasional nuisance. Somehow still one of the persons who cares about you.",
       reliability: "questionable",
       effort: "unnecessarily high",
       refundPolicy: "unavailable",
@@ -161,8 +161,8 @@ export const content = {
       threatLevel: "High (Might demand more chocolate) 🍫"
     },
     monojitCard: {
-      title: "Monojit (The Catalyst)",
-      role: "The man partly responsible for this entire situation.",
+      title: "The man behind it all",
+      role: "The person who is partly responsible for this entire situation.",
       points: [
         "Helped find the photo for this website.",
         "Helped choose the chocolate.",
@@ -195,10 +195,10 @@ export const content = {
       "Somehow, somewhere along the way... I got a sister.",
       "Not by blood. Just by one of those weird little turns life makes sometimes.",
       "And honestly, I'm really glad it happened.",
-      "So, I guess I owe Monojit one proper thank-you too. He started this chain of events.",
+      "So, I guess I owe someone else a proper thank-you too. He started this chain of events.",
       "I just decided to overengineer the ending. 💀"
     ],
-    greeting: "Happy Raksha Bandhan, Anwesha. 🧿",
+    greeting: "Happy Rakhi, Chotokhuki. 🧿",
     subtext: "I hope you liked this little ridiculous thing I made for you.",
     realRakhiNote: "And yes... there's an actual Rakhi waiting for you too. Go on. You've got gifts to open. 👀",
     signature: "— Diganta",

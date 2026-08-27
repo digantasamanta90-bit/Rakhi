@@ -106,6 +106,46 @@
   font-size: 0.72rem;
 }
 
+/* Global Slide Navigation Arrows */
+.header-nav-arrows {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background: rgba(255, 253, 249, 0.85);
+  border: 1px solid var(--border-paper);
+  border-radius: 20px;
+  padding: 2px;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  box-shadow: var(--shadow-paper);
+}
+
+.nav-arrow-btn {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: transparent;
+  border: none;
+  color: var(--text-plum-muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.25s var(--ease-soft);
+  font-size: 0.75rem;
+}
+
+.nav-arrow-btn:hover:not(:disabled) {
+  background: #ffffff;
+  color: var(--rose-primary);
+  transform: scale(1.05);
+}
+
+.nav-arrow-btn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
 /* Minimal Sound Waveform */
 .music-waveform {
   display: flex;

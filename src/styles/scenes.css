@@ -468,6 +468,31 @@
 }
 
 /* --- SCENE 6: THE SIBLING ZONE --- */
+#scene-06 {
+  position: relative;
+  /* Adjust this value to change the background image opacity (0.0 to 1.0) */
+  --s6-bg-opacity: 0.32;
+}
+
+#scene-06::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url('../../assets/portraits/anwesha1.png');
+  background-size: cover;
+  background-position: center 20%;
+  background-repeat: no-repeat;
+  opacity: var(--s6-bg-opacity);
+  pointer-events: none;
+  z-index: 0;
+  filter: saturate(0.85);
+}
+
+#scene-06 .scene-content {
+  position: relative;
+  z-index: 1;
+}
+
 .sibling-grid {
   display: grid;
   grid-template-columns: 1fr;
