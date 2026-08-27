@@ -1,6 +1,7 @@
 /**
  * SCENE 5 — 05_THE_MESSAGE
- * Calm, spacious personal letter, warm paper card, calm portrait, handwritten signature.
+ * Calm, spacious personal letter, full editorial portrait illustration,
+ * warm paper card, handwritten signature, and seamless light aesthetic.
  */
 
 import { delay } from '../js/utils.js';
@@ -13,18 +14,22 @@ export function createScene05(sceneManager) {
 
   container.innerHTML = `
     <div class="scene-content">
-      <div class="scrapbook-card" style="max-width: 500px; text-align: left; background: #fffdfa;">
-        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1rem;">
-          <h2 class="font-display" style="font-size: 1.35rem; color: var(--text-plum-dark); font-style: italic;">
-            A Note for Anwesha 🧿
-          </h2>
-          <div style="width: 44px; height: 44px; border-radius: 50%; overflow: hidden; border: 1px solid var(--border-delicate);">
-            ${renderPortrait('assets/portraits/anwesha_calm.png', 'Anwesha', '')}
-          </div>
-        </div>
+      <!-- Title Header -->
+      <div class="s5-header">
+        <h2 class="font-display s5-title">
+          A Note for Anwesha 🧿
+        </h2>
+      </div>
 
-        <div style="font-size: 0.92rem; line-height: 1.7; color: var(--text-plum-primary);">
-          <p class="message-paragraph" style="font-style: italic; color: var(--rose-primary);">
+      <!-- Full Editorial Portrait (Complete illustration visible, no avatar circle) -->
+      <div class="s5-portrait-container">
+        ${renderPortrait('assets/portraits/anwesha_calm.png', 'Anwesha', '', 'editorial')}
+      </div>
+
+      <!-- Sincere Letter Card -->
+      <div class="scrapbook-card s5-letter-card">
+        <div class="s5-message-body">
+          <p class="message-paragraph s5-lead-quote">
             Okay... jokes aside for a second. There actually is something I wanted to say.
           </p>
           <p class="message-paragraph">
@@ -33,7 +38,7 @@ export function createScene05(sceneManager) {
           <p class="message-paragraph">
             So I did what any completely normal person would do... I bought chocolate and built a website. 😭
           </p>
-          <p class="message-paragraph" style="color: var(--text-plum-dark); font-weight: 600; font-family: var(--font-display); font-size: 1.05rem;">
+          <p class="message-paragraph s5-wish-highlight font-display">
             Happy Raksha Bandhan, Anwesha. 🧿
           </p>
           <p class="message-paragraph">
@@ -45,36 +50,36 @@ export function createScene05(sceneManager) {
           <p class="message-paragraph">
             I’m glad you’re my sister, and I’m glad I got to make something for you this time. Stay happy, take care of yourself, and don’t change too much.
           </p>
-          <p class="message-paragraph" style="font-style: italic; color: var(--text-plum-muted);">
+          <p class="message-paragraph s5-closing-joke">
             And unfortunately for you, you’re still stuck with me as your brother. 💀🧿
           </p>
         </div>
 
         <!-- Handwritten Signature Block -->
         <div class="signature-block">
-          <div>
-            <button class="btn-secondary" id="s5-keep-btn" style="font-size: 0.78rem; padding: 0.35rem 0.8rem;">
+          <div class="s5-keep-wrapper">
+            <button class="btn-secondary" id="s5-keep-btn">
               <span>KEEP THIS MESSAGE</span> 🧿
             </button>
-            <div id="s5-keep-feedback" style="font-size: 0.75rem; color: var(--rose-primary); margin-top: 4px; display: none; font-style: italic;">
+            <div id="s5-keep-feedback" class="s5-keep-feedback">
               Saved forever. No refunds. 💀
             </div>
           </div>
-          <div style="text-align: right;">
-            <span style="font-size: 0.78rem; color: var(--text-plum-subtle);">With love,</span><br>
+          <div class="s5-sig-author">
+            <span class="s5-sig-prefix">With love,</span><br>
             <span class="handwritten-sig">Your brother, Diganta 🧿</span>
           </div>
         </div>
       </div>
 
       <!-- Tone Reset & Primary CTA -->
-      <div style="margin-top: 1rem; text-align: center;">
-        <p class="body-subtle" style="margin-bottom: 0.4rem; color: var(--text-plum-subtle);">
+      <div class="s5-cta-section">
+        <p class="body-subtle s5-cta-lead">
           Okay, enough emotional nonsense. 😭 There’s still more.
         </p>
         <button class="btn-primary" id="s5-cta-btn">
           <span>LET’S GET BACK TO BEING NORMAL</span>
-          <i class="fa-solid fa-arrow-right" style="font-size: 0.85rem;" aria-hidden="true"></i> 💀
+          <i class="fa-solid fa-arrow-right s5-arrow-icon" aria-hidden="true"></i> 💀
         </button>
       </div>
     </div>

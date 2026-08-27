@@ -32,11 +32,9 @@
   --gold-subtle: rgba(200, 162, 72, 0.15);
   --gold-border: rgba(200, 162, 72, 0.3);
 
-  /* Scene 1 Ambient Dark Mystery (Twilight / Faded Wine) */
-  --s1-night-bg: #1c0e18;
-  --s1-night-card: rgba(36, 18, 31, 0.9);
-  --s1-text-light: #fcf9f2;
-  --s1-text-muted: #d5c4cb;
+  /* Scene 1 Twilight Warmth (Gentle Dusk / Soft Warm Vignette) */
+  --s1-twilight-glow: rgba(200, 130, 148, 0.35);
+  --s1-paper-card: rgba(255, 253, 249, 0.95);
 
   /* Scene 4 Gift: Soft Cocoa / Warm Milk Chocolate */
   --choco-primary: #5c3d2e;

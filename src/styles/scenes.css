@@ -1,31 +1,23 @@
 /* =========================================================
    SCENE-SPECIFIC STYLES — MOBILE-FIRST EDITORIAL COMPOSITION
    Scenes 1 through 7 with open layouts, breathing space,
-   paper frames, and handcrafted details.
+   paper frames, handcrafted details, and light dreamy continuity.
    ========================================================= */
 
-/* --- SCENE 1: THE INVITATION --- */
+/* --- SCENE 1: THE INVITATION (Twilight Warmth Mystery) --- */
 #scene-01 {
-  background: radial-gradient(circle at 50% 45%, #2a1625 0%, #1c0e18 55%, #140811 100%);
-  color: var(--s1-text-light);
+  background: radial-gradient(circle at 50% 40%, rgba(253, 249, 244, 0.98) 0%, rgba(246, 238, 228, 0.95) 55%, rgba(237, 226, 216, 0.9) 100%);
+  color: var(--text-plum-primary);
   justify-content: center;
-}
-
-#scene-01 .body-lead {
-  color: var(--s1-text-muted);
-}
-
-#scene-01 .font-display {
-  color: #ffffff;
 }
 
 .intro-glow-point {
   width: 10px;
   height: 10px;
   border-radius: 50%;
-  background: var(--gold-light);
-  box-shadow: 0 0 24px 8px rgba(223, 194, 120, 0.35);
-  margin-bottom: var(--space-md);
+  background: var(--rose-primary);
+  box-shadow: 0 0 20px 6px rgba(200, 130, 148, 0.35);
+  margin: 0 auto var(--space-md);
   opacity: 0;
   transition: opacity 1.5s ease;
 }
@@ -34,12 +26,54 @@
   opacity: 1;
 }
 
+.s1-intro-wrapper {
+  min-height: 105px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.s1-greeting {
+  font-size: clamp(1.8rem, 6.5vw, 2.6rem);
+  color: var(--text-plum-dark);
+  opacity: 0;
+  transition: opacity 1.2s ease;
+  margin-bottom: 0.5rem;
+  font-style: italic;
+}
+
+.s1-greeting.visible {
+  opacity: 1;
+}
+
+.s1-subtext {
+  font-size: 0.95rem;
+  color: var(--text-plum-muted);
+  opacity: 0;
+  transition: opacity 1.2s ease;
+  line-height: 1.6;
+}
+
+.s1-subtext.visible {
+  opacity: 1;
+}
+
+.s1-subtext-highlight {
+  font-family: var(--font-display);
+  font-style: italic;
+  color: var(--rose-primary);
+  font-weight: 500;
+}
+
 .terminal-line {
   margin-bottom: 0.35rem;
   opacity: 0;
   transform: translateX(-4px);
   transition: opacity 0.3s, transform 0.3s;
   font-size: 0.82rem;
+  font-family: var(--font-mono);
 }
 
 .terminal-line.visible {
@@ -47,11 +81,14 @@
   transform: translateX(0);
 }
 
-#scene-01 .btn-primary {
-  background: linear-gradient(135deg, #dfc278 0%, var(--gold-primary) 100%);
-  color: #2b1726;
-  border: none;
-  box-shadow: 0 4px 16px rgba(200, 162, 72, 0.3);
+.s1-cta-wrapper {
+  opacity: 0;
+  transition: opacity 0.8s ease;
+  margin-top: 1.2rem;
+}
+
+.s1-cta-wrapper.visible {
+  opacity: 1;
 }
 
 /* --- SCENE 2: THE GRAND RAKHI REVEAL --- */
@@ -85,6 +122,7 @@
   transform: scale(0.97);
 }
 
+/* Framed Portrait (Scene 2 & Compact Support) */
 .portrait-frame {
   position: relative;
   width: 180px;
@@ -125,6 +163,78 @@
 .portrait-placeholder svg {
   width: 48px;
   height: 48px;
+  fill: currentColor;
+  opacity: 0.85;
+}
+
+.portrait-placeholder-label {
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  color: var(--rose-primary);
+}
+
+.portrait-caption {
+  position: absolute;
+  bottom: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--rose-primary);
+  background: rgba(255, 253, 249, 0.94);
+  padding: 3px 10px;
+  border-radius: 9999px;
+  border: 1px solid var(--border-delicate);
+  box-shadow: var(--shadow-paper);
+  white-space: nowrap;
+  pointer-events: none;
+  z-index: 3;
+}
+
+/* Full Editorial Portrait (Scene 5 & Full Art Showcase) */
+.portrait-editorial {
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.portrait-editorial-img {
+  width: 100%;
+  max-height: 240px;
+  height: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 6px 20px rgba(61, 36, 54, 0.12));
+  border-radius: 14px;
+  transition: transform 0.4s var(--ease-soft);
+}
+
+.portrait-editorial:hover .portrait-editorial-img {
+  transform: scale(1.02);
+}
+
+.portrait-editorial-placeholder {
+  width: 160px;
+  height: 200px;
+  border-radius: 16px;
+  background: var(--rose-pale);
+  border: 1px dashed var(--border-delicate);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-xs);
+  color: var(--rose-primary);
+  padding: 1rem;
+}
+
+.portrait-editorial-placeholder svg {
+  width: 42px;
+  height: 42px;
   fill: currentColor;
   opacity: 0.85;
 }
@@ -214,15 +324,105 @@
   width: 38%;
 }
 
-/* --- SCENE 5: THE MESSAGE (Spacious Personal Letter) --- */
+/* --- SCENE 5: THE MESSAGE (Spacious Editorial Personal Letter) --- */
 #scene-05 .scene-content {
-  max-width: 500px;
+  max-width: 480px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-#scene-05 .scrapbook-card {
-  padding: clamp(1.4rem, 5vw, 2.2rem);
+.s5-header {
+  text-align: center;
+  margin-bottom: 0.4rem;
+}
+
+.s5-title {
+  font-size: clamp(1.4rem, 4.5vw, 1.85rem);
+  color: var(--text-plum-dark);
+  font-style: italic;
+}
+
+.s5-portrait-container {
+  width: 100%;
+  max-width: 220px;
+  margin: 0.2rem auto 0.8rem;
+  display: flex;
+  justify-content: center;
+}
+
+.s5-letter-card {
+  padding: clamp(1.3rem, 5vw, 2rem);
   background: #fffdfa;
-  border-color: var(--rose-border);
+  border: 1px solid var(--rose-border);
+  border-radius: 18px;
+  box-shadow: var(--shadow-float);
+  width: 100%;
+  text-align: left;
+}
+
+.s5-message-body {
+  font-size: 0.92rem;
+  line-height: 1.7;
+  color: var(--text-plum-primary);
+}
+
+.s5-lead-quote {
+  font-style: italic;
+  color: var(--rose-primary);
+  font-weight: 500;
+}
+
+.s5-wish-highlight {
+  color: var(--text-plum-dark);
+  font-weight: 600;
+  font-size: 1.08rem;
+  font-style: italic;
+  margin: 0.8rem 0;
+}
+
+.s5-closing-joke {
+  font-style: italic;
+  color: var(--text-plum-muted);
+}
+
+.s5-keep-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.s5-keep-feedback {
+  font-size: 0.75rem;
+  color: var(--rose-primary);
+  margin-top: 4px;
+  display: none;
+  font-style: italic;
+}
+
+.s5-sig-author {
+  text-align: right;
+}
+
+.s5-sig-prefix {
+  font-size: 0.78rem;
+  color: var(--text-plum-subtle);
+}
+
+.s5-cta-section {
+  margin-top: 1rem;
+  text-align: center;
+  width: 100%;
+}
+
+.s5-cta-lead {
+  margin-bottom: 0.4rem;
+  color: var(--text-plum-subtle);
+}
+
+.s5-arrow-icon {
+  font-size: 0.85rem;
 }
 
 .message-paragraph {

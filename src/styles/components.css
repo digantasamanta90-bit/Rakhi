@@ -166,16 +166,18 @@
   opacity: 0.8;
 }
 
-/* Stylized System Note Card (Scene 1) */
+/* Personal System Note Card (Scene 1) */
 .terminal-card {
-  background: var(--s1-night-card);
-  border: 1px solid rgba(200, 130, 148, 0.25);
-  border-radius: 14px;
+  background: rgba(255, 253, 249, 0.95);
+  border: 1px solid var(--border-delicate);
+  border-radius: 16px;
   padding: 1.1rem 1.3rem;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
+  box-shadow: var(--shadow-paper);
   text-align: left;
   width: 100%;
   max-width: 440px;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
 }
 
 .terminal-header {
@@ -184,7 +186,7 @@
   gap: 6px;
   margin-bottom: 0.6rem;
   padding-bottom: 0.4rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid var(--border-paper);
 }
 
 .terminal-dot {
@@ -194,12 +196,12 @@
 }
 .terminal-dot.red { background: #e06c75; }
 .terminal-dot.yellow { background: #e5c07b; }
-.terminal-dot.green { background: #98c379; }
+.terminal-dot.green { background: #6aa87d; }
 
 .terminal-title {
   font-family: var(--font-mono);
   font-size: 0.75rem;
-  color: var(--s1-text-muted);
+  color: var(--text-plum-subtle);
   margin-left: auto;
 }
 
