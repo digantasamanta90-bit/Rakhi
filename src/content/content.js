@@ -162,7 +162,7 @@ export const content = {
       threatLevel: "High (Might demand more chocolate) 🍫"
     },
     monojitCard: {
-      title: "The man behind it all",
+      title: "The Man behind all of it",
       role: "The person who is partly responsible for this entire situation.",
       points: [
         "Helped find the photo for this website.",
