@@ -7,27 +7,25 @@
 import { delay } from '../js/utils.js';
 import { audio } from '../js/audioController.js';
 import { state } from '../js/interactionState.js';
+import { content } from '../content/content.js';
 import { renderRakhiSvg } from '../components/RakhiVisual.js';
 
 export function createScene07(sceneManager) {
   const container = document.getElementById('scene-07');
+  const c = content.scene7;
 
   container.innerHTML = `
     <div class="scene-content">
       <!-- Recap Sequence -->
-      <div id="s7-recap" style="margin-bottom: 0.8rem; text-align: center; max-width: 480px;">
-        <p class="body-lead" style="color: var(--rose-primary); font-style: italic; margin-bottom: 0.3rem;">
-          Okay. This time, for real.
+      <div id="s7-recap" style="margin-bottom: 0.4rem; text-align: center; max-width: 440px;">
+        <p class="body-lead" style="color: var(--rose-primary); font-style: italic; margin-bottom: 2px; font-size: 0.82rem;">
+          ${c.recapIntro}
         </p>
-        <h2 class="font-display" style="font-size: clamp(1.3rem, 4.2vw, 1.8rem); color: var(--text-plum-dark); margin-bottom: 0.6rem;">
-          Thank you for staying till the end. 😭
-        </h2>
-        <div id="s7-recap-lines" style="font-size: 0.88rem; color: var(--text-plum-muted); line-height: 1.55;">
-          <p>You scanned a QR code.</p>
-          <p>You found a Rakhi website.</p>
-          <p>There was chocolate research (Monojit got involved).</p>
-          <p>I lost sleep.</p>
-          <p style="color: var(--text-plum-dark); font-weight: 600; margin-top: 3px; font-family: var(--font-display); font-style: italic;">And somehow... we made it to the end.</p>
+        <div id="s7-recap-lines" style="font-size: 0.82rem; color: var(--text-plum-muted); line-height: 1.5;">
+          <p style="font-weight: 600; color: var(--text-plum-dark); font-size: 0.9rem; font-family: var(--font-display);">${c.recapLines[0]}</p>
+          <p>${c.recapLines[1]}</p>
+          <p style="color: var(--rose-primary); font-weight: 500;">${c.recapLines[2]}</p>
+          <p style="font-size: 0.76rem; color: var(--text-plum-subtle); margin-top: 2px;">${c.recapLines[3]} ${c.recapLines[4]}</p>
         </div>
       </div>
 
@@ -40,81 +38,83 @@ export function createScene07(sceneManager) {
         </div>
 
         <!-- Center Master Rakhi -->
-        <div class="rakhi-hero-wrapper" id="s7-rakhi-wrap" role="button" aria-label="Tap final Rakhi for celebration" tabindex="0" style="width: 160px; height: 160px;">
-          ${renderRakhiSvg({ size: 160, id: 's7-rakhi' })}
+        <div class="rakhi-hero-wrapper" id="s7-rakhi-wrap" role="button" aria-label="Tap final Rakhi for celebration" tabindex="0" style="width: 120px; height: 120px;">
+          ${renderRakhiSvg({ size: 120, id: 's7-rakhi' })}
         </div>
 
         <!-- Anwesha Node -->
         <div class="bond-node">
-          <div class="bond-avatar">👧</div>
+          <div class="bond-avatar">
+            <img src="assets/portraits/anwesha12.png" alt="Anwesha" onerror="this.src='assets/portraits/anwesha_calm.png';" />
+          </div>
           <span class="bond-label">Anwesha 🧿</span>
         </div>
 
         <!-- Bond Connecting Thread SVG -->
-        <svg class="bond-thread-svg" viewBox="0 0 440 160">
-          <path d="M 40 80 Q 220 40 400 80" stroke="url(#antiqueGoldGrad)" stroke-width="2.5" fill="none" />
-          <path class="bond-pulse-line" d="M 40 80 Q 220 40 400 80" stroke="#c88294" stroke-width="3" fill="none" />
+        <svg class="bond-thread-svg" viewBox="0 0 400 120">
+          <defs>
+            <linearGradient id="antiqueGoldGradBond" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#f5e6b8" />
+              <stop offset="45%" stop-color="#c8a248" />
+              <stop offset="100%" stop-color="#a6832b" />
+            </linearGradient>
+          </defs>
+          <path d="M 35 60 Q 200 20 365 60" stroke="url(#antiqueGoldGradBond)" stroke-width="2.5" fill="none" />
+          <path class="bond-pulse-line" d="M 35 60 Q 200 20 365 60" stroke="#c88294" stroke-width="3" fill="none" />
         </svg>
       </div>
 
       <!-- Final Greeting & Sincere Closing -->
-      <div class="scrapbook-card" style="max-width: 480px; margin-top: 0.6rem; text-align: center; background: #fffdfa;">
-        <h3 class="font-display" style="font-size: 1.3rem; color: var(--text-plum-dark); margin-bottom: 0.4rem; font-style: italic;">
-          Happy Raksha Bandhan, Anwesha. 🧿
+      <div class="scrapbook-card" style="max-width: 440px; margin-top: 0.3rem; text-align: center; background: #fffdfa;">
+        <h3 class="font-display" style="font-size: 1.2rem; color: var(--text-plum-dark); margin-bottom: 0.2rem; font-style: italic;">
+          ${c.greeting}
         </h3>
-        <p class="body-lead" style="font-size: 0.95rem; margin-bottom: 0.3rem;">
-          I’m glad you’re my sister.
+        <p class="body-lead" style="font-size: 0.88rem; margin-bottom: 2px;">
+          ${c.subtext}
         </p>
-        <p class="body-subtle" style="font-style: italic; color: var(--rose-primary); margin-bottom: 0.8rem;">
-          And unfortunately for you... you’re permanently stuck with me as your brother. 💀❤️
+        <p class="body-lead" style="font-weight: 600; color: var(--rose-primary); font-size: 0.84rem; margin-bottom: 0.4rem; font-family: var(--font-display); font-style: italic;">
+          ${c.realRakhiNote}
         </p>
 
-        <div style="font-size: 0.88rem; color: var(--text-plum-muted); line-height: 1.55; margin-bottom: 0.8rem;">
-          <p>I hope you liked the chocolate.</p>
-          <p>I hope you liked the website.</p>
-          <p style="color: var(--text-plum-dark); font-weight: 500; font-family: var(--font-display); font-style: italic;">And I hope this made you smile at least once. That’s honestly all I wanted. 🧿</p>
-        </div>
+        <hr style="border: none; border-top: 1px dashed var(--border-delicate); margin: 0.4rem 0;">
 
-        <hr style="border: none; border-top: 1px dashed var(--border-delicate); margin: 0.8rem 0;">
-
-        <div style="font-size: 0.82rem; color: var(--text-plum-subtle);">
-          <strong style="color: var(--text-plum-dark);">Made for Anwesha ❤️</strong><br>
-          By your sleep-deprived brother, Diganta<br>
-          <span style="font-size: 0.72rem; font-style: italic;">Made with HTML, CSS, JavaScript, questionable decisions, and very little sleep. 😭</span>
+        <div style="font-size: 0.78rem; color: var(--text-plum-subtle);">
+          <strong style="color: var(--text-plum-dark); font-size: 0.86rem;">${c.signature}</strong><br>
+          <span style="font-size: 0.7rem; font-style: italic;">${c.footnote}</span>
         </div>
       </div>
 
       <!-- Finale Interactive Trigger -->
-      <div style="margin-top: 1rem; display: flex; gap: 0.6rem; flex-wrap: wrap; justify-content: center;">
-        <button class="btn-primary" id="s7-celebrate-btn">
-          <span>TAP THE RAKHI ONE LAST TIME</span> 🧿
+      <div style="margin-top: 0.6rem; display: flex; gap: 0.4rem; flex-wrap: wrap; justify-content: center;">
+        <button class="btn-primary" id="s7-celebrate-btn" style="padding: 0.65rem 1.4rem; font-size: 0.86rem;">
+          <span>${c.celebrateCta}</span>
         </button>
-        <button class="btn-secondary" id="s7-replay-btn">
-          <span>REPLAY THE CHAOS</span> ↻
+        <button class="btn-secondary" id="s7-replay-btn" style="font-size: 0.8rem;">
+          <span>${c.replayButton}</span>
         </button>
       </div>
 
       <!-- Inactivity Post-Credits Easter Egg -->
-      <div id="s7-easter-egg" style="margin-top: 0.8rem; opacity: 0; transition: opacity 1s; font-size: 0.82rem; color: var(--rose-primary); font-style: italic;">
-        Psst... Go eat the KitKat before it melts. 🍫😭
+      <div id="s7-easter-egg" style="margin-top: 0.4rem; opacity: 0; transition: opacity 1s; font-size: 0.78rem; color: var(--rose-primary); font-style: italic;">
+        ${c.easterEgg}
       </div>
     </div>
 
     <!-- Replay Confirmation Modal -->
     <div class="modal-overlay" id="s7-replay-modal" role="dialog" aria-modal="true" aria-label="Replay Confirmation">
       <div class="modal-content" style="text-align: center;">
-        <h3 class="font-display" style="font-size: 1.25rem; color: var(--text-plum-dark); margin-bottom: 0.6rem;">
-          Replay the Chaos? ↻
+        <h3 class="font-display" style="font-size: 1.2rem; color: var(--text-plum-dark); margin-bottom: 0.4rem;">
+          ${c.replayModal.title}
         </h3>
-        <p class="body-lead" style="font-size: 0.92rem; margin-bottom: 1.2rem;">
-          Are you sure? I had to build all of this. 😭
+        <p class="body-lead" style="font-size: 0.86rem; margin-bottom: 1rem;">
+          ${c.replayModal.question}
         </p>
-        <div style="display: flex; gap: 0.6rem; justify-content: center; flex-wrap: wrap;">
-          <button class="btn-primary" id="s7-confirm-replay" style="margin: 0; padding: 0.6rem 1.2rem; font-size: 0.85rem;">
-            YES, AGAIN →
+        <div style="display: flex; gap: 0.5rem; justify-content: center; flex-wrap: wrap;">
+          <button class="btn-primary" id="s7-confirm-replay" style="margin: 0; padding: 0.55rem 1.1rem; font-size: 0.82rem;">
+            ${c.replayModal.confirm}
           </button>
-          <button class="btn-secondary" id="s7-cancel-replay">
-            NO, LET ME EAT THE CHOCOLATE 🍫
+          <button class="btn-secondary" id="s7-cancel-replay" style="font-size: 0.82rem;">
+            ${c.replayModal.cancel}
           </button>
         </div>
       </div>
@@ -138,7 +138,7 @@ export function createScene07(sceneManager) {
     const triggerFinaleCelebration = () => {
       audio.playCelebrateSfx();
       if (window.appParticleCanvas) {
-        window.appParticleCanvas.triggerBurst(window.innerWidth / 2, window.innerHeight / 2, 50);
+        window.appParticleCanvas.triggerBurst(window.innerWidth / 2, window.innerHeight / 2, 45);
       }
       state.unlockAchievement(
         'finale_done',
@@ -173,7 +173,7 @@ export function createScene07(sceneManager) {
 
     setTimeout(() => {
       if (easterEgg) easterEgg.style.opacity = '1';
-    }, 8000);
+    }, 6000);
   }
 
   return { enter };

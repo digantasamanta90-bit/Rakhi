@@ -1,6 +1,7 @@
 /* =========================================================
    GLOBAL STYLES & LAYOUT SYSTEM
-   Mobile-first, warm ivory paper canvas, soft daylight gradients.
+   Mobile-first (Realme 11 5G), warm ivory paper canvas,
+   preserves native browser pull-to-refresh, zero unwanted inner scroll.
    ========================================================= */
 
 *, *::before, *::after {
@@ -10,26 +11,35 @@
   -webkit-tap-highlight-color: transparent;
 }
 
-html, body {
+html {
   width: 100%;
   height: 100%;
-  overflow: hidden;
-  position: fixed;
+  background-color: var(--bg-base);
+  color: var(--text-plum-primary);
+}
+
+body {
+  width: 100%;
+  min-height: 100%;
+  min-height: 100dvh;
+  min-height: -webkit-fill-available;
   background-color: var(--bg-base);
   color: var(--text-plum-primary);
   user-select: none;
   -webkit-user-select: none;
+  overflow-x: hidden;
 }
 
 #app-container {
   width: 100%;
-  height: 100%;
+  height: 100vh;
   height: 100dvh;
+  height: 100svh;
   position: relative;
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  background: radial-gradient(circle at 50% 20%, #fffdfa 0%, var(--bg-base) 60%, var(--bg-cream-soft) 100%);
+  background: radial-gradient(circle at 50% 15%, #fffdfa 0%, var(--bg-base) 65%, var(--bg-cream-soft) 100%);
   transition: background 1.2s var(--ease-cinematic);
 }
 
@@ -40,8 +50,8 @@ html, body {
   pointer-events: none;
   z-index: 1;
   opacity: 0.35;
-  background-image: radial-gradient(rgba(61, 36, 54, 0.05) 1px, transparent 1px);
-  background-size: 24px 24px;
+  background-image: radial-gradient(rgba(61, 36, 54, 0.04) 1px, transparent 1px);
+  background-size: 20px 20px;
 }
 
 /* Background Particle Canvas */
@@ -67,18 +77,17 @@ html, body {
 /* Individual Scene Container (Mobile-first vertical flow & generous breathing room) */
 .scene-container {
   position: absolute;
-  top: 0;
-  left: 0;
+  inset: 0;
   width: 100%;
   height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: calc(env(safe-area-inset-top, 1rem) + 48px) env(safe-area-inset-right, 1.2rem) env(safe-area-inset-bottom, 1.4rem) env(safe-area-inset-left, 1.2rem);
+  padding: calc(env(safe-area-inset-top, 0.8rem) + 44px) clamp(1rem, 4vw, 1.5rem) calc(env(safe-area-inset-bottom, 1rem) + 0.5rem) clamp(1rem, 4vw, 1.5rem);
   opacity: 0;
   visibility: hidden;
   transform: translateY(12px) scale(0.99);
-  transition: opacity 0.7s var(--ease-soft), transform 0.7s var(--ease-soft), visibility 0.7s;
+  transition: opacity 0.6s var(--ease-soft), transform 0.6s var(--ease-soft), visibility 0.6s;
   pointer-events: none;
   overflow-y: auto;
   overflow-x: hidden;
@@ -95,14 +104,14 @@ html, body {
 .scene-container.exiting {
   opacity: 0;
   visibility: hidden;
-  transform: translateY(-12px) scale(1.01);
+  transform: translateY(-10px) scale(1.01);
   pointer-events: none;
 }
 
-/* Scene Content Wrapper (Centered on phone, spacious) */
+/* Scene Content Wrapper (Centered on phone, compact & clean) */
 .scene-content {
   width: 100%;
-  max-width: 540px;
+  max-width: 480px;
   margin: auto;
   display: flex;
   flex-direction: column;
@@ -115,15 +124,15 @@ html, body {
 /* Persistent Header UI */
 .global-header {
   position: fixed;
-  top: env(safe-area-inset-top, 0.8rem);
-  left: env(safe-area-inset-left, 1rem);
-  right: env(safe-area-inset-right, 1rem);
+  top: env(safe-area-inset-top, 0.6rem);
+  left: env(safe-area-inset-left, 0.8rem);
+  right: env(safe-area-inset-right, 0.8rem);
   display: flex;
   justify-content: space-between;
   align-items: center;
   z-index: var(--z-header);
   pointer-events: none;
-  height: 40px;
+  height: 38px;
 }
 
 .header-left, .header-right {
@@ -137,9 +146,9 @@ html, body {
 .scene-progress-bar {
   display: flex;
   align-items: center;
-  gap: 6px;
-  padding: 4px 10px;
-  background: rgba(255, 253, 249, 0.8);
+  gap: 5px;
+  padding: 4px 8px;
+  background: rgba(255, 253, 249, 0.85);
   border: 1px solid var(--border-paper);
   border-radius: 20px;
   backdrop-filter: blur(6px);
@@ -156,7 +165,7 @@ html, body {
 }
 
 .progress-dot.active {
-  width: 14px;
+  width: 12px;
   border-radius: 4px;
   background: var(--rose-primary);
 }
@@ -168,7 +177,7 @@ html, body {
 
 /* Custom Scrollbar for inner cards */
 ::-webkit-scrollbar {
-  width: 4px;
+  width: 3px;
 }
 ::-webkit-scrollbar-track {
   background: transparent;

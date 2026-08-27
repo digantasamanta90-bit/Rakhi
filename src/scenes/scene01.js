@@ -6,9 +6,11 @@
 
 import { delay, createElement } from '../js/utils.js';
 import { audio } from '../js/audioController.js';
+import { content } from '../content/content.js';
 
 export function createScene01(sceneManager) {
   const container = document.getElementById('scene-01');
+  const c = content.scene1;
 
   container.innerHTML = `
     <div class="scene-content">
@@ -16,11 +18,11 @@ export function createScene01(sceneManager) {
 
       <div class="s1-intro-wrapper">
         <h1 class="font-display s1-greeting" id="s1-greeting">
-          Hey, Anwesha...
+          ${c.greeting}
         </h1>
         <p class="body-lead s1-subtext" id="s1-subtext">
-          Before you open anything else...<br>
-          <span class="s1-subtext-highlight">There’s something I wanted you to see first.</span>
+          ${c.subtextLine1}<br>
+          <span class="s1-subtext-highlight">${c.subtextLine2}</span>
         </p>
       </div>
 
@@ -29,7 +31,7 @@ export function createScene01(sceneManager) {
           <span class="terminal-dot red"></span>
           <span class="terminal-dot yellow"></span>
           <span class="terminal-dot green"></span>
-          <span class="terminal-title">rakhi_protocol.sh</span>
+          <span class="terminal-title">${c.systemHeader}</span>
         </div>
         <div class="terminal-body font-mono" id="s1-terminal-logs">
           <!-- Terminal lines injected sequentially -->
@@ -37,8 +39,8 @@ export function createScene01(sceneManager) {
       </div>
 
       <div class="s1-cta-wrapper" id="s1-cta-wrapper">
-        <button class="btn-primary" id="s1-cta-btn" aria-label="Open your surprise">
-          <span>OPEN YOUR SURPRISE</span>
+        <button class="btn-primary" id="s1-cta-btn" aria-label="${c.ctaText}">
+          <span>${c.ctaText}</span>
           <span class="btn-icon" aria-hidden="true">✨</span>
         </button>
       </div>
@@ -59,37 +61,25 @@ export function createScene01(sceneManager) {
     const ctaWrapper = document.getElementById('s1-cta-wrapper');
     const ctaBtn = document.getElementById('s1-cta-btn');
 
-    // 0.0 - 1.5s: Twilight warm glow point
-    await delay(600);
+    // 0.0 - 1.2s: Twilight warm glow point
+    await delay(400);
     if (glow) glow.classList.add('visible');
 
-    // 1.5 - 3.5s: "Hey, Anwesha..."
-    await delay(1200);
+    // 1.2 - 2.8s: "Hey, Anwesha..."
+    await delay(900);
     if (greeting) greeting.classList.add('visible');
 
-    // 3.5 - 6.0s: "Before you open anything else..."
-    await delay(1800);
+    // 2.8 - 4.5s: "Before you open anything else..."
+    await delay(1200);
     if (subtext) subtext.classList.add('visible');
 
     // Personal System Note Sequence
-    await delay(2000);
+    await delay(1400);
     if (terminal) {
       terminal.classList.add('visible');
     }
 
-    const logLines = [
-      { text: 'Initializing surprise...', delayMs: 600, color: 'var(--text-plum-muted)' },
-      { text: 'Finding Anwesha... ✓', delayMs: 700, color: '#3d8b59' },
-      { text: 'Checking sibling status... ✓', delayMs: 700, color: '#3d8b59' },
-      { text: 'Preparing Rakhi protocol... ✓', delayMs: 800, color: '#3d8b59' },
-      { text: 'Calculating how annoying your brother is...', delayMs: 1300, color: 'var(--gold-dark)' },
-      { text: 'ERROR 💀', delayMs: 800, color: '#c84b5c', isGlitch: true },
-      { text: 'Status: Still your brother.', delayMs: 700, color: 'var(--text-plum-dark)' },
-      { text: 'No refunds available.', delayMs: 600, color: 'var(--rose-primary)' },
-      { text: 'SURPRISE SUCCESSFULLY PREPARED ✨', delayMs: 600, color: 'var(--gold-dark)', isBold: true }
-    ];
-
-    for (const item of logLines) {
+    for (const item of c.systemLogs) {
       await delay(item.delayMs);
       const line = createElement('div', 'terminal-line visible');
       line.style.color = item.color;
@@ -107,7 +97,7 @@ export function createScene01(sceneManager) {
     }
 
     // CTA Reveal
-    await delay(700);
+    await delay(600);
     if (ctaWrapper) {
       ctaWrapper.classList.add('visible');
     }
@@ -126,7 +116,7 @@ export function createScene01(sceneManager) {
         const flare = document.getElementById('screen-flare');
         if (flare) flare.classList.add('trigger');
 
-        await delay(500);
+        await delay(450);
         sceneManager.nextScene();
       });
     }

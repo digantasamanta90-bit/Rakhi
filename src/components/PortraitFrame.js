@@ -1,13 +1,13 @@
 /**
- * PORTRAIT FRAME COMPONENT — EDITORIAL WATERCOLOR & PAPER
- * Supports both full editorial portrait (complete illustration visibility,
- * natural aspect ratio, contain) and framed/compact mode.
+ * PORTRAIT FRAME COMPONENT — EDITORIAL & HANDCRAFTED SCRAPBOOK
+ * Supports full editorial portrait (uncropped natural aspect ratio for anwesha_calm.png),
+ * taped polaroid/scrapbook snapshots, and framed art cards.
  */
 
 export function renderPortrait(src = 'assets/portraits/anwesha_hero.png', alt = 'Anwesha', caption = '', mode = 'framed') {
   if (mode === 'editorial' || mode === 'full') {
     return `
-      <div class="portrait-editorial anim-float" role="figure" aria-label="${alt}">
+      <div class="portrait-editorial" role="figure" aria-label="${alt}">
         <img src="${src}" 
              alt="${alt}" 
              class="portrait-editorial-img" 
@@ -27,12 +27,32 @@ export function renderPortrait(src = 'assets/portraits/anwesha_hero.png', alt = 
     `;
   }
 
-  // Framed / compact mode
+  if (mode === 'scrapbook' || mode === 'polaroid') {
+    return `
+      <div class="portrait-scrapbook" role="figure" aria-label="${alt}">
+        <div class="scrapbook-tape" aria-hidden="true"></div>
+        <div class="scrapbook-photo-wrap">
+          <img src="${src}" 
+               alt="${alt}" 
+               class="scrapbook-photo-img" 
+               loading="lazy"
+               onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+          <div class="portrait-placeholder" style="display: none;">
+            <span class="portrait-placeholder-label">ANWESHA 🧿</span>
+          </div>
+        </div>
+        ${caption ? `<div class="scrapbook-photo-caption">${caption}</div>` : ''}
+      </div>
+    `;
+  }
+
+  // Standard framed card
   return `
-    <div class="portrait-frame anim-float" role="figure" aria-label="${alt}">
+    <div class="portrait-frame" role="figure" aria-label="${alt}">
       <img src="${src}" 
            alt="${alt}" 
            class="portrait-img" 
+           loading="lazy"
            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
       <div class="portrait-placeholder" style="display: none;">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
