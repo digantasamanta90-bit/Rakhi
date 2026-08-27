@@ -100,6 +100,7 @@ export const content = {
       finalSelection: "KITKAT RICH 🏆",
       researcher: "Diganta, Professional Overthinker",
       assistant: "Monojit",
+      assistantRole: "Best friend & the special person",
       assistantNote: "Because apparently I needed a second opinion before buying you chocolate. 💀"
     },
     gift2: {

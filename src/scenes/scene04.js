@@ -110,7 +110,7 @@ export function createScene04(sceneManager) {
             <td>Research Assistant:</td>
             <td>
               <strong style="color: var(--rose-primary);">${c.report.assistant}</strong><br>
-              <span style="font-size: 0.74rem; color: var(--text-plum-subtle);">Best friend & Anwesha’s boyfriend</span>
+              <span style="font-size: 0.74rem; color: var(--text-plum-subtle);">${c.report.assistantRole}</span>
             </td>
           </tr>
         </table>
