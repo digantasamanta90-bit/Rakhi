@@ -1,0 +1,235 @@
+/**
+ * AUDIO CONTROLLER MODULE
+ * Web Audio API synthesizer for ambient festive music + SFX
+ * Supports external audio file (assets/audio/rakhi_theme.mp3) with automatic fallback.
+ */
+
+import { state } from './interactionState.js';
+
+class AudioController {
+  constructor() {
+    this.ctx = null;
+    this.masterGain = null;
+    this.musicGain = null;
+    this.sfxGain = null;
+    this.isPlaying = false;
+    this.isMuted = false;
+    this.synthInterval = null;
+    this.customAudio = null;
+    this.customAudioLoaded = false;
+  }
+
+  init() {
+    if (this.ctx) return;
+    const AudioContext = window.AudioContext || window.webkitAudioContext;
+    if (!AudioContext) return;
+
+    this.ctx = new AudioContext();
+    this.masterGain = this.ctx.createGain();
+    this.masterGain.gain.setValueAtTime(0.8, this.ctx.currentTime);
+    this.masterGain.connect(this.ctx.destination);
+
+    this.musicGain = this.ctx.createGain();
+    this.musicGain.gain.setValueAtTime(0.5, this.ctx.currentTime);
+    this.musicGain.connect(this.masterGain);
+
+    this.sfxGain = this.ctx.createGain();
+    this.sfxGain.gain.setValueAtTime(0.7, this.ctx.currentTime);
+    this.sfxGain.connect(this.masterGain);
+
+    // Attempt to preload custom MP3 if available
+    this.customAudio = new Audio('assets/audio/rakhi_theme.mp3');
+    this.customAudio.loop = true;
+    this.customAudio.addEventListener('canplaythrough', () => {
+      this.customAudioLoaded = true;
+    });
+  }
+
+  async startMusic() {
+    this.init();
+    if (this.ctx && this.ctx.state === 'suspended') {
+      await this.ctx.resume();
+    }
+    this.isPlaying = true;
+    state.audioStarted = true;
+
+    if (this.customAudioLoaded && this.customAudio) {
+      try {
+        await this.customAudio.play();
+        return;
+      } catch (e) {
+        console.warn('Custom audio playback failed, falling back to Web Audio synth', e);
+      }
+    }
+
+    // Web Audio Synthesizer: Generative warm lofi ambient soundtrack
+    this.startAmbientSynth();
+  }
+
+  startAmbientSynth() {
+    if (this.synthInterval) clearInterval(this.synthInterval);
+
+    // Pentatonic / Raag Yaman-inspired warm notes (MIDI / frequencies in Hz)
+    // C4, D4, E4, G4, A4, B4, C5, D5, E5, G5
+    const notes = [261.63, 293.66, 329.63, 392.00, 440.00, 493.88, 523.25, 587.33, 659.25, 783.99];
+    const chords = [
+      [261.63, 329.63, 392.00, 493.88], // Cmaj7
+      [220.00, 261.63, 329.63, 392.00], // Am7
+      [174.61, 261.63, 329.63, 392.00], // Fmaj7
+      [196.00, 246.94, 293.66, 392.00]  // G6
+    ];
+
+    let chordIdx = 0;
+
+    const playChordPad = () => {
+      if (!this.ctx || !this.isPlaying || this.isMuted) return;
+      const currentChord = chords[chordIdx % chords.length];
+      chordIdx++;
+
+      currentChord.forEach(freq => {
+        const osc = this.ctx.createOscillator();
+        const gain = this.ctx.createGain();
+        const filter = this.ctx.createBiquadFilter();
+
+        osc.type = 'triangle';
+        osc.frequency.setValueAtTime(freq, this.ctx.currentTime);
+
+        filter.type = 'lowpass';
+        filter.frequency.setValueAtTime(600, this.ctx.currentTime);
+
+        gain.gain.setValueAtTime(0.001, this.ctx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.045, this.ctx.currentTime + 1.8);
+        gain.gain.exponentialRampToValueAtTime(0.0001, this.ctx.currentTime + 5.5);
+
+        osc.connect(filter);
+        filter.connect(gain);
+        gain.connect(this.musicGain);
+
+        osc.start();
+        osc.stop(this.ctx.currentTime + 5.6);
+      });
+    };
+
+    const playKalimbaNote = () => {
+      if (!this.ctx || !this.isPlaying || this.isMuted) return;
+      const freq = notes[Math.floor(Math.random() * notes.length)];
+      const osc = this.ctx.createOscillator();
+      const gain = this.ctx.createGain();
+
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(freq, this.ctx.currentTime);
+
+      gain.gain.setValueAtTime(0.001, this.ctx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.06, this.ctx.currentTime + 0.04);
+      gain.gain.exponentialRampToValueAtTime(0.0001, this.ctx.currentTime + 1.2);
+
+      osc.connect(gain);
+      gain.connect(this.musicGain);
+
+      osc.start();
+      osc.stop(this.ctx.currentTime + 1.3);
+    };
+
+    playChordPad();
+    this.synthInterval = setInterval(() => {
+      playChordPad();
+      setTimeout(playKalimbaNote, 800);
+      setTimeout(playKalimbaNote, 1800);
+      setTimeout(playKalimbaNote, 2700);
+    }, 4800);
+  }
+
+  toggleMute() {
+    this.isMuted = !this.isMuted;
+    state.audioMuted = this.isMuted;
+    if (this.masterGain && this.ctx) {
+      this.masterGain.gain.setValueAtTime(this.isMuted ? 0 : 0.8, this.ctx.currentTime);
+    }
+    if (this.customAudio) {
+      this.customAudio.muted = this.isMuted;
+    }
+    return this.isMuted;
+  }
+
+  // --- SOUND EFFECTS ---
+  playUnlockSfx() {
+    if (!this.ctx || this.isMuted) return;
+    const now = this.ctx.currentTime;
+    [523.25, 659.25, 783.99, 1046.50].forEach((freq, i) => {
+      const osc = this.ctx.createOscillator();
+      const gain = this.ctx.createGain();
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(freq, now + i * 0.08);
+
+      gain.gain.setValueAtTime(0.001, now + i * 0.08);
+      gain.gain.exponentialRampToValueAtTime(0.08, now + i * 0.08 + 0.02);
+      gain.gain.exponentialRampToValueAtTime(0.001, now + i * 0.08 + 0.6);
+
+      osc.connect(gain);
+      gain.connect(this.sfxGain);
+      osc.start(now + i * 0.08);
+      osc.stop(now + i * 0.08 + 0.65);
+    });
+  }
+
+  playGlitchSfx() {
+    if (!this.ctx || this.isMuted) return;
+    const now = this.ctx.currentTime;
+    const osc = this.ctx.createOscillator();
+    const gain = this.ctx.createGain();
+    osc.type = 'sawtooth';
+    osc.frequency.setValueAtTime(140, now);
+    osc.frequency.linearRampToValueAtTime(60, now + 0.15);
+
+    gain.gain.setValueAtTime(0.07, now);
+    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.18);
+
+    osc.connect(gain);
+    gain.connect(this.sfxGain);
+    osc.start(now);
+    osc.stop(now + 0.2);
+  }
+
+  playSparkleSfx() {
+    if (!this.ctx || this.isMuted) return;
+    const now = this.ctx.currentTime;
+    [880, 1174.66, 1318.51, 1760].forEach((freq, i) => {
+      const osc = this.ctx.createOscillator();
+      const gain = this.ctx.createGain();
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(freq, now + i * 0.05);
+
+      gain.gain.setValueAtTime(0.001, now + i * 0.05);
+      gain.gain.exponentialRampToValueAtTime(0.06, now + i * 0.05 + 0.02);
+      gain.gain.exponentialRampToValueAtTime(0.001, now + i * 0.05 + 0.4);
+
+      osc.connect(gain);
+      gain.connect(this.sfxGain);
+      osc.start(now + i * 0.05);
+      osc.stop(now + i * 0.05 + 0.45);
+    });
+  }
+
+  playCelebrateSfx() {
+    if (!this.ctx || this.isMuted) return;
+    const now = this.ctx.currentTime;
+    const majorChord = [523.25, 659.25, 783.99, 1046.50, 1318.51];
+    majorChord.forEach((freq, i) => {
+      const osc = this.ctx.createOscillator();
+      const gain = this.ctx.createGain();
+      osc.type = 'triangle';
+      osc.frequency.setValueAtTime(freq, now + i * 0.04);
+
+      gain.gain.setValueAtTime(0.001, now + i * 0.04);
+      gain.gain.exponentialRampToValueAtTime(0.1, now + i * 0.04 + 0.03);
+      gain.gain.exponentialRampToValueAtTime(0.001, now + i * 0.04 + 1.4);
+
+      osc.connect(gain);
+      gain.connect(this.sfxGain);
+      osc.start(now + i * 0.04);
+      osc.stop(now + i * 0.04 + 1.5);
+    });
+  }
+}
+
+export const audio = new AudioController();

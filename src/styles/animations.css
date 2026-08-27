@@ -1,0 +1,165 @@
+/* =========================================================
+   ANIMATIONS SYSTEM
+   Smooth, restrained, cinematic, organic movements.
+   Anti-AI rules: No endless bouncing, no harsh neon,
+   purposeful motion only.
+   ========================================================= */
+
+/* Soft Breathing Glow */
+@keyframes breatheGlow {
+  0%, 100% {
+    filter: drop-shadow(0 0 12px rgba(212, 175, 55, 0.25));
+    opacity: 0.95;
+  }
+  50% {
+    filter: drop-shadow(0 0 24px rgba(212, 175, 55, 0.55));
+    opacity: 1;
+  }
+}
+
+.anim-breathe {
+  animation: breatheGlow 4s infinite ease-in-out;
+}
+
+/* Subtle Organic Float (Restrained, not chaotic) */
+@keyframes gentleFloat {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-6px) rotate(0.4deg);
+  }
+}
+
+.anim-float {
+  animation: gentleFloat 5s infinite ease-in-out;
+}
+
+/* Staged Staggered Fade & Slide In */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in-up {
+  animation: fadeInUp 0.9s var(--ease-cinematic) forwards;
+}
+
+/* Subtle Terminal Glitch Effect */
+@keyframes restrainedGlitch {
+  0%, 100% { transform: translate(0); }
+  20% { transform: translate(-3px, 2px); }
+  40% { transform: translate(3px, -1px); }
+  60% { transform: translate(-2px, -2px); }
+  80% { transform: translate(2px, 1px); }
+}
+
+.anim-glitch {
+  animation: restrainedGlitch 0.35s ease-in-out;
+  color: var(--terminal-error) !important;
+}
+
+/* Golden Thread Drawing Animation (SVG stroke-dashoffset) */
+.rakhi-thread-path {
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  transition: stroke-dashoffset 2.4s var(--ease-cinematic);
+}
+
+.rakhi-thread-path.drawn {
+  stroke-dashoffset: 0;
+}
+
+/* Bond Pulse Animation (Light traveling along the thread) */
+@keyframes pulseTravel {
+  0% {
+    stroke-dashoffset: 1000;
+    opacity: 0;
+  }
+  30% {
+    opacity: 1;
+  }
+  100% {
+    stroke-dashoffset: 0;
+    opacity: 0;
+  }
+}
+
+.bond-pulse-line {
+  stroke-dasharray: 200, 800;
+  animation: pulseTravel 3s infinite linear;
+}
+
+/* Text Mask Reveal (Letter-by-letter / smooth mask) */
+.mask-reveal {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: bottom;
+}
+
+.mask-reveal-inner {
+  display: inline-block;
+  transform: translateY(100%);
+  transition: transform 0.8s var(--ease-cinematic);
+}
+
+.mask-reveal-inner.revealed {
+  transform: translateY(0);
+}
+
+/* Light Flare Transition for Scene 1 -> 2 */
+@keyframes centralFlare {
+  0% {
+    transform: scale(0.1);
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.95;
+    transform: scale(3.5);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(6);
+  }
+}
+
+.screen-flare {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 200px;
+  height: 200px;
+  margin-top: -100px;
+  margin-left: -100px;
+  background: radial-gradient(circle, #fff7d6 10%, var(--gold-light) 40%, rgba(200,130,148,0) 70%);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: var(--z-modal);
+  opacity: 0;
+}
+
+.screen-flare.trigger {
+  animation: centralFlare 1.2s var(--ease-cinematic) forwards;
+}
+
+/* Reduced Motion Mode for Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  .rakhi-thread-path {
+    stroke-dashoffset: 0 !important;
+  }
+  .scene-container {
+    transition: opacity 0.3s ease !important;
+    transform: none !important;
+  }
+}

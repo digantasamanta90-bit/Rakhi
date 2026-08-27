@@ -1,0 +1,314 @@
+/* =========================================================
+   COMPONENTS SYSTEM
+   Buttons, Cards, Modals, Audio Toggle, Achievement Toasts
+   Art directed for Aesthetic Cinematic Festive Scrapbook
+   ========================================================= */
+
+/* Primary CTA Button */
+.btn-primary {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-sm);
+  padding: 0.9rem 2.2rem;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: #1a0815;
+  background: linear-gradient(135deg, #fff7d6 0%, var(--gold-light) 60%, #c99b28 100%);
+  border: none;
+  border-radius: 9999px;
+  cursor: pointer;
+  box-shadow: 0 4px 18px rgba(212, 175, 55, 0.35), 0 0 24px rgba(212, 175, 55, 0.2);
+  transition: transform 0.3s var(--ease-spring), box-shadow 0.3s var(--ease-smooth), filter 0.3s;
+  outline: none;
+  text-decoration: none;
+  margin-top: var(--space-lg);
+  user-select: none;
+}
+
+.btn-primary::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: 9999px;
+  background: linear-gradient(135deg, rgba(255,255,255,0.8), rgba(212,175,55,0.4));
+  z-index: -1;
+  opacity: 0.5;
+  filter: blur(4px);
+  transition: opacity 0.3s;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 8px 24px rgba(212, 175, 55, 0.45), 0 0 32px rgba(212, 175, 55, 0.3);
+}
+
+.btn-primary:active {
+  transform: translateY(1px) scale(0.98);
+}
+
+/* Secondary / Ghost Buttons */
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-xs);
+  padding: 0.65rem 1.4rem;
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--text-ivory-light);
+  background: rgba(251, 247, 238, 0.08);
+  border: 1px solid var(--bg-plum-border);
+  border-radius: 9999px;
+  cursor: pointer;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transition: all 0.25s var(--ease-smooth);
+}
+
+.btn-secondary:hover {
+  background: rgba(251, 247, 238, 0.15);
+  border-color: var(--gold-light);
+  color: var(--gold-light);
+  transform: translateY(-1px);
+}
+
+.btn-secondary:active {
+  transform: scale(0.98);
+}
+
+/* Music Toggle Control */
+.music-toggle-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(26, 12, 22, 0.7);
+  border: 1px solid var(--bg-plum-border);
+  color: var(--gold-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s var(--ease-smooth);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.music-toggle-btn.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.music-toggle-btn:hover {
+  transform: scale(1.08);
+  border-color: var(--gold-light);
+  box-shadow: 0 0 16px var(--gold-glow);
+}
+
+/* Sound Waveform Visualizer inside Music Toggle */
+.music-waveform {
+  display: flex;
+  align-items: center;
+  gap: 2.5px;
+  height: 14px;
+}
+
+.waveform-bar {
+  width: 2.5px;
+  height: 100%;
+  background: var(--gold-light);
+  border-radius: 2px;
+  transform-origin: bottom;
+  animation: waveIdle 1.2s infinite ease-in-out alternate;
+}
+
+.music-toggle-btn.muted .waveform-bar {
+  animation: none !important;
+  height: 2px !important;
+  opacity: 0.4;
+}
+
+.waveform-bar:nth-child(1) { animation-delay: 0.1s; height: 40%; }
+.waveform-bar:nth-child(2) { animation-delay: 0.3s; height: 90%; }
+.waveform-bar:nth-child(3) { animation-delay: 0.2s; height: 60%; }
+.waveform-bar:nth-child(4) { animation-delay: 0.4s; height: 100%; }
+
+@keyframes waveIdle {
+  0% { transform: scaleY(0.3); }
+  100% { transform: scaleY(1); }
+}
+
+/* Scrapbook Editorial Card Frame */
+.scrapbook-card {
+  background: var(--bg-plum-card);
+  border: 1px solid var(--bg-plum-border);
+  border-radius: 18px;
+  padding: clamp(1.2rem, 4vw, 2rem);
+  box-shadow: var(--shadow-elevation);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.4s var(--ease-cinematic), border-color 0.4s var(--ease-cinematic);
+}
+
+.scrapbook-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--gold-light), var(--rose-accent), transparent);
+  opacity: 0.6;
+}
+
+/* Terminal & Code Card Style */
+.terminal-card {
+  background: var(--terminal-bg);
+  border: 1px solid rgba(212, 175, 55, 0.25);
+  border-radius: 12px;
+  padding: 1.2rem 1.4rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6), 0 0 20px rgba(90, 247, 142, 0.08);
+  text-align: left;
+  width: 100%;
+  max-width: 480px;
+}
+
+.terminal-header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 0.8rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.terminal-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+.terminal-dot.red { background: #ff5f56; }
+.terminal-dot.yellow { background: #ffbd2e; }
+.terminal-dot.green { background: #27c93f; }
+
+.terminal-title {
+  font-family: var(--font-code);
+  font-size: 0.75rem;
+  color: var(--text-ivory-subtle);
+  margin-left: auto;
+}
+
+/* Modal Overlay & Modal Window */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(10, 4, 9, 0.82);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  z-index: var(--z-modal);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.2rem;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.4s var(--ease-cinematic), visibility 0.4s;
+}
+
+.modal-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.modal-content {
+  background: #1e0d1c;
+  border: 1px solid var(--gold-primary);
+  border-radius: 20px;
+  padding: clamp(1.5rem, 5vw, 2.4rem);
+  max-width: 520px;
+  width: 100%;
+  max-height: 85vh;
+  overflow-y: auto;
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.8), 0 0 32px rgba(212, 175, 55, 0.25);
+  transform: scale(0.92) translateY(14px);
+  transition: transform 0.4s var(--ease-spring);
+  position: relative;
+}
+
+.modal-overlay.active .modal-content {
+  transform: scale(1) translateY(0);
+}
+
+.modal-close-btn {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid var(--bg-plum-border);
+  color: var(--text-ivory-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.modal-close-btn:hover {
+  background: rgba(255, 255, 255, 0.18);
+  color: var(--gold-light);
+}
+
+/* Achievement Toast Notification */
+.achievement-toast {
+  position: fixed;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%) translateY(100px);
+  background: linear-gradient(135deg, #2b1225 0%, #170914 100%);
+  border: 1px solid var(--gold-light);
+  border-radius: 50px;
+  padding: 0.7rem 1.4rem;
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6), 0 0 20px var(--gold-glow);
+  z-index: var(--z-toast);
+  opacity: 0;
+  transition: transform 0.5s var(--ease-spring), opacity 0.5s;
+  pointer-events: none;
+}
+
+.achievement-toast.show {
+  transform: translateX(-50%) translateY(0);
+  opacity: 1;
+}
+
+.achievement-icon {
+  font-size: 1.3rem;
+}
+
+.achievement-title {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--gold-light);
+  font-weight: 700;
+}
+
+.achievement-desc {
+  font-size: 0.9rem;
+  color: var(--text-ivory-light);
+  font-weight: 500;
+}

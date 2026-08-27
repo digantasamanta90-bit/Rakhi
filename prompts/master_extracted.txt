@@ -1,0 +1,1594 @@
+AESTHETIC CINEMATIC FESTIVE SCRAPBOOK
+RAKHI MASTER WEBSITEDOCUMENTATION
+Implementation-ready blueprint for the seven-scene interactive Rakhi experience
+CORE IDENTITY
+A deeply personal, aesthetically art-directed, cinematic Rakhi experience that combines beautiful design, subtle Indian festive influence, personalized illustrations, sibling chaos, humor, emotional sincerity, and the physical KitKat into one cohesive digital gift.
+RECIPIENT: Anwesha
+CREATOR: Diganta
+DELIVERY: QR code attached to the physical KitKat gift
+PRIMARY DEVICE: Mobile phone, with responsive desktop/tablet support
+EXPERIENCE MODEL: Seven full-screen interactive scenes, not a conventional scrolling landing page
+STATUS: Master architecture and creative/technical specification; final personal message and exact visual values remain partly TBD
+Source of truth: the uploaded 89-page Rakhi planning document and the preceding project conversation. The source explicitly treats the final personal message wording and some visual values as decisions to be finalized later.
+Contents
+1. Project Overview
+2. Project Identity
+3. Purpose and Emotional Objective
+4. Experience Philosophy
+5. Complete User Journey
+6. Global UX Rules
+7. Scene Architecture
+8. Scene 1: The Invitation
+9. Scene 2: The Grand Rakhi Reveal
+10. Scene 3: Why Is There a Website?
+11. Scene 4: The Gift
+12. Scene 5: The Actual Rakhi Message
+13. Scene 6: The Sibling Zone
+14. Scene 7: The Finale
+15. Global Animation System
+16. Interaction System
+17. Content Inventory
+18. Personalization and Portrait System
+19. Visual Design System
+20. Anti-AI Design Rules
+21. Typography
+22. Color Direction
+23. Layout System
+24. Audio System
+25. Responsive System
+26. Accessibility
+27. Technical Architecture
+28. Project Structure
+29. State and Flow Model
+30. Asset Manifest
+31. Performance Requirements
+32. Feature Priority Matrix
+33. Design Consistency Rules
+34. Emotional Pacing Rules
+35. Physical + Digital Gift Integration
+36. Non-Negotiable Requirements
+37. What Antigravity Must Not Do
+38. Acceptance Criteria
+39. Traceability Matrix
+40. Decision Log
+41. Final Implementation Summary
+1. Project Overview
+WORKING TITLE: For Anwesha, From Your Brother
+PROJECT TYPE: Personalized interactive digital Rakhi experience
+PRIMARY OBJECTIVE: Turn a physical KitKat gift into a memorable digital + physical moment through a QR-triggered seven-scene website.
+PRIMARY INTERACTION MODEL: Tap-driven full-screen scene progression with optional discoverable interactions inside scenes.
+BACKEND REQUIREMENT: None. No backend, database, authentication, or server-side state is required for the planned experience.
+NARRATIVE PRINCIPLE: The website is a small interactive experience, not a generic Rakhi greeting page.
+CENTRAL IDEA
+The website is not the gift by itself. The website and the physical KitKat are designed to behave as one combined surprise. The QR code is the bridge between the physical object and the digital story.
+Source-derived framing: The planning document explicitly evolved from a very small greeting page into a heavier animated experience once the creator decided to use strong animation, music, an eye-catching theme, and additional personalization. The architecture was then formalized as seven scenes with a scene-by-scene implementation plan.
+2. Project Identity
+Dimension
+Final specification
+Name
+For Anwesha, From Your Brother
+Recipient
+Anwesha
+Creator
+Diganta
+Occasion
+Raksha Bandhan / Rakhi
+Physical anchor
+KitKat Rich
+Digital entry
+QR code attached to the physical gift
+Narrative form
+Seven full-screen scenes + optional post-finale state
+Tone
+Cinematic, playful, warm, personal; not overly sentimental
+Primary device
+Mobile
+Secondary targets
+Tablet and desktop
+Theme
+Aesthetic Cinematic Festive Scrapbook
+Art direction
+Dreamy, warm, artistic, cinematic, slightly whimsical, handmade-feeling
+Technical baseline
+Plain HTML/CSS/JS preferred; React only if genuinely justified by implementation complexity
+2.1 Narrative identity
+Build the site as a lovingly overengineered personal gift made by one brother for one sister.
+Alternate beautiful visual storytelling with sibling humor so the emotional tone never becomes one-note.
+Use personalization strategically rather than filling every scene with photographs.
+Preserve negative space and pauses. The experience should know when to be still.
+Every major visual element should have narrative purpose: thread = sibling bond, portraits = personalization, KitKat = physical anchor, code motifs = why a website exists, recap = cumulative journey.
+2.2 Project constraints and assumptions
+The experience is intended to be buildable by one person with AI coding assistance and limited time.
+The website should work without a backend.
+Audio begins only after explicit user interaction to respect browser autoplay behavior.
+Optional features must never block progression.
+Exact font names, exact color HEX values, final portrait assets, final music file, and the final personal message are not yet fully locked in the source and must be treated as TBD rather than invented.
+3. Purpose and Emotional Objective
+3.1 Functional purpose
+Create a QR-accessible digital surprise that complements the physical KitKat.
+Give Anwesha a small interactive journey instead of a single static greeting.
+Use the creator's web-development learning as part of the narrative joke.
+Create a memorable Rakhi artifact that can be revisited later.
+3.2 Emotional journey
+Curiosity → Anticipation → Surprise → Laughter → Warmth → Personal Connection → Emotional Closure
+3.3 Intended recipient reaction
+“My brother is genuinely ridiculous… but he made all this for me.”
+3.4 What the experience is NOT
+Not a generic festival landing page.
+Not a product advertisement for KitKat.
+Not a romantic experience.
+Not a greeting-card template.
+Not a technically impressive demo with no emotional purpose.
+Not a scrolling wall of animations.
+4. Experience Philosophy
+4.1 Core philosophy
+One person made this for one person.
+Personal beats generic.
+Composition beats decoration.
+Purposeful motion beats constant motion.
+Sibling humor breaks tension after sincere moments.
+The website should feel art-directed, not generated from a festival template.
+The physical gift and the website should repeatedly acknowledge one another.
+4.2 Narrative structure
+Chapter
+Role
+Scene 1
+Invitation / mystery
+Scene 2
+Grand Rakhi reveal
+Scene 3
+Why the website exists
+Scene 4
+Gift + chocolate research
+Scene 5
+Genuine Rakhi message
+Scene 6
+Sibling chaos / optional interactions
+Scene 7
+Finale / bond / closure
+5. Complete User Journey
+State
+Trigger
+Visible state
+User action
+System response
+Audio
+Next
+Entry
+QR scan
+Scene 1 dark opening
+Wait / tap
+Mystery sequence begins
+No music autoplay
+Open Your Surprise
+Scene 1 complete
+Tap Open Your Surprise
+System joke complete
+Tap CTA
+Glow transition into festive world
+Music starts
+Scene 2
+Scene 2 complete
+Tap Continue the Adventure
+Rakhi reveal settled
+Tap CTA
+Transition toward personal explanation
+Music continues
+Scene 3
+Scene 3 complete
+Tap So... What Did I Get You?
+Gift clue appears
+Tap CTA
+Chocolate-focused transition
+Music becomes playful
+Scene 4
+Scene 4 complete
+Tap One More Thing...
+Gift moment resolves
+Tap CTA
+Visuals calm
+Music warms
+Scene 5
+Scene 5 complete
+Tap Let's Get Back to Being Normal
+Message closes
+Tap CTA
+Sibling Mode transition
+Music playful again
+Scene 6
+Scene 6 complete
+Tap One Last Surprise
+Sibling interactions close
+Tap CTA
+Final setup
+Music softens
+Scene 7
+Scene 7 complete
+Optional final interaction / inactivity
+Final Rakhi state
+Tap / stay / replay
+Final celebration or stable end state
+Music fades or rests
+Post-finale state
+PRIMARY FLOW RULE
+The main journey is linear. Optional interactions can enrich a scene but must never be required to unlock the next core scene.
+6. Global UX Rules
+Use seven full-screen scenes rather than a conventional long-scroll page.
+No visible navigation menu is required. The story itself is the navigation.
+Primary progression is user-controlled. Do not auto-advance the user through scenes.
+Buttons appear only after the scene has had enough time to establish its moment.
+Optional interactions remain secondary and cannot block the primary CTA.
+Persistent audio controls become available once music begins.
+No page reloads between scenes.
+All scenes must preserve mobile usability and avoid horizontal overflow.
+Visual transitions should transform or dissolve the current world rather than abruptly replacing it.
+7. Scene Architecture
+Scene
+ID
+Core purpose
+Emotional mode
+1
+01_INTRO_INVITATION
+Create mystery and establish playful personality
+Curiosity → anticipation → laughter
+2
+02_RAKHI_REVEAL
+Reveal the occasion and personalize it around Anwesha
+Anticipation → surprise → delight
+3
+03_WHY_A_WEBSITE
+Explain why a website exists
+Wonder → laughter → warmth
+4
+04_THE_GIFT
+Connect the website to the KitKat and show the thought behind it
+Recognition → laughter → appreciation
+5
+05_THE_MESSAGE
+Deliver the genuine Rakhi message
+Calm → sincerity → warmth
+6
+06_THE_SIBLING_ZONE
+Return to sibling chaos through optional exploration
+Relief → laughter → playful affection
+7
+07_THE_FINALE
+Deliver the final Rakhi/bond payoff and closure
+Anticipation → climax → warmth → closure
+1. Scene 1: The Invitation
+SCENE ID: 01_INTRO_INVITATION
+PURPOSE: Create curiosity and establish that this is not a normal Rakhi greeting. Start cinematic, then reveal the playful sibling personality.
+EMOTIONAL PROGRESSION: Curiosity → anticipation → confusion → laughter → excitement
+Entry / initial state
+Full-screen, mobile-first, near-black cinematic background rather than flat pure black.
+Very faint warm central glow.
+Minimal floating dust/particle motion.
+No visible navigation or unnecessary UI.
+The screen should initially feel mysterious.
+Opening choreography
+0.0–1.5s: Near darkness; faint ambient glow appears; particles remain barely noticeable.
+1.5–3.5s: A small glowing point appears and expands; first text arrives via gentle letter-by-letter reveal.
+3.5–6s: First line moves subtly upward; secondary lines appear with pauses.
+Exact opening copy
+Hey, Anwesha...Before you open anything else...There’s something I wanted you to see first.
+Playful system sequence
+Cinematic text fades out.
+A small glowing terminal-like panel appears.
+Messages appear sequentially.
+The error line receives a tiny shake/glitch.
+The final success message becomes the setup for the CTA.
+Exact system copy
+Initializing surprise...Finding Anwesha... ✓Checking sibling status... ✓Preparing Rakhi protocol... ✓Calculating how annoying your brother is...ERROR 💀Status: Still your brother.No refunds available.SURPRISE SUCCESSFULLY PREPARED ✨
+Primary interaction
+OPEN YOUR SURPRISE ✨
+Button behavior
+Soft illuminated/glowing treatment.
+Gentle floating or pulse behavior only.
+Clear tap feedback.
+No aggressive animation.
+Button appears only after the system sequence has finished.
+Audio
+No autoplay music before user interaction.
+On tap, start background music.
+Make a small music toggle available after music begins.
+Optional subtle unlock sound may play before music.
+Exit transition
+Button responds.
+Central glow intensifies.
+Screen briefly brightens from the centre.
+Particles accelerate outward.
+Dark scene dissolves into the festive world of Scene 2.
+Music continues seamlessly.
+Optional features
+Custom/glowing cursor: OPTIONAL.
+Additional micro-particles: OPTIONAL.
+Reduced-motion adaptation: CORE accessibility behavior.
+Completion condition
+User has seen the mystery introduction and sibling-status joke.
+User understands there is an interactive surprise behind the button.
+Avoidance notes
+Do not reveal the Rakhi before the CTA.
+Do not overload the opening with festive decorations.
+Do not auto-advance.
+2. Scene 2: The Grand Rakhi Reveal
+SCENE ID: 02_RAKHI_REVEAL
+PURPOSE: Reveal the true nature of the surprise and make the experience unmistakably personal to Anwesha.
+EMOTIONAL PROGRESSION: Anticipation → surprise → recognition → delight → personal connection
+Entry transition
+Scene 1 CTA responds.
+Central glow intensifies.
+Screen briefly fills with light.
+Particles accelerate outward.
+Scene 1 elements dissolve or are pulled into the light.
+Festive environment appears.
+Background music begins after the user interaction.
+Festive environment
+Ambient animated background.
+Floating decorative particles.
+Slow environmental motion.
+Subtle depth using foreground/background layers.
+Nothing important should feel completely static after settling.
+Rakhi thread choreography
+Thread enters from one side.
+Travels along a smooth curved path.
+Feels drawn/woven into existence.
+Decorative details appear gradually.
+Thread reaches centre.
+Central Rakhi assembly begins.
+Optional: particles follow the moving thread tip.
+Optional: path adapts to viewport geometry.
+Rakhi assembly
+Base shape appears.
+Decorative layers appear sequentially.
+Smaller details rotate or move into place.
+Final central element appears.
+Brief glow/pulse confirms completion.
+Idle state: slight float, gentle breathing glow, occasional sparkle, tiny decorative movement.
+Do not spin continuously or look like a loading icon.
+Title sequence
+HAPPYRAKSHA BANDHANANWESHA 🧿
+Title choreography
+HAPPY appears first.
+Brief pause.
+RAKSHA BANDHAN reveals dramatically.
+Optional decorative line/accent appears.
+After the title settles, ANWESHA receives a dedicated reveal.
+Name may use sequential letter reveal, soft glow travel, particle gathering, or an assembling accent.
+Portrait system
+Use a stylized/animated illustration of Anwesha, not a plain rectangular photograph.
+Preferred treatment: transparent cutout, illustrated effect, subtle float, slight parallax, coherent glow/lighting, small decorative particles.
+Portrait is personal but should remain secondary to composition.
+Optional: portrait reaction to Rakhi interaction.
+Across the full experience, use roughly 2–4 carefully selected images strategically rather than as a gallery.
+Personal acknowledgement copy
+Yes. This entire thing is for you. 😭Happy Raksha Bandhan, Anwesha. 🧿Because apparently a normal Rakhi message was not enough. 💀
+Optional Rakhi interaction
+Tap/click Rakhi → subtle response.
+Sparkle/particle burst.
+Short sound effect.
+Subtle celebratory Rakhi movement.
+Temporary message: “Achievement Unlocked 🏆 / Best Sister Detected”.
+Optional advanced: a capped set of tiny sibling jokes unlocked by multiple taps.
+Optional environmental interactions
+Tap floating elements for sparkles.
+Particles move away from touch.
+Cursor parallax on desktop.
+Device tilt for subtle depth on supported mobile devices.
+Long-press hidden message.
+Persistent audio
+Music toggle must be visible but unobtrusive.
+Mute/unmute at any time.
+Music continues across scene transitions.
+Do not restart the track unnecessarily.
+Advanced optional: layered musical progression across emotional scenes.
+Continue control
+CONTINUE THE ADVENTURE →
+CTA behavior
+Do not show immediately.
+Let the main reveal settle first.
+Give the user a brief absorption pause.
+CTA fades in.
+User decides when to continue.
+Completion condition
+Rakhi reveal seen.
+Greeting seen.
+Anwesha name seen.
+Personalized portrait seen.
+Website acknowledged as specifically made for her.
+3. Scene 3: Why Is There a Website?
+SCENE ID: 03_WHY_A_WEBSITE
+PURPOSE: Explain why a whole website exists and introduce the creator’s web-development learning as the reason for the overengineering.
+EMOTIONAL PROGRESSION: Wonder → curiosity → laughter → warmth
+Entry transition
+Rakhi and portrait remain briefly.
+Major decorative elements move into the background.
+Title fades.
+Visual world zooms/transforms toward a more personal space.
+Music becomes softer/simpler.
+Mood: the celebration pauses so the brother can talk.
+Opening question
+Okay... but why is there an entire website attached to a chocolate?Fair question. 😭
+Explanation sequence
+I could’ve just given you the chocolate.And written a normal note.That would’ve been completely normal.But apparently...I recently started learning web development.So naturally, my brain decided...“Let’s make her a whole damn website.”💀
+Digital visual transformation
+Optional/Recommended code-inspired visual layer during the web-development explanation.
+Use floating HTML tags, CSS brackets, JavaScript symbols, code lines, cursor typing, browser motifs, or assembling UI elements.
+This must remain stylized and artistic, never a programming tutorial.
+Its narrative purpose is simply: Rakhi + web development = this nonsense happened.
+Personal commitment sequence
+But honestly...I wanted to make something a little different for you.Something that isn’t just a message you read once and forget.Something you can come back to.
+Optional portrait use
+A second stylized Anwesha image may appear in a more casual framing.
+Possible floating frame, reaction bubble, or decorative interaction.
+Optional fictional reaction: “This idiot actually did it.” 😭
+Do not attribute fictional dialogue as a real quote from Anwesha.
+Actual reason
+Jokes apart...You are my sister.And I wanted this Rakhi to be a little more memorable.
+Optional “evidence” interaction
+WANT TO SEE THE EVIDENCE? 👀Normal brother:Buys chocolate ✓Me:Buys chocolate ✓Overthinks gift ✓Makes website ✓Loses sleep ✓Questions life choices ✓Worth it. Probably.😭
+Primary CTA
+SO... WHAT DID I GET YOU? → 🍫
+Exit transition
+Digital/web elements disappear.
+Visual world returns to personal/festive direction.
+Small chocolate-related visual clue enters.
+Music can become playful again.
+Scene 4 begins.
+Completion condition
+User understands why the site exists.
+User knows the creator intentionally made something different.
+Physical gift is clearly still waiting.
+4. Scene 4: The Gift
+SCENE ID: 04_THE_GIFT
+PURPOSE: Connect the digital experience to the physical KitKat and explain the deliberate thought behind choosing it.
+EMOTIONAL PROGRESSION: Curiosity → recognition → laughter → appreciation → warmth
+Entry transition
+Code fragments fade.
+Environment becomes cleaner.
+A small glowing object/silhouette appears.
+Object rotates or approaches.
+Text calls attention to the physical gift.
+Handoff setup
+You might have noticed something sitting beside you. 👀Yes. THAT.
+Gift reveal
+Stylized animated version of KitKat Rich.
+Wrapped silhouette appears.
+Light traces outline.
+Package rotates/settles.
+Decorative particles burst.
+Reveal text: “YOUR OFFICIAL RAKHI GIFT 🍫” followed by “KitKat Rich.”
+Keep it playful, not like a product advertisement.
+Chocolate selection story
+Now, before you think I randomly picked a chocolate...No.There was research involved.😭Question 1: What does Anwesha like?Question 2: What should I get her?Question 3: What won’t be too sweet? 👀After extremely serious and completely unnecessary research...KitKat Rich won. 🏆
+Chocolate Research Report
+RAKHI GIFT SELECTION REPORT━━━━━━━━━━━━━━━━━━━━Subject:AnweshaPrimary Requirements:✓ Must be chocolate✓ Must taste good✓ Must not be overly sweetCandidates Analysed:Multiple options considered 🤔Several rejected ❌One survived 🏆Final Selection:KITKAT RICH 🍫Research Team:DigantaProfessional Overthinker & Lead ResearcherMonojitChocolate Selection ConsultantBest Friend & Anwesha’s Boyfriend━━━━━━━━━━━━━━━━━━━━Final Verdict:Approved for Rakhi Delivery 🧿Optional final line:Special thanks to Monojit for preventing me frommaking a questionable chocolate decision. 😭
+Real-value moment
+Okay, jokes aside...It’s just a chocolate.But I didn’t want to just randomly hand you something.I wanted to choose it for you.So yes, I walked to the store, stood there like an idiot thinking about chocolates......and somehow this became a whole website too.😭
+Optional animated memory object
+Animated Diganta begins walking.
+Store icon appears.
+Chocolate choices appear.
+Diganta thinks.
+Options rejected.
+KitKat Rich selected.
+Brief celebratory animation.
+Keep short and stylized if implemented.
+Optional portrait reaction
+Stylized Anwesha portrait can react to the absurdity.
+Possible fictional dialogue: “You did all this for a chocolate?” followed by “Technically, for Rakhi. The chocolate was just the beginning.”
+Alternative: “You could’ve just given me the chocolate.” / “And miss an opportunity to overengineer something? Never.”
+Treat all such dialogue as fictional/optional.
+Interactive KitKat
+Tap/click KitKat.
+Wrapper may slightly open.
+Sparkles appear.
+Short sound effect.
+Hidden message appears.
+Recommended message: “Warning: This chocolate has been personally approved for you. 🍫🧿”
+Physical handoff moment
+Now look away from the screen for a second.Look at your actual gift. 😭🍫Yep. That’s the one.Go on. It’s yours.
+Primary CTA
+ONE MORE THING... → 🧿
+Exit transition
+KitKat recedes/fades.
+Particles calm.
+Playful energy softens.
+Music transitions warmer.
+Scene prepares for genuine message.
+Completion condition
+Physical KitKat is explicitly connected to site.
+User knows selection was deliberate.
+Monojit’s contribution is acknowledged.
+Experience is ready to become more sincere.
+5. Scene 5: The Actual Rakhi Message
+SCENE ID: 05_THE_MESSAGE
+PURPOSE: Deliver the sincere personal message at the emotional centre of the experience without becoming overly sentimental.
+EMOTIONAL PROGRESSION: Calm → curiosity → sincerity → warmth → appreciation
+Entry transition
+KitKat fades/recedes.
+Humorous UI disappears.
+Motion becomes slower.
+Music moves to softer section.
+Screen briefly becomes visually minimal.
+Create a quiet pause.
+Opening acknowledgement
+Okay... jokes aside for a second.There actually is something I wanted to say.
+Message introduction
+This is actually the first time I’ve bought you a gift like this for Rakhi.And honestly, I wasn’t completely sure what I was supposed to do. 😭So I did what any completely normal person would do...I bought chocolate and built a website.😭
+Transition into sincerity
+But seriously...I’m glad I got to do something for you this Rakhi.It may just be a chocolate and a ridiculous website......but both were chosen and made specifically for you.
+Core personal message
+STRUCTURAL DRAFT — NOT FINAL. The source explicitly says the final wording must later be rewritten so it sounds like Diganta rather than a generic greeting card. Preserve the structure until the creator supplies the final text.
+Happy Raksha Bandhan, Anwesha. 🧿I hope you like this little surprise. I know it’s probably a bit unnecessary to make an entire website for Rakhi, but I wanted to make something a little different for you.The chocolate is small, and this website is admittedly a completely overengineered way of giving it to you 😭, but the thought behind it is genuine.I’m glad you’re my sister, and I’m glad I got to make something for you this time.Stay happy, take care of yourself, and don’t change too much.And unfortunately for you, you’re still stuck with me as your brother. 💀🧿
+Portrait integration
+Use a warmer, calmer portrait treatment than Scene 2.
+Gentle float, ambient particles, subtle frame, slow parallax.
+No exaggerated effects.
+Multiple portrait transitions are optional if enough suitable images exist.
+Optional signature sequence
+With love,Your brother,Diganta 🧿
+Optional keep-message interaction
+KEEP THIS MESSAGE 🧿Possible response: “Saved forever. No refunds. 💀”or“You can always come back here.”
+Tone reset
+Okay, enough emotional nonsense. 😭There’s still more.
+Primary CTA
+LET’S GET BACK TO BEING NORMAL → 💀
+Exit transition
+Message environment brightens slightly.
+Music returns toward playful.
+Decorative elements become more active.
+Scene 6 begins.
+Completion condition
+User understands the gift and website were intentional.
+User receives genuine sibling warmth without excessive sentimentality.
+6. Scene 6: The Sibling Zone
+SCENE ID: 06_THE_SIBLING_ZONE
+PURPOSE: Provide one final burst of sibling humor and exploration before the finale.
+EMOTIONAL PROGRESSION: Warmth → relief → laughter → surprise → affectionate chaos
+Entry transition
+Final message fades.
+Signature dissolves into particles.
+Particles accelerate.
+Music becomes playful.
+Brief glitch/shake.
+Title appears.
+Title + mode activation
+WELCOME TO THE SIBLING ZONE.Normal behaviour is no longer guaranteed.😭SIBLING MODE ACTIVATEDEmotional content: COMPLETED ✓Normal behaviour: DISABLED ✗Random nonsense: ENABLED ✓Proceed at your own risk.
+Interaction hub
+Use a set of cards, objects, or buttons.
+User may interact in any order.
+Primary final CTA remains available regardless of interaction completion.
+Recommended heading: “A few things before we finish... 👀”
+Core interaction A: HOW THIS STARTED 💀
+Step 1:Buy a Rakhi gift.Step 2:Buy chocolate.Step 3:Think about adding a note.Step 4:Think, “What if I made a website?”Step 5:Why did I actually make a website?Current situation: You are reading it.
+Core interaction B: THE RESEARCH TEAM 🧪
+RAKHI GIFT RESEARCH TEAM━━━━━━━━━━━━━━━━━━━━Lead Researcher:DigantaResponsibilities:Overthinking everything.Making unnecessary websites.Chocolate Selection Consultant:MonojitResponsibilities:Helping choose the chocolate.Preventing questionable decisions.Final Subject:Anwesha 😭━━━━━━━━━━━━━━━━━━━━Project Status:SUCCESSFULLY DELIVERED 🍫Optional:Special thanks to Monojit for helping me pick the chocolate. 🫡
+Core interaction C: YOUR BROTHER’S CURRENT STATUS 🤖
+NAME:DigantaRELATIONSHIP TO YOU:BrotherCURRENT CONDITION:Sleep deprivedRECENT ACTIVITIES:✓ SIH research✓ Classes✓ Lab reports✓ Web development✓ Buying chocolate✓ Making this website at an unreasonable hourMENTAL STABILITY:Questionable 💀Would probably do it again.😭
+Core interaction D: DO NOT PRESS THIS BUTTON 🚨
+First press:I literally told you not to press it.Second press:Okay, now I’m impressed by your commitment.Third press:Fine. You win.Hidden surprise:Happy Rakhi again, idiot. 🧿😭
+Portrait moments
+Use additional stylized images of Anwesha if available.
+Possible treatments: character cards, reaction bubbles, Polaroid-style frames, edge entrances, portrait reactions, “Anwesha detected” popups.
+Example: “ANWESHA DETECTED.” → “Deploying Rakhi surprise... 😭”
+Optional hidden interaction system
+🧿 Protection against bad vibes activated.🍫 Yes, the KitKat is still real. Go eat it.💻 This is what happens when your brother learns HTML.🏆 Achievement unlocked: Survived the sibling website.
+Optional achievement system
+ACHIEVEMENT UNLOCKEDFIRST WEBSITEReceived an unnecessarily complicated Rakhi gift.+100 Sister PointsBUTTON PRESSERPressed something clearly labelled “Do Not Press.”CHOCOLATE VERIFIEDSuccessfully located the actual KitKat.SIBLING CONFIRMEDStill related to Diganta. No escape.
+Optional portrait dialogue
+Possible fictional dialogue: “Can I finally eat the chocolate now?” → “Yes. That was the original point. 😭”
+Safer neutral fallback: “Okay, enough website. Go enjoy the chocolate. 🍫”
+Completion logic
+Optional interactions never required.
+Optional counter may say “Surprises discovered: 3 / 5”.
+After enough exploration, optional message: “You found enough nonsense. Time to finish this. 😭”
+Final setup copy
+Okay... seriously, this is the last thing.Promise.Probably. 💀
+Primary CTA
+ONE LAST SURPRISE → 🧿
+Completion condition
+User has laughed after Scene 5.
+Monojit’s contribution acknowledged.
+User has experienced some personalized interactions.
+User is prepared for the final Rakhi moment.
+7. Scene 7: The Finale
+SCENE ID: 07_THE_FINALE
+PURPOSE: Deliver the final emotional and visual payoff, bringing the physical gift, sibling humor, personalized artwork, and Rakhi symbolism into one memorable closure.
+EMOTIONAL PROGRESSION: Curiosity → anticipation → visual climax → warmth → closure
+Entry setup
+Okay. This time, for real.Thank you for staying till the end. 😭
+Entry transition
+Interactive cards fade.
+Funny UI shuts down.
+Background quiets.
+Music softens.
+Screen gradually darkens.
+Short anticipation pause.
+Journey recap
+Optionally replay fragments from earlier scenes: opening glow, “Hey, Anwesha...”, sibling joke, Rakhi reveal, portrait, code motifs, KitKat, chocolate research report, emotional message, Sibling Mode chaos.
+Use short flashes or floating memory fragments.
+Optional sequence copy: “So... what happened here exactly?” → “You scanned a QR code.” → “You found a Rakhi website.” → “There was apparently chocolate research.” → “Monojit got involved.” → “I lost sleep.” → “And somehow...”
+Final reveal setup
+Small central light appears.
+Text completes: “…we made it to the end.”
+Particles from earlier scenes gather.
+Music builds toward its final emotional point.
+Final Rakhi sequence
+Glowing thread enters from one side.
+Thread travels across the scene along an organic curve.
+Small fragments from earlier scenes may appear around the journey.
+Thread reaches centre.
+Final Rakhi forms and feels more complete/significant than Scene 2.
+Bond animation
+Thread continues outward from the completed Rakhi.
+One end heads toward a visual representation of Diganta.
+Other end heads toward Anwesha.
+Representation can be subtle silhouettes, glowing points, or illustrated portraits.
+Avoid romantic framing. This is a sibling symbol.
+Connection completes and a soft glow travels through the thread.
+Final greeting
+HAPPY RAKSHA BANDHAN, ANWESHA. 🧿I’m glad you’re my sister.And unfortunately for you......you’re permanently stuck with me as your brother. 💀❤️
+Final personal message
+I hope you liked the chocolate.I hope you liked the website.And I hope this made you smile at least once.That’s honestly all I wanted. 🧿
+Final signature
+Made for Anwesha ❤️By your sleep-deprived brother,DigantaOptional:Made with HTML, CSS, JavaScript, questionable decisions,and very little sleep. 😭
+Final interaction
+TAP THE RAKHI ONE LAST TIME 🧿→ Rakhi responds→ Thread glows brightly→ Celebration particles spread→ Small celebratory sound→ Final popup: “Rakhi Surprise Complete. 🎉”→ “See you next year. Maybe with version 2.0. 💀😭”
+Post-finale state
+Happy Rakhi, Anwesha 🧿❤️
+Optional replay
+REPLAY THE CHAOS ↻Are you sure? I had to build all of this. 😭YES, AGAIN →NO, LET ME EAT THE CHOCOLATE 🍫
+Optional post-credits Easter egg
+Psst...Go eat the KitKat before it melts. 🍫😭
+Completion condition
+Complete seven-scene journey experienced.
+Digital and physical gift feel connected.
+Humor and sincerity both land.
+Final bond visual and message provide closure.
+15. Global Animation System
+ANIMATION RULE
+Do not write or implement “nice animations.” Every animation must have a clear start state, trigger, movement, timing/pacing intention, end state, and narrative purpose.
+Animation family
+Required behavior
+Priority
+Text reveals
+Letter-by-letter, masked, or staged reveals where specified
+CORE
+Glow expansion
+Central light expands to reveal new scenes
+CORE
+Particle field
+Subtle ambient motion; accelerates only at key transitions
+CORE
+Rakhi thread
+Organic curved-path draw animation
+CORE
+Rakhi assembly
+Layered assembly rather than instant fade
+CORE
+Portrait entrance
+Silhouette/glow → portrait → settle → subtle idle motion
+CORE
+Parallax
+Small depth movement on desktop; optional device tilt on mobile
+OPTIONAL
+Glitch effects
+Reserved for playful system moments; short and purposeful
+RECOMMENDED
+Button motion
+Gentle hover/press/pulse; never aggressive
+CORE
+Signature draw
+Handwritten draw animation if implemented
+RECOMMENDED
+Final thread/bond
+Organic travel to final connection; soft glow on completion
+CORE
+Confetti/celebration
+Reserved for finale or explicit interaction
+RECOMMENDED
+15.1 Motion principles
+Smooth, restrained, deliberate.
+Prefer slow reveals, masked text, curved entry paths, thread drawing, gentle camera movement, layered parallax, and occasional dramatic transitions.
+Avoid constant motion. The page should often know when to shut up and be still.
+Animation density should follow emotional intensity rather than remain constant.
+Use transform/opacity/scale-based animation where possible for performance.
+16. Interaction System
+Element
+Trigger
+Response
+Blocks progression?
+Priority
+OPEN YOUR SURPRISE
+Tap
+Start music + transition
+No
+CORE
+Continue CTAs
+Tap
+Advance scene
+Yes, only as primary flow control
+CORE
+Tap Rakhi
+Tap/click
+Sparkles + message + optional sound
+No
+RECOMMENDED
+View Research
+Tap
+Open Chocolate Research Report
+No
+RECOMMENDED
+Tap KitKat
+Tap/click
+Wrapper response + message
+No
+RECOMMENDED
+Keep Message
+Tap
+Visual save-like response only
+No
+OPTIONAL
+Sibling cards
+Tap
+Reveal localized content
+No
+CORE/RECOMMENDED
+Do Not Press
+Tap repeatedly
+Escalating joke / hidden surprise
+No
+RECOMMENDED
+Hidden objects
+Tap
+Micro-message
+No
+OPTIONAL
+Achievements
+Triggered by interaction
+Unlock visual badge
+No
+OPTIONAL
+Final Rakhi
+Tap
+Final celebration
+No
+RECOMMENDED
+Replay
+Tap
+Restart at Scene 1
+No
+OPTIONAL
+Easter egg
+Inactivity/tap
+Show tiny post-credit message
+No
+OPTIONAL
+NON-BLOCKING RULE
+Optional interactions may enrich the experience, but the next-scene CTA must remain usable without discovering them.
+17. Content Inventory
+17.1 Global labels / controls
+OPEN YOUR SURPRISE ✨
+CONTINUE THE ADVENTURE →
+SO... WHAT DID I GET YOU? → 🍫
+ONE MORE THING... → 🧿
+LET’S GET BACK TO BEING NORMAL → 💀
+ONE LAST SURPRISE → 🧿
+TAP THE RAKHI ONE LAST TIME 🧿
+KEEP THIS MESSAGE 🧿
+VIEW THE RESEARCH 📊
+REPLAY THE CHAOS ↻
+17.2 High-value jokes / recurring copy
+“Calculating how annoying your brother is...” → “ERROR 💀”
+“Status: Still your brother. No refunds available.”
+“Because apparently a normal Rakhi message was not enough.”
+“There was research involved.”
+“No. There was research involved.”
+“This is what happens when your brother learns HTML.”
+“Normal behaviour is no longer guaranteed.”
+“You found enough nonsense. Time to finish this.”
+“Probably.”
+“See you next year. Maybe with version 2.0. 💀”
+“Go eat the KitKat before it melts. 🍫”
+17.3 Content status rules
+Exact source wording should be preserved where it is explicitly treated as locked copy.
+The Scene 5 core personal message is a structural draft and must be finalized later by Diganta.
+Any dialogue attributed to Anwesha is fictional/optional unless replaced by real text supplied by her.
+Exact final typography, colors, portrait assets, and music remain TBD unless separately supplied.
+18. Personalization and Portrait System
+18.1 Portrait philosophy
+Portraits are not decorations. They are narrative assets.
+Convert selected photos of Anwesha into a consistent illustrated/editorial style before implementation.
+Do not use generic Pixar/cartoon avatars.
+Prefer expressive but elegant treatment, slightly painterly or illustrated finish, clean silhouette, controlled detail, consistent lighting, subtle texture and slight imperfections.
+All portraits should feel like they belong to the same art-directed visual universe.
+Use approximately 2–4 carefully selected images across the experience rather than flooding scenes with photos.
+18.2 Scene-specific portrait roles
+Scene
+Role
+Treatment
+2
+Grand reveal / personalization
+Hero editorial illustration, subtle float, glow, parallax
+3
+Playful reaction
+Casual frame or reaction moment; optional fictional dialogue
+5
+Emotional support
+Warm, calm portrait; minimal motion
+6
+Sibling chaos
+Playful character-card/reaction treatments
+7
+Bond representation
+Subtle portrait/silhouette on one side of final composition
+18.3 Asset handling
+Use transparent-background cutouts where appropriate.
+Optimize files for mobile.
+Do not repeatedly load large portrait files between scenes.
+Provide fallback behavior if an optional portrait is missing.
+19. Visual Design System
+THEME: Aesthetic Cinematic Festive Scrapbook
+INTERPRETATION: Not a literal scrapbook. The site should feel personally art-directed and handcrafted for one specific person.
+VIBE: Dreamy, warm, artistic, cinematic, slightly whimsical, handmade-feeling
+DESIGN PRINCIPLE: LESS DECORATION. MORE COMPOSITION.
+19.1 Visual direction
+Deep textured backgrounds.
+Warm soft lighting.
+Intentional asymmetry.
+Negative space.
+Editorial portrait composition.
+Thin/organic Rakhi thread motif.
+A few petals/particles instead of decorative overload.
+Subtle film grain or texture if performance allows.
+Expensive-feeling but not flashy.
+19.2 Narrative contrast
+Beautiful visual design + stupid sibling humour.
+20. Anti-AI Design Rules
+HARD CONSTRAINT
+The implementation must NOT look like a generic AI-generated Indian festival landing page. These rules are mandatory unless a later explicit decision overrides them.
+No generic AI gradients everywhere.
+No random floating objects.
+No decorative element without purpose.
+No excessive glassmorphism; at most one or two translucent surfaces where useful.
+No generic motivational-quote typography.
+No five-font typography.
+No giant glowing headings everywhere.
+No symmetrical centered layouts in every scene.
+No constant motion.
+No particle explosions every few seconds.
+No generic Pixar/cartoon portrait treatment.
+No visual clutter.
+No everything-is-glowing approach.
+No cliché festival template composition.
+Prefer intentional composition, negative space, asymmetry, cohesive art direction, human-designed imperfections, purposeful decoration, editorial composition and controlled motion.
+21. Typography
+Use
+Typeface role
+Decision status
+Primary display
+Expressive display font
+TBD
+Body/UI
+Clean modern sans-serif
+TBD
+System/code motifs
+May use monospaced treatment locally
+OPTIONAL / not a global third family
+Maximum two primary font families.
+Display typography for Anwesha’s name, major Rakhi greetings, emotional moments, and final statements.
+Clean modern type for jokes, system messages, body copy, buttons, and cards.
+Typography itself must carry part of the aesthetic.
+22. Color Direction
+TBD RULE
+Exact HEX values were not locked in the source. Choose final values during implementation while staying faithful to the directional palette below.
+Color family
+Role
+Deep plum / wine
+Primary cinematic depth
+Warm ivory / cream
+Soft readable surfaces / light text areas
+Muted rose / dusty pink
+Warmth and secondary accents
+Antique gold
+Rakhi/festive highlights and subtle glows
+Deep chocolate brown
+Scene 4 gift-specific accent
+Muted lavender / violet
+Dreamy digital moments / secondary atmospheric accent
+Palette should be muted and sophisticated, not highly saturated.
+Gold is an accent, not a flood-fill.
+Do not create a different unrelated palette for every scene.
+23. Layout System
+Mobile-first full-screen compositions.
+Use visual layers rather than rigid dashboard-like boxes.
+Asymmetry is intentional: portraits may occupy one side while typography anchors the other.
+The Rakhi thread can cross the viewport organically instead of following a fixed straight line.
+Negative space should be preserved around important text and portraits.
+Desktop can introduce more breathing room and depth but must preserve the same narrative hierarchy.
+No scene may require horizontal scrolling.
+24. Audio System
+Behavior
+Specification
+Priority
+Initial load
+No autoplay music
+CORE
+Music start
+Begin after explicit user interaction at end of Scene 1
+CORE
+Persistent playback
+Continue across scenes without unnecessary restart
+CORE
+Music toggle
+Visible, unobtrusive, clear state
+CORE
+Scene variation
+Soft/playful/emotional intensity may change by scene
+RECOMMENDED
+Unlock sound
+Subtle sound before Scene 2
+OPTIONAL
+UI sound effects
+Small feedback sounds for key interactions
+OPTIONAL
+Adaptive layers
+Separate layers fade in with emotional progression
+ADVANCED OPTIONAL
+Fallback
+Site remains fully usable with audio muted/unavailable
+CORE
+25. Responsive System
+Viewport
+Requirements
+Mobile portrait
+Primary target. Single-screen scene composition, large touch targets, no overflow, readable copy, optimized portraits, controlled particle density.
+Mobile landscape
+Maintain hierarchy and avoid clipping. Reposition portrait/thread when needed.
+Tablet
+Increase breathing room, preserve asymmetry and hierarchy.
+Desktop
+Allow wider compositions, cursor parallax, richer depth; do not turn into generic desktop landing page.
+Use viewport-safe spacing around notches and browser UI.
+Buttons must remain comfortable to tap.
+Long messages should wrap naturally rather than shrink to unreadable sizes.
+Thread geometry should adapt to screen dimensions.
+Particle count and expensive effects should scale down on weaker devices.
+No critical interaction should depend on hover.
+26. Accessibility
+Respect prefers-reduced-motion and reduce/disable nonessential movement.
+Ensure readable text contrast against backgrounds.
+Keep interactive controls keyboard reachable on desktop.
+Use accessible labels for icon-only controls such as music and replay.
+Do not make hidden interactions the only way to reach important information.
+Provide usable text fallbacks for essential content embedded in animation.
+Audio must be controllable and not required to understand the experience.
+27. Technical Architecture
+27.1 Recommended implementation
+RECOMMENDATION
+Use plain HTML, CSS, and JavaScript as the primary architecture. The project is a single personal interactive experience, not a data-heavy application. Escalate to React only if the scene/state/component system becomes materially harder to maintain with vanilla JavaScript.
+Layer
+Recommended choice
+Reason
+Markup
+HTML5
+Simple scene structure and semantic fallback.
+Styling
+CSS3
+Strong support for keyframe animation, transforms, masks, filters, responsive layout.
+Behavior/state
+JavaScript
+Small centralized scene controller and interaction state.
+Framework
+None by default
+Avoid setup and runtime overhead unless justified.
+React
+Optional escalation
+Use only if implementation complexity genuinely warrants component/state abstraction.
+Backend
+None
+No persistence or server-side business logic required.
+Database
+None
+All state can remain in memory or local browser state where needed.
+Animation library
+TBD / avoid unless needed
+Prefer CSS/Web Animations for simple motions; add a library only when it materially improves control.
+Audio
+HTMLAudioElement / Web Audio if justified
+Explicit user gesture start and persistent playback.
+Deployment
+Static hosting
+The site is suitable for a static deployment target.
+27.2 Architectural principle
+Simple technical architecture, rich visual experience.
+27.3 Implementation requirements
+No page reloads between scenes.
+Central scene controller owns current scene and transition state.
+Optional interaction state should persist only as needed for the current experience.
+Audio state should persist across scenes.
+All major animation states should have deterministic entry and exit behavior.
+Asset references should be centralized.
+No unnecessary libraries simply for prestige.
+28. Project Structure
+rakhi-site/├── index.html├── src/│   ├── styles/│   │   ├── global.css│   │   ├── variables.css│   │   └── scenes.css│   ├── js/│   │   ├── app.js│   │   ├── sceneController.js│   │   ├── audioController.js│   │   ├── interactionState.js│   │   └── utils.js│   ├── scenes/│   │   ├── scene01.js│   │   ├── scene02.js│   │   ├── scene03.js│   │   ├── scene04.js│   │   ├── scene05.js│   │   ├── scene06.js│   │   └── scene07.js│   └── components/│       ├── Button.js│       ├── MusicToggle.js│       ├── Portrait.js│       ├── Rakhi.js│       └── ParticleLayer.js├── assets/│   ├── portraits/│   ├── rakhi/│   ├── gift/│   ├── decorative/│   └── audio/└── README.md
+STRUCTURE NOTE
+The exact folder structure may change if React is adopted, but the separation of scene logic, global behavior, assets, and reusable visual primitives should remain.
+29. State and Flow Model
+State
+Description
+Persistence
+currentScene
+1–7 active scene
+Across whole session
+sceneTransition
+Entry/exit animation state
+Transient
+audioEnabled
+Music on/off
+Across whole session
+audioStarted
+Whether explicit gesture has unlocked audio
+Across whole session
+optionalDiscoveries
+Which optional interactions were triggered
+Across whole session
+achievements
+Unlocked playful badges
+Across whole session
+replayRequested
+Restart confirmation state
+Transient
+finaleCompleted
+Final interaction completed
+Across whole session
+Scene 1 → Scene 2 → Scene 3 → Scene 4 → Scene 5 → Scene 6 → Scene 7 → FINAL STATE
+Every scene owns its local visual/interaction lifecycle.
+Global controllers own audio, scene progression, and persistent interaction state.
+Optional state must never deadlock progression.
+Reloading the page may restart the experience unless a later requirement explicitly adds persistence.
+30. Asset Manifest
+Asset
+Type
+Scenes
+Status
+Treatment / notes
+Anwesha portrait 01
+Illustration / transparent PNG or WebP
+2, 7
+USER-PROVIDED / TBD
+Hero editorial treatment
+Anwesha portrait 02
+Illustration
+3 / 5
+USER-PROVIDED / TBD
+Casual or calm treatment
+Anwesha portrait 03–04
+Illustration
+6
+OPTIONAL
+Playful reaction/character-card use
+Rakhi hero graphic
+Vector / SVG / CSS composition
+2, 7
+REQUIRED / TBD
+Thread drawing + assembly
+KitKat Rich visual
+Image / vector / CSS
+4
+REQUIRED / TBD
+Must visually match physical gift
+Decorative particles
+CSS / JS
+1–7
+GENERATED
+Low-cost, subtle
+Petals / small festive accents
+SVG / CSS
+2, 7
+OPTIONAL
+Use sparingly
+Background textures
+Raster / CSS
+1–7
+TBD
+Subtle film-grain or paper-like texture
+Background music
+Audio file
+1–7
+TBD
+Starts after Scene 1 CTA; persistent
+Unlock sound
+Audio
+2
+OPTIONAL
+Subtle
+Interaction SFX
+Audio
+2 / 4 / 6 / 7
+OPTIONAL
+Very short feedback
+Display font
+Web font
+2 / 5 / 7
+TBD
+Expressive
+UI font
+Web font
+1–7
+TBD
+Clean modern sans
+30.1 Asset production rules
+Optimize all raster images for mobile before deployment.
+Prefer WebP/AVIF where compatible and practical.
+Use SVG for simple decorative vectors when possible.
+Do not load all optional assets at once if scene-level loading is sufficient.
+If a missing optional asset does not break the scene, fall back gracefully.
+31. Performance Requirements
+Visual ambition must not destroy mobile usability.
+Prefer GPU-friendly transforms and opacity for repeated animation.
+Avoid unnecessary DOM churn for particles. CSS-based or canvas-based particles may be preferable depending on implementation.
+Keep particle counts bounded.
+Lazy-load heavy portrait or optional scene assets when appropriate.
+Compress audio and images.
+Pause or reduce hidden-scene animation work when a scene is no longer visible.
+Do not keep large duplicate assets in memory unnecessarily.
+Test the experience on a typical mid-range phone, not only a development laptop.
+32. Feature Priority Matrix
+Feature
+Scene
+Priority
+Required for core journey?
+Animation intensity
+Asset dependent?
+Seven-scene narrative
+1–7
+CORE
+Yes
+Medium
+No
+Full-screen scene transitions
+All
+CORE
+Yes
+High
+No
+Scene 1 cinematic opening
+1
+CORE
+Yes
+Medium
+No
+Scene 1 fake system joke
+1
+CORE
+Yes
+Medium
+No
+Music after explicit interaction
+1–7
+CORE
+Yes
+Low
+Yes
+Rakhi thread drawing
+2,7
+CORE
+Yes
+High
+Yes
+Rakhi assembly
+2
+CORE
+Yes
+High
+Yes
+Anwesha stylized portrait
+2
+CORE
+Yes
+Medium
+Yes
+Name reveal
+2
+CORE
+Yes
+Medium
+No
+Tap Rakhi interaction
+2
+RECOMMENDED
+No
+Medium
+No
+Web-development motif
+3
+RECOMMENDED
+No
+Medium
+No
+Chocolate Research Report
+4
+RECOMMENDED
+No
+Low
+No
+KitKat interaction
+4
+RECOMMENDED
+No
+Medium
+Yes
+Monojit credit
+4,6
+CORE
+Yes
+Low
+No
+Scene 5 sincere message
+5
+CORE
+Yes
+Low
+No
+Handwritten signature
+5,7
+RECOMMENDED
+No
+Medium
+No
+Sibling interaction hub
+6
+CORE
+Yes
+Medium
+No
+Do Not Press
+6
+RECOMMENDED
+No
+Low
+No
+Hidden objects
+6
+OPTIONAL
+No
+Medium
+No
+Achievement system
+6
+OPTIONAL
+No
+Medium
+No
+Final bond animation
+7
+CORE
+Yes
+High
+Yes
+Finale interaction
+7
+RECOMMENDED
+No
+Medium
+Yes
+Replay
+7
+OPTIONAL
+No
+Low
+No
+Post-credits Easter egg
+7
+OPTIONAL
+No
+Low
+No
+Device motion/parallax
+2,6,7
+ADVANCED OPTIONAL
+No
+High
+No
+Adaptive multi-layer music
+2–7
+ADVANCED OPTIONAL
+No
+High
+Yes
+33. Design Consistency Rules
+The same illustration language must be used for all Anwesha portraits.
+Typography hierarchy must remain recognizable across scenes.
+The Rakhi thread should recur as a visual motif and reach its symbolic payoff in Scene 7.
+The palette may shift in mood but must remain part of one visual universe.
+Code motifs are a temporary narrative device, not a separate visual theme.
+Scene 4 may become more chocolate-oriented but should retain the main visual identity.
+Scene 5 should intentionally reduce motion and decoration.
+Scene 6 may be busier, but the busyness must feel designed rather than random.
+Scene 7 should feel like the culmination of the same world, not a new site.
+34. Emotional Pacing Rules
+Pacing mode
+Scenes
+Design behavior
+Mystery
+1
+Sparse, dark, quiet, slow reveal
+Spectacle
+2
+Largest visual reveal, festive but controlled
+Playful explanation
+3
+Digital motifs, humor, conversational pacing
+Gift intimacy
+4
+Physical object becomes central; humor + appreciation
+Sincerity
+5
+Reduced motion, negative space, message-first
+Sibling chaos
+6
+Interactive, playful, optional discoveries
+Climax / closure
+7
+Music build, thread/bond symbolism, final message, calm final state
+PACING PRINCIPLE
+The website should know when to shut up and be still. Silence, pauses, negative space, and breathing room are part of the storytelling.
+35. Physical + Digital Gift Integration
+The QR code should be attached to the physical KitKat in a visually fitting way.
+Scene 1 establishes the digital mystery.
+Scene 4 explicitly acknowledges the physical gift beside the user.
+The KitKat animation should resemble the real gift enough for immediate recognition.
+The handoff copy should direct attention back to the actual object.
+The final scenes should preserve the sense that the website is an extension of the gift, not a separate artifact.
+Digital surprise + physical chocolate = one Rakhi experience.
+36. Non-Negotiable Requirements
+Seven-scene flow remains intact.
+QR-driven entry assumption is preserved.
+Mobile-first full-screen experience.
+No page reload between scenes.
+User-controlled progression; no forced auto-advance.
+Music begins only after explicit user interaction.
+Persistent music toggle after music starts.
+Strategic personalized Anwesha illustrations.
+Physical KitKat integration.
+Personalized copy and sibling humor.
+Final sibling-bond visual payoff.
+Reduced-motion consideration.
+Purposeful asymmetry and negative space.
+Consistent illustration/art direction.
+Restrained motion and deliberate animation.
+Optional interactions never block progression.
+No generic AI festival styling.
+No unnecessary backend or database.
+Technical complexity must serve the experience rather than showcase itself.
+37. What Antigravity Must Not Do
+HARD GUARDRAILS
+These constraints exist to prevent the implementation from drifting into a generic AI-generated festival website.
+Do not redesign the concept into a generic festival homepage.
+Do not replace the seven-scene narrative with a normal scrolling landing page.
+Do not remove scenes simply because they are easier to implement.
+Do not add random decorations.
+Do not add random gradients.
+Do not overuse glowing gold.
+Do not place every element in the center.
+Do not make everything bounce.
+Do not overuse glassmorphism.
+Do not turn portraits into generic cartoon avatars.
+Do not invent sentimental dialogue.
+Do not turn optional features into mandatory progression.
+Do not add unnecessary backend infrastructure.
+Do not use technology merely because it sounds impressive.
+Do not rewrite the personality into corporate or greeting-card copy.
+Do not flatten the pacing into one continuous animation.
+Do not sacrifice mobile usability for visual effects.
+Do not silently replace locked copy.
+Do not invent missing assets, final colors, fonts, or audio content. Mark them TBD.
+38. Acceptance Criteria
+Area
+Testable criterion
+Flow
+User can move through all seven scenes in order without page reload.
+Scene 1
+Rakhi is not revealed before the primary CTA is pressed.
+Audio
+Music does not begin before explicit user interaction.
+Audio persistence
+Music does not unnecessarily restart during scene transitions.
+Scene 2
+Rakhi thread draws and final Rakhi assembles rather than appearing as a static instant image.
+Portraits
+Anwesha illustrations use a coherent non-generic editorial treatment.
+Scene 4
+Website explicitly connects to the real KitKat.
+Monojit credit
+Chocolate selection credit is visible and accurate.
+Scene 5
+Personal message is readable without forcing every sentence into an animation.
+Scene 6
+Optional interactions cannot block the finale.
+Scene 7
+Final thread visually connects the two sides of the composition.
+Responsiveness
+No horizontal scrolling or clipped critical content on mobile.
+Accessibility
+Reduced-motion preference is respected for nonessential motion.
+Performance
+Experience remains smooth on a typical mobile device.
+Visual identity
+No generic AI-festival template composition is present.
+Typography
+No more than two primary font families are used.
+Interaction
+All buttons have clear visual feedback and remain usable by touch.
+Fallback
+The experience remains understandable and usable if audio is muted or unavailable.
+Final state
+After completion, the user can remain on a calm final scene rather than being forced out.
+39. Traceability Matrix
+Source idea / requirement
+Master documentation location
+Status
+Implementation area
+QR + KitKat core objective
+1, 4, 35
+CORE
+Physical/digital integration
+Seven-scene narrative
+7–14
+CORE
+Scene architecture
+Cinematic opening
+8,15,20
+CORE
+Scene 1 + animation system
+Rakhi reveal + thread
+9,15
+CORE
+Scene 2 + animation
+Strategic portraits
+18 + 9,10,12,14
+CORE/RECOMMENDED
+Portrait system
+Web-development explanation
+10
+CORE/RECOMMENDED
+Scene 3
+Chocolate research report
+11,17
+RECOMMENDED
+Scene 4
+Monojit credit
+11,13,39
+CORE
+Gift and Sibling Zone
+Sincere message
+12,17
+CORE
+Scene 5; final wording TBD
+Sibling interaction hub
+13,16
+CORE
+Scene 6
+Final bond animation
+14,15
+CORE
+Scene 7
+Aesthetic Cinematic Festive Scrapbook
+19–24
+CORE
+Visual direction
+Anti-AI rules
+20,37
+NON-NEGOTIABLE
+Visual guardrails
+Mobile-first
+5,23,25,38
+NON-NEGOTIABLE
+Responsive system
+No backend / database
+27,36
+NON-NEGOTIABLE
+Technical architecture
+Optional interactions non-blocking
+6,16,32,38
+NON-NEGOTIABLE
+Interaction safety
+Audio starts after interaction
+8,24,38
+NON-NEGOTIABLE
+Audio behavior
+40. Decision Log
+Decision
+Earlier alternative
+Final decision
+Reason / context
+Status
+Experience model
+Initial concept resembled a simple one-page greeting
+Final: seven full-screen scenes
+Provides cinematic pacing and clearer control of transitions
+LOCKED
+Implementation baseline
+Plain HTML/CSS/JS
+Remain default recommendation; React only if needed
+Simple static experience does not need framework overhead
+RECOMMENDED
+Backend
+Possible complexity was considered
+No backend/database
+Experience is static and local to a single recipient
+LOCKED
+Portrait treatment
+Real photos with animation vs stylization
+Consistent illustrated/editorial style
+More cohesive and personal
+LOCKED
+Theme
+Generic modern festive
+Aesthetic Cinematic Festive Scrapbook
+Balances festive identity with human/art-directed feel
+LOCKED
+Visual restraint
+Potential for many decorative effects
+Intentional composition, negative space, asymmetry
+Avoid AI-generic output
+LOCKED
+Audio
+Music considered as part of experience
+Starts only after explicit interaction; persistent toggle
+Browser constraints + intentional moment
+LOCKED
+Scene progression
+Possible automatic movement
+User controls progression with CTAs
+Lets recipient absorb scenes
+LOCKED
+Scene 5 message
+Initial draft copy exists
+Final wording still to be rewritten in Diganta voice
+Source explicitly marks it structural/TBD
+TBD
+Exact color HEX
+Only palette directions exist
+Exact values TBD
+Avoid inventing values prematurely
+TBD
+Exact fonts
+Two-family philosophy established
+Font names TBD
+Preserve aesthetic without false lock-in
+TBD
+Optional interactions
+Many ideas proposed
+Keep optional and non-blocking
+Protect core journey
+LOCKED
+Monojit role
+Originally absent from research report
+Add as Chocolate Selection Consultant / best friend and Anwesha’s boyfriend
+Accurate attribution of his contribution
+LOCKED
+41. Final Implementation Summary
+BUILD TARGET
+A seven-scene, mobile-first, QR-triggered interactive Rakhi experience that feels like a tiny cinematic short film disguised as a website, with the physical KitKat acting as its real-world anchor.
+41.1 What the coding agent should understand immediately
+This is a personal artifact, not a generic UI exercise.
+The seven-scene narrative is the product architecture.
+The visual identity is aesthetic, cinematic, festive, and handmade-feeling, not template-like.
+Anwesha’s illustrated portraits are important personalization assets.
+The physical KitKat must remain part of the narrative.
+Manojit/Monojit is explicitly credited for helping select the chocolate.
+Jokes should feel like sibling banter and self-aware overengineering.
+Scene 5 is the emotional centre; do not drown it in animation.
+Scene 7 is the culmination and should reuse visual motifs established earlier.
+Optional features may be skipped when time/performance demands, but core scene identity must remain intact.
+41.2 Final architecture in one line
+QR scan → Scene 1 mystery → Scene 2 Rakhi reveal → Scene 3 why a website → Scene 4 KitKat + research → Scene 5 sincere message → Scene 6 sibling chaos → Scene 7 final bond → calm final state / optional replay / Easter egg
+41.3 Final creative rule
+MAKE IT FEEL LIKE ONE PERSON MADE THIS FOR ONE PERSON.NOT LIKE AN AI MADE A FESTIVAL WEBSITE.
+Appendix A. Source fidelity notes
+The uploaded source is 89 pages long and contains the chronological project-development record through the final theme decision.
+This master document intentionally distinguishes locked decisions from recommended, optional, advanced optional, and TBD items.
+Where the source itself says a wording, font, color, asset, or architectural decision is not yet final, this document preserves that status rather than fabricating certainty.
+The Scene 5 personal message remains explicitly labeled as a structural draft pending final authoring by Diganta.

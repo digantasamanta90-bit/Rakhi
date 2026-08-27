@@ -1,0 +1,179 @@
+/* =========================================================
+   GLOBAL STYLES & LAYOUT SYSTEM
+   Mobile-first, full-screen viewport, zero horizontal scroll.
+   ========================================================= */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  position: fixed;
+  background-color: var(--bg-deep-base);
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+#app-container {
+  width: 100%;
+  height: 100%;
+  height: 100dvh; /* Dynamic viewport height for mobile browsers */
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  background: radial-gradient(circle at 50% 30%, #200f1c 0%, var(--bg-plum-dark) 45%, var(--bg-deep-base) 100%);
+  transition: background var(--transition-slow);
+}
+
+/* Background Particle Canvas */
+#particle-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: var(--z-canvas);
+}
+
+/* Scene Master Container */
+#scene-viewport {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  z-index: var(--z-scene-content);
+  overflow: hidden;
+}
+
+/* Individual Scene Shell */
+.scene-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: env(safe-area-inset-top, 1.2rem) env(safe-area-inset-right, 1.2rem) env(safe-area-inset-bottom, 1.2rem) env(safe-area-inset-left, 1.2rem);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(18px) scale(0.985);
+  transition: opacity 0.8s var(--ease-cinematic), transform 0.8s var(--ease-cinematic), visibility 0.8s;
+  pointer-events: none;
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+}
+
+.scene-container.active {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
+}
+
+.scene-container.exiting {
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-18px) scale(1.015);
+  pointer-events: none;
+}
+
+/* Scene Content Wrapper */
+.scene-content {
+  width: 100%;
+  max-width: 640px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  position: relative;
+  z-index: var(--z-scene-content);
+}
+
+/* Persistent Header UI (Audio, Replay, Indicators) */
+.global-header {
+  position: fixed;
+  top: env(safe-area-inset-top, 1rem);
+  left: env(safe-area-inset-left, 1rem);
+  right: env(safe-area-inset-right, 1rem);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: var(--z-ui-controls);
+  pointer-events: none;
+}
+
+.header-left, .header-right {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  pointer-events: auto;
+}
+
+/* Progress Indicator Dot Bar (Subtle & Non-Intrusive) */
+.scene-progress-bar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  background: rgba(26, 12, 22, 0.6);
+  border: 1px solid var(--bg-plum-border);
+  border-radius: 20px;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.progress-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: rgba(251, 247, 238, 0.25);
+  transition: all 0.4s var(--ease-cinematic);
+}
+
+.progress-dot.active {
+  width: 16px;
+  border-radius: 4px;
+  background: var(--gold-light);
+  box-shadow: 0 0 8px var(--gold-glow);
+}
+
+.progress-dot.passed {
+  background: var(--rose-accent);
+}
+
+/* Screen Reader Only Utility */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* Custom Scrollbar for inner scrollable cards */
+::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--bg-plum-border);
+  border-radius: 4px;
+}

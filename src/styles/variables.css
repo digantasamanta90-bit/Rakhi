@@ -1,0 +1,89 @@
+:root {
+  /* =========================================================
+     COLOR PALETTE: Aesthetic Cinematic Festive Scrapbook
+     Muted, sophisticated, warm, and restrained.
+     ========================================================= */
+
+  /* Primary Deep Wine / Plum Backgrounds */
+  --bg-deep-base: #120810;
+  --bg-plum-dark: #1a0c16;
+  --bg-plum-card: rgba(35, 16, 31, 0.82);
+  --bg-plum-card-solid: #23101f;
+  --bg-plum-border: rgba(212, 175, 55, 0.22);
+  --bg-plum-border-glow: rgba(212, 175, 55, 0.45);
+
+  /* Warm Ivory / Cream Text & Surfaces */
+  --text-ivory-light: #fbf7ee;
+  --text-ivory-muted: #e6dbc9;
+  --text-ivory-subtle: #b8a99a;
+  --surface-ivory-card: rgba(251, 247, 238, 0.07);
+  --surface-ivory-hover: rgba(251, 247, 238, 0.14);
+
+  /* Muted Rose / Dusty Pink Accents */
+  --rose-accent: #c88294;
+  --rose-light: #e8a7b7;
+  --rose-subtle: rgba(200, 130, 148, 0.18);
+
+  /* Antique Gold / Festive Highlights (Restrained, never flood-filled) */
+  --gold-primary: #d4af37;
+  --gold-light: #e8ca68;
+  --gold-dark: #997a23;
+  --gold-glow: rgba(212, 175, 55, 0.35);
+  --gold-subtle: rgba(212, 175, 55, 0.12);
+
+  /* Deep Chocolate Brown (Scene 4 gift specific) */
+  --choco-bg: #1f100a;
+  --choco-card: #2d1810;
+  --choco-accent: #8b4513;
+  --choco-gold: #c59b27;
+
+  /* Muted Lavender / Dreamy Violet (Digital code motifs) */
+  --lavender-code: #9c92b0;
+  --lavender-glow: rgba(156, 146, 176, 0.25);
+  --lavender-bg: rgba(43, 31, 54, 0.7);
+
+  /* System Colors */
+  --terminal-green: #5af78e;
+  --terminal-error: #ff5c57;
+  --terminal-bg: rgba(15, 8, 14, 0.92);
+
+  /* Typography Families */
+  --font-display: 'Playfair Display', 'Cormorant Garamond', Georgia, serif;
+  --font-body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-code: 'JetBrains Mono', 'Fira Code', Consolas, monospace;
+
+  /* Spacing System */
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2rem;
+  --space-2xl: 3rem;
+  --space-3xl: 4.5rem;
+
+  /* Transitions & Easings */
+  --ease-cinematic: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+
+  --transition-slow: 1.2s var(--ease-cinematic);
+  --transition-normal: 0.6s var(--ease-cinematic);
+  --transition-fast: 0.25s var(--ease-smooth);
+
+  /* Shadows & Depth */
+  --shadow-subtle: 0 4px 20px rgba(0, 0, 0, 0.35);
+  --shadow-elevation: 0 12px 36px rgba(0, 0, 0, 0.55);
+  --shadow-gold-glow: 0 0 28px rgba(212, 175, 55, 0.22);
+  --shadow-rose-glow: 0 0 28px rgba(200, 130, 148, 0.25);
+
+  /* Z-Index Hierarchy */
+  --z-bg: 0;
+  --z-canvas: 5;
+  --z-scene-bg: 10;
+  --z-scene-content: 20;
+  --z-scene-fg: 30;
+  --z-ui-controls: 50;
+  --z-modal: 100;
+  --z-toast: 150;
+  --z-cursor: 999;
+}
