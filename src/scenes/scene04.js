@@ -1,6 +1,6 @@
 /**
  * BEAT 04 — 7:30 AM / THE CALL
- * Clock counts to 7:30. Phone lights up. ANWESHA calling.
+ * Clock counts to 7:30. Phone lights up and vibrates. ANWESHA calling.
  * User taps to answer. Message reveals.
  */
 
@@ -98,15 +98,30 @@ export class Scene04MissedCall {
         gsap.fromTo(phoneUi, { x: -3 }, { x: 3, duration: 0.05, repeat: 6, yoyo: true });
       }
       try { this.audio.playPhoneVibrate(); } catch(e) {}
+      if (typeof navigator !== 'undefined' && navigator.vibrate) {
+        try {
+          navigator.vibrate([180, 100, 180]);
+        } catch(e) {}
+      }
     }, 700);
   }
 
   stopRinging() {
     if (this.ringInterval) clearInterval(this.ringInterval);
+    if (typeof navigator !== 'undefined' && navigator.vibrate) {
+      try {
+        navigator.vibrate(0);
+      } catch(e) {}
+    }
   }
 
   exit() {
     this.stopRinging();
+    if (typeof navigator !== 'undefined' && navigator.vibrate) {
+      try {
+        navigator.vibrate(0);
+      } catch(e) {}
+    }
     if (this.tl) this.tl.kill();
     return Promise.resolve();
   }

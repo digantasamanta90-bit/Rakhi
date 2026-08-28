@@ -283,6 +283,9 @@ class AudioController {
   }
 
   playAlarmBeep() {
+    if (typeof navigator !== 'undefined' && navigator.vibrate) {
+      try { navigator.vibrate([90, 40, 90]); } catch(e) {}
+    }
     if (!this.ctx || this.isMuted) return;
     try {
       const now = this.ctx.currentTime;
@@ -303,6 +306,9 @@ class AudioController {
   }
 
   playPhoneVibrate() {
+    if (typeof navigator !== 'undefined' && navigator.vibrate) {
+      try { navigator.vibrate(120); } catch(e) {}
+    }
     if (!this.ctx || this.isMuted) return;
     try {
       const now = this.ctx.currentTime;

@@ -1,7 +1,8 @@
 /**
  * BEAT 03 — THREE ALARMS
  * Total darkness. Three alarm dismissals. Silence.
- * "…and then I closed my eyes."
+ * Hardware device vibration & audio synthesis on alarms.
+ * "…but my eyes never opened."
  * Styled in the Velvet Night × Antique Memory aesthetic.
  */
 
@@ -49,6 +50,11 @@ export class Scene03Alarms {
             this.audio.playAlarmBeep();
             this.audio.playPhoneVibrate();
           } catch(e) {}
+          if (typeof navigator !== 'undefined' && navigator.vibrate) {
+            try {
+              navigator.vibrate([140, 80, 140]);
+            } catch(e) {}
+          }
         }, 600);
       };
 
@@ -56,6 +62,11 @@ export class Scene03Alarms {
         if (this.vibrateInterval) clearInterval(this.vibrateInterval);
         gsap.killTweensOf(icon);
         gsap.set(icon, { rotation: 0 });
+        if (typeof navigator !== 'undefined' && navigator.vibrate) {
+          try {
+            navigator.vibrate(0);
+          } catch(e) {}
+        }
       };
 
       const alarmTimes = ['5:30 AM', '5:45 AM', '6:00 AM'];
@@ -101,6 +112,11 @@ export class Scene03Alarms {
 
   exit() {
     if (this.vibrateInterval) clearInterval(this.vibrateInterval);
+    if (typeof navigator !== 'undefined' && navigator.vibrate) {
+      try {
+        navigator.vibrate(0);
+      } catch(e) {}
+    }
     if (this.tl) this.tl.kill();
     return Promise.resolve();
   }
