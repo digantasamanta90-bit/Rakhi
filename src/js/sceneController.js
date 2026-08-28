@@ -12,10 +12,11 @@ import { createScene04 } from '../scenes/scene04.js';
 import { createScene05 } from '../scenes/scene05.js';
 import { createScene06 } from '../scenes/scene06.js';
 import { createScene07 } from '../scenes/scene07.js';
+import { createScene08 } from '../scenes/scene08.js';
 
 export class SceneController {
   constructor() {
-    this.totalScenes = 7;
+    this.totalScenes = 8;
     this.sceneFactories = {
       1: createScene01,
       2: createScene02,
@@ -23,7 +24,8 @@ export class SceneController {
       4: createScene04,
       5: createScene05,
       6: createScene06,
-      7: createScene07
+      7: createScene07,
+      8: createScene08
     };
     this.sceneInstances = {};
   }

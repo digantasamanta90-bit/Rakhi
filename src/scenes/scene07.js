@@ -1,122 +1,78 @@
 /**
- * SCENE 7 — 07_THE_FINALE
- * Emotional and visual culmination, Master Rakhi connecting brother and sister bond,
- * sincere closing signature, celebration burst, replay modal, and post-credits easter egg.
+ * SCENE 7 — 07_THE_APOLOGY (THE ONE THING I DIDN'T PLAN)
+ * Quiet, intimate, sincere reality check.
+ * Honest accountability for missing the morning meeting at the metro gate,
+ * preserved in Diganta's voice, leading with warmth and hope into the finale.
  */
 
 import { delay } from '../js/utils.js';
 import { audio } from '../js/audioController.js';
 import { state } from '../js/interactionState.js';
 import { content } from '../content/content.js';
-import { renderRakhiSvg } from '../components/RakhiVisual.js';
 
 export function createScene07(sceneManager) {
   const container = document.getElementById('scene-07');
   const c = content.scene7;
 
   container.innerHTML = `
-    <div class="scene-content">
-      <!-- Recap Sequence -->
-      <div id="s7-recap" style="margin-bottom: 0.4rem; text-align: center; max-width: 440px;">
-        <p class="body-lead" style="color: var(--rose-primary); font-style: italic; margin-bottom: 2px; font-size: 0.82rem;">
-          ${c.recapIntro}
-        </p>
-        <div id="s7-recap-lines" style="font-size: 0.82rem; color: var(--text-plum-muted); line-height: 1.5;">
-          <p style="font-weight: 600; color: var(--text-plum-dark); font-size: 0.9rem; font-family: var(--font-display);">${c.recapLines[0]}</p>
-          <p>${c.recapLines[1]}</p>
-          <p style="color: var(--rose-primary); font-weight: 500;">${c.recapLines[2]}</p>
-          <p style="font-size: 0.76rem; color: var(--text-plum-subtle); margin-top: 2px;">${c.recapLines[3]} ${c.recapLines[4]}</p>
-        </div>
+    <div class="scene-content s7-scene-content">
+      <!-- Quiet Header Badge -->
+      <div class="s7-badge-wrap" id="s7-badge-wrap">
+        <span class="s7-field-tag font-mono">${c.badge}</span>
+        <span class="s7-protocol-status font-mono">${c.protocolStatus}</span>
       </div>
 
-      <!-- Sibling Bond & Final Master Rakhi -->
-      <div class="bond-wrapper">
-        <!-- Diganta Node -->
-        <div class="bond-node">
-          <div class="bond-avatar">👦</div>
-          <span class="bond-label">Me</span>
+      <!-- Sincere Letter / Apology Card -->
+      <div class="scrapbook-card s7-card" id="s7-card">
+        <div class="s7-card-tape" aria-hidden="true"></div>
+
+        <div class="s7-header">
+          <p class="title-sub s7-pretitle">${c.title}</p>
+          <h2 class="font-display s7-title">${c.subTitle}</h2>
         </div>
 
-        <!-- Center Master Rakhi -->
-        <div class="rakhi-hero-wrapper" id="s7-rakhi-wrap" role="button" aria-label="Tap final Rakhi for celebration" tabindex="0" style="width: 120px; height: 120px;">
-          ${renderRakhiSvg({ size: 120, id: 's7-rakhi' })}
-        </div>
+        <div class="s7-story-body">
+          <!-- Opening context -->
+          <p class="body-lead s7-lead-quote">
+            ${c.openingLines[0]}
+          </p>
+          <p class="s7-paragraph s7-emphasis">
+            ${c.openingLines[1]}<br>
+            <span class="s7-contrast">${c.openingLines[2]}</span>
+          </p>
 
-        <!-- Anwesha Node -->
-        <div class="bond-node">
-          <div class="bond-avatar">
-            <img src="assets/portraits/anwesha12.png" alt="Anwesha" onerror="this.src='assets/portraits/anwesha_calm.png';" />
+          <!-- Explanation without excuses -->
+          <div class="s7-explanation-block">
+            <p class="s7-paragraph">${c.explanation[0]}</p>
+            <p class="s7-paragraph s7-muted-joke">${c.explanation[1]}</p>
+            <p class="s7-paragraph s7-sorry-line">${c.explanation[2]}</p>
           </div>
-          <span class="bond-label">You 🧿</span>
-        </div>
 
-        <!-- Bond Connecting Thread SVG -->
-        <svg class="bond-thread-svg" viewBox="0 0 400 120">
-          <defs>
-            <linearGradient id="antiqueGoldGradBond" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stop-color="#f5e6b8" />
-              <stop offset="45%" stop-color="#c8a248" />
-              <stop offset="100%" stop-color="#a6832b" />
-            </linearGradient>
-          </defs>
-          <path d="M 35 60 Q 200 20 365 60" stroke="url(#antiqueGoldGradBond)" stroke-width="2.5" fill="none" />
-          <path class="bond-pulse-line" d="M 35 60 Q 200 20 365 60" stroke="#c88294" stroke-width="3" fill="none" />
-        </svg>
-      </div>
+          <!-- Direct accountability -->
+          <div class="s7-accountability-block">
+            <p class="s7-paragraph">${c.accountability[0]}</p>
+            <p class="s7-paragraph s7-accountability-highlight">${c.accountability[1]}</p>
+          </div>
 
-      <!-- Final Greeting & Sincere Closing -->
-      <div class="scrapbook-card" style="max-width: 440px; margin-top: 0.3rem; text-align: center; background: #fffdfa;">
-        <h3 class="font-display" style="font-size: 1.2rem; color: var(--text-plum-dark); margin-bottom: 0.2rem; font-style: italic;">
-          ${c.greeting}
-        </h3>
-        <p class="body-lead" style="font-size: 0.88rem; margin-bottom: 2px;">
-          ${c.subtext}
-        </p>
-        <p class="body-lead" style="font-weight: 600; color: var(--rose-primary); font-size: 0.84rem; margin-bottom: 0.4rem; font-family: var(--font-display); font-style: italic;">
-          ${c.realRakhiNote}
-        </p>
+          <!-- Forward-looking hope -->
+          <div class="s7-forward-block">
+            <p class="s7-paragraph s7-forward-line">${c.forwardLook[0]}</p>
+            <p class="s7-paragraph">${c.forwardLook[1]}</p>
+            <p class="s7-paragraph s7-forward-highlight">${c.forwardLook[2]}</p>
+          </div>
 
-        <hr style="border: none; border-top: 1px dashed var(--border-delicate); margin: 0.4rem 0;">
-
-        <div style="font-size: 0.78rem; color: var(--text-plum-subtle);">
-          <strong style="color: var(--text-plum-dark); font-size: 0.86rem;">${c.signature}</strong><br>
-          <span style="font-size: 0.7rem; font-style: italic;">${c.footnote}</span>
+          <!-- Subtle Footer Note -->
+          <div class="s7-note-footer">
+            <span class="font-mono s7-footer-text">${c.noteFooter}</span>
+          </div>
         </div>
       </div>
 
-      <!-- Finale Interactive Trigger -->
-      <div style="margin-top: 0.6rem; display: flex; gap: 0.4rem; flex-wrap: wrap; justify-content: center;">
-        <button class="btn-primary" id="s7-celebrate-btn" style="padding: 0.65rem 1.4rem; font-size: 0.86rem;">
-          <span>${c.celebrateCta}</span>
+      <!-- Forward CTA to Finale -->
+      <div class="s7-cta-wrap" id="s7-cta-wrap">
+        <button class="btn-primary s7-cta-btn" id="s7-cta-btn">
+          <span>${c.ctaText}</span>
         </button>
-        <button class="btn-secondary" id="s7-replay-btn" style="font-size: 0.8rem;">
-          <span>${c.replayButton}</span>
-        </button>
-      </div>
-
-      <!-- Inactivity Post-Credits Easter Egg -->
-      <div id="s7-easter-egg" style="margin-top: 0.4rem; opacity: 0; transition: opacity 1s; font-size: 0.78rem; color: var(--rose-primary); font-style: italic;">
-        ${c.easterEgg}
-      </div>
-    </div>
-
-    <!-- Replay Confirmation Modal -->
-    <div class="modal-overlay" id="s7-replay-modal" role="dialog" aria-modal="true" aria-label="Replay Confirmation">
-      <div class="modal-content" style="text-align: center;">
-        <h3 class="font-display" style="font-size: 1.2rem; color: var(--text-plum-dark); margin-bottom: 0.4rem;">
-          ${c.replayModal.title}
-        </h3>
-        <p class="body-lead" style="font-size: 0.86rem; margin-bottom: 1rem;">
-          ${c.replayModal.question}
-        </p>
-        <div style="display: flex; gap: 0.5rem; justify-content: center; flex-wrap: wrap;">
-          <button class="btn-primary" id="s7-confirm-replay" style="margin: 0; padding: 0.55rem 1.1rem; font-size: 0.82rem;">
-            ${c.replayModal.confirm}
-          </button>
-          <button class="btn-secondary" id="s7-cancel-replay" style="font-size: 0.82rem;">
-            ${c.replayModal.cancel}
-          </button>
-        </div>
       </div>
     </div>
   `;
@@ -127,52 +83,35 @@ export function createScene07(sceneManager) {
     if (hasEntered) return;
     hasEntered = true;
 
-    const rakhiWrap = document.getElementById('s7-rakhi-wrap');
-    const celebrateBtn = document.getElementById('s7-celebrate-btn');
-    const replayBtn = document.getElementById('s7-replay-btn');
-    const replayModal = document.getElementById('s7-replay-modal');
-    const confirmReplay = document.getElementById('s7-confirm-replay');
-    const cancelReplay = document.getElementById('s7-cancel-replay');
-    const easterEgg = document.getElementById('s7-easter-egg');
+    const card = document.getElementById('s7-card');
+    const ctaWrap = document.getElementById('s7-cta-wrap');
+    const ctaBtn = document.getElementById('s7-cta-btn');
+    const badgeWrap = document.getElementById('s7-badge-wrap');
 
-    const triggerFinaleCelebration = () => {
-      audio.playCelebrateSfx();
-      if (window.appParticleCanvas) {
-        window.appParticleCanvas.triggerBurst(window.innerWidth / 2, window.innerHeight / 2, 45);
-      }
-      state.unlockAchievement(
-        'finale_done',
-        'Rakhi Surprise Complete! 🎉',
-        'See you next year. Maybe with version 2.0. 💀😭',
-        '🎉'
-      );
-    };
+    // Subtle entrance timing
+    await delay(200);
+    if (badgeWrap) badgeWrap.classList.add('visible');
 
-    if (rakhiWrap) rakhiWrap.addEventListener('click', triggerFinaleCelebration);
-    if (celebrateBtn) celebrateBtn.addEventListener('click', triggerFinaleCelebration);
+    await delay(300);
+    if (card) card.classList.add('visible');
 
-    if (replayBtn && replayModal) {
-      replayBtn.addEventListener('click', () => {
-        replayModal.classList.add('active');
+    await delay(700);
+    if (ctaWrap) ctaWrap.classList.add('visible');
+
+    // Interactive badge discovery
+    if (badgeWrap) {
+      badgeWrap.addEventListener('click', () => {
+        audio.playSparkleSfx();
+        state.showToast('Field Note', 'Rakhi protocol: delayed, not cancelled.', '📝');
+        state.recordDiscovery('apology_field_note');
       });
     }
 
-    if (cancelReplay && replayModal) {
-      cancelReplay.addEventListener('click', () => {
-        replayModal.classList.remove('active');
+    if (ctaBtn) {
+      ctaBtn.addEventListener('click', () => {
+        sceneManager.nextScene();
       });
     }
-
-    if (confirmReplay) {
-      confirmReplay.addEventListener('click', () => {
-        if (replayModal) replayModal.classList.remove('active');
-        sceneManager.reset();
-      });
-    }
-
-    setTimeout(() => {
-      if (easterEgg) easterEgg.style.opacity = '1';
-    }, 6000);
   }
 
   return { enter };

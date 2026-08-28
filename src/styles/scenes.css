@@ -557,7 +557,210 @@
   transform: scale(0.9);
 }
 
-/* --- SCENE 7: THE FINALE --- */
+/* --- SCENE 7: THE ONE THING I DIDN'T PLAN (APOLOGY) --- */
+#scene-07 .scene-content {
+  max-width: 440px;
+}
+
+.s7-badge-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  margin-bottom: 0.5rem;
+  opacity: 0;
+  transform: translateY(-6px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+  cursor: pointer;
+}
+
+.s7-badge-wrap.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.s7-field-tag {
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  color: var(--rose-primary);
+  font-weight: 700;
+  background: var(--rose-pale);
+  border: 1px solid var(--rose-border);
+  padding: 2px 8px;
+  border-radius: 9999px;
+  box-shadow: var(--shadow-paper);
+}
+
+.s7-protocol-status {
+  font-size: 0.68rem;
+  color: var(--text-plum-subtle);
+  font-style: italic;
+}
+
+.s7-card {
+  background: #fffdfa;
+  border: 1px solid var(--rose-border);
+  border-radius: 14px;
+  padding: clamp(0.9rem, 3.5vw, 1.4rem);
+  box-shadow: var(--shadow-float);
+  width: 100%;
+  text-align: left;
+  position: relative;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.8s ease, transform 0.8s var(--ease-soft);
+}
+
+.s7-card.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.s7-card-tape {
+  position: absolute;
+  top: -7px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 48px;
+  height: 14px;
+  background: rgba(228, 181, 192, 0.6);
+  border: 1px dashed rgba(200, 130, 148, 0.45);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+  z-index: 2;
+}
+
+.s7-header {
+  margin-bottom: 0.4rem;
+  text-align: left;
+}
+
+.s7-pretitle {
+  font-size: 0.88rem;
+  color: var(--rose-primary);
+  margin-bottom: 1px;
+}
+
+.s7-title {
+  font-size: clamp(1.2rem, 3.8vw, 1.5rem);
+  color: var(--text-plum-dark);
+  font-style: italic;
+  line-height: 1.25;
+}
+
+.s7-story-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+.s7-lead-quote {
+  font-style: italic;
+  color: var(--rose-primary);
+  font-weight: 500;
+  font-size: 0.86rem;
+  line-height: 1.5;
+}
+
+.s7-paragraph {
+  font-size: 0.84rem;
+  line-height: 1.55;
+  color: var(--text-plum-primary);
+}
+
+.s7-emphasis {
+  color: var(--text-plum-dark);
+  font-weight: 500;
+}
+
+.s7-contrast {
+  color: #a63d57;
+  font-weight: 600;
+  font-style: italic;
+}
+
+.s7-explanation-block {
+  background: #fbf7f3;
+  border-left: 2.5px solid var(--rose-light);
+  border-radius: 0 8px 8px 0;
+  padding: 0.45rem 0.65rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.s7-muted-joke {
+  font-style: italic;
+  color: var(--text-plum-muted);
+  font-size: 0.8rem;
+}
+
+.s7-sorry-line {
+  color: var(--text-plum-dark);
+  font-weight: 600;
+}
+
+.s7-accountability-block {
+  border-top: 1px dashed var(--border-delicate);
+  padding-top: 0.4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.s7-accountability-highlight {
+  color: var(--text-plum-dark);
+  font-weight: 600;
+  font-style: italic;
+}
+
+.s7-forward-block {
+  border-top: 1px dashed var(--border-delicate);
+  padding-top: 0.4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.s7-forward-line {
+  color: var(--text-plum-dark);
+  font-weight: 600;
+}
+
+.s7-forward-highlight {
+  color: var(--rose-primary);
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.s7-note-footer {
+  margin-top: 0.2rem;
+  padding-top: 0.35rem;
+  border-top: 1px solid var(--border-paper);
+  text-align: right;
+}
+
+.s7-footer-text {
+  font-size: 0.7rem;
+  color: var(--text-plum-subtle);
+  letter-spacing: 0.03em;
+}
+
+.s7-cta-wrap {
+  margin-top: 0.6rem;
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+  width: 100%;
+}
+
+.s7-cta-wrap.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* --- SCENE 8: THE FINALE --- */
 .bond-wrapper {
   position: relative;
   width: 100%;
@@ -613,3 +816,4 @@
   z-index: 1;
   pointer-events: none;
 }
+

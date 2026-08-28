@@ -185,18 +185,47 @@ export const content = {
       { icon: "🏆", label: "Achievement unlocked: Survived the sibling website!" }
     ],
     closingLead: "Alright. You've explored enough chaos for one day.",
-    closingSub: "There's one last thing I wanted you to see.",
-    ctaText: "ONE LAST SURPRISE → 🧿"
+    closingSub: "Before we finish, there's one thing I need to be honest about.",
+    ctaText: "A NOTE I DIDN'T PLAN →"
   },
 
-  // --- SCENE 7: THE FINALE ---
+  // --- SCENE 7: THE ONE THING I DIDN'T PLAN (PERSONAL APOLOGY) ---
   scene7: {
-    recapIntro: "And that's it. Well... almost.",
+    badge: "FIELD NOTE // 07:30 AM",
+    protocolStatus: "Rakhi protocol: delayed, not cancelled.",
+    title: "Okay...",
+    subTitle: "There’s one thing I didn’t plan for.",
+    openingLines: [
+      "I had imagined giving you this on a very different morning.",
+      "I was supposed to meet you at 7:30.",
+      "You were there waiting for me. And I wasn't."
+    ],
+    explanation: [
+      "I had stayed up until around 4:30 AM finishing this thing, after barely sleeping for two days between college work, assignments, and SIH, and I set three alarms because I was determined to make it on time.",
+      "Apparently, even three alarms were no match for exhaustion. I slept right through them.",
+      "I know that doesn't change the fact that you stood near the metro gate waiting for me. And I'm genuinely sorry."
+    ],
+    accountability: [
+      "I don't want to turn this into a hundred excuses.",
+      "I just want to acknowledge that I let you down."
+    ],
+    forwardLook: [
+      "I can't rewind that morning. But I can still show up.",
+      "Maybe this part of the story didn't go the way I planned.",
+      "That doesn't mean the story ends here."
+    ],
+    noteFooter: "No excuses. Just an honest apology.",
+    ctaText: "LET'S TRY THIS AGAIN → 🧿"
+  },
+
+  // --- SCENE 8: THE FINALE ---
+  scene8: {
+    recapIntro: "And that's the whole story. Well... almost.",
     recapLines: [
-      "Somehow, somewhere along the way... I got a sister.",
+      "Some things arrive late. That doesn't make them less meaningful.",
+      "Somewhere along the way... you became the sister I'm grateful to have.",
       "Not by blood. Just by one of those weird little turns life makes sometimes.",
-      "And honestly, I'm really glad it happened.",
-      "So, I guess I owe someone else a proper thank-you too. He started this chain of events.",
+      "So, I guess Monojit gets a proper thank-you too for starting this chain of events.",
       "I just decided to overengineer the ending. 💀"
     ],
     greeting: "Happy Rakhi, Chotokhuki. 🧿",
@@ -215,3 +244,4 @@ export const content = {
     easterEgg: "Psst... Go eat the KitKat before it melts. 🍫😭"
   }
 };
+

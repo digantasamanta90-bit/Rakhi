@@ -4,13 +4,14 @@ A personalized interactive Rakhi experience created with love, humor, and questi
 
 ## 🌟 Features & Highlights
 
-- **7 Full-Screen Interactive Scenes**: Seamless, cinematic, mobile-first progression with zero reloads.
+- **8 Full-Screen Interactive Scenes**: Seamless, cinematic, mobile-first progression with zero reloads.
 - **Aesthetic Cinematic Festive Scrapbook Art Direction**: Deep plum/wine backgrounds, warm ivory surfaces, antique gold highlights, and muted rose accents.
 - **Web Audio Generative Ambient Soundtrack**: Built-in harmonic synthesizer creating warm lofi pads, kalimba notes, and festive chimes.
 - **Physical + Digital Integration**: Scene 4 explicitly connects the digital experience with the physical KitKat Rich.
 - **Accurate Credits**: Monojit is credited as *Chocolate Selection Consultant, Best Friend & Anwesha’s Boyfriend*.
 - **Sibling Zone Hub**: Includes *How This Started*, *Research Team*, *Brother Status*, *Do Not Press* escalating button, and hidden easter eggs.
-- **Master Rakhi Bond Finale**: Golden thread connecting brother and sister nodes with celebratory particle burst and post-credits Easter egg.
+- **Personal Apology & Reality Check Chapter**: Scene 7 dedicated to sincere, honest accountability and reflection.
+- **Master Rakhi Bond Finale**: Golden thread connecting brother and sister nodes with celebratory particle burst, replay modal, and post-credits Easter egg.
 
 ## 📁 Custom Assets Customization (Optional)
 
