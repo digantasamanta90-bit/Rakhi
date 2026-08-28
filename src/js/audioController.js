@@ -1,7 +1,7 @@
 /**
  * AUDIO CONTROLLER MODULE
- * Web Audio API synthesizer for ambient festive music + SFX
- * Calibrated to standard audible volume levels for crystal-clear playback.
+ * Web Audio API synthesizer for ambient festive music + SFX + melodic ringtone
+ * Calibrated with full, rich default BGM and sound effect volumes.
  * Supports external audio file (assets/audio/rakhi_theme.mp3) with automatic fallback.
  */
 
@@ -27,19 +27,19 @@ class AudioController {
 
     this.ctx = new AudioContext();
 
-    // Master Output Gain (Standard full headroom: 1.0)
+    // Master Output Gain (Full headroom: 1.0)
     this.masterGain = this.ctx.createGain();
     this.masterGain.gain.setValueAtTime(1.0, this.ctx.currentTime);
     this.masterGain.connect(this.ctx.destination);
 
-    // Music Channel Gain (Standard audible background level: 0.85)
+    // Music Channel Gain (Full, rich background score: 1.0)
     this.musicGain = this.ctx.createGain();
-    this.musicGain.gain.setValueAtTime(0.85, this.ctx.currentTime);
+    this.musicGain.gain.setValueAtTime(1.0, this.ctx.currentTime);
     this.musicGain.connect(this.masterGain);
 
-    // SFX Channel Gain (Standard audible effect level: 0.95)
+    // SFX Channel Gain (Tactile interactive effects: 1.0)
     this.sfxGain = this.ctx.createGain();
-    this.sfxGain.gain.setValueAtTime(0.95, this.ctx.currentTime);
+    this.sfxGain.gain.setValueAtTime(1.0, this.ctx.currentTime);
     this.sfxGain.connect(this.masterGain);
 
     // Attempt to preload custom MP3 if available
@@ -101,11 +101,11 @@ class AudioController {
         osc.frequency.setValueAtTime(freq, this.ctx.currentTime);
 
         filter.type = 'lowpass';
-        filter.frequency.setValueAtTime(650, this.ctx.currentTime);
+        filter.frequency.setValueAtTime(700, this.ctx.currentTime);
 
-        // Standard rich pad volume curve (peak: 0.15)
+        // Rich, warm pad volume curve (peak: 0.26)
         gain.gain.setValueAtTime(0.001, this.ctx.currentTime);
-        gain.gain.exponentialRampToValueAtTime(0.15, this.ctx.currentTime + 1.8);
+        gain.gain.exponentialRampToValueAtTime(0.26, this.ctx.currentTime + 1.8);
         gain.gain.exponentialRampToValueAtTime(0.0001, this.ctx.currentTime + 5.5);
 
         osc.connect(filter);
@@ -126,9 +126,9 @@ class AudioController {
       osc.type = 'sine';
       osc.frequency.setValueAtTime(freq, this.ctx.currentTime);
 
-      // Standard audible pluck volume curve (peak: 0.20)
+      // Distinct, resonant pluck volume curve (peak: 0.34)
       gain.gain.setValueAtTime(0.001, this.ctx.currentTime);
-      gain.gain.exponentialRampToValueAtTime(0.20, this.ctx.currentTime + 0.04);
+      gain.gain.exponentialRampToValueAtTime(0.34, this.ctx.currentTime + 0.04);
       gain.gain.exponentialRampToValueAtTime(0.0001, this.ctx.currentTime + 1.2);
 
       osc.connect(gain);
@@ -180,7 +180,55 @@ class AudioController {
     }
   }
 
-  // --- SOUND EFFECTS (Calibrated to Standard Volume) ---
+  // --- MELODIC PHONE RINGTONE ---
+  playPhoneRingtone() {
+    if (typeof navigator !== 'undefined' && navigator.vibrate) {
+      try { navigator.vibrate([180, 100, 180]); } catch(e) {}
+    }
+    if (!this.ctx || this.isMuted) return;
+    try {
+      const now = this.ctx.currentTime;
+      // Melodic modern phone marimba chime sequence (E5 -> G#5 -> B5 -> E6 -> D#6 -> B5)
+      const notes = [
+        { freq: 659.25, time: 0 },       // E5
+        { freq: 830.61, time: 0.11 },    // G#5
+        { freq: 987.77, time: 0.22 },    // B5
+        { freq: 1318.51, time: 0.33 },   // E6
+        { freq: 1244.51, time: 0.48 },   // D#6
+        { freq: 987.77, time: 0.62 }     // B5
+      ];
+
+      notes.forEach(({ freq, time }) => {
+        const osc = this.ctx.createOscillator();
+        const gain = this.ctx.createGain();
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(freq, now + time);
+
+        gain.gain.setValueAtTime(0.001, now + time);
+        gain.gain.exponentialRampToValueAtTime(0.32, now + time + 0.02);
+        gain.gain.exponentialRampToValueAtTime(0.0001, now + time + 0.38);
+
+        osc.connect(gain);
+        gain.connect(this.sfxGain);
+        osc.start(now + time);
+        osc.stop(now + time + 0.4);
+      });
+
+      // Synchronized vibration buzz harmonic
+      const buzzOsc = this.ctx.createOscillator();
+      const buzzGain = this.ctx.createGain();
+      buzzOsc.type = 'triangle';
+      buzzOsc.frequency.setValueAtTime(95, now);
+      buzzGain.gain.setValueAtTime(0.20, now);
+      buzzGain.gain.exponentialRampToValueAtTime(0.001, now + 0.32);
+      buzzOsc.connect(buzzGain);
+      buzzGain.connect(this.sfxGain);
+      buzzOsc.start(now);
+      buzzOsc.stop(now + 0.35);
+    } catch (e) {}
+  }
+
+  // --- SOUND EFFECTS ---
   playUnlockSfx() {
     if (!this.ctx || this.isMuted) return;
     const now = this.ctx.currentTime;
