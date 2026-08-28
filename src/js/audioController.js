@@ -1,6 +1,7 @@
 /**
  * AUDIO CONTROLLER MODULE
  * Web Audio API synthesizer for ambient festive music + SFX
+ * Calibrated to standard audible volume levels for crystal-clear playback.
  * Supports external audio file (assets/audio/rakhi_theme.mp3) with automatic fallback.
  */
 
@@ -25,21 +26,26 @@ class AudioController {
     if (!AudioContext) return;
 
     this.ctx = new AudioContext();
+
+    // Master Output Gain (Standard full headroom: 1.0)
     this.masterGain = this.ctx.createGain();
-    this.masterGain.gain.setValueAtTime(0.8, this.ctx.currentTime);
+    this.masterGain.gain.setValueAtTime(1.0, this.ctx.currentTime);
     this.masterGain.connect(this.ctx.destination);
 
+    // Music Channel Gain (Standard audible background level: 0.85)
     this.musicGain = this.ctx.createGain();
-    this.musicGain.gain.setValueAtTime(0.5, this.ctx.currentTime);
+    this.musicGain.gain.setValueAtTime(0.85, this.ctx.currentTime);
     this.musicGain.connect(this.masterGain);
 
+    // SFX Channel Gain (Standard audible effect level: 0.95)
     this.sfxGain = this.ctx.createGain();
-    this.sfxGain.gain.setValueAtTime(0.7, this.ctx.currentTime);
+    this.sfxGain.gain.setValueAtTime(0.95, this.ctx.currentTime);
     this.sfxGain.connect(this.masterGain);
 
     // Attempt to preload custom MP3 if available
     this.customAudio = new Audio('assets/audio/rakhi_theme.mp3');
     this.customAudio.loop = true;
+    this.customAudio.volume = 1.0;
     this.customAudio.addEventListener('canplaythrough', () => {
       this.customAudioLoaded = true;
     });
@@ -95,10 +101,11 @@ class AudioController {
         osc.frequency.setValueAtTime(freq, this.ctx.currentTime);
 
         filter.type = 'lowpass';
-        filter.frequency.setValueAtTime(600, this.ctx.currentTime);
+        filter.frequency.setValueAtTime(650, this.ctx.currentTime);
 
+        // Standard rich pad volume curve (peak: 0.15)
         gain.gain.setValueAtTime(0.001, this.ctx.currentTime);
-        gain.gain.exponentialRampToValueAtTime(0.045, this.ctx.currentTime + 1.8);
+        gain.gain.exponentialRampToValueAtTime(0.15, this.ctx.currentTime + 1.8);
         gain.gain.exponentialRampToValueAtTime(0.0001, this.ctx.currentTime + 5.5);
 
         osc.connect(filter);
@@ -119,8 +126,9 @@ class AudioController {
       osc.type = 'sine';
       osc.frequency.setValueAtTime(freq, this.ctx.currentTime);
 
+      // Standard audible pluck volume curve (peak: 0.20)
       gain.gain.setValueAtTime(0.001, this.ctx.currentTime);
-      gain.gain.exponentialRampToValueAtTime(0.06, this.ctx.currentTime + 0.04);
+      gain.gain.exponentialRampToValueAtTime(0.20, this.ctx.currentTime + 0.04);
       gain.gain.exponentialRampToValueAtTime(0.0001, this.ctx.currentTime + 1.2);
 
       osc.connect(gain);
@@ -143,7 +151,7 @@ class AudioController {
     this.isMuted = !this.isMuted;
     state.audioMuted = this.isMuted;
     if (this.masterGain && this.ctx) {
-      this.masterGain.gain.setValueAtTime(this.isMuted ? 0 : 0.8, this.ctx.currentTime);
+      this.masterGain.gain.setValueAtTime(this.isMuted ? 0 : 1.0, this.ctx.currentTime);
     }
     if (this.customAudio) {
       this.customAudio.muted = this.isMuted;
@@ -172,7 +180,7 @@ class AudioController {
     }
   }
 
-  // --- SOUND EFFECTS ---
+  // --- SOUND EFFECTS (Calibrated to Standard Volume) ---
   playUnlockSfx() {
     if (!this.ctx || this.isMuted) return;
     const now = this.ctx.currentTime;
@@ -183,7 +191,7 @@ class AudioController {
       osc.frequency.setValueAtTime(freq, now + i * 0.08);
 
       gain.gain.setValueAtTime(0.001, now + i * 0.08);
-      gain.gain.exponentialRampToValueAtTime(0.08, now + i * 0.08 + 0.02);
+      gain.gain.exponentialRampToValueAtTime(0.24, now + i * 0.08 + 0.02);
       gain.gain.exponentialRampToValueAtTime(0.001, now + i * 0.08 + 0.6);
 
       osc.connect(gain);
@@ -202,7 +210,7 @@ class AudioController {
     osc.frequency.setValueAtTime(140, now);
     osc.frequency.linearRampToValueAtTime(60, now + 0.15);
 
-    gain.gain.setValueAtTime(0.07, now);
+    gain.gain.setValueAtTime(0.18, now);
     gain.gain.exponentialRampToValueAtTime(0.001, now + 0.18);
 
     osc.connect(gain);
@@ -221,7 +229,7 @@ class AudioController {
       osc.frequency.setValueAtTime(freq, now + i * 0.05);
 
       gain.gain.setValueAtTime(0.001, now + i * 0.05);
-      gain.gain.exponentialRampToValueAtTime(0.06, now + i * 0.05 + 0.02);
+      gain.gain.exponentialRampToValueAtTime(0.20, now + i * 0.05 + 0.02);
       gain.gain.exponentialRampToValueAtTime(0.001, now + i * 0.05 + 0.4);
 
       osc.connect(gain);
@@ -242,7 +250,7 @@ class AudioController {
       osc.frequency.setValueAtTime(freq, now + i * 0.04);
 
       gain.gain.setValueAtTime(0.001, now + i * 0.04);
-      gain.gain.exponentialRampToValueAtTime(0.1, now + i * 0.04 + 0.03);
+      gain.gain.exponentialRampToValueAtTime(0.28, now + i * 0.04 + 0.03);
       gain.gain.exponentialRampToValueAtTime(0.001, now + i * 0.04 + 1.4);
 
       osc.connect(gain);
@@ -251,6 +259,7 @@ class AudioController {
       osc.stop(now + i * 0.04 + 1.5);
     });
   }
+
   playChime(freq = 440, duration = 0.2, type = 'sine') {
     if (!this.ctx || this.isMuted) return;
     try {
@@ -261,7 +270,7 @@ class AudioController {
       osc.frequency.setValueAtTime(freq, now);
 
       gain.gain.setValueAtTime(0.001, now);
-      gain.gain.exponentialRampToValueAtTime(0.08, now + 0.02);
+      gain.gain.exponentialRampToValueAtTime(0.24, now + 0.02);
       gain.gain.exponentialRampToValueAtTime(0.0001, now + duration);
 
       osc.connect(gain);
@@ -283,7 +292,7 @@ class AudioController {
       osc.frequency.setValueAtTime(880, now);
       osc.frequency.setValueAtTime(440, now + 0.08);
 
-      gain.gain.setValueAtTime(0.04, now);
+      gain.gain.setValueAtTime(0.16, now);
       gain.gain.exponentialRampToValueAtTime(0.001, now + 0.16);
 
       osc.connect(gain);
@@ -302,7 +311,7 @@ class AudioController {
       osc.type = 'sawtooth';
       osc.frequency.setValueAtTime(60, now);
 
-      gain.gain.setValueAtTime(0.05, now);
+      gain.gain.setValueAtTime(0.18, now);
       gain.gain.exponentialRampToValueAtTime(0.001, now + 0.12);
 
       osc.connect(gain);
