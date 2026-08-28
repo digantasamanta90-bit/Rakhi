@@ -11,6 +11,7 @@
  * STEP 8: Quiet visual breath: focus on Portrait + Rakhi in warm light
  * STEP 9: Gradual celebration release (light bloom -> particles -> musical peak)
  * STEP 10: Post-credits transition appears cleanly.
+ * Styled in the Velvet Night × Antique Memory aesthetic.
  */
 
 import { content } from '../content/content.js';
@@ -31,13 +32,13 @@ export class Scene16RakhiFinale {
       container.innerHTML = `
         <div style="position:relative;width:100%;height:100%;overflow-y:auto;overflow-x:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:calc(env(safe-area-inset-top,10px) + 20px) 16px 36px 16px;">
           <!-- Ambient gold festive backdrop glow (Starts dark/subtle, blooms after emotional sequence) -->
-          <div id="f-glow" style="position:absolute;inset:0;background:radial-gradient(circle at 50% 40%, rgba(200,162,72,0.05) 0%, rgba(10,6,8,0.98) 75%);pointer-events:none;transition:background 2.4s ease;"></div>
+          <div id="f-glow" style="position:absolute;inset:0;background:radial-gradient(circle at 50% 40%, rgba(212,176,106,0.05) 0%, rgba(10,7,9,0.98) 75%);pointer-events:none;transition:background 2.4s ease;"></div>
 
           <!-- Staged Hero Container -->
           <div id="f-hero-stage" style="position:relative;width:100%;max-width:340px;display:flex;flex-direction:column;align-items:center;z-index:10;">
             
             <!-- STEP 2: Anwesha Hero Portrait (Enters AFTER Rakhi settles) -->
-            <div id="f-portrait-badge" style="opacity:0;transform:scale(0.8) translateY(-20px);width:75px;height:75px;border-radius:50%;border:2px solid var(--cinema-gold);overflow:hidden;box-shadow:0 0 25px rgba(200,162,72,0.25);margin-bottom:12px;cursor:pointer;">
+            <div id="f-portrait-badge" style="opacity:0;transform:scale(0.8) translateY(-20px);width:75px;height:75px;border-radius:50%;border:2px solid var(--cinema-gold);overflow:hidden;box-shadow:0 0 25px rgba(212,176,106,0.25);margin-bottom:12px;cursor:pointer;">
               <img src="assets/portraits/anwesha_hero.png" alt="Anwesha" style="width:100%;height:100%;object-fit:cover;" onerror="this.src='assets/portraits/anwesha12.png';">
             </div>
 
@@ -53,7 +54,7 @@ export class Scene16RakhiFinale {
             <div id="f-text-stage" style="position:relative;width:100%;min-height:120px;margin-top:28px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;">
               
               <!-- STEP 3: First Dialogue Line -->
-              <p id="f-line-1" class="text-whisper" style="opacity:0;transform:translateY(10px);color:var(--cinema-accent);letter-spacing:0.18em;font-size:0.78rem;position:absolute;margin:0;">
+              <p id="f-line-1" class="text-whisper" style="opacity:0;transform:translateY(10px);color:var(--rakhi-red);letter-spacing:0.18em;font-size:0.78rem;position:absolute;margin:0;">
                 RAKHI TIED. FOREVER. 🧿
               </p>
 
@@ -112,10 +113,8 @@ export class Scene16RakhiFinale {
       const line2 = container.querySelector('#f-line-2');
       const greetLead = container.querySelector('#f-greet-lead');
       const greetName = container.querySelector('#f-greet-name');
-      const greetingGroup = container.querySelector('#f-greeting-group');
       const apol1 = container.querySelector('#f-apol-1');
       const apol2 = container.querySelector('#f-apol-2');
-      const apologyGroup = container.querySelector('#f-apology-group');
       const signature = container.querySelector('#f-signature');
 
       this.tl = gsap.timeline();
@@ -195,7 +194,7 @@ export class Scene16RakhiFinale {
           .call(() => {
             // Warm golden backdrop bloom
             if (glow) {
-              glow.style.background = 'radial-gradient(circle at 50% 40%, rgba(200,162,72,0.28) 0%, rgba(200,130,148,0.18) 45%, rgba(10,6,8,0.95) 85%)';
+              glow.style.background = 'radial-gradient(circle at 50% 40%, rgba(212,176,106,0.28) 0%, rgba(155,93,112,0.18) 45%, rgba(10,7,9,0.95) 85%)';
             }
             try {
               this.audio.playCelebrateSfx();

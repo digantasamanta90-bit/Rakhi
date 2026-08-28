@@ -4,6 +4,7 @@
  * Photographs develop from soft blur, take center stage with intimate line-by-line reflections,
  * and recede gracefully for the next memory.
  * Thread weaves across the final memory, seamlessly leading into Scene 11.
+ * Styled in the Velvet Night × Antique Memory aesthetic.
  */
 
 import { content } from '../content/content.js';
@@ -23,31 +24,31 @@ export class Scene10Memories {
 
       container.innerHTML = `
         <div style="position:relative;width:100%;height:100%;overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;perspective:1000px;">
-          <!-- Ambient warm memory atmosphere -->
-          <div style="position:absolute;inset:0;background:radial-gradient(circle at 50% 40%, rgba(200,130,148,0.1) 0%, rgba(200,162,72,0.05) 45%, rgba(10,6,8,0.98) 85%);pointer-events:none;"></div>
+          <!-- Ambient warm memory box atmosphere -->
+          <div style="position:absolute;inset:0;background:radial-gradient(circle at 50% 40%, rgba(155,93,112,0.08) 0%, rgba(212,176,106,0.04) 45%, rgba(10,7,9,0.98) 85%);pointer-events:none;"></div>
 
           <!-- Central Memory Stage (One-Focal-Object) -->
           <div id="m-stage" style="position:relative;width:100%;max-width:340px;height:420px;display:flex;flex-direction:column;align-items:center;justify-content:center;">
             
             <!-- Shot 1: First Memory (Hero Portrait) -->
             <div class="photo-memory" id="m-shot-1" style="width:160px;height:200px;position:absolute;opacity:0;filter:blur(14px);transform:scale(0.85) rotate(-3deg);z-index:5;cursor:pointer;">
-              <div class="photo-tape" style="background:rgba(228,181,192,0.6);width:50px;height:12px;top:-7px;"></div>
+              <div class="photo-tape" style="background:rgba(155,93,112,0.55);width:50px;height:12px;top:-7px;"></div>
               <img src="assets/portraits/anwesha_hero.png" alt="Anwesha" style="width:100%;height:100%;object-fit:cover;" onerror="this.src='assets/portraits/anwesha1.png';">
-              <div class="photo-caption" style="font-size:0.68rem;color:var(--cinema-red,#a63d57);font-weight:600;margin-top:3px;">Chotokhuki 🧿</div>
+              <div class="photo-caption" style="font-size:0.68rem;color:var(--rakhi-red);font-weight:600;margin-top:3px;">Chotokhuki 🧿</div>
             </div>
 
             <!-- Shot 2: Second Memory (Intimate smile) -->
             <div class="photo-memory" id="m-shot-2" style="width:160px;height:200px;position:absolute;opacity:0;filter:blur(14px);transform:scale(0.85) rotate(4deg);z-index:5;cursor:pointer;">
-              <div class="photo-tape" style="background:rgba(200,162,72,0.55);width:50px;height:12px;top:-7px;"></div>
+              <div class="photo-tape" style="background:rgba(212,176,106,0.5);width:50px;height:12px;top:-7px;"></div>
               <img src="assets/portraits/anwesha2.png" alt="Anwesha" style="width:100%;height:100%;object-fit:cover;" onerror="this.src='assets/portraits/anwesha5.png';">
-              <div class="photo-caption" style="font-size:0.68rem;color:var(--cinema-accent);margin-top:3px;">the favorite 🌸</div>
+              <div class="photo-caption" style="font-size:0.68rem;color:var(--muted-rose);margin-top:3px;">the favorite 🌸</div>
             </div>
 
             <!-- Shot 3: Third Memory (Radiant portrait with woven thread) -->
             <div class="photo-memory" id="m-shot-3" style="width:165px;height:210px;position:absolute;opacity:0;filter:blur(14px);transform:scale(0.85) rotate(-2deg);z-index:5;cursor:pointer;box-shadow:0 12px 35px rgba(0,0,0,0.65);">
-              <div class="photo-tape" style="background:rgba(200,130,148,0.7);width:55px;height:14px;top:-8px;"></div>
+              <div class="photo-tape" style="background:rgba(212,176,106,0.6);width:55px;height:14px;top:-8px;"></div>
               <img src="assets/portraits/anwesha11.png" alt="Anwesha" style="width:100%;height:100%;object-fit:cover;" onerror="this.src='assets/portraits/anwesha12.png';">
-              <div class="photo-caption" style="font-weight:600;color:var(--cinema-gold);font-size:0.72rem;margin-top:3px;">Anwesha ❤️</div>
+              <div class="photo-caption" style="font-weight:600;color:var(--wine);font-size:0.72rem;margin-top:3px;">Anwesha ❤️</div>
             </div>
 
             <!-- Thread Weaving SVG for Shot 3 -->
@@ -63,7 +64,7 @@ export class Scene10Memories {
               <p id="m-line-2" class="text-emotional" style="opacity:0;font-size:clamp(0.98rem,3.6vw,1.16rem);color:var(--cinema-accent);position:absolute;">
                 ${c.chosenSiblingLines[1]} ${c.chosenSiblingLines[2]}
               </p>
-              <p id="m-line-3" class="text-whisper" style="opacity:0;font-size:0.75rem;color:var(--cinema-gold);letter-spacing:0.12em;position:absolute;">
+              <p id="m-line-3" class="text-whisper" style="opacity:0;font-size:0.75rem;color:var(--cinema-gold);letter-spacing:0.14em;position:absolute;">
                 WORTH MAKING RIDICULOUS WEBSITES FOR.
               </p>
             </div>

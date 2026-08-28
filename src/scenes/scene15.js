@@ -3,6 +3,7 @@
  * Dedicated quiet emotional chamber. Stillness and darkness.
  * Restrained, sincere thoughts appearing one by one with deliberate pauses.
  * Accountable, honest, free from emotional pressure. Leads naturally into Beat 16 (The Rakhi).
+ * Styled in the Velvet Night × Antique Memory aesthetic.
  */
 
 export class Scene15Apology {
@@ -17,8 +18,8 @@ export class Scene15Apology {
     return new Promise((resolve) => {
       container.innerHTML = `
         <div style="position:relative;width:100%;height:100%;overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;">
-          <!-- Quiet dark ambient space -->
-          <div style="position:absolute;inset:0;background:radial-gradient(circle at 50% 50%, rgba(26,18,22,0.6) 0%, rgba(10,6,8,0.98) 75%);pointer-events:none;"></div>
+          <!-- Quiet velvet dark ambient space -->
+          <div style="position:absolute;inset:0;background:radial-gradient(circle at 50% 50%, rgba(26,13,20,0.5) 0%, rgba(10,7,9,0.98) 75%);pointer-events:none;"></div>
 
           <!-- Paced thought lines (Single focal area) -->
           <div id="a-text-chamber" style="position:relative;width:100%;max-width:320px;min-height:160px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:0 20px;z-index:10;">

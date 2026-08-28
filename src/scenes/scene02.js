@@ -3,6 +3,7 @@
  * Animated composition: `rakhi_protocol.sh` log lines, overthinking calculation,
  * photographs, code tags, and Rakhi symbols assemble.
  * Timestamps accelerate. Ends with "FOR ANWESHA".
+ * Styled in the Velvet Night × Antique Memory aesthetic.
  */
 
 export class Scene02Creation {
@@ -17,19 +18,19 @@ export class Scene02Creation {
     return new Promise((resolve) => {
       container.innerHTML = `
         <div style="position:relative;width:100%;height:100%;overflow:hidden;display:flex;align-items:center;justify-content:center;">
-          <!-- Floating creation fragments -->
-          <div id="frag-photo1" style="position:absolute;opacity:0;width:65px;height:75px;background:#fff;padding:3px;box-shadow:0 4px 14px rgba(0,0,0,0.4);transform:rotate(-8deg);top:15%;left:10%;">
+          <!-- Floating creation fragments with warm parchment frames -->
+          <div id="frag-photo1" style="position:absolute;opacity:0;width:65px;height:75px;background:var(--parchment);padding:3px;box-shadow:0 6px 18px rgba(0,0,0,0.6);transform:rotate(-8deg);top:15%;left:10%;border-radius:2px;">
             <img src="assets/portraits/anwesha3.png" style="width:100%;height:100%;object-fit:cover;" onerror="this.src='assets/portraits/anwesha_hero.png'">
           </div>
-          <div id="frag-photo2" style="position:absolute;opacity:0;width:60px;height:70px;background:#fff;padding:3px;box-shadow:0 4px 14px rgba(0,0,0,0.4);transform:rotate(6deg);top:20%;right:10%;">
+          <div id="frag-photo2" style="position:absolute;opacity:0;width:60px;height:70px;background:var(--parchment);padding:3px;box-shadow:0 6px 18px rgba(0,0,0,0.6);transform:rotate(6deg);top:20%;right:10%;border-radius:2px;">
             <img src="assets/portraits/anwesha7.png" style="width:100%;height:100%;object-fit:cover;" onerror="this.src='assets/portraits/anwesha_calm.png'">
           </div>
           <div id="frag-rakhi" style="position:absolute;opacity:0;bottom:20%;left:12%;font-size:2.2rem;">🧿</div>
           <div id="frag-gift" style="position:absolute;opacity:0;bottom:18%;right:12%;font-size:1.8rem;">🎁</div>
-          <div id="frag-terminal" style="position:absolute;opacity:0;top:28%;left:6%;font-family:var(--font-mono);font-size:0.62rem;color:var(--cinema-accent);background:rgba(200,130,148,0.08);padding:4px 8px;border-radius:4px;border:1px solid var(--cinema-border);">
+          <div id="frag-terminal" style="position:absolute;opacity:0;top:28%;left:6%;font-family:var(--font-mono);font-size:0.62rem;color:var(--cinema-accent);background:rgba(26,13,20,0.88);padding:4px 8px;border-radius:4px;border:1px solid var(--cinema-border);">
             ./rakhi_protocol.sh --target=Anwesha
           </div>
-          <div id="frag-overthink" style="position:absolute;opacity:0;bottom:30%;right:6%;font-family:var(--font-mono);font-size:0.62rem;color:var(--cinema-gold);background:rgba(200,162,72,0.08);padding:4px 8px;border-radius:4px;border:1px solid rgba(200,162,72,0.2);">
+          <div id="frag-overthink" style="position:absolute;opacity:0;bottom:30%;right:6%;font-family:var(--font-mono);font-size:0.62rem;color:var(--cinema-gold);background:rgba(26,13,20,0.88);padding:4px 8px;border-radius:4px;border:1px solid var(--antique-gold-border);">
             Calculating overthinking level: ∞
           </div>
 

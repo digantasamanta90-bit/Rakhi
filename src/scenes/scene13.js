@@ -4,6 +4,7 @@
  * Physical sheet of warm stationery paper unrolls in 3D perspective.
  * Thought-by-thought reveal with deliberate breathing room, handwritten signature,
  * and glowing thread unspooling from the corner into Scene 14.
+ * Styled in the Velvet Night × Antique Memory aesthetic.
  */
 
 import { content } from '../content/content.js';
@@ -23,20 +24,20 @@ export class Scene13Letter {
 
       container.innerHTML = `
         <div style="position:relative;width:100%;height:100%;overflow-y:auto;overflow-x:hidden;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding:calc(env(safe-area-inset-top,10px) + 20px) 16px 28px 16px;perspective:1000px;">
-          <!-- Quiet dark ambient backdrop -->
-          <div style="position:absolute;inset:0;background:radial-gradient(circle at 50% 30%, rgba(200,130,148,0.08) 0%, rgba(10,6,8,0.98) 80%);pointer-events:none;"></div>
+          <!-- Quiet velvet dark ambient backdrop -->
+          <div style="position:absolute;inset:0;background:radial-gradient(circle at 50% 30%, rgba(42,20,29,0.15) 0%, rgba(10,7,9,0.98) 80%);pointer-events:none;"></div>
 
-          <!-- Physical Stationery Sheet (Unfolding in 3D perspective) -->
+          <!-- Physical Parchment Sheet (Floating in warm darkness) -->
           <div class="letter-paper" id="l-paper" style="opacity:0;transform:translateY(40px) rotateX(15deg);z-index:10;position:relative;">
             <!-- Paper Header -->
             <div style="text-align:center;margin-bottom:14px;">
-              <div class="text-whisper" style="color:var(--text-plum-subtle,#8e7386);font-size:0.65rem;letter-spacing:0.14em;">FOR ANWESHA // FROM DIGANTA</div>
-              <h2 class="font-display" style="font-size:1.35rem;color:var(--text-plum-dark,#2b1726);font-style:italic;margin-top:2px;">${c.header}</h2>
+              <div class="text-whisper" style="color:var(--faded-wine-text);font-size:0.65rem;letter-spacing:0.14em;">FOR ANWESHA // FROM DIGANTA</div>
+              <h2 class="font-display" style="font-size:1.35rem;color:var(--wine);font-style:italic;margin-top:2px;">${c.header}</h2>
             </div>
 
             <!-- Letter Body with Thought-by-Thought Staggered Reveal -->
-            <div style="font-size:0.84rem;line-height:1.68;color:var(--text-plum-primary,#3d2436);display:flex;flex-direction:column;gap:11px;">
-              <p id="l-p0" style="opacity:0;font-style:italic;color:var(--rose-primary,#c88294);font-weight:500;">
+            <div style="font-size:0.84rem;line-height:1.68;color:var(--wine);display:flex;flex-direction:column;gap:11px;">
+              <p id="l-p0" style="opacity:0;font-style:italic;color:var(--muted-rose);font-weight:500;">
                 ${c.leadQuote}
               </p>
               <p id="l-p1" style="opacity:0;">
@@ -48,27 +49,27 @@ export class Scene13Letter {
               <p id="l-p3" style="opacity:0;">
                 ${c.messageParagraphs[2]}
               </p>
-              <p id="l-p4" style="opacity:0;font-weight:500;color:var(--text-plum-dark,#2b1726);">
+              <p id="l-p4" style="opacity:0;font-weight:500;color:var(--wine);">
                 ${c.messageParagraphs[3]}
               </p>
-              <p id="l-p5" style="opacity:0;font-style:italic;color:var(--text-plum-muted,#6b4d63);font-size:0.8rem;">
+              <p id="l-p5" style="opacity:0;font-style:italic;color:var(--soft-muted-text);font-size:0.8rem;">
                 ${c.closingJoke}
               </p>
             </div>
 
             <!-- Handwritten Signature Block -->
-            <div id="l-sig" style="opacity:0;margin-top:18px;padding-top:12px;border-top:1px dashed rgba(200,130,148,0.3);display:flex;justify-content:space-between;align-items:flex-end;">
+            <div id="l-sig" style="opacity:0;margin-top:18px;padding-top:12px;border-top:1px dashed var(--parchment-border);display:flex;justify-content:space-between;align-items:flex-end;">
               <div>
-                <button class="btn-secondary" id="l-keep-btn" style="font-size:0.72rem;padding:4px 12px;min-height:28px;border-color:var(--rose-primary,#c88294);color:var(--rose-primary,#c88294);background:rgba(200,130,148,0.06);">
+                <button class="btn-secondary" id="l-keep-btn" style="font-size:0.72rem;padding:4px 12px;min-height:28px;border-color:var(--muted-rose);color:var(--muted-rose);background:rgba(155,93,112,0.08);">
                   <span>${c.keepButton}</span>
                 </button>
-                <div id="l-keep-msg" style="display:none;font-size:0.72rem;color:var(--rose-primary,#c88294);font-style:italic;margin-top:4px;">
+                <div id="l-keep-msg" style="display:none;font-size:0.72rem;color:var(--muted-rose);font-style:italic;margin-top:4px;">
                   ${c.keepSuccess}
                 </div>
               </div>
               <div style="text-align:right;">
-                <div style="font-size:0.7rem;color:var(--text-plum-subtle,#8e7386);">${c.signature.prefix}</div>
-                <div class="handwritten-sig" style="font-size:1.2rem;color:var(--rose-primary,#c88294);">${c.signature.author}</div>
+                <div style="font-size:0.7rem;color:var(--faded-wine-text);">${c.signature.prefix}</div>
+                <div class="handwritten-sig" style="font-size:1.15rem;color:var(--muted-rose);font-family:var(--font-display);font-style:italic;">${c.signature.author}</div>
               </div>
             </div>
 

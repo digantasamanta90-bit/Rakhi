@@ -2,6 +2,7 @@
  * BEAT 08 — GOING HOME
  * Slowing journey. Reduced speed. Warmer tones.
  * Transition toward bedroom stillness.
+ * Styled in the Velvet Night × Antique Memory aesthetic.
  */
 
 export class Scene08GoingHome {
@@ -16,13 +17,13 @@ export class Scene08GoingHome {
     return new Promise((resolve) => {
       container.innerHTML = `
         <div style="position:relative;width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;">
-          <!-- Warm gradient background -->
-          <div id="going-home-bg" style="position:absolute;inset:0;background:linear-gradient(180deg, #1a1216 0%, #2b1f24 100%);"></div>
+          <!-- Warm velvet wine gradient background -->
+          <div id="going-home-bg" style="position:absolute;inset:0;background:linear-gradient(180deg, #1A0D14 0%, #2A141D 100%);"></div>
 
-          <!-- Distant fading lights -->
+          <!-- Distant fading warm lights -->
           <div style="position:absolute;width:100%;height:100%;overflow:hidden;">
             ${Array.from({length:8}).map((_, i) =>
-              `<div class="going-home-light" style="position:absolute;width:${3+Math.random()*4}px;height:${3+Math.random()*4}px;border-radius:50%;background:rgba(255,220,150,${0.1+Math.random()*0.15});top:${30+Math.random()*30}%;left:${10+i*12}%;"></div>`
+              `<div class="going-home-light" style="position:absolute;width:${3+Math.random()*4}px;height:${3+Math.random()*4}px;border-radius:50%;background:rgba(212,176,106,${0.1+Math.random()*0.15});top:${30+Math.random()*30}%;left:${10+i*12}%;"></div>`
             ).join('')}
           </div>
 
@@ -61,7 +62,7 @@ export class Scene08GoingHome {
       });
 
       this.tl.call(() => {
-        bg.style.background = 'linear-gradient(180deg, #1f1822 0%, #2b2025 100%)';
+        bg.style.background = 'linear-gradient(180deg, #1A0D14 0%, #2A141D 100%)';
       }, [], 1.5);
 
       this.tl

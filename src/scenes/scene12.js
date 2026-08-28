@@ -6,12 +6,7 @@
  * -> HAS ITS MOMENT -> RECEDES -> SPACE RESETS
  * -> OBJECT B ENTERS -> BECOMES SOLE FOCAL OBJECT -> repeat.
  * 
- * SHOT 1: Quiet Sibling Room atmosphere settles.
- * SHOT 2: Diganta (The Brother) hero object.
- * SHOT 3: Anwesha (The Sister) keepsake portrait hero object.
- * SHOT 4: Monojit (The Catalyst) tribute hero object.
- * SHOT 5: Brother Status official verification hero object.
- * SHOT 6: Suspicious "DO NOT PRESS" emergency switch enters LAST with 4 escalating presses & hidden achievement.
+ * Styled in the Velvet Night × Antique Memory aesthetic.
  */
 
 import { content } from '../content/content.js';
@@ -35,7 +30,7 @@ export class Scene12SiblingZone {
       container.innerHTML = `
         <div class="sibling-seq-viewport" id="sz-viewport">
           <!-- Ambient Room Stage Backdrop -->
-          <div id="sz-bg" style="position:absolute;inset:0;background:radial-gradient(circle at 50% 38%, rgba(200,130,148,0.09) 0%, rgba(92,61,46,0.06) 45%, rgba(10,6,8,0.98) 85%);pointer-events:none;transition:background 0.5s;"></div>
+          <div id="sz-bg" style="position:absolute;inset:0;background:radial-gradient(circle at 50% 38%, rgba(42,20,29,0.18) 0%, rgba(26,13,20,0.1) 45%, rgba(10,7,9,0.98) 85%);pointer-events:none;transition:background 0.5s;"></div>
 
           <!-- Environment Ambient Subtitle Tag -->
           <div id="sz-env-tag" style="position:absolute;top:calc(env(safe-area-inset-top, 10px) + 16px);text-align:center;opacity:0;z-index:5;pointer-events:none;">
@@ -47,8 +42,8 @@ export class Scene12SiblingZone {
 
             <!-- SHOT 2: DIGANTA (THE BROTHER) -->
             <div class="sibling-focal-item" id="sz-focal-diganta">
-              <div class="sibling-focal-card" style="border-color:rgba(200,130,148,0.35);">
-                <div style="width:48px;height:48px;margin:0 auto 10px auto;border-radius:50%;background:rgba(200,130,148,0.12);border:1px solid var(--cinema-accent);display:flex;align-items:center;justify-content:center;font-size:1.5rem;">
+              <div class="sibling-focal-card" style="border-color:var(--cinema-border);">
+                <div style="width:48px;height:48px;margin:0 auto 10px auto;border-radius:50%;background:rgba(155,93,112,0.14);border:1px solid var(--cinema-accent);display:flex;align-items:center;justify-content:center;font-size:1.5rem;">
                   👦
                 </div>
                 <div class="text-whisper" style="color:var(--cinema-accent);font-size:0.62rem;letter-spacing:0.14em;margin-bottom:4px;">THE ARCHETYPE</div>
@@ -56,7 +51,7 @@ export class Scene12SiblingZone {
                 <div style="font-size:0.78rem;color:var(--cinema-text-muted);line-height:1.45;margin-bottom:8px;">
                   "Professional overthinker. Occasional nuisance. Effort: unnecessarily high."
                 </div>
-                <div style="padding:4px 8px;background:rgba(250,245,238,0.04);border-radius:6px;font-size:0.68rem;color:var(--cinema-gold);display:inline-block;">
+                <div style="padding:4px 8px;background:rgba(232,220,203,0.04);border-radius:6px;font-size:0.68rem;color:var(--cinema-gold);display:inline-block;">
                   Will build entire apps instead of texting 🫡
                 </div>
               </div>
@@ -65,14 +60,14 @@ export class Scene12SiblingZone {
             <!-- SHOT 3: ANWESHA (THE SISTER) -->
             <div class="sibling-focal-item" id="sz-focal-anwesha">
               <div class="sibling-polaroid-frame" style="transform:rotate(-2deg);">
-                <div style="width:100%;height:180px;border-radius:2px;overflow:hidden;background:#1a1216;margin-bottom:8px;">
+                <div style="width:100%;height:180px;border-radius:2px;overflow:hidden;background:#1a0d14;margin-bottom:8px;">
                   <img src="assets/portraits/anwesha6.png" alt="Anwesha" style="width:100%;height:100%;object-fit:cover;" onerror="this.src='assets/portraits/anwesha1.png';">
                 </div>
                 <div style="display:flex;justify-content:space-between;align-items:baseline;padding:0 2px;">
-                  <span style="font-family:var(--font-display);font-size:0.95rem;font-weight:700;color:#2b1726;">Anwesha 🧿</span>
-                  <span style="font-size:0.62rem;font-weight:700;color:#c84b5c;letter-spacing:0.04em;">THREAT: HIGH 🍫</span>
+                  <span style="font-family:var(--font-display);font-size:0.95rem;font-weight:700;color:var(--wine);">Anwesha 🧿</span>
+                  <span style="font-size:0.62rem;font-weight:700;color:var(--rakhi-red);letter-spacing:0.04em;">THREAT: HIGH 🍫</span>
                 </div>
-                <div style="font-size:0.66rem;color:#6b4d63;margin-top:2px;font-style:italic;">
+                <div style="font-size:0.66rem;color:var(--faded-wine-text);margin-top:2px;font-style:italic;">
                   Will demand chocolate. Probably judging this scene.
                 </div>
               </div>
@@ -80,8 +75,8 @@ export class Scene12SiblingZone {
 
             <!-- SHOT 4: MONOJIT (THE CATALYST) -->
             <div class="sibling-focal-item" id="sz-focal-monojit">
-              <div class="sibling-focal-card" style="border-color:rgba(200,162,72,0.4);background:rgba(26,18,22,0.96);">
-                <div style="width:48px;height:48px;margin:0 auto 10px auto;border-radius:50%;background:rgba(200,162,72,0.12);border:1px solid var(--cinema-gold);display:flex;align-items:center;justify-content:center;font-size:1.5rem;">
+              <div class="sibling-focal-card" style="border-color:var(--antique-gold-border);background:rgba(26,13,20,0.96);">
+                <div style="width:48px;height:48px;margin:0 auto 10px auto;border-radius:50%;background:rgba(212,176,106,0.14);border:1px solid var(--cinema-gold);display:flex;align-items:center;justify-content:center;font-size:1.5rem;">
                   🤝
                 </div>
                 <div class="text-whisper" style="color:var(--cinema-gold);font-size:0.62rem;letter-spacing:0.14em;margin-bottom:4px;">CATALYST OF RECORD</div>
@@ -97,21 +92,21 @@ export class Scene12SiblingZone {
 
             <!-- SHOT 5: SIBLING STATUS DIAGNOSIS -->
             <div class="sibling-focal-item" id="sz-focal-status">
-              <div class="sibling-focal-card" style="border-color:rgba(200,130,148,0.3);">
+              <div class="sibling-focal-card" style="border-color:var(--cinema-border);">
                 <div class="text-whisper" style="color:var(--cinema-gold);font-size:0.64rem;letter-spacing:0.16em;margin-bottom:6px;border-bottom:1px dashed var(--cinema-border);padding-bottom:6px;">
                   OFFICIAL SIBLING DOSSIER // EVALUATION
                 </div>
                 <div style="font-size:0.82rem;color:var(--cinema-text);margin:8px 0 10px 0;line-height:1.4;">
                   Brother Status: <strong style="color:var(--cinema-accent);">PERMANENT 💀</strong>
                 </div>
-                <div style="display:flex;flex-direction:column;gap:6px;font-size:0.72rem;text-align:left;background:rgba(250,245,238,0.03);padding:8px 10px;border-radius:6px;border:1px solid rgba(250,245,238,0.05);">
+                <div style="display:flex;flex-direction:column;gap:6px;font-size:0.72rem;text-align:left;background:rgba(232,220,203,0.03);padding:8px 10px;border-radius:6px;border:1px solid rgba(232,220,203,0.05);">
                   <div style="display:flex;justify-content:space-between;">
                     <span style="color:var(--cinema-text-subtle);">Reliability</span>
                     <span style="color:var(--cinema-gold);">Questionable 🤔</span>
                   </div>
                   <div style="display:flex;justify-content:space-between;">
                     <span style="color:var(--cinema-text-subtle);">Refund Policy</span>
-                    <span style="color:#e06c75;">0% Available ❌</span>
+                    <span style="color:var(--rakhi-red);">0% Available ❌</span>
                   </div>
                   <div style="display:flex;justify-content:space-between;">
                     <span style="color:var(--cinema-text-subtle);">Sister Care</span>
@@ -124,7 +119,7 @@ export class Scene12SiblingZone {
             <!-- SHOT 6: THE SUSPICIOUS "DO NOT PRESS" SWITCH (ENTERS LAST) -->
             <div class="sibling-focal-item" id="sz-focal-switch" style="z-index:20;">
               <div class="sibling-switch-box" id="sz-switch-card">
-                <div id="sz-switch-tag" class="text-whisper" style="color:#e06c75;font-size:0.62rem;letter-spacing:0.18em;margin-bottom:8px;">
+                <div id="sz-switch-tag" class="text-whisper" style="color:var(--rakhi-red);font-size:0.62rem;letter-spacing:0.18em;margin-bottom:8px;">
                   ⚠️ EMERGENCY LEVEL 0 // DO NOT TOUCH
                 </div>
                 <div id="sz-switch-status" style="font-size:0.8rem;color:var(--cinema-text-muted);margin-bottom:16px;line-height:1.4;min-height:2.2em;display:flex;align-items:center;justify-content:center;">
@@ -138,7 +133,7 @@ export class Scene12SiblingZone {
                 </div>
 
                 <!-- Hidden Gag / Reveal Container (Appears after 4th press) -->
-                <div id="sz-reveal-panel" style="display:none;opacity:0;margin-top:12px;padding-top:12px;border-top:1px dashed rgba(200,130,148,0.3);">
+                <div id="sz-reveal-panel" style="display:none;opacity:0;margin-top:12px;padding-top:12px;border-top:1px dashed rgba(212,176,106,0.25);">
                   <div class="text-whisper" style="color:var(--cinema-gold);font-size:0.66rem;letter-spacing:0.12em;margin-bottom:6px;">
                     ✨ MAXIMUM SIBLING CHAOS UNLOCKED
                   </div>
@@ -352,7 +347,7 @@ export class Scene12SiblingZone {
             switchTag.style.color = "var(--cinema-gold)";
             switchStatus.textContent = `"${c.doNotPress.stage2}"`;
             switchStatus.style.color = "var(--cinema-accent)";
-            bg.style.background = "radial-gradient(circle at 50% 38%, rgba(200,162,72,0.2) 0%, rgba(92,61,46,0.12) 45%, rgba(10,6,8,0.98) 85%)";
+            bg.style.background = "radial-gradient(circle at 50% 38%, rgba(212,176,106,0.18) 0%, rgba(42,20,29,0.2) 45%, rgba(10,7,9,0.98) 85%)";
             gsap.fromTo(viewport, { x: -8, y: -4 }, { x: 8, y: 4, duration: 0.04, repeat: 6, yoyo: true });
             gsap.fromTo(emergencyBtn, { scale: 0.88 }, { scale: 1, duration: 0.3, ease: 'elastic.out(1, 0.3)' });
           } 
@@ -361,7 +356,7 @@ export class Scene12SiblingZone {
             try { this.audio.playGlitchSfx(); this.audio.playAlarmBeep(); } catch(e) {}
             switchTag.textContent = "🔥 EMERGENCY LEVEL 3 // CHAOS OVERLOAD";
             switchStatus.textContent = `"${c.doNotPress.stage3}"`;
-            switchStatus.style.color = "#e06c75";
+            switchStatus.style.color = "var(--rakhi-red)";
             bg.classList.add('chaos-mode-bg');
 
             if (this.particles) {
@@ -380,7 +375,7 @@ export class Scene12SiblingZone {
             } catch(e) {}
 
             bg.classList.remove('chaos-mode-bg');
-            bg.style.background = "radial-gradient(circle at 50% 38%, rgba(200,130,148,0.14) 0%, rgba(200,162,72,0.1) 45%, rgba(10,6,8,0.98) 85%)";
+            bg.style.background = "radial-gradient(circle at 50% 38%, rgba(155,93,112,0.15) 0%, rgba(212,176,106,0.1) 45%, rgba(10,7,9,0.98) 85%)";
 
             if (this.particles) {
               const rect = switchCard.getBoundingClientRect();

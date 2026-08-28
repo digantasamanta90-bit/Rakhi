@@ -1,31 +1,59 @@
 /* =========================================================
-   CINEMATIC EXPERIENCE — DARK THEATRE + SCRAPBOOK + MEMORY
+   CINEMATIC EXPERIENCE — VELVET NIGHT × ANTIQUE MEMORY
+   Midnight room + old photographs + warm lamp light +
+   silk thread + parchment + antique gold + Indian festive warmth.
    Mobile-first for Realme 11 5G portrait viewport.
    ========================================================= */
 
-/* --- CINEMATIC DARK PALETTE OVERRIDES --- */
+/* --- CINEMATIC PALETTE & TOKENS --- */
 :root {
-  --cinema-black: #0a0608;
-  --cinema-dark: #120e10;
-  --cinema-deep: #1a1216;
-  --cinema-warm: #2b1f24;
-  --cinema-text: #faf5ee;
-  --cinema-text-muted: rgba(250, 245, 238, 0.55);
-  --cinema-text-subtle: rgba(250, 245, 238, 0.35);
-  --cinema-accent: #c88294;
-  --cinema-gold: #c8a248;
-  --cinema-red: #a63d57;
-  --cinema-glow: rgba(200, 130, 148, 0.15);
-  --cinema-border: rgba(200, 130, 148, 0.12);
+  --velvet-black: #0A0709;
+  --deep-plum: #1A0D14;
+  --wine: #2A141D;
+  --warm-wine: #3A211F;
+
+  --parchment: #F3E8D5;
+  --warm-ivory: #E8DCCB;
+
+  --antique-gold: #D4B06A;
+  --antique-gold-glow: rgba(212, 176, 106, 0.22);
+  --antique-gold-border: rgba(212, 176, 106, 0.28);
+  --rakhi-red: #B7474D;
+  --rakhi-red-subtle: rgba(183, 71, 77, 0.18);
+  --muted-rose: #9B5D70;
+  --muted-rose-subtle: rgba(155, 93, 112, 0.16);
+
+  --soft-muted-text: #AA9A96;
+  --subtle-muted-text: #6E6060;
+
+  /* Aliased Cinema Tokens */
+  --cinema-black: var(--velvet-black);
+  --cinema-dark: var(--deep-plum);
+  --cinema-deep: var(--wine);
+  --cinema-warm: var(--warm-wine);
+  --cinema-text: var(--warm-ivory);
+  --cinema-text-muted: var(--soft-muted-text);
+  --cinema-text-subtle: var(--subtle-muted-text);
+  --cinema-accent: var(--muted-rose);
+  --cinema-gold: var(--antique-gold);
+  --cinema-red: var(--rakhi-red);
+  --cinema-glow: var(--muted-rose-subtle);
+  --cinema-border: rgba(212, 176, 106, 0.14);
+  --cinema-parchment: var(--parchment);
+  --cinema-card-bg: rgba(26, 13, 20, 0.94);
 }
 
-/* --- BODY & APP CONTAINER: DARK CINEMA --- */
+/* --- BODY & APP CONTAINER: DARK VELVET CINEMA --- */
 html, body {
   background: var(--cinema-black) !important;
   color: var(--cinema-text) !important;
   overflow: hidden;
   height: 100%;
   width: 100%;
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 #app-container {
@@ -37,13 +65,13 @@ html, body {
   background: var(--cinema-black) !important;
 }
 
-/* --- FILM GRAIN --- */
+/* --- FILM GRAIN (Atmospheric Subtle Texture) --- */
 .film-grain {
   position: fixed;
   inset: 0;
   pointer-events: none;
   z-index: 200;
-  opacity: 0.04;
+  opacity: 0.035;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
   background-size: 200px 200px;
   mix-blend-mode: overlay;
@@ -113,7 +141,7 @@ html, body {
 
 .text-timestamp-sm {
   font-family: var(--font-mono);
-  font-size: clamp(0.7rem, 2.5vw, 0.85rem);
+  font-size: clamp(0.68rem, 2.4vw, 0.82rem);
   color: var(--cinema-text-muted);
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -121,48 +149,49 @@ html, body {
 
 .text-whisper {
   font-family: var(--font-body);
-  font-size: clamp(0.65rem, 2vw, 0.78rem);
+  font-size: clamp(0.64rem, 2vw, 0.76rem);
   color: var(--cinema-text-subtle);
-  letter-spacing: 0.12em;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
+  font-weight: 600;
 }
 
 .text-dialogue {
   font-family: var(--font-display);
-  font-size: clamp(1rem, 3.5vw, 1.3rem);
+  font-size: clamp(0.98rem, 3.4vw, 1.25rem);
   font-style: italic;
   color: var(--cinema-text);
-  line-height: 1.5;
+  line-height: 1.55;
   text-align: center;
   max-width: 320px;
 }
 
 .text-impact {
   font-family: var(--font-display);
-  font-size: clamp(1.8rem, 7vw, 3rem);
+  font-size: clamp(1.75rem, 6.8vw, 2.9rem);
   font-weight: 600;
   color: var(--cinema-text);
   text-align: center;
-  line-height: 1.1;
+  line-height: 1.15;
 }
 
 .text-emotional {
   font-family: var(--font-display);
-  font-size: clamp(1.1rem, 4vw, 1.5rem);
+  font-size: clamp(1.05rem, 3.8vw, 1.45rem);
   font-style: italic;
   color: var(--cinema-accent);
   text-align: center;
-  line-height: 1.4;
+  line-height: 1.45;
 }
 
 .text-body {
   font-family: var(--font-body);
-  font-size: clamp(0.85rem, 3vw, 1rem);
+  font-size: clamp(0.82rem, 2.9vw, 0.96rem);
   color: var(--cinema-text);
   line-height: 1.65;
   text-align: center;
   max-width: 340px;
-  opacity: 0.85;
+  opacity: 0.88;
 }
 
 /* --- CURSOR BLINK --- */
@@ -181,15 +210,15 @@ html, body {
   51%, 100% { opacity: 0; }
 }
 
-/* --- PHONE MOCKUP --- */
+/* --- PHONE MOCKUP (Warm Midnight Glow) --- */
 .phone-mockup {
   width: 260px;
   max-width: 80vw;
-  background: linear-gradient(145deg, #1a1216, #120e10);
+  background: linear-gradient(145deg, #1A0D14, #0A0709);
   border: 1px solid var(--cinema-border);
   border-radius: 24px;
   padding: 24px 20px;
-  box-shadow: 0 0 40px rgba(200, 130, 148, 0.08), 0 20px 60px rgba(0,0,0,0.5);
+  box-shadow: 0 0 45px rgba(212, 176, 106, 0.06), 0 20px 60px rgba(0, 0, 0, 0.7);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -205,7 +234,7 @@ html, body {
   transform: translateX(-50%);
   width: 50px;
   height: 4px;
-  background: rgba(250, 245, 238, 0.08);
+  background: rgba(232, 220, 203, 0.08);
   border-radius: 2px;
 }
 
@@ -215,7 +244,7 @@ html, body {
   border-radius: 50%;
   overflow: hidden;
   border: 2px solid var(--cinema-accent);
-  box-shadow: 0 0 20px rgba(200, 130, 148, 0.2);
+  box-shadow: 0 0 20px rgba(155, 93, 112, 0.25);
 }
 
 .caller-avatar img {
@@ -258,19 +287,19 @@ html, body {
 }
 
 .call-btn.decline {
-  background: #c84b5c;
-  box-shadow: 0 4px 16px rgba(200, 75, 92, 0.3);
+  background: #B7474D;
+  box-shadow: 0 4px 16px rgba(183, 71, 77, 0.35);
 }
 
 .call-btn.accept {
-  background: #3d8b59;
-  box-shadow: 0 4px 16px rgba(61, 139, 89, 0.3);
+  background: #3D8B59;
+  box-shadow: 0 4px 16px rgba(61, 139, 89, 0.35);
 }
 
 .call-btn:active { transform: scale(0.92); }
 
 .chat-bubble {
-  background: rgba(250, 245, 238, 0.06);
+  background: rgba(26, 13, 20, 0.85);
   border: 1px solid var(--cinema-border);
   border-radius: 16px;
   padding: 14px 18px;
@@ -291,8 +320,8 @@ html, body {
   font-size: 0.82rem;
   font-weight: 600;
   color: var(--cinema-text);
-  background: rgba(200, 130, 148, 0.12);
-  border: 1px solid var(--cinema-accent);
+  background: rgba(26, 13, 20, 0.8);
+  border: 1px solid var(--cinema-border);
   border-radius: 9999px;
   padding: 10px 28px;
   cursor: pointer;
@@ -337,7 +366,7 @@ html, body {
 .building-block {
   flex-shrink: 0;
   background: var(--cinema-deep);
-  border: 1px solid rgba(250, 245, 238, 0.03);
+  border: 1px solid rgba(232, 220, 203, 0.03);
 }
 
 .journey-window-frame {
@@ -347,20 +376,7 @@ html, body {
   border-radius: 4px;
   pointer-events: none;
   z-index: 10;
-  box-shadow: inset 0 0 60px rgba(0,0,0,0.5);
-}
-
-/* --- KITKAT BREAK --- */
-.kitkat-scene {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 16px;
-}
-
-.kitkat-piece {
-  transition: transform 0.3s ease;
+  box-shadow: inset 0 0 60px rgba(0, 0, 0, 0.6);
 }
 
 /* --- CEILING SCENE --- */
@@ -372,14 +388,14 @@ html, body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(180deg, #1a1216 0%, #0a0608 100%);
+  background: radial-gradient(circle at 50% 30%, #1A0D14 0%, #0A0709 85%);
 }
 
 .fan-shadow {
   width: 120px;
   height: 120px;
   border-radius: 50%;
-  border: 1px solid rgba(250, 245, 238, 0.04);
+  border: 1px solid rgba(232, 220, 203, 0.04);
   position: absolute;
   top: 15%;
   left: 50%;
@@ -395,7 +411,7 @@ html, body {
   left: 50%;
   width: 100%;
   height: 2px;
-  background: rgba(250, 245, 238, 0.03);
+  background: rgba(232, 220, 203, 0.03);
   transform-origin: center;
 }
 
@@ -407,13 +423,14 @@ html, body {
   to { transform: translateX(-50%) rotate(360deg); }
 }
 
-/* --- PHOTO MEMORIES --- */
+/* --- PHOTO MEMORIES (Parchment Keepsake Backing) --- */
 .photo-memory {
   position: absolute;
-  background: #fff;
-  padding: 6px 6px 20px 6px;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+  background: var(--parchment);
+  padding: 7px 7px 22px 7px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.65);
   transition: transform 0.4s ease;
+  border-radius: 2px;
 }
 
 .photo-memory img {
@@ -425,12 +442,13 @@ html, body {
 
 .photo-tape {
   position: absolute;
-  top: -6px;
+  top: -7px;
   left: 50%;
   transform: translateX(-50%);
-  width: 40px;
-  height: 12px;
-  background: rgba(228, 181, 192, 0.4);
+  width: 44px;
+  height: 13px;
+  background: rgba(212, 176, 106, 0.45);
+  border: 1px dashed rgba(212, 176, 106, 0.5);
   z-index: 2;
 }
 
@@ -441,32 +459,10 @@ html, body {
   transform: translateX(-50%);
   font-family: var(--font-display);
   font-style: italic;
-  font-size: 0.6rem;
-  color: var(--text-plum-muted, #6b4d63);
+  font-size: 0.64rem;
+  color: var(--wine);
+  font-weight: 600;
   white-space: nowrap;
-}
-
-/* --- GIFT PHYSICAL OBJECTS --- */
-.gift-object {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 8px;
-}
-
-.gift-object img {
-  max-width: 180px;
-  max-height: 180px;
-  object-fit: contain;
-  filter: drop-shadow(0 8px 24px rgba(0,0,0,0.4));
-}
-
-.gift-label {
-  font-family: var(--font-display);
-  font-size: 0.85rem;
-  font-style: italic;
-  color: var(--cinema-accent);
 }
 
 /* --- SIBLING ZONE (SEQUENTIAL OBJECT-REVEAL ARCHITECTURE) --- */
@@ -511,11 +507,11 @@ html, body {
 }
 
 .sibling-focal-card {
-  background: rgba(26, 18, 22, 0.95);
+  background: rgba(26, 13, 20, 0.95);
   border: 1px solid var(--cinema-border);
   border-radius: 16px;
   padding: 20px 18px;
-  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.65);
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.7);
   width: 100%;
   position: relative;
   backdrop-filter: blur(12px);
@@ -523,21 +519,21 @@ html, body {
 }
 
 .sibling-polaroid-frame {
-  background: #fdfaf6;
-  padding: 10px 10px 16px 10px;
+  background: var(--parchment);
+  padding: 10px 10px 18px 10px;
   border-radius: 4px;
   box-shadow: 0 20px 50px rgba(0, 0, 0, 0.75);
   position: relative;
-  color: #2b1726;
+  color: var(--wine);
   width: 200px;
 }
 
 .sibling-switch-box {
-  background: rgba(20, 10, 14, 0.96);
-  border: 1.5px solid rgba(224, 108, 117, 0.45);
+  background: rgba(26, 13, 20, 0.96);
+  border: 1.5px solid rgba(183, 71, 77, 0.45);
   border-radius: 18px;
   padding: 22px 18px;
-  box-shadow: 0 16px 50px rgba(224, 108, 117, 0.12), 0 12px 35px rgba(0, 0, 0, 0.8);
+  box-shadow: 0 16px 50px rgba(183, 71, 77, 0.12), 0 12px 35px rgba(0, 0, 0, 0.8);
   width: 100%;
   position: relative;
 }
@@ -547,12 +543,12 @@ html, body {
   font-size: 0.88rem;
   font-weight: 700;
   color: #fff;
-  background: linear-gradient(135deg, #e06c75 0%, #a63d57 100%);
-  border: 2px solid rgba(255, 255, 255, 0.2);
+  background: linear-gradient(135deg, #B7474D 0%, #7A282D 100%);
+  border: 1.5px solid rgba(255, 255, 255, 0.2);
   border-radius: 9999px;
   padding: 12px 28px;
   cursor: pointer;
-  box-shadow: 0 6px 20px rgba(224, 108, 117, 0.4), inset 0 2px 4px rgba(255, 255, 255, 0.3);
+  box-shadow: 0 6px 20px rgba(183, 71, 77, 0.4), inset 0 2px 4px rgba(255, 255, 255, 0.25);
   transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
   min-height: 48px;
   display: inline-flex;
@@ -563,7 +559,7 @@ html, body {
 
 .emergency-btn:hover {
   transform: scale(1.05);
-  box-shadow: 0 8px 25px rgba(224, 108, 117, 0.6), inset 0 2px 4px rgba(255, 255, 255, 0.4);
+  box-shadow: 0 8px 25px rgba(183, 71, 77, 0.6), inset 0 2px 4px rgba(255, 255, 255, 0.35);
 }
 
 .emergency-btn:active {
@@ -571,23 +567,23 @@ html, body {
 }
 
 @keyframes chaosStrobe {
-  0%, 100% { background: radial-gradient(circle at 50% 40%, rgba(224,108,117,0.18) 0%, rgba(10,6,8,0.98) 85%); }
-  50% { background: radial-gradient(circle at 50% 40%, rgba(224,108,117,0.45) 0%, rgba(30,6,12,0.98) 85%); }
+  0%, 100% { background: radial-gradient(circle at 50% 40%, rgba(183, 71, 77, 0.18) 0%, rgba(10, 7, 9, 0.98) 85%); }
+  50% { background: radial-gradient(circle at 50% 40%, rgba(183, 71, 77, 0.45) 0%, rgba(30, 6, 12, 0.98) 85%); }
 }
 
 .chaos-mode-bg {
   animation: chaosStrobe 0.35s infinite alternate !important;
 }
 
-/* --- LETTER SCENE --- */
+/* --- LETTER SCENE (Parchment Paper Floating in Velvet Darkness) --- */
 .letter-paper {
-  background: rgba(255, 253, 249, 0.95);
+  background: var(--parchment);
   border-radius: 4px;
   padding: clamp(20px, 5vw, 32px);
   max-width: 340px;
   width: 90vw;
-  color: var(--text-plum-primary, #3d2436);
-  box-shadow: 0 8px 40px rgba(0,0,0,0.3);
+  color: var(--wine);
+  box-shadow: 0 16px 50px rgba(0, 0, 0, 0.6);
   position: relative;
   text-align: left;
 }
@@ -599,7 +595,7 @@ html, body {
   left: 0;
   right: 0;
   height: 2px;
-  background: linear-gradient(90deg, transparent, var(--cinema-accent), var(--cinema-gold), transparent);
+  background: linear-gradient(90deg, transparent, var(--antique-gold), var(--muted-rose), transparent);
 }
 
 /* --- FINALE --- */
@@ -632,7 +628,64 @@ html, body {
 .rakhi-finale-wrap svg {
   width: 100%;
   height: 100%;
-  filter: drop-shadow(0 0 20px rgba(200, 130, 148, 0.3));
+  filter: drop-shadow(0 0 24px rgba(212, 176, 106, 0.28));
+}
+
+/* --- BUTTONS --- */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 24px;
+  font-family: var(--font-body);
+  font-size: 0.88rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--warm-ivory);
+  background: linear-gradient(135deg, #3A211F 0%, #1A0D14 100%);
+  border: 1px solid var(--antique-gold-border);
+  border-radius: 9999px;
+  cursor: pointer;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+  transition: transform 0.25s var(--ease-spring), box-shadow 0.25s, border-color 0.25s;
+  min-height: 44px;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  border-color: var(--antique-gold);
+  box-shadow: 0 6px 22px rgba(212, 176, 106, 0.25);
+}
+
+.btn-primary:active {
+  transform: scale(0.97);
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 18px;
+  font-family: var(--font-body);
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: var(--cinema-text-muted);
+  background: transparent;
+  border: 1px solid var(--cinema-border);
+  border-radius: 9999px;
+  cursor: pointer;
+  transition: all 0.2s var(--ease-soft);
+  min-height: 38px;
+}
+
+.btn-secondary:hover {
+  color: var(--cinema-text);
+  border-color: var(--cinema-accent);
+  background: rgba(212, 176, 106, 0.06);
+}
+
+.btn-secondary:active {
+  transform: scale(0.97);
 }
 
 /* --- AUDIO TOGGLE --- */
@@ -644,7 +697,7 @@ html, body {
   width: 36px;
   height: 36px;
   border-radius: 50%;
-  background: rgba(250, 245, 238, 0.06);
+  background: rgba(26, 13, 20, 0.8);
   border: 1px solid var(--cinema-border);
   color: var(--cinema-text-muted);
   display: flex;
@@ -674,8 +727,8 @@ html, body {
   width: 32px;
   height: 32px;
   border-radius: 8px;
-  background: rgba(250, 245, 238, 0.08);
-  border: 1px solid rgba(250, 245, 238, 0.15);
+  background: rgba(26, 13, 20, 0.8);
+  border: 1px solid var(--cinema-border);
   color: var(--cinema-text-muted);
   font-size: 0.85rem;
   cursor: pointer;
@@ -688,20 +741,21 @@ html, body {
   position: absolute;
   bottom: 40px;
   left: 0;
-  background: rgba(10, 6, 8, 0.96);
+  background: rgba(10, 7, 9, 0.96);
   border: 1px solid var(--cinema-border);
   border-radius: 12px;
   padding: 12px;
   min-width: 200px;
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.8);
 }
 
 .debug-title {
   font-family: var(--font-mono);
   font-size: 0.65rem;
   letter-spacing: 0.1em;
-  color: var(--cinema-accent);
+  color: var(--cinema-gold);
   margin-bottom: 8px;
 }
 
@@ -717,7 +771,7 @@ html, body {
   font-family: var(--font-mono);
   font-size: 0.7rem;
   color: var(--cinema-text-muted);
-  background: rgba(250, 245, 238, 0.03);
+  background: rgba(232, 220, 203, 0.03);
   border: 1px solid transparent;
   border-radius: 6px;
   padding: 6px 10px;
@@ -730,13 +784,13 @@ html, body {
 .debug-scene-btn.active {
   color: var(--cinema-text);
   border-color: var(--cinema-accent);
-  background: rgba(200, 130, 148, 0.08);
+  background: rgba(155, 93, 112, 0.12);
 }
 
 .debug-btn {
   font-family: var(--font-mono);
   font-size: 0.7rem;
-  color: var(--cinema-accent);
+  color: var(--cinema-gold);
   background: transparent;
   border: 1px solid var(--cinema-border);
   border-radius: 6px;
@@ -746,25 +800,27 @@ html, body {
   width: 100%;
 }
 
-/* --- ACHIEVEMENT TOAST (dark theme) --- */
+/* --- ACHIEVEMENT TOAST (Velvet Night Theme) --- */
 .achievement-toast {
   position: fixed;
   bottom: 1.2rem;
   left: 50%;
   transform: translateX(-50%) translateY(80px);
-  background: var(--cinema-deep);
-  border: 1px solid var(--cinema-accent);
+  background: rgba(26, 13, 20, 0.96);
+  border: 1px solid var(--antique-gold-border);
   border-radius: 9999px;
-  padding: 0.5rem 1.1rem;
+  padding: 0.55rem 1.2rem;
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  box-shadow: 0 6px 20px rgba(200, 130, 148, 0.15);
+  gap: 0.6rem;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.7), 0 0 20px rgba(212, 176, 106, 0.15);
   z-index: 250;
   opacity: 0;
   transition: transform 0.4s cubic-bezier(0.34, 1.4, 0.64, 1), opacity 0.4s;
   pointer-events: none;
   max-width: 92vw;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
 }
 
 .achievement-toast.show {
@@ -772,11 +828,15 @@ html, body {
   opacity: 1;
 }
 
+.toast-badge-icon {
+  font-size: 1.1rem;
+}
+
 .achievement-title {
-  font-size: 0.7rem;
+  font-size: 0.68rem;
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  color: var(--cinema-accent);
+  color: var(--cinema-gold);
   font-weight: 700;
 }
 
@@ -791,15 +851,47 @@ html, body {
   position: fixed;
   top: 50%;
   left: 50%;
-  width: 200px;
-  height: 200px;
-  margin-top: -100px;
-  margin-left: -100px;
-  background: radial-gradient(circle, rgba(200,130,148,0.3) 0%, transparent 70%);
+  width: 240px;
+  height: 240px;
+  margin-top: -120px;
+  margin-left: -120px;
+  background: radial-gradient(circle, rgba(212, 176, 106, 0.35) 0%, rgba(183, 71, 77, 0.15) 45%, transparent 70%);
   border-radius: 50%;
   pointer-events: none;
   z-index: 195;
   opacity: 0;
+}
+
+/* --- MODAL --- */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(10, 7, 9, 0.85);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 400;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.modal-overlay.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.modal-content {
+  background: rgba(26, 13, 20, 0.96);
+  border: 1px solid var(--cinema-border);
+  border-radius: 18px;
+  padding: 24px 20px;
+  max-width: 320px;
+  width: 100%;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
 }
 
 /* --- REDUCED MOTION --- */
@@ -813,12 +905,12 @@ html, body {
   .film-grain { display: none; }
 }
 
-/* --- RESPONSIVE --- */
+/* --- RESPONSIVE ADJUSTMENTS (Realme 11 5G Portrait) --- */
 @media (min-width: 768px) {
   .phone-mockup {
-    width: 300px;
+    width: 290px;
   }
   .letter-paper {
-    max-width: 420px;
+    max-width: 400px;
   }
 }

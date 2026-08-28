@@ -2,6 +2,7 @@
  * BEAT 03 — THREE ALARMS
  * Total darkness. Three alarm dismissals. Silence.
  * "…and then I closed my eyes."
+ * Styled in the Velvet Night × Antique Memory aesthetic.
  */
 
 export class Scene03Alarms {

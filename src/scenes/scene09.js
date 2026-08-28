@@ -3,6 +3,7 @@
  * One of the most important moments. Near-still.
  * Fan shadow. "I messed up." → "I'm sorry." → "But I didn't make this for one morning."
  * Seamless camera descent into memory darkness for Scene 10.
+ * Styled in the Velvet Night × Antique Memory aesthetic.
  */
 
 export class Scene09Ceiling {
@@ -21,7 +22,7 @@ export class Scene09Ceiling {
           <div class="fan-shadow" id="s9-fan"></div>
 
           <!-- Subtle ceiling light source -->
-          <div id="s9-light" style="position:absolute;top:18%;left:50%;transform:translateX(-50%);width:8px;height:8px;border-radius:50%;background:rgba(255,220,150,0.25);box-shadow:0 0 35px 12px rgba(255,220,150,0.08);"></div>
+          <div id="s9-light" style="position:absolute;top:18%;left:50%;transform:translateX(-50%);width:8px;height:8px;border-radius:50%;background:rgba(212,176,106,0.22);box-shadow:0 0 35px 12px rgba(212,176,106,0.06);"></div>
 
           <!-- Text sequence -->
           <div id="s9-text-wrap" style="z-index:10;display:flex;flex-direction:column;align-items:center;padding:0 24px;max-width:320px;text-align:center;">

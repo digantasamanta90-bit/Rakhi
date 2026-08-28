@@ -6,6 +6,7 @@
  * 3. Bellavita fragrance box slides in with warm lighting sweep.
  * 4. "I still wanted to give these to you myself. So here they are."
  * 5. Seamless transition into the Sibling Zone.
+ * Styled in the Velvet Night × Antique Memory aesthetic.
  */
 
 import { content } from '../content/content.js';
@@ -25,26 +26,26 @@ export class Scene11Gifts {
 
       container.innerHTML = `
         <div style="position:relative;width:100%;height:100%;overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;perspective:900px;">
-          <!-- Ambient warm stage backdrop -->
-          <div style="position:absolute;inset:0;background:radial-gradient(circle at 50% 35%, rgba(200,162,72,0.1) 0%, rgba(92,61,46,0.1) 45%, rgba(10,6,8,0.98) 85%);pointer-events:none;"></div>
+          <!-- Ambient deep wine spotlight backdrop -->
+          <div style="position:absolute;inset:0;background:radial-gradient(circle at 50% 35%, rgba(42,20,29,0.3) 0%, rgba(26,13,20,0.18) 45%, rgba(10,7,9,0.98) 85%);pointer-events:none;"></div>
 
           <!-- Section A: Main Gift Stage Container -->
           <div id="g-main-stage" style="position:relative;width:100%;max-width:360px;height:440px;display:flex;flex-direction:column;align-items:center;justify-content:center;">
             
-            <!-- Shot 1: KitKat Hero Object -->
+            <!-- Shot 1: KitKat Hero Object (Real PNG Asset) -->
             <div id="g-kitkat-view" style="position:absolute;display:flex;flex-direction:column;align-items:center;opacity:0;transform:translateY(-50px) scale(0.9);z-index:10;cursor:pointer;">
               <div style="position:relative;width:170px;height:125px;display:flex;align-items:center;justify-content:center;">
-                <img src="assets/gifts/kitkat.png" alt="KitKat Rich" id="g-kitkat-img" style="width:100%;height:auto;object-fit:contain;filter:drop-shadow(0 14px 25px rgba(0,0,0,0.7));" />
+                <img src="assets/gifts/kitkat.png" alt="KitKat Rich" id="g-kitkat-img" style="width:100%;height:auto;object-fit:contain;filter:drop-shadow(0 14px 28px rgba(0,0,0,0.75));" />
               </div>
-              <div class="gift-label" style="font-size:0.95rem;color:var(--cinema-accent);margin-top:6px;">KitKat Rich 🍫</div>
+              <div class="gift-label" style="font-size:0.95rem;color:var(--cinema-gold);margin-top:6px;font-family:var(--font-display);font-style:italic;">KitKat Rich 🍫</div>
               <div class="text-whisper" style="font-size:0.65rem;color:var(--cinema-text-subtle);margin-top:2px;">THE OFFICIAL SELECTION</div>
             </div>
 
-            <!-- Shot 2: Case File 04 Investigation Board -->
-            <div id="g-casefile-board" style="position:absolute;width:300px;background:rgba(26,18,22,0.95);border:1px solid var(--cinema-border);border-radius:12px;padding:16px;box-shadow:0 12px 40px rgba(0,0,0,0.6);opacity:0;transform:scale(0.85);z-index:20;pointer-events:none;">
+            <!-- Shot 2: Case File 04 Investigation Board (Tactile Parchment Dossier) -->
+            <div id="g-casefile-board" style="position:absolute;width:300px;background:rgba(26,13,20,0.96);border:1px solid var(--cinema-border);border-radius:14px;padding:18px 16px;box-shadow:0 16px 45px rgba(0,0,0,0.75);opacity:0;transform:scale(0.85);z-index:20;pointer-events:none;backdrop-filter:blur(10px);">
               <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;border-bottom:1px dashed var(--cinema-border);padding-bottom:6px;">
                 <span class="text-timestamp-sm" style="color:var(--cinema-gold);font-size:0.65rem;">CASE FILE 04 // CHOCOLATE</span>
-                <span class="text-whisper" style="font-size:0.58rem;color:#e06c75;">CLASSIFIED</span>
+                <span class="text-whisper" style="font-size:0.58rem;color:var(--rakhi-red);">CLASSIFIED</span>
               </div>
               
               <div style="font-size:0.75rem;color:var(--cinema-text-muted);margin-bottom:8px;line-height:1.35;">
@@ -53,15 +54,15 @@ export class Scene11Gifts {
 
               <!-- Candidate Evaluations -->
               <div style="display:flex;flex-direction:column;gap:5px;font-size:0.72rem;">
-                <div id="g-cand-1" style="display:flex;justify-content:space-between;padding:3px 6px;background:rgba(250,245,238,0.03);border-radius:4px;opacity:0;">
+                <div id="g-cand-1" style="display:flex;justify-content:space-between;padding:3px 6px;background:rgba(232,220,203,0.03);border-radius:4px;opacity:0;">
                   <span>Dark Chocolate 85%</span>
-                  <span style="color:#e06c75;font-weight:700;">REJECTED ❌</span>
+                  <span style="color:var(--rakhi-red);font-weight:700;">REJECTED ❌</span>
                 </div>
-                <div id="g-cand-2" style="display:flex;justify-content:space-between;padding:3px 6px;background:rgba(250,245,238,0.03);border-radius:4px;opacity:0;">
+                <div id="g-cand-2" style="display:flex;justify-content:space-between;padding:3px 6px;background:rgba(232,220,203,0.03);border-radius:4px;opacity:0;">
                   <span>Overpriced Truffles</span>
                   <span style="color:var(--cinema-gold);font-weight:700;">SUSPICIOUS 🤔</span>
                 </div>
-                <div id="g-cand-3" style="display:flex;justify-content:space-between;padding:3px 6px;background:rgba(200,130,148,0.1);border-radius:4px;border:1px solid var(--cinema-accent);opacity:0;">
+                <div id="g-cand-3" style="display:flex;justify-content:space-between;padding:3px 6px;background:rgba(212,176,106,0.12);border-radius:4px;border:1px solid var(--cinema-gold);opacity:0;">
                   <span style="color:var(--cinema-text);font-weight:600;">KitKat Rich</span>
                   <span style="color:#3d8b59;font-weight:700;">APPROVED 🏆</span>
                 </div>
@@ -73,12 +74,12 @@ export class Scene11Gifts {
               </div>
             </div>
 
-            <!-- Shot 3: Bellavita Fragrance Object -->
+            <!-- Shot 3: Bellavita Fragrance Object (Real PNG Asset) -->
             <div id="g-bellavita-view" style="position:absolute;display:flex;flex-direction:column;align-items:center;opacity:0;transform:translateY(50px) scale(0.9);z-index:10;cursor:pointer;">
               <div style="position:relative;width:170px;height:130px;display:flex;align-items:center;justify-content:center;">
-                <img src="assets/gifts/bellavita.png" alt="Bellavita" id="g-bellavita-img" style="width:100%;height:auto;object-fit:contain;filter:drop-shadow(0 14px 25px rgba(0,0,0,0.7));" />
+                <img src="assets/gifts/bellavita.png" alt="Bellavita" id="g-bellavita-img" style="width:100%;height:auto;object-fit:contain;filter:drop-shadow(0 14px 28px rgba(0,0,0,0.75));" />
               </div>
-              <div class="gift-label" style="font-size:0.95rem;color:var(--cinema-gold);margin-top:6px;">Bellavita Collection 🌸</div>
+              <div class="gift-label" style="font-size:0.95rem;color:var(--cinema-gold);margin-top:6px;font-family:var(--font-display);font-style:italic;">Bellavita Collection 🌸</div>
               <div class="text-whisper" style="font-size:0.65rem;color:var(--cinema-text-subtle);margin-top:2px;">BECAUSE YOU DESERVE THE BEST</div>
             </div>
 

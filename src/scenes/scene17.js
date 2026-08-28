@@ -2,6 +2,7 @@
  * BEAT 17 — POST-CREDITS (PLAYFUL EPILOGUE)
  * Playful post-credits moment after the emotional climax.
  * Replay confirmation, humorous easter egg, and option to restart the film.
+ * Styled in the Velvet Night × Antique Memory aesthetic.
  */
 
 import { content } from '../content/content.js';
@@ -21,18 +22,18 @@ export class Scene17PostCredits {
 
       container.innerHTML = `
         <div style="position:relative;width:100%;height:100%;overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px;text-align:center;">
-          <!-- Ambient quiet night backdrop -->
-          <div style="position:absolute;inset:0;background:radial-gradient(circle at 50% 50%, rgba(200,130,148,0.06) 0%, rgba(10,6,8,0.98) 75%);pointer-events:none;"></div>
+          <!-- Ambient quiet midnight backdrop -->
+          <div style="position:absolute;inset:0;background:radial-gradient(circle at 50% 50%, rgba(42,20,29,0.18) 0%, rgba(10,7,9,0.98) 75%);pointer-events:none;"></div>
 
           <!-- Post-Credits Card Container -->
-          <div id="pc-card" style="opacity:0;transform:scale(0.92);background:rgba(26,18,22,0.85);border:1px solid var(--cinema-border);border-radius:16px;padding:24px 20px;max-width:320px;width:100%;box-shadow:0 12px 40px rgba(0,0,0,0.5);z-index:10;">
-            <div class="text-whisper" style="color:var(--cinema-gold);letter-spacing:0.14em;margin-bottom:6px;">EPILOGUE // POST-CREDITS</div>
+          <div id="pc-card" style="opacity:0;transform:scale(0.92);background:rgba(26,13,20,0.94);border:1px solid var(--cinema-border);border-radius:18px;padding:26px 22px;max-width:320px;width:100%;box-shadow:0 16px 45px rgba(0,0,0,0.7);z-index:10;backdrop-filter:blur(10px);">
+            <div class="text-whisper" style="color:var(--cinema-gold);letter-spacing:0.14em;margin-bottom:8px;">EPILOGUE // POST-CREDITS</div>
             
             <h3 class="font-display" style="font-size:1.25rem;color:var(--cinema-text);margin-bottom:8px;font-style:italic;">
               And that's the whole story. 🧿
             </h3>
 
-            <p style="font-size:0.84rem;color:var(--cinema-accent);margin-bottom:16px;font-style:italic;line-height:1.45;">
+            <p style="font-size:0.84rem;color:var(--cinema-accent);margin-bottom:18px;font-style:italic;line-height:1.45;">
               ${c.easterEgg}
             </p>
 
@@ -49,7 +50,7 @@ export class Scene17PostCredits {
 
         <!-- Replay Modal -->
         <div class="modal-overlay" id="pc-replay-modal" role="dialog" aria-modal="true" aria-label="Replay Confirmation">
-          <div class="modal-content" style="background:#1a1216;color:var(--cinema-text);border:1px solid var(--cinema-border);text-align:center;">
+          <div class="modal-content" style="background:rgba(26,13,20,0.98);color:var(--cinema-text);border:1px solid var(--cinema-border);text-align:center;">
             <h3 class="font-display" style="font-size:1.2rem;color:var(--cinema-text);margin-bottom:6px;">
               ${c.replayModal.title}
             </h3>
