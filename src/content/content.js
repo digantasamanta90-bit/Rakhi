@@ -122,7 +122,7 @@ export const content = {
 
   // --- SCENE 5: THE SINCERE PERSONAL LETTER ---
   scene5: {
-    header: "A Note for Anwesha 🧿",
+    header: "A Note for You 💕",
     leadQuote: "Okay... jokes aside for a minute. There's something I actually wanted to tell you.",
     messageParagraphs: [
       "This is the first time I’ve made something like this for Rakhi, and honestly, I wasn’t sure how to do it without overthinking every single detail. 😭",
