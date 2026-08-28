@@ -69,7 +69,7 @@ export class Scene16RakhiFinale {
                   HAPPY RAKHI,
                 </div>
                 <div id="f-greet-name" class="finale-greeting" style="opacity:0;transform:scale(0.85);font-size:clamp(1.75rem,6.8vw,2.8rem);color:var(--cinema-accent);font-weight:700;">
-                  ANWESHA ❤️
+                  To You 💝
                 </div>
               </div>
 

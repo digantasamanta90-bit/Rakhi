@@ -35,7 +35,7 @@ export class Scene07BrokenKitkat {
           </div>
 
           <!-- CRACK Impact Typography -->
-          <div class="text-impact" id="crack-text" style="opacity:0;color:var(--cinema-accent);font-size:clamp(2.2rem,9vw,4rem);letter-spacing:0.18em;margin-top:8px;">CRACK</div>
+          <div class="text-impact" id="crack-text" style="opacity:0;color:var(--cinema-accent);font-size:clamp(2.2rem,9vw,4rem);letter-spacing:0.18em;margin-top:8px;">BROKE</div>
 
           <!-- Subtle Comic Dialogue -->
           <div class="text-dialogue" id="kitkat-msg" style="opacity:0;margin-top:14px;font-size:1.05rem;">

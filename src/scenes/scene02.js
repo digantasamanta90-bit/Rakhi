@@ -20,7 +20,7 @@ export class Scene02Creation {
         <div style="position:relative;width:100%;height:100%;overflow:hidden;display:flex;align-items:center;justify-content:center;">
           <!-- Floating creation fragments with warm parchment frames -->
           <div id="frag-photo1" style="position:absolute;opacity:0;width:65px;height:75px;background:var(--parchment);padding:3px;box-shadow:0 6px 18px rgba(0,0,0,0.6);transform:rotate(-8deg);top:15%;left:10%;border-radius:2px;">
-            <img src="assets/portraits/anwesha3.png" style="width:100%;height:100%;object-fit:cover;" onerror="this.src='assets/portraits/anwesha_hero.png'">
+            <img src="assets/portraits/anwesha15.png" style="width:100%;height:100%;object-fit:cover;" onerror="this.src='assets/portraits/anwesha_hero.png'">
           </div>
           <div id="frag-photo2" style="position:absolute;opacity:0;width:60px;height:70px;background:var(--parchment);padding:3px;box-shadow:0 6px 18px rgba(0,0,0,0.6);transform:rotate(6deg);top:20%;right:10%;border-radius:2px;">
             <img src="assets/portraits/anwesha7.png" style="width:100%;height:100%;object-fit:cover;" onerror="this.src='assets/portraits/anwesha_calm.png'">

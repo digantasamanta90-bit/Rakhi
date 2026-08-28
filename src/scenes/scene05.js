@@ -26,7 +26,7 @@ export class Scene05Panic {
               <div style="font-size:0.55rem;text-align:center;color:var(--cinema-text-subtle);font-family:var(--font-mono);margin-top:2px;">${labels[i]}</div>
             </div>
           `).join('')}
-          <div class="text-impact" id="panic-bus" style="opacity:0;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:20;font-size:clamp(2.5rem,10vw,4.5rem);">BUS</div>
+          <div class="text-impact" id="panic-bus" style="opacity:0;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:20;font-size:clamp(2.5rem,10vw,4.5rem);">Hurry</div>
         </div>
       `;
 

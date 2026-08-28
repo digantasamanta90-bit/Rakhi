@@ -21,7 +21,7 @@ export class Scene04MissedCall {
 
           <div class="phone-mockup" id="phone-ui" style="opacity:0;transform:translateY(30px) scale(0.92);">
             <div class="caller-avatar">
-              <img src="assets/portraits/anwesha_calm.png" alt="Anwesha" onerror="this.src='assets/portraits/anwesha_hero.png'">
+              <img src="assets/portraits/anwesha1.png" alt="Anwesha" onerror="this.src='assets/portraits/anwesha_hero.png'">
             </div>
             <div class="incoming-tag">Incoming Call</div>
             <div class="caller-name">Anwesha</div>
@@ -36,7 +36,7 @@ export class Scene04MissedCall {
             </div>
 
             <div class="chat-bubble" id="chat-msg" style="display:none;opacity:0;transform:translateY(15px);">
-              <div class="text-whisper" style="color:var(--cinema-gold);margin-bottom:6px;">UNREAD MESSAGE • 7:30 AM</div>
+              <div class="text-whisper" style="color:var(--cinema-gold);margin-bottom:6px;">UTTER DISAPPOINTMENT • 7:30 AM</div>
               <p class="text-dialogue" style="font-size:0.95rem;text-align:left;max-width:none;">
                 "Where are you? I'm standing in front of the metro gate, waiting."
               </p>

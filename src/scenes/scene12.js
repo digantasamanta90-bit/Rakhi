@@ -40,14 +40,14 @@ export class Scene12SiblingZone {
           <!-- Master Sequential Stage (Only ONE focal object active at any moment) -->
           <div class="sibling-seq-stage" id="sz-stage">
 
-            <!-- SHOT 2: DIGANTA (THE BROTHER) -->
+            <!-- SHOT 2: ME -->
             <div class="sibling-focal-item" id="sz-focal-diganta">
               <div class="sibling-focal-card" style="border-color:var(--cinema-border);">
                 <div style="width:48px;height:48px;margin:0 auto 10px auto;border-radius:50%;background:rgba(155,93,112,0.14);border:1px solid var(--cinema-accent);display:flex;align-items:center;justify-content:center;font-size:1.5rem;">
-                  👦
+                  <img src="assets/portraits/diganta1.png" alt="Diganta" style="width:100%;height:100%;object-fit:cover;" onerror="this.src='assets/portraits/diganta1.png';">
                 </div>
                 <div class="text-whisper" style="color:var(--cinema-accent);font-size:0.62rem;letter-spacing:0.14em;margin-bottom:4px;">THE ARCHETYPE</div>
-                <h3 style="font-family:var(--font-display);font-size:1.15rem;color:var(--cinema-text);margin:0 0 8px 0;font-style:italic;">Diganta (Brother)</h3>
+                <h3 style="font-family:var(--font-display);font-size:1.15rem;color:var(--cinema-text);margin:0 0 8px 0;font-style:italic;">ME</h3>
                 <div style="font-size:0.78rem;color:var(--cinema-text-muted);line-height:1.45;margin-bottom:8px;">
                   "Professional overthinker. Occasional nuisance. Effort: unnecessarily high."
                 </div>
