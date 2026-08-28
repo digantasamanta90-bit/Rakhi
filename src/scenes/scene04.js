@@ -1,202 +1,113 @@
 /**
- * SCENE 4 — 04_THE_GIFT
- * Dual physical gifts reveal (KitKat Rich + Bellavita),
- * Research report with Monojit consultation credit, and real-world physical handoff.
+ * BEAT 04 — 7:30 AM / THE CALL
+ * Clock counts to 7:30. Phone lights up. ANWESHA calling.
+ * User taps to answer. Message reveals.
  */
 
-import { delay } from '../js/utils.js';
-import { audio } from '../js/audioController.js';
-import { state } from '../js/interactionState.js';
-import { content } from '../content/content.js';
-
-export function createScene04(sceneManager) {
-  const container = document.getElementById('scene-04');
-  const c = content.scene4;
-
-  container.innerHTML = `
-    <div class="scene-content">
-      <div class="scrapbook-card">
-        <div style="text-align: center; margin-bottom: 0.4rem;">
-          <p class="body-lead" style="font-size: 0.8rem; color: var(--rose-primary); font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 2px;">
-            ${c.introLead}
-          </p>
-          <h2 class="font-display" style="font-size: clamp(1.15rem, 3.8vw, 1.45rem); color: var(--text-plum-dark); margin-bottom: 2px; font-style: italic;">
-            ${c.giftCountTease}
-          </h2>
-        </div>
-
-        <!-- Dual Gift Cards Container -->
-        <div class="gift-cards-container">
-          <!-- Gift 01: KitKat Rich -->
-          <div class="gift-feature-card chocolate" id="s4-kitkat-card" role="button" aria-label="Inspect KitKat Rich" tabindex="0">
-            <img src="assets/gifts/kitkat.png" alt="KitKat Rich" class="gift-img-thumb" onerror="this.src='assets/portraits/anwesha8.png';" />
-            <div class="gift-info">
-              <div class="gift-tag">${c.gift1.tag}</div>
-              <div class="gift-title">${c.gift1.title}</div>
-              <div class="gift-desc">Crispy wafer in rich chocolate. Selection verified by research. 🏆</div>
-              <button class="btn-secondary" id="s4-report-btn" style="font-size: 0.72rem; padding: 0.25rem 0.6rem; margin-top: 4px; border-color: var(--choco-border);">
-                <span>${c.gift1.reportButton}</span>
-              </button>
-            </div>
-          </div>
-
-          <!-- Gift 02: Bellavita -->
-          <div class="gift-feature-card perfume" id="s4-bellavita-card" role="button" aria-label="Inspect Bellavita" tabindex="0">
-            <img src="assets/gifts/bellavita.png" alt="Bellavita" class="gift-img-thumb" onerror="this.src='assets/portraits/anwesha10.png';" />
-            <div class="gift-info">
-              <div class="gift-tag" style="color: #a64b6e;">${c.gift2.tag}</div>
-              <div class="gift-title">${c.gift2.title}</div>
-              <div class="gift-desc">${c.gift2.shortSummary} ${c.gift2.punchline}</div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Real-World Physical Handoff -->
-        <div style="background: var(--rose-pale); border-left: 3px solid var(--rose-primary); padding: 0.55rem 0.75rem; border-radius: 0 8px 8px 0; margin-top: 0.5rem; text-align: left;">
-          <p class="body-lead" style="font-weight: 600; color: var(--text-plum-dark); font-size: 0.84rem; margin-bottom: 2px;">
-            ${c.physicalHandoff.lead}
-          </p>
-          <p class="body-lead" style="color: var(--rose-primary); font-size: 0.88rem; margin-bottom: 2px; font-family: var(--font-display); font-style: italic;">
-            ${c.physicalHandoff.action}
-          </p>
-          <p class="body-subtle" style="font-size: 0.78rem;">
-            ${c.physicalHandoff.affirmation} ${c.physicalHandoff.closing}
-          </p>
-        </div>
-      </div>
-
-      <div id="s4-cta-wrap" style="margin-top: 0.6rem;">
-        <button class="btn-primary" id="s4-cta-btn">
-          <span>${c.ctaText}</span>
-          <i class="fa-solid fa-arrow-right" style="font-size: 0.8rem;" aria-hidden="true"></i> 🧿
-        </button>
-      </div>
-    </div>
-
-    <!-- Chocolate Research Report Modal -->
-    <div class="modal-overlay" id="s4-report-modal" role="dialog" aria-modal="true" aria-label="Gift Research Report">
-      <div class="modal-content">
-        <button class="modal-close-btn" id="s4-modal-close" aria-label="Close modal">✕</button>
-        <h3 class="font-display" style="font-size: 1.2rem; color: var(--text-plum-dark); margin-bottom: 0.3rem; text-align: center;">
-          ${c.report.title}
-        </h3>
-        <p style="text-align: center; font-size: 0.72rem; letter-spacing: 0.1em; color: var(--text-plum-subtle); margin-bottom: 0.6rem;">
-          ━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-        </p>
-
-        <table class="report-table">
-          <tr>
-            <td>Subject:</td>
-            <td><strong>${c.report.subject}</strong></td>
-          </tr>
-          <tr>
-            <td>Requirements:</td>
-            <td>
-              ${c.report.requirements.join('<br>')}
-            </td>
-          </tr>
-          <tr>
-            <td>Candidates:</td>
-            <td>
-              ${c.report.candidates.join('<br>')}<br>
-              <strong style="color: var(--rose-primary);">${c.report.finalSelection}</strong>
-            </td>
-          </tr>
-          <tr>
-            <td>Lead Researcher:</td>
-            <td><strong>${c.report.researcher}</strong></td>
-          </tr>
-          <tr>
-            <td>Research Assistant:</td>
-            <td>
-              <strong style="color: var(--rose-primary);">${c.report.assistant}</strong><br>
-              <span style="font-size: 0.74rem; color: var(--text-plum-subtle);">${c.report.assistantRole}</span>
-            </td>
-          </tr>
-        </table>
-
-        <div style="background: var(--rose-pale); padding: 0.5rem 0.65rem; border-radius: 8px; margin: 0.5rem 0; font-size: 0.78rem; font-style: italic; color: var(--text-plum-dark);">
-          ${c.report.assistantNote}
-        </div>
-
-        <p style="text-align: center; font-weight: 700; color: var(--text-plum-dark); font-size: 0.88rem; margin-top: 0.4rem; font-family: var(--font-display);">
-          Final Verdict: Both Gifts Approved for Rakhi 🧿
-        </p>
-      </div>
-    </div>
-  `;
-
-  let hasEntered = false;
-
-  async function enter() {
-    if (hasEntered) return;
-    hasEntered = true;
-
-    const kitkatCard = document.getElementById('s4-kitkat-card');
-    const bellavitaCard = document.getElementById('s4-bellavita-card');
-    const reportBtn = document.getElementById('s4-report-btn');
-    const reportModal = document.getElementById('s4-report-modal');
-    const modalClose = document.getElementById('s4-modal-close');
-    const ctaBtn = document.getElementById('s4-cta-btn');
-
-    if (kitkatCard) {
-      kitkatCard.addEventListener('click', (e) => {
-        if (e.target.closest('#s4-report-btn')) return;
-        audio.playSparkleSfx();
-        if (window.appParticleCanvas) {
-          const rect = kitkatCard.getBoundingClientRect();
-          window.appParticleCanvas.triggerBurst(rect.left + rect.width / 2, rect.top + rect.height / 2, 20);
-        }
-        state.unlockAchievement(
-          'chocolate_verified',
-          'Note Unlocked',
-          'KitKat Rich Approved 🍫',
-          '🍫'
-        );
-      });
-    }
-
-    if (bellavitaCard) {
-      bellavitaCard.addEventListener('click', () => {
-        audio.playSparkleSfx();
-        if (window.appParticleCanvas) {
-          const rect = bellavitaCard.getBoundingClientRect();
-          window.appParticleCanvas.triggerBurst(rect.left + rect.width / 2, rect.top + rect.height / 2, 20);
-        }
-        state.unlockAchievement(
-          'bellavita_verified',
-          'Note Unlocked',
-          'Bellavita Fragrance Set Approved 🌸',
-          '🌸'
-        );
-      });
-    }
-
-    if (reportBtn && reportModal) {
-      reportBtn.addEventListener('click', () => {
-        audio.playSparkleSfx();
-        reportModal.classList.add('active');
-        state.recordDiscovery('chocolate_report');
-      });
-    }
-
-    const closeModal = () => {
-      if (reportModal) reportModal.classList.remove('active');
-    };
-
-    if (modalClose) modalClose.addEventListener('click', closeModal);
-    if (reportModal) {
-      reportModal.addEventListener('click', (e) => {
-        if (e.target === reportModal) closeModal();
-      });
-    }
-
-    if (ctaBtn) {
-      ctaBtn.addEventListener('click', () => {
-        sceneManager.nextScene();
-      });
-    }
+export class Scene04MissedCall {
+  constructor({ manager, audio, particles }) {
+    this.manager = manager;
+    this.audio = audio;
+    this.particles = particles;
+    this.tl = null;
+    this.ringInterval = null;
   }
 
-  return { enter };
+  enter(container) {
+    return new Promise((resolve) => {
+      container.innerHTML = `
+        <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;width:100%;height:100%;gap:16px;">
+          <div class="text-timestamp" id="s4-clock" style="font-size:clamp(2rem,8vw,3.5rem);">7:29:58</div>
+
+          <div class="phone-mockup" id="phone-ui" style="opacity:0;transform:translateY(30px) scale(0.92);">
+            <div class="caller-avatar">
+              <img src="assets/portraits/anwesha_calm.png" alt="Anwesha" onerror="this.src='assets/portraits/anwesha_hero.png'">
+            </div>
+            <div class="incoming-tag">Incoming Call</div>
+            <div class="caller-name">Anwesha</div>
+
+            <div class="call-actions" id="call-actions">
+              <button class="call-btn decline" id="decline-call" aria-label="Decline">
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="white"><path d="M12 9c-1.6 0-3.15.25-4.6.72v3.1c0 .39-.23.74-.56.9-.98.49-1.87 1.12-2.66 1.85-.18.18-.43.28-.7.28-.28 0-.53-.11-.71-.29L.29 13.08a.996.996 0 0 1 0-1.41C2.5 9.4 6.95 8 12 8s9.5 1.4 11.71 3.67c.39.39.39 1.02 0 1.41l-2.48 2.48c-.18.18-.43.29-.71.29-.27 0-.52-.11-.7-.28-.79-.74-1.69-1.36-2.67-1.85-.33-.16-.56-.5-.56-.9v-3.1C15.15 9.25 13.6 9 12 9z"/></svg>
+              </button>
+              <button class="call-btn accept" id="accept-call" aria-label="Accept">
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="white"><path d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56a.977.977 0 0 0-1.01.24l-2.2 2.2a15.053 15.053 0 0 1-6.59-6.59l2.2-2.21a.96.96 0 0 0 .25-1.01A11.36 11.36 0 0 1 8.57 3.99c0-.55-.45-1-1-1H4.07c-.55 0-1 .45-1 1 0 9.39 7.61 17 17 17 .55 0 1-.45 1-1v-3.49c-.01-.55-.46-1.01-1.06-1.12z"/></svg>
+              </button>
+            </div>
+
+            <div class="chat-bubble" id="chat-msg" style="display:none;opacity:0;transform:translateY(15px);">
+              <div class="text-whisper" style="color:var(--cinema-gold);margin-bottom:6px;">UNREAD MESSAGE • 7:30 AM</div>
+              <p class="text-dialogue" style="font-size:0.95rem;text-align:left;max-width:none;">
+                "Where are you? I'm standing in front of the metro gate, waiting."
+              </p>
+            </div>
+          </div>
+        </div>
+      `;
+
+      const clockEl = container.querySelector('#s4-clock');
+      const phoneUi = container.querySelector('#phone-ui');
+      const acceptBtn = container.querySelector('#accept-call');
+      const declineBtn = container.querySelector('#decline-call');
+      const callActions = container.querySelector('#call-actions');
+      const chatMsg = container.querySelector('#chat-msg');
+
+      // Show audio toggle
+      const audioToggle = document.getElementById('audio-toggle');
+      if (audioToggle) audioToggle.classList.add('visible');
+
+      this.tl = gsap.timeline();
+
+      this.tl
+        .to({}, { duration: 1 })
+        .call(() => { clockEl.textContent = '7:29:59'; })
+        .to({}, { duration: 1 })
+        .call(() => {
+          clockEl.textContent = '7:30:00';
+          try { this.audio.playUnlockSfx(); } catch(e) {}
+        })
+        .to({}, { duration: 0.5 })
+        .to(phoneUi, { opacity: 1, y: 0, scale: 1, duration: 0.7, ease: 'back.out(1.3)' })
+        .call(() => { this.startRinging(phoneUi); });
+
+      const handleAnswer = () => {
+        this.stopRinging();
+        try { this.audio.playChime(440, 0.2); } catch(e) {}
+        callActions.style.display = 'none';
+        chatMsg.style.display = 'block';
+
+        gsap.to(chatMsg, {
+          opacity: 1, y: 0, duration: 0.8, ease: 'power2.out',
+          onComplete: () => {
+            setTimeout(() => {
+              this.manager.next();
+              resolve();
+            }, 3000);
+          }
+        });
+      };
+
+      acceptBtn.addEventListener('click', handleAnswer);
+      declineBtn.addEventListener('click', handleAnswer);
+    });
+  }
+
+  startRinging(phoneUi) {
+    this.ringInterval = setInterval(() => {
+      if (phoneUi) {
+        gsap.fromTo(phoneUi, { x: -3 }, { x: 3, duration: 0.05, repeat: 6, yoyo: true });
+      }
+      try { this.audio.playPhoneVibrate(); } catch(e) {}
+    }, 700);
+  }
+
+  stopRinging() {
+    if (this.ringInterval) clearInterval(this.ringInterval);
+  }
+
+  exit() {
+    this.stopRinging();
+    if (this.tl) this.tl.kill();
+    return Promise.resolve();
+  }
 }

@@ -1,102 +1,102 @@
 /**
- * SCENE 5 — 05_THE_MESSAGE
- * Calm, spacious personal letter, full editorial portrait illustration (anwesha_calm.png),
- * warm paper card, handwritten signature, and seamless light aesthetic.
+ * BEAT 05 — PANIC
+ * Fast kinetic montage. Objects fly. Timer counts down.
+ * Ends with "BUS".
  */
 
-import { delay } from '../js/utils.js';
-import { audio } from '../js/audioController.js';
-import { state } from '../js/interactionState.js';
-import { content } from '../content/content.js';
-import { renderPortrait } from '../components/PortraitFrame.js';
-
-export function createScene05(sceneManager) {
-  const container = document.getElementById('scene-05');
-  const c = content.scene5;
-
-  container.innerHTML = `
-    <div class="scene-content">
-      <!-- Title Header -->
-      <div class="s5-header">
-        <h2 class="font-display s5-title">
-          ${c.header}
-        </h2>
-      </div>
-
-      <!-- Full Editorial Portrait (Complete illustration visible, uncropped natural aspect ratio) -->
-      <div class="s5-portrait-container">
-        ${renderPortrait('assets/portraits/anwesha_calm.png', 'Anwesha', '', 'editorial')}
-      </div>
-
-      <!-- Sincere Letter Card -->
-      <div class="scrapbook-card s5-letter-card">
-        <div class="s5-message-body">
-          <p class="s5-lead-quote">
-            ${c.leadQuote}
-          </p>
-          ${c.messageParagraphs.map(p => `
-            <p class="message-paragraph">${p}</p>
-          `).join('')}
-          <p class="s5-closing-joke">
-            ${c.closingJoke}
-          </p>
-        </div>
-
-        <!-- Handwritten Signature Block -->
-        <div class="signature-block">
-          <div class="s5-keep-wrapper">
-            <button class="btn-secondary" id="s5-keep-btn" style="font-size: 0.76rem; padding: 0.35rem 0.8rem;">
-              <span>${c.keepButton}</span>
-            </button>
-            <div id="s5-keep-feedback" class="s5-keep-feedback">
-              ${c.keepSuccess}
-            </div>
-          </div>
-          <div class="s5-sig-author">
-            <span class="s5-sig-prefix">${c.signature.prefix}</span><br>
-            <span class="handwritten-sig" style="font-size: 1.15rem;">${c.signature.author}</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Tone Reset & Primary CTA -->
-      <div class="s5-cta-section">
-        <p class="body-subtle s5-cta-lead">
-          ${c.ctaLead}
-        </p>
-        <button class="btn-primary" id="s5-cta-btn">
-          <span>${c.ctaText}</span>
-          <i class="fa-solid fa-arrow-right" style="font-size: 0.8rem;" aria-hidden="true"></i> 💀
-        </button>
-      </div>
-    </div>
-  `;
-
-  let hasEntered = false;
-
-  async function enter() {
-    if (hasEntered) return;
-    hasEntered = true;
-
-    const keepBtn = document.getElementById('s5-keep-btn');
-    const keepFeedback = document.getElementById('s5-keep-feedback');
-    const ctaBtn = document.getElementById('s5-cta-btn');
-
-    if (keepBtn && keepFeedback) {
-      keepBtn.addEventListener('click', () => {
-        audio.playSparkleSfx();
-        keepBtn.style.display = 'none';
-        keepFeedback.style.display = 'block';
-        state.recordDiscovery('kept_message');
-      });
-    }
-
-    if (ctaBtn) {
-      ctaBtn.addEventListener('click', () => {
-        sceneManager.nextScene();
-      });
-    }
+export class Scene05Panic {
+  constructor({ manager, audio, particles }) {
+    this.manager = manager;
+    this.audio = audio;
+    this.particles = particles;
+    this.tl = null;
   }
 
-  return { enter };
+  enter(container) {
+    return new Promise((resolve) => {
+      const items = ['📱', '👕', '🎒', '💻', '🔌', '👛', '🎁', '👟'];
+      const labels = ['PHONE', 'SHIRT', 'BAG', 'LAPTOP', 'CHARGER', 'WALLET', 'GIFT', 'SHOES'];
+
+      container.innerHTML = `
+        <div style="position:relative;width:100%;height:100%;overflow:hidden;">
+          <div class="text-timestamp" id="panic-timer" style="position:absolute;top:10%;left:50%;transform:translateX(-50%);font-size:clamp(1.5rem,5vw,2.5rem);color:var(--cinema-accent);z-index:10;">15:00</div>
+          ${items.map((emoji, i) => `
+            <div class="panic-object" id="panic-${i}" style="font-size:clamp(1.5rem,5vw,2.5rem);top:${20 + Math.random() * 55}%;left:${10 + Math.random() * 75}%;">
+              ${emoji}
+              <div style="font-size:0.55rem;text-align:center;color:var(--cinema-text-subtle);font-family:var(--font-mono);margin-top:2px;">${labels[i]}</div>
+            </div>
+          `).join('')}
+          <div class="text-impact" id="panic-bus" style="opacity:0;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:20;font-size:clamp(2.5rem,10vw,4.5rem);">BUS</div>
+        </div>
+      `;
+
+      const timerEl = container.querySelector('#panic-timer');
+      const busEl = container.querySelector('#panic-bus');
+
+      this.tl = gsap.timeline({
+        onComplete: () => {
+          setTimeout(() => {
+            this.manager.next();
+            resolve();
+          }, 1500);
+        }
+      });
+
+      // Objects fly in rapidly
+      items.forEach((_, i) => {
+        const el = container.querySelector(`#panic-${i}`);
+        if (!el) return;
+
+        const startX = (Math.random() - 0.5) * 200;
+        const startY = (Math.random() > 0.5 ? -1 : 1) * 150;
+
+        this.tl.fromTo(el,
+          { opacity: 0, x: startX, y: startY, scale: 0.3, rotation: Math.random() * 90 - 45 },
+          { opacity: 1, x: 0, y: 0, scale: 1, rotation: 0, duration: 0.3, ease: 'back.out(1.5)' },
+          0.2 + i * 0.15
+        );
+      });
+
+      // Timer countdown
+      const times = ['14:32', '12:06', '09:47', '06:21', '03:15', '01:08', '00:23', '00:00'];
+      times.forEach((t, i) => {
+        this.tl.call(() => {
+          timerEl.textContent = t;
+          try { this.audio.playChime(600 - i * 30, 0.08); } catch(e) {}
+        }, [], 1.5 + i * 0.35);
+      });
+
+      // Screen shake
+      this.tl.to(container, {
+        x: 4, duration: 0.04, repeat: 8, yoyo: true, ease: 'power1.inOut'
+      }, 2);
+
+      // Objects scatter outward
+      items.forEach((_, i) => {
+        const el = container.querySelector(`#panic-${i}`);
+        if (!el) return;
+        const angle = (i / items.length) * Math.PI * 2;
+        this.tl.to(el, {
+          x: Math.cos(angle) * 300,
+          y: Math.sin(angle) * 300,
+          opacity: 0,
+          scale: 0.5,
+          duration: 0.4,
+          ease: 'power2.in'
+        }, 4.3);
+      });
+
+      // BUS impact
+      this.tl
+        .to(timerEl, { opacity: 0, duration: 0.3 }, 4.5)
+        .call(() => { try { this.audio.playGlitchSfx(); } catch(e) {} }, [], 4.9)
+        .fromTo(busEl, { opacity: 0, scale: 3 }, { opacity: 1, scale: 1, duration: 0.2, ease: 'power4.out' }, 5)
+        .to({}, { duration: 1 });
+    });
+  }
+
+  exit() {
+    if (this.tl) this.tl.kill();
+    return Promise.resolve();
+  }
 }

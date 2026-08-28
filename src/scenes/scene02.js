@@ -1,145 +1,105 @@
 /**
- * SCENE 2 — 02_RAKHI_REVEAL
- * Morning light reveal, Fraunces typography, handcrafted Rakhi, anwesha_hero,
- * chosen-sibling acknowledgement copy, and Monojit credit.
+ * BEAT 02 — BUILDING SOMETHING FOR HER
+ * Animated composition: `rakhi_protocol.sh` log lines, overthinking calculation,
+ * photographs, code tags, and Rakhi symbols assemble.
+ * Timestamps accelerate. Ends with "FOR ANWESHA".
  */
 
-import { delay } from '../js/utils.js';
-import { audio } from '../js/audioController.js';
-import { state } from '../js/interactionState.js';
-import { content } from '../content/content.js';
-import { renderRakhiSvg } from '../components/RakhiVisual.js';
-import { renderPortrait } from '../components/PortraitFrame.js';
-
-export function createScene02(sceneManager) {
-  const container = document.getElementById('scene-02');
-  const c = content.scene2;
-
-  container.innerHTML = `
-    <div class="scene-content">
-      <div class="scene-header" style="width: 100%;">
-        <div class="title-sub" id="s2-title-top" style="opacity: 0; transition: opacity 0.8s ease;">${c.preTitle} ${c.subTitle}</div>
-        <h1 class="hero-name" id="s2-title-name" style="opacity: 0; transform: scale(0.96); transition: all 0.9s var(--ease-spring); margin: 0.2rem 0;">${c.name} 🧿</h1>
-        <div class="title-grand" id="s2-title-main" style="opacity: 0; font-size: clamp(1.2rem, 4vw, 1.6rem); transition: opacity 0.8s ease; color: var(--rose-primary); font-style: italic;">${c.greeting}</div>
-      </div>
-
-      <div class="s2-visual-grid">
-        <!-- Rakhi Hero Graphic -->
-        <div class="rakhi-hero-wrapper" id="s2-rakhi-wrap" role="button" aria-label="Tap the Rakhi" tabindex="0">
-          ${renderRakhiSvg({ size: 150, id: 's2-rakhi' })}
-        </div>
-
-        <!-- Hero Portrait -->
-        <div id="s2-portrait-wrap" style="opacity: 0; transform: translateY(10px); transition: all 0.8s var(--ease-soft);">
-          ${renderPortrait('assets/portraits/anwesha_hero.png', 'Anwesha', 'Hero Portrait', 'framed')}
-        </div>
-      </div>
-
-      <!-- Sincere Chosen-Sibling & Monojit Credit Card -->
-      <div class="scrapbook-card" id="s2-copy-card" style="opacity: 0; transform: translateY(10px); transition: all 0.8s var(--ease-soft);">
-        <p class="body-lead" style="margin-bottom: 0.35rem; font-weight: 600; color: var(--text-plum-dark);">
-          ${c.chosenSiblingLines[0]}
-        </p>
-        <p class="body-lead" style="color: var(--rose-primary); margin-bottom: 0.45rem; font-family: var(--font-display); font-size: 1.05rem; font-style: italic;">
-          ${c.chosenSiblingLines[1]} ${c.chosenSiblingLines[2]}
-        </p>
-        <div style="font-size: 0.84rem; color: var(--text-plum-muted); line-height: 1.5; border-top: 1px dashed var(--border-delicate); padding-top: 0.4rem; margin-top: 0.4rem;">
-          <p style="margin-bottom: 2px;">${c.monojitCreditLines[0]}</p>
-          <p style="margin-bottom: 2px;">${c.monojitCreditLines[1]}</p>
-          <p style="font-style: italic; color: var(--rose-primary); font-weight: 500;">${c.monojitCreditLines[2]} ${c.monojitCreditLines[3]}</p>
-        </div>
-      </div>
-
-      <div id="s2-cta-wrap" style="opacity: 0; transition: opacity 0.8s ease; margin-top: 0.6rem;">
-        <button class="btn-primary" id="s2-cta-btn">
-          <span>${c.ctaText}</span>
-          <i class="fa-solid fa-arrow-right" style="font-size: 0.8rem;" aria-hidden="true"></i>
-        </button>
-      </div>
-    </div>
-  `;
-
-  let hasEntered = false;
-
-  async function enter() {
-    if (hasEntered) return;
-    hasEntered = true;
-
-    const titleTop = document.getElementById('s2-title-top');
-    const titleName = document.getElementById('s2-title-name');
-    const titleMain = document.getElementById('s2-title-main');
-    const portraitWrap = document.getElementById('s2-portrait-wrap');
-    const copyCard = document.getElementById('s2-copy-card');
-    const ctaWrap = document.getElementById('s2-cta-wrap');
-    const ctaBtn = document.getElementById('s2-cta-btn');
-    const rakhiWrap = document.getElementById('s2-rakhi-wrap');
-
-    // Staged Title Reveal
-    await delay(250);
-    if (titleTop) titleTop.style.opacity = '1';
-
-    await delay(400);
-    if (titleName) {
-      titleName.style.opacity = '1';
-      titleName.style.transform = 'scale(1)';
-    }
-
-    await delay(350);
-    if (titleMain) titleMain.style.opacity = '1';
-
-    // Portrait & Copy Reveal
-    await delay(500);
-    if (portraitWrap) {
-      portraitWrap.style.opacity = '1';
-      portraitWrap.style.transform = 'translateY(0)';
-    }
-
-    await delay(400);
-    if (copyCard) {
-      copyCard.style.opacity = '1';
-      copyCard.style.transform = 'translateY(0)';
-    }
-
-    // Interactive Rakhi Tap
-    let tapCount = 0;
-    if (rakhiWrap) {
-      const handleRakhiTap = () => {
-        tapCount++;
-        audio.playSparkleSfx();
-        
-        if (window.appParticleCanvas) {
-          const rect = rakhiWrap.getBoundingClientRect();
-          window.appParticleCanvas.triggerBurst(rect.left + rect.width / 2, rect.top + rect.height / 2, 20);
-        }
-
-        if (tapCount === 1) {
-          state.unlockAchievement(
-            'best_sister',
-            'Note Unlocked',
-            'Best Sister Detected 🏆',
-            '🏆'
-          );
-        }
-      };
-
-      rakhiWrap.addEventListener('click', handleRakhiTap);
-      rakhiWrap.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter' || e.key === ' ') handleRakhiTap();
-      });
-    }
-
-    // Delayed CTA Reveal
-    await delay(800);
-    if (ctaWrap) {
-      ctaWrap.style.opacity = '1';
-    }
-
-    if (ctaBtn) {
-      ctaBtn.addEventListener('click', () => {
-        sceneManager.nextScene();
-      });
-    }
+export class Scene02Creation {
+  constructor({ manager, audio, particles }) {
+    this.manager = manager;
+    this.audio = audio;
+    this.particles = particles;
+    this.tl = null;
   }
 
-  return { enter };
+  enter(container) {
+    return new Promise((resolve) => {
+      container.innerHTML = `
+        <div style="position:relative;width:100%;height:100%;overflow:hidden;display:flex;align-items:center;justify-content:center;">
+          <!-- Floating creation fragments -->
+          <div id="frag-photo1" style="position:absolute;opacity:0;width:65px;height:75px;background:#fff;padding:3px;box-shadow:0 4px 14px rgba(0,0,0,0.4);transform:rotate(-8deg);top:15%;left:10%;">
+            <img src="assets/portraits/anwesha3.png" style="width:100%;height:100%;object-fit:cover;" onerror="this.src='assets/portraits/anwesha_hero.png'">
+          </div>
+          <div id="frag-photo2" style="position:absolute;opacity:0;width:60px;height:70px;background:#fff;padding:3px;box-shadow:0 4px 14px rgba(0,0,0,0.4);transform:rotate(6deg);top:20%;right:10%;">
+            <img src="assets/portraits/anwesha7.png" style="width:100%;height:100%;object-fit:cover;" onerror="this.src='assets/portraits/anwesha_calm.png'">
+          </div>
+          <div id="frag-rakhi" style="position:absolute;opacity:0;bottom:20%;left:12%;font-size:2.2rem;">🧿</div>
+          <div id="frag-gift" style="position:absolute;opacity:0;bottom:18%;right:12%;font-size:1.8rem;">🎁</div>
+          <div id="frag-terminal" style="position:absolute;opacity:0;top:28%;left:6%;font-family:var(--font-mono);font-size:0.62rem;color:var(--cinema-accent);background:rgba(200,130,148,0.08);padding:4px 8px;border-radius:4px;border:1px solid var(--cinema-border);">
+            ./rakhi_protocol.sh --target=Anwesha
+          </div>
+          <div id="frag-overthink" style="position:absolute;opacity:0;bottom:30%;right:6%;font-family:var(--font-mono);font-size:0.62rem;color:var(--cinema-gold);background:rgba(200,162,72,0.08);padding:4px 8px;border-radius:4px;border:1px solid rgba(200,162,72,0.2);">
+            Calculating overthinking level: ∞
+          </div>
+
+          <!-- Timestamps -->
+          <div id="timestamps" style="position:absolute;top:8%;right:8%;text-align:right;">
+            <div class="text-timestamp-sm" id="ts1" style="opacity:0;">11:48 PM</div>
+            <div class="text-timestamp-sm" id="ts2" style="opacity:0;">01:17 AM</div>
+            <div class="text-timestamp-sm" id="ts3" style="opacity:0;">02:53 AM</div>
+            <div class="text-timestamp-sm" id="ts4" style="opacity:0;color:var(--cinema-accent);">04:30 AM</div>
+          </div>
+
+          <!-- Center reveal -->
+          <div style="display:flex;flex-direction:column;align-items:center;gap:12px;z-index:10;text-align:center;padding:0 20px;">
+            <div class="text-whisper" id="s2-building" style="opacity:0;">BUILDING SOMETHING</div>
+            <div class="text-impact" id="s2-for" style="opacity:0;font-size:clamp(1.8rem,7vw,3rem);">FOR ANWESHA</div>
+            <div class="text-emotional" id="s2-sub" style="opacity:0;font-size:clamp(0.95rem,3.2vw,1.15rem);">Every detail crafted with intention.</div>
+          </div>
+        </div>
+      `;
+
+      const frags = ['frag-photo1', 'frag-photo2', 'frag-rakhi', 'frag-gift', 'frag-terminal', 'frag-overthink'];
+      const timestamps = ['ts1', 'ts2', 'ts3', 'ts4'];
+      const building = container.querySelector('#s2-building');
+      const forEl = container.querySelector('#s2-for');
+      const sub = container.querySelector('#s2-sub');
+
+      this.tl = gsap.timeline({
+        onComplete: () => {
+          setTimeout(() => {
+            this.manager.next();
+            resolve();
+          }, 2500);
+        }
+      });
+
+      // Fragments fly in
+      frags.forEach((id, i) => {
+        const el = container.querySelector(`#${id}`);
+        if (el) {
+          this.tl.to(el, {
+            opacity: 1,
+            y: -10 + Math.random() * 20,
+            duration: 0.5,
+            ease: 'back.out(1.2)'
+          }, 0.3 + i * 0.25);
+        }
+      });
+
+      // Timestamps appear rapidly
+      timestamps.forEach((id, i) => {
+        const el = container.querySelector(`#${id}`);
+        if (el) {
+          this.tl.to(el, { opacity: 0.7, duration: 0.3 }, 1.8 + i * 0.35);
+        }
+      });
+
+      // Center text reveal
+      this.tl
+        .to(building, { opacity: 1, duration: 0.8 }, 3.2)
+        .call(() => { try { this.audio.playSparkleSfx(); } catch(e) {} }, [], 3.8)
+        .to(forEl, { opacity: 1, scale: 1, duration: 1, ease: 'power2.out' }, 3.8)
+        .to(sub, { opacity: 1, duration: 0.8 }, 4.8)
+        .to(frags.map(id => container.querySelector(`#${id}`)).filter(Boolean), {
+          opacity: 0.2, y: '+=15', duration: 1, stagger: 0.1
+        }, 5.2);
+    });
+  }
+
+  exit() {
+    if (this.tl) this.tl.kill();
+    return Promise.resolve();
+  }
 }
