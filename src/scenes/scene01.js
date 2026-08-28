@@ -16,7 +16,7 @@ export class Scene01Clock {
     return new Promise((resolve) => {
       container.innerHTML = `
         <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;width:100%;height:100%;padding:20px;">
-          <div class="text-whisper" id="s1-date" style="opacity:0;">AUGUST 2026 • LATE NIGHT</div>
+          <div class="text-whisper" id="s1-date" style="opacity:0;">AUGUST 28, 2026, FRIDAY • LATE NIGHT</div>
           <div class="text-timestamp" id="s1-clock" style="margin:24px 0;opacity:0;">4:27 AM</div>
           <div id="s1-text" style="opacity:0;min-height:2em;">
             <span class="text-dialogue" id="s1-msg"></span><span class="cursor-blink"></span>

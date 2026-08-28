@@ -38,7 +38,7 @@ export class Scene04MissedCall {
             <div class="chat-bubble" id="chat-msg" style="display:none;opacity:0;transform:translateY(15px);">
               <div class="text-whisper" style="color:var(--cinema-gold);margin-bottom:6px;">UTTER DISAPPOINTMENT • 7:30 AM</div>
               <p class="text-dialogue" style="font-size:0.95rem;text-align:left;max-width:none;">
-                "Where are you? I'm standing in front of the metro gate, waiting."
+                "Where are you?"
               </p>
             </div>
           </div>

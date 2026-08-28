@@ -62,7 +62,7 @@ export class Scene06Journey {
           <!-- Reflection text -->
           <div style="position:absolute;bottom:32%;left:50%;transform:translateX(-50%);z-index:12;text-align:center;width:90%;">
             <div class="text-dialogue" id="j-thought" style="opacity:0;font-size:clamp(0.85rem,3vw,1rem);margin:auto;">
-              She was waiting. And I wasn't there.
+              You were waiting but I never made it till there.
             </div>
           </div>
 

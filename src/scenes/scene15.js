@@ -24,13 +24,13 @@ export class Scene15Apology {
           <!-- Paced thought lines (Single focal area) -->
           <div id="a-text-chamber" style="position:relative;width:100%;max-width:320px;min-height:160px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:0 20px;z-index:10;">
             <p class="text-dialogue" id="at-1" style="opacity:0;font-size:clamp(0.95rem,3.5vw,1.15rem);color:var(--cinema-text-muted);margin-bottom:8px;">
-              I messed up.
+              I ruined Friday
             </p>
             <p class="text-dialogue" id="at-2" style="opacity:0;font-size:clamp(0.98rem,3.6vw,1.18rem);color:var(--cinema-text);margin-bottom:12px;">
-              I'm sorry.
+              I'm sorry for that.
             </p>
             <p class="text-dialogue" id="at-3" style="opacity:0;font-size:clamp(0.92rem,3.4vw,1.1rem);color:var(--cinema-text-muted);margin-bottom:6px;">
-              Not exactly how I imagined this day.
+              Not exactly how I imagined that day.
             </p>
             <p class="text-emotional" id="at-4" style="opacity:0;font-size:clamp(1.02rem,3.8vw,1.25rem);color:var(--cinema-accent);margin-bottom:6px;">
               But maybe that's okay.
@@ -39,7 +39,7 @@ export class Scene15Apology {
               Some moments don't happen the way you planned.
             </p>
             <p class="text-emotional" id="at-6" style="opacity:0;font-size:clamp(1.05rem,4vw,1.28rem);color:var(--cinema-gold);font-weight:600;">
-              You just make sure the next one does.
+              But I'll make sure the next one does.
             </p>
           </div>
         </div>

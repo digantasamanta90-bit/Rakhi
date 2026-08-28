@@ -29,7 +29,7 @@ export class Scene03Alarms {
           <div class="text-whisper" id="alarm-label" style="color:var(--cinema-accent);">ALARM 1 OF 3</div>
           <button class="alarm-dismiss-btn" id="dismiss-btn">Dismiss</button>
           <div class="text-dialogue" id="eyes-msg" style="opacity:0;margin-top:24px;font-style:italic;color:var(--cinema-accent);">
-            "…and then I closed my eyes."
+            "…but my eyes never opened."
           </div>
         </div>
       `;

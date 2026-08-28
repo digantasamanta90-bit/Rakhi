@@ -39,7 +39,7 @@ export class Scene16RakhiFinale {
             
             <!-- STEP 2: Anwesha Hero Portrait (Enters AFTER Rakhi settles) -->
             <div id="f-portrait-badge" style="opacity:0;transform:scale(0.8) translateY(-20px);width:75px;height:75px;border-radius:50%;border:2px solid var(--cinema-gold);overflow:hidden;box-shadow:0 0 25px rgba(212,176,106,0.25);margin-bottom:12px;cursor:pointer;">
-              <img src="assets/portraits/anwesha_hero.png" alt="Anwesha" style="width:100%;height:100%;object-fit:cover;" onerror="this.src='assets/portraits/anwesha12.png';">
+              <img src="assets/portraits/anwesha12.png" alt="Anwesha" style="width:100%;height:100%;object-fit:cover;" onerror="this.src='assets/portraits/anwesha12.png';">
             </div>
 
             <!-- STEP 1: The Master Rakhi Medallion (Sole focal object first) -->
