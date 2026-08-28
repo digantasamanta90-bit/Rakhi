@@ -36,7 +36,7 @@ export class Scene14Thread {
           <div id="t-bond-stage" style="opacity:0;position:relative;width:100%;max-width:340px;height:120px;display:flex;align-items:center;justify-content:space-between;z-index:10;">
             <!-- Diganta Node -->
             <div style="display:flex;flex-direction:column;align-items:center;gap:4px;z-index:5;">
-              <div style="width:48px;height:48px;border-radius:50%;background:rgba(232,220,203,0.06);border:1.5px solid var(--cinema-accent);display:flex;align-items:center;justify-content:center;font-size:1.2rem;box-shadow:0 4px 14px rgba(0,0,0,0.6);">
+              <div style="width:48px;height:48px;border-radius:50%;background:rgba(232,220,203,0.06);border:1.5px solid var(--cinema-accent);overflow:hidden;box-shadow:0 4px 14px rgba(0,0,0,0.6);display:flex;align-items:center;justify-content:center;">
                 <img src="assets/portraits/diganta1.png" alt="Diganta" style="width:100%;height:100%;object-fit:cover;" onerror="this.src='assets/portraits/diganta1.png';">
               </div>
               <span style="font-size:0.7rem;font-family:var(--font-mono);color:var(--cinema-text-muted);">Diganta</span>

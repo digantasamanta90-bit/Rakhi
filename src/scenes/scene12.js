@@ -43,7 +43,7 @@ export class Scene12SiblingZone {
             <!-- SHOT 2: ME -->
             <div class="sibling-focal-item" id="sz-focal-diganta">
               <div class="sibling-focal-card" style="border-color:var(--cinema-border);">
-                <div style="width:48px;height:48px;margin:0 auto 10px auto;border-radius:50%;background:rgba(155,93,112,0.14);border:1px solid var(--cinema-accent);display:flex;align-items:center;justify-content:center;font-size:1.5rem;">
+                <div style="width:48px;height:48px;margin:0 auto 10px auto;border-radius:50%;background:rgba(155,93,112,0.14);border:1.5px solid var(--cinema-accent);overflow:hidden;box-shadow:0 0 15px rgba(155,93,112,0.25);display:flex;align-items:center;justify-content:center;">
                   <img src="assets/portraits/diganta1.png" alt="Diganta" style="width:100%;height:100%;object-fit:cover;" onerror="this.src='assets/portraits/diganta1.png';">
                 </div>
                 <div class="text-whisper" style="color:var(--cinema-accent);font-size:0.62rem;letter-spacing:0.14em;margin-bottom:4px;">THE ARCHETYPE</div>
