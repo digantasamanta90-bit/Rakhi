@@ -78,10 +78,8 @@ export class Scene06Journey {
 
       this.tl = gsap.timeline({
         onComplete: () => {
-          setTimeout(() => {
-            this.manager.next();
-            resolve();
-          }, 1500);
+          this.manager.next();
+          resolve();
         }
       });
 

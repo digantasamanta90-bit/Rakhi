@@ -151,6 +151,27 @@ class AudioController {
     return this.isMuted;
   }
 
+  pauseMusic() {
+    if (this.customAudio && this.customAudioLoaded && !this.customAudio.paused) {
+      this.customAudio.pause();
+    }
+    if (this.ctx && this.ctx.state === 'running') {
+      this.ctx.suspend();
+    }
+  }
+
+  async resumeMusic() {
+    if (this.isMuted) return;
+    if (this.ctx && this.ctx.state === 'suspended') {
+      await this.ctx.resume();
+    }
+    if (this.customAudio && this.customAudioLoaded && this.isPlaying) {
+      try {
+        await this.customAudio.play();
+      } catch (e) {}
+    }
+  }
+
   // --- SOUND EFFECTS ---
   playUnlockSfx() {
     if (!this.ctx || this.isMuted) return;

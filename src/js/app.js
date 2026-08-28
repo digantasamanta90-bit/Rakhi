@@ -94,7 +94,12 @@ document.addEventListener('DOMContentLoaded', () => {
     { name: 'Post-Credits', SceneClass: Scene17PostCredits }
   ]);
 
-  // 5. Debug Navigation Panel
+  // 5. Bind Backward / Forward Navigation Controls
+  const navPrevBtn = document.getElementById('nav-btn-prev');
+  const navNextBtn = document.getElementById('nav-btn-next');
+  sceneManager.bindNavControls({ prevBtn: navPrevBtn, nextBtn: navNextBtn });
+
+  // 6. Debug Navigation Panel
   const debugToggle = document.getElementById('debug-toggle');
   const debugPanel = document.getElementById('debug-panel');
   const debugList = document.getElementById('debug-scene-list');

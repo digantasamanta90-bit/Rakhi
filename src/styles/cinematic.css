@@ -47,7 +47,9 @@
 html, body {
   background: var(--cinema-black) !important;
   color: var(--cinema-text) !important;
-  overflow: hidden;
+  overflow-x: hidden;
+  overscroll-behavior-y: auto;
+  -webkit-overflow-scrolling: touch;
   height: 100%;
   width: 100%;
   margin: 0;
@@ -61,7 +63,7 @@ html, body {
   height: 100vh;
   height: 100dvh;
   position: relative;
-  overflow: hidden;
+  overflow-x: hidden;
   background: var(--cinema-black) !important;
 }
 
@@ -686,6 +688,106 @@ html, body {
 
 .btn-secondary:active {
   transform: scale(0.97);
+}
+
+/* --- PAUSE INDICATOR (Subtle Ambient Cue) --- */
+.pause-indicator {
+  position: fixed;
+  top: calc(env(safe-area-inset-top, 12px) + 12px);
+  left: 50%;
+  transform: translateX(-50%) translateY(-10px) scale(0.92);
+  z-index: 280;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  background: rgba(26, 13, 20, 0.88);
+  border: 1px solid var(--antique-gold-border);
+  border-radius: 9999px;
+  padding: 6px 14px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.7), 0 0 15px rgba(212, 176, 106, 0.12);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease, transform 0.25s cubic-bezier(0.34, 1.4, 0.64, 1);
+}
+
+.pause-indicator.visible {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0) scale(1);
+}
+
+.pause-indicator .pause-icon {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--cinema-gold);
+  line-height: 1;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+
+.pause-indicator .pause-text {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.14em;
+  color: var(--cinema-text);
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+/* --- CINEMA NAVIGATION CONTROLS (Previous / Next) --- */
+.cinema-nav {
+  position: fixed;
+  bottom: calc(env(safe-area-inset-bottom, 12px) + 12px);
+  right: 12px;
+  z-index: 220;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  pointer-events: auto;
+}
+
+.cinema-nav-btn {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: rgba(26, 13, 20, 0.82);
+  border: 1px solid var(--cinema-border);
+  color: var(--cinema-text-muted);
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.5);
+  transition: all 0.2s var(--ease-soft);
+  user-select: none;
+  -webkit-user-select: none;
+  padding: 0;
+  margin: 0;
+}
+
+.cinema-nav-btn:hover:not(:disabled) {
+  color: var(--cinema-gold);
+  border-color: var(--antique-gold-border);
+  background: rgba(42, 20, 29, 0.9);
+  transform: scale(1.08);
+}
+
+.cinema-nav-btn:active:not(:disabled) {
+  transform: scale(0.92);
+}
+
+.cinema-nav-btn.disabled,
+.cinema-nav-btn:disabled {
+  opacity: 0.22;
+  cursor: default;
+  pointer-events: none;
+  border-color: transparent;
 }
 
 /* --- AUDIO TOGGLE --- */

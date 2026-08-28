@@ -45,6 +45,12 @@
     <!-- Transition Flare / Bloom -->
     <div id="screen-flare" class="screen-flare" aria-hidden="true"></div>
 
+    <!-- Pause Indicator Overlay (Minimalist Ambient Cue) -->
+    <div id="pause-indicator" class="pause-indicator" role="status" aria-live="polite" aria-label="Experience Paused">
+      <span class="pause-icon" aria-hidden="true">Ⅱ</span>
+      <span class="pause-text">PAUSED</span>
+    </div>
+
     <!-- Audio Toggle (Minimalist Floating Icon) -->
     <button id="audio-toggle" class="audio-toggle" aria-label="Toggle sound">
       <svg class="audio-icon-on" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
@@ -61,6 +67,16 @@
 
     <!-- Master Scene Stage -->
     <main id="scene-stage"></main>
+
+    <!-- Backward / Forward Navigation Controls -->
+    <nav id="cinema-nav" class="cinema-nav" aria-label="Scene navigation">
+      <button id="nav-btn-prev" class="cinema-nav-btn prev" aria-label="Previous scene" title="Previous scene">
+        <span aria-hidden="true">‹</span>
+      </button>
+      <button id="nav-btn-next" class="cinema-nav-btn next" aria-label="Next scene" title="Next scene">
+        <span aria-hidden="true">›</span>
+      </button>
+    </nav>
 
     <!-- Debug Navigation Panel (Development / Chapter jump) -->
     <div id="debug-nav" class="debug-nav">
