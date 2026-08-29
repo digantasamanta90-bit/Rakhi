@@ -210,7 +210,7 @@ export const content = {
       footerNote: "Assistant Researcher: Monojit (Second opinion was legally required 💀)"
     },
     gift2: {
-      title: "Bellavita Luxury Collection 🌸",
+      title: "Random Finds 🪻",
       subtitle: "Because one gift was never going to be enough."
     },
     timing: {
@@ -287,7 +287,7 @@ export const content = {
       "This is the first time I’ve made something like this for Rakhi, and honestly, I wasn’t sure how to do it without overthinking every single detail. 😭",
       "Technically, life didn't start us off as siblings, but somehow in the path, you became the sister I chose. And that’s something I’m genuinely grateful for.",
       "The gifts are just small tokens, and this website is admittedly an overengineered delivery mechanism 😭, but the care behind it is 100% real.",
-      "Stay happy, take care of yourself, and don't change. I'm really glad to have you as my sister."
+      "Stay happy, take care of yourself and of him. And most importantly don't change, stay this cheerful forever. I'm really glad to have you as my sister from another mother."
     ],
     closingJoke: "And unfortunately for you... you're permanently stuck with me as your brother. 💀🧿",
     keepButton: "KEEP THIS MESSAGE 🧿",
@@ -345,8 +345,8 @@ export const content = {
     greetingLead: "HAPPY RAKHI,",
     greetingName: "ANWESHA ❤️",
     apologyCallback1: "A little late.",
-    apologyCallback2: "Still from the heart.",
-    signature: "— Diganta 🧿",
+    apologyCallback2: "But still from the heart.",
+    signature: "— Diganta",
     postCreditsBtn: "Epilogue: The Story Continues →",
     timing: {
       lineHold: 1.5,
@@ -368,7 +368,7 @@ export const content = {
       title: "Replay the Journey? ↻",
       question: "Are you sure? We'll take you back to 4:30 AM.",
       confirm: "YES, REPLAY →",
-      cancel: "NO, STAY HERE 🍫"
+      cancel: "NO, LET ME EAT THE KITKAT 🍫"
     }
   }
 };
