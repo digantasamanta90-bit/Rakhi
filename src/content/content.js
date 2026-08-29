@@ -10,11 +10,12 @@ export const content = {
   // BEAT 01 — THE DAWN DESK (4:30 AM)
   // ==========================================
   scene01: {
+    starterText: "A Developer's Apology",
     dateHeader: "FRIDAY // 4:30 AM",
     clockSequence: ["4:27", "4:28", "4:29", "4:30 AM"],
     finallyText: "Finally.",
     timing: {
-      clockCadence: 0.65, // Time spent on each timestamp while sky & clouds drift
+      clockCadence: 0.85, // Time spent on each timestamp while sky & clouds drift
       finallyHold: 1.4    // Time before transition into Scene 02
     }
   },
@@ -78,7 +79,7 @@ export const content = {
     callerName: "ANWESHA",
     location: "Metro Station Gate 2",
     callStatus: "1 MISSED CALL",
-    promptText: "Waiting at the station...",
+    promptText: "Kothay tui???", 
     subtext: "Phone vibrating silently on the desk...",
     timing: {
       ringDuration: 2.4,
@@ -119,7 +120,7 @@ export const content = {
       "Rushing through the city, holding the gifts tight..."
     ],
     timing: {
-      travelHold: 3.6
+      travelHold: 5.6
     }
   },
 
@@ -129,7 +130,7 @@ export const content = {
   scene07: {
     impactTag: "8:15 AM // THE IMPACT",
     leadReaction: "Oh no.",
-    comedicClimax: "The KitKat broke. 💀",
+    comedicClimax: "The Bad Luck Charm.💀",
     panicThought: "Anwesha is going to kill me.",
     timing: {
       crackReactionHold: 1.8,
@@ -148,9 +149,9 @@ export const content = {
       { mode: "ARRIVAL", tag: "HOME 🏡 // JOURNEY ENDS", bg: "home" }
     ],
     timing: {
-      busDuration: 2.2,
-      autoDuration: 2.2,
-      arrivalDuration: 1.6
+      busDuration: 4,
+      autoDuration: 4,
+      arrivalDuration: 3
     }
   },
 
@@ -160,9 +161,9 @@ export const content = {
   scene09: {
     line1: "I messed up.",
     line2: "I'm sorry.",
-    line3: "But I didn't make this for one morning.",
+    line3: "I made this same mistake on another morning",
     timing: {
-      line1Hold: 1.4,
+       line1Hold: 1.4,
       line2Hold: 1.5,
       turningPointHold: 2.0
     }
@@ -174,20 +175,20 @@ export const content = {
   scene10: {
     memory1: {
       caption: "Chotokhuki 🧿",
-      subtext: "The little sister who grew up too fast."
+      subtext: "The little girl who grew up too fast."
     },
     memory2: {
       caption: "The Chosen Sibling ❤️",
       subtext: "Not by blood. Just by one of those good turns life makes."
-    },
+    }, 
     memory3: {
       caption: "A Bond Across Any Distance ✨",
       subtext: "Some things don't depend on whether you showed up at 7:30."
     },
     timing: {
-      photo1Hold: 2.0,
-      photo2Hold: 2.0,
-      photo3Hold: 2.4
+      photo1Hold: 3.0,
+      photo2Hold: 3.0,
+      photo3Hold: 3.4
     }
   },
 
@@ -213,12 +214,12 @@ export const content = {
       subtitle: "Because one gift was never going to be enough."
     },
     timing: {
-      kitkatSpotlight: 1.6,
-      casefileReadHold: 1.8,
-      bellavitaSpotlight: 2.0
+      kitkatSpotlight: 3.6,
+      casefileReadHold: 3.8,
+      bellavitaSpotlight: 3.0
     }
   },
-
+ 
   // ==========================================
   // BEAT 12 — THE SIBLING ZONE
   // ==========================================

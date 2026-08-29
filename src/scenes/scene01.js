@@ -76,7 +76,7 @@ export class Scene01Clock {
               </div>
             </div>
             <div class="starter-whisper-text" style="margin-top:16px;font-family:var(--font-mono);font-size:0.72rem;letter-spacing:0.22em;color:#f8fafc;text-transform:uppercase;font-weight:500;text-shadow:0 2px 10px rgba(0,0,0,0.8);opacity:0.9;">
-              Tap to begin
+              ${c.starterText}
             </div>
           </div>
 
