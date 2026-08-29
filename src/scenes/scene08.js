@@ -1,12 +1,4 @@
-/**
- * BEAT 08 — GOING HOME (REAL VEHICLES & PROGRESSIVE LANDSCAPE JOURNEY)
- * Authentically styled BUS (🚌) and AUTO-RICKSHAW (🛺) traveling through continuously
- * transforming terrain:
- * 1. CITY: Dense skyline, asphalt, electric poles (Bus journey)
- * 2. OUTSKIRTS: Open roads, rolling hills, transition into Auto-Rickshaw
- * 3. RURAL GREENERY: Lush trees, ponds, fields, open sunny sky
- * 4. VILLAGE & HOME: Thatched huts, mud paths, peaceful arrival at "HOME 🏡"
- */
+import { content } from '../content/content.js';
 
 export class Scene08GoingHome {
   constructor({ manager, audio, particles }) {
@@ -20,6 +12,8 @@ export class Scene08GoingHome {
 
   enter(container) {
     return new Promise((resolve) => {
+      const c = content.scene08;
+
       // 1. Procedural Distant Hills / Horizon
       let hillsSVG = `
         <svg viewBox="0 0 1200 160" preserveAspectRatio="none" style="width:100%;height:100%;">
@@ -186,7 +180,7 @@ export class Scene08GoingHome {
 
           <!-- Journey Route Stage Badge -->
           <div id="s8-badge" style="position:absolute;top:10%;left:50%;transform:translateX(-50%);z-index:30;background:rgba(15,23,42,0.85);border:1px solid rgba(255,255,255,0.18);padding:6px 16px;border-radius:20px;color:#f8fafc;font-family:var(--font-mono);font-size:0.72rem;letter-spacing:0.14em;font-weight:600;box-shadow:0 6px 20px rgba(0,0,0,0.5);">
-            BUS // DEPARTING CITY
+            ${c.stages[0].mode} // ${c.stages[0].tag}
           </div>
 
           <!-- Dialogue Overlays -->
@@ -198,7 +192,7 @@ export class Scene08GoingHome {
               "Or maybe I just stopped noticing it."
             </div>
             <div class="text-whisper" id="gh-arrival" style="opacity:0;color:var(--rakhi-gold);font-size:1.45rem;letter-spacing:0.25em;font-weight:800;text-shadow:0 0 25px rgba(251,191,36,0.75);font-family:var(--font-serif);">
-              HOME 🏡
+              ${c.stages[3].tag}
             </div>
           </div>
         </div>
@@ -272,7 +266,7 @@ export class Scene08GoingHome {
               busVehicle.style.display = 'none';
               autoVehicle.style.display = 'block';
               gsap.fromTo(autoVehicle, { opacity: 0, scale: 0.85 }, { opacity: 1, scale: 1, duration: 0.25, ease: 'back.out(1.2)' });
-              badge.textContent = 'AUTO // GREEN OUTSKIRTS';
+              badge.textContent = `${c.stages[1].mode} // ${c.stages[1].tag}`;
             }
           });
         }, [], 1.8)
@@ -288,7 +282,7 @@ export class Scene08GoingHome {
         
         // 7. Village road arrival
         .call(() => {
-          badge.textContent = 'VILLAGE ROAD // ARRIVAL';
+          badge.textContent = `${c.stages[2].mode} // ${c.stages[2].tag}`;
         }, [], 3.4)
         
         // 8. Clear dialogue and reveal HOME milestone

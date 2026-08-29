@@ -1,10 +1,4 @@
-/**
- * BEAT 05 — PANIC (CINEMATIC WHIRLWIND)
- * Frantic morning rush montage before the journey.
- * Speed streaks, rushing items (phone, shirt, bag, laptop, charger, wallet, gift, shoes),
- * rapid countdown timer, and isolated stage tremor that never displaces the viewport.
- * Climax impact leads straight into the Metro Journey (Scene 06).
- */
+import { content } from '../content/content.js';
 
 export class Scene05Panic {
   constructor({ manager, audio, particles }) {
@@ -16,8 +10,8 @@ export class Scene05Panic {
 
   enter(container) {
     return new Promise((resolve) => {
-      const items = ['📱', '👕', '🎒', '💻', '🔌', '👛', '🎁', '👟'];
-      const labels = ['PHONE', 'SHIRT', 'BAG', 'LAPTOP', 'CHARGER', 'WALLET', 'GIFT', 'SHOES'];
+      const c = content.scene05;
+      const items = c.items;
 
       container.innerHTML = `
         <div id="panic-viewport" style="position:relative;width:100%;height:100%;overflow:hidden;background:linear-gradient(180deg, #070c18 0%, #31102f 50%, #450a0a 100%);">
@@ -34,20 +28,20 @@ export class Scene05Panic {
 
             <!-- Countdown Timer -->
             <div class="text-timestamp" id="panic-timer" style="position:absolute;top:10%;left:50%;transform:translateX(-50%);font-size:clamp(1.8rem,6vw,2.8rem);color:#f87171;z-index:10;letter-spacing:0.06em;text-shadow:0 0 20px rgba(239,68,68,0.7);">
-              15:00
+              ${c.timerStart}
             </div>
             
             <!-- Whirlwind Objects -->
-            ${items.map((emoji, i) => `
+            ${items.map((item, i) => `
               <div class="panic-object" id="panic-${i}" style="position:absolute;font-size:clamp(1.6rem,5.5vw,2.6rem);top:${20 + (i % 4) * 16}%;left:${12 + (i % 3) * 32}%;z-index:5;display:flex;flex-direction:column;align-items:center;">
-                <span style="filter:drop-shadow(0 6px 16px rgba(0,0,0,0.8));">${emoji}</span>
-                <span style="font-size:0.58rem;text-align:center;color:var(--rakhi-gold);font-family:var(--font-mono);margin-top:2px;font-weight:600;letter-spacing:0.06em;background:rgba(15,23,42,0.85);padding:2px 6px;border-radius:4px;border:1px solid rgba(255,255,255,0.15);">${labels[i]}</span>
+                <span style="filter:drop-shadow(0 6px 16px rgba(0,0,0,0.8));">${item.emoji}</span>
+                <span style="font-size:0.58rem;text-align:center;color:var(--rakhi-gold);font-family:var(--font-mono);margin-top:2px;font-weight:600;letter-spacing:0.06em;background:rgba(15,23,42,0.85);padding:2px 6px;border-radius:4px;border:1px solid rgba(255,255,255,0.15);">${item.label}</span>
               </div>
             `).join('')}
 
             <!-- Impact Reveal Banner -->
             <div class="text-impact" id="panic-rush" style="opacity:0;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:20;font-size:clamp(2.8rem,11vw,4.8rem);color:#ffffff;letter-spacing:0.08em;text-shadow:0 0 35px rgba(220,38,38,0.9);">
-              METRO
+              ${c.climaxBanner}
             </div>
 
           </div>

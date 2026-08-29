@@ -28,6 +28,8 @@ export class Scene16RakhiFinale {
 
   enter(container) {
     return new Promise((resolve) => {
+      const c = content.scene16;
+
       container.innerHTML = `
         <div style="position:relative;width:100%;height:100%;overflow-y:auto;overflow-x:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:calc(env(safe-area-inset-top,10px) + 20px) 16px 36px 16px;background:linear-gradient(180deg, #1e1b4b 0%, #450a0a 50%, #78350f 100%);">
           <!-- Ambient gold festive backdrop glow -->
@@ -45,7 +47,7 @@ export class Scene16RakhiFinale {
             <div class="rakhi-finale-wrap" id="f-rakhi-wrap" role="button" aria-label="Sacred Rakhi" tabindex="0" style="opacity:0;transform:scale(0.75) translateY(30px);z-index:10;position:relative;cursor:pointer;">
               ${renderRakhiSvg({ size: 160, id: 'finale-master-rakhi-svg' })}
               <div id="f-rakhi-tap-hint" style="position:absolute;bottom:-26px;left:50%;transform:translateX(-50%);white-space:nowrap;font-size:0.75rem;letter-spacing:0.16em;color:var(--rakhi-gold);text-transform:uppercase;font-weight:700;opacity:0;transition:opacity 0.4s;text-shadow:0 0 10px rgba(251,191,36,0.6);">
-                TAP TO TIE RAKHI 🧿
+                ${c.hintText.toUpperCase()}
               </div>
             </div>
 
@@ -54,37 +56,37 @@ export class Scene16RakhiFinale {
               
               <!-- STEP 3: First Dialogue Line -->
               <p id="f-line-1" class="text-whisper" style="opacity:0;transform:translateY(10px);color:var(--rakhi-red);letter-spacing:0.18em;font-size:0.85rem;position:absolute;margin:0;font-weight:700;">
-                RAKHI TIED. FOREVER. 🧿
+                ${c.line1}
               </p>
 
               <!-- STEP 4: Second Dialogue Line -->
               <p id="f-line-2" class="text-whisper" style="opacity:0;transform:translateY(10px);color:var(--rakhi-gold);letter-spacing:0.18em;font-size:0.85rem;position:absolute;margin:0;font-weight:700;">
-                FESTIVE BLESSINGS • FOREVER BOND
+                ${c.line2}
               </p>
 
               <!-- STEP 5: Main Centerpiece Greeting -->
               <div id="f-greeting-group" style="position:absolute;display:flex;flex-direction:column;align-items:center;width:100%;">
                 <div id="f-greet-lead" class="finale-greeting" style="opacity:0;transform:translateY(8px);font-size:clamp(1.5rem,5.5vw,2.3rem);color:#ffffff;margin-bottom:2px;font-family:var(--font-serif);font-weight:700;">
-                  HAPPY RAKHI,
+                  ${c.greetingLead}
                 </div>
                 <div id="f-greet-name" class="finale-greeting" style="opacity:0;transform:scale(0.85);font-size:clamp(1.85rem,6.8vw,3.0rem);color:var(--rakhi-gold);font-weight:800;text-shadow:0 0 30px rgba(251,191,36,0.8);font-family:var(--font-serif);">
-                  Anwesha ❤️
+                  ${c.greetingName}
                 </div>
               </div>
 
               <!-- STEP 6: Supporting Apology Callback -->
               <div id="f-apology-group" style="position:absolute;display:flex;flex-direction:column;align-items:center;width:100%;">
                 <p id="f-apol-1" class="finale-sub" style="opacity:0;transform:translateY(8px);font-size:clamp(1.0rem,3.4vw,1.2rem);color:#cbd5e1;margin:0 0 4px 0;font-style:italic;">
-                  A little late.
+                  ${c.apologyCallback1}
                 </p>
                 <p id="f-apol-2" class="finale-sub" style="opacity:0;transform:translateY(8px);font-size:clamp(1.1rem,3.8vw,1.35rem);color:#f8fafc;margin:0;font-style:italic;font-weight:600;">
-                  Still from the heart.
+                  ${c.apologyCallback2}
                 </p>
               </div>
 
               <!-- STEP 7: Signature -->
               <div id="f-signature" class="text-emotional" style="opacity:0;transform:translateY(8px);font-size:1.15rem;color:var(--rakhi-gold);font-style:italic;position:absolute;letter-spacing:0.06em;font-weight:700;">
-                — Diganta 🧿
+                ${c.signature}
               </div>
 
             </div>
@@ -92,7 +94,7 @@ export class Scene16RakhiFinale {
             <!-- STEP 10: Post-Credits Epilogue Action -->
             <div id="f-postcredits-wrap" style="opacity:0;transform:translateY(12px);margin-top:24px;z-index:15;">
               <button class="btn-secondary" id="f-postcredits-btn" style="font-size:0.85rem;padding:10px 24px;border:1.5px solid rgba(251,191,36,0.5);color:var(--rakhi-gold);background:rgba(15,23,42,0.8);border-radius:24px;cursor:pointer;font-weight:600;">
-                <span>Post-Credits Epilogue →</span>
+                <span>${c.postCreditsBtn}</span>
               </button>
             </div>
 

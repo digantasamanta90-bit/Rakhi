@@ -1,11 +1,4 @@
-/**
- * BEAT 03 — THREE ALARMS (ARCHITECTURAL PANORAMIC WINDOW & LIVING HORIZON)
- * Realistic large bedroom window overlooking the waking world:
- * - Outside: Distant rooftops & tree silhouettes, moving dawn clouds, ascending sun.
- * - Sky continuous progression: Deep Night (5:30) -> Sunrise Horizon (5:45) -> Full Radiant Daylight (6:00).
- * - Alarm audio with instant trigger and smooth BGM ducking.
- * - Zero dead pause transition directly into Scene 04.
- */
+import { content } from '../content/content.js';
 
 export class Scene03Alarms {
   constructor({ manager, audio, particles }) {
@@ -19,6 +12,8 @@ export class Scene03Alarms {
 
   enter(container) {
     return new Promise((resolve) => {
+      const c = content.scene03;
+
       container.innerHTML = `
         <div class="bedroom-dawn-env" id="s3-viewport" style="position:relative;width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;overflow:hidden;background:#070c18;">
           
@@ -26,7 +21,7 @@ export class Scene03Alarms {
           <div id="s3-window-frame" style="position:absolute;top:4%;left:6%;right:6%;bottom:10%;border-radius:12px;overflow:hidden;border:6px solid #1e293b;box-shadow:inset 0 0 50px rgba(0,0,0,0.85), 0 20px 60px rgba(0,0,0,0.9);background:#070c18;">
             
             <!-- Sky Gradient Layer (Continuously shifts from Deep Night -> Dawn -> Radiant Day) -->
-            <div id="s3-sky-gradient" style="position:absolute;inset:0;background:linear-gradient(180deg, #020617 0%, #0f172a 40%, #1e293b 75%, #334155 100%);transition:background 1.5s ease;"></div>
+            <div id="s3-sky-gradient" style="position:absolute;inset:0;background:linear-gradient(180deg, #020617 0%, #0f172a 40%, #0f1c3f 75%, #334155 100%);transition:background 1.5s ease;"></div>
 
             <!-- Rising Sun Disc -->
             <div id="s3-rising-sun" style="position:absolute;bottom:-60px;left:52%;transform:translateX(-50%);width:95px;height:95px;border-radius:50%;background:radial-gradient(circle, #fef08a 0%, #fbbf24 60%, rgba(245,158,11,0) 85%);box-shadow:0 0 50px #fbbf24;opacity:0.25;transition:all 1.6s ease;z-index:2;"></div>
@@ -72,15 +67,15 @@ export class Scene03Alarms {
 
             <!-- Time Display (Neutral Ivory with Strong Contrast Text Shadow) -->
             <div class="text-timestamp" id="alarm-time" style="font-size:clamp(2.4rem,8.5vw,3.4rem);color:#f8fafc;font-family:var(--font-mono);font-weight:700;letter-spacing:0.04em;text-shadow:0 3px 20px rgba(0,0,0,0.95), 0 0 30px rgba(0,0,0,0.8);">
-              5:30 AM
+              ${c.alarms[0].time}
             </div>
             
             <div class="text-whisper" id="alarm-label" style="color:rgba(255,255,255,0.85);letter-spacing:0.2em;font-size:0.75rem;font-weight:700;text-shadow:0 2px 12px rgba(0,0,0,0.9);">
-              ALARM 1 OF 3
+              ${c.alarms[0].label}
             </div>
 
             <button class="cinema-control-btn alarm-dismiss-btn" id="dismiss-btn" style="width:auto;height:auto;margin-top:6px;padding:9px 26px;border-radius:24px;background:rgba(15,23,42,0.45);border:1.5px solid rgba(255,255,255,0.4);color:#f8fafc;font-size:0.86rem;font-weight:600;box-shadow:0 6px 24px rgba(0,0,0,0.7);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);cursor:pointer;transition:transform 0.15s ease, background 0.2s ease;">
-              <span>Dismiss Alarm</span>
+              <span>${c.dismissBtnText}</span>
             </button>
           </div>
 
@@ -136,10 +131,8 @@ export class Scene03Alarms {
         } catch (e) {}
       };
 
-      const alarmTimes = ['5:30 AM', '5:45 AM', '6:00 AM'];
-      const alarmLabels = ['ALARM 1 OF 3', 'ALARM 2 OF 3', 'ALARM 3 OF 3'];
       const dawnSkyTransitions = [
-        'linear-gradient(180deg, #020617 0%, #0f172a 40%, #1e1b4b 75%, #334155 100%)',
+        'linear-gradient(180deg, #020617 0%, #0f172a 40%, #0f1c3f 75%, #334155 100%)',
         'linear-gradient(180deg, #0f172a 0%, #be185d 40%, #ea580c 70%, #fbbf24 100%)',
         'linear-gradient(180deg, #0284c7 0%, #38bdf8 45%, #fed7aa 80%, #fef08a 100%)'
       ];
@@ -164,8 +157,8 @@ export class Scene03Alarms {
           gsap.to([icon, timeEl, labelEl], { opacity: 0.3, scale: 0.96, duration: 0.2 });
           
           setTimeout(() => {
-            timeEl.textContent = alarmTimes[this.alarmCount];
-            labelEl.textContent = alarmLabels[this.alarmCount];
+            timeEl.textContent = c.alarms[this.alarmCount].time;
+            labelEl.textContent = c.alarms[this.alarmCount].label;
             
             // Advance sky gradient and elevate rising sun
             if (skyGradient) {

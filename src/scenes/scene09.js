@@ -1,10 +1,4 @@
-/**
- * BEAT 09 — THE CEILING (EMOTIONAL STILLNESS & PIVOT)
- * Dim grey-blue room, soft atmospheric haze, slow rotating ceiling fan shadow,
- * diffused window light beam, and still camera.
- * Dialogue: "I messed up." → "I'm sorry." → "But I didn't make this for one morning."
- * Introduces subtle warm light on the turning point line, leading directly into Memories (Scene 10).
- */
+import { content } from '../content/content.js';
 
 export class Scene09Ceiling {
   constructor({ manager, audio, particles }) {
@@ -16,6 +10,8 @@ export class Scene09Ceiling {
 
   enter(container) {
     return new Promise((resolve) => {
+      const c = content.scene09;
+
       container.innerHTML = `
         <div class="ceiling-depressed-env" id="s9-viewport" style="position:relative;width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;overflow:hidden;">
           
@@ -34,13 +30,13 @@ export class Scene09Ceiling {
           <!-- Text Sequence Container -->
           <div id="s9-text-wrap" style="z-index:10;display:flex;flex-direction:column;align-items:center;padding:0 24px;max-width:320px;text-align:center;">
             <div class="text-dialogue" id="c-msg1" style="opacity:0;margin-bottom:22px;color:var(--cinema-text-muted);font-size:1.18rem;font-style:italic;">
-              "I messed up."
+              "${c.line1}"
             </div>
             <div class="text-dialogue" id="c-msg2" style="opacity:0;margin-bottom:22px;color:var(--cinema-text);font-size:1.24rem;font-style:italic;">
-              "I'm sorry."
+              "${c.line2}"
             </div>
             <div class="text-emotional" id="c-msg3" style="opacity:0;font-size:clamp(1.15rem,4vw,1.4rem);color:var(--rakhi-gold);font-style:italic;font-weight:600;text-shadow:0 0 20px rgba(251,191,36,0.35);">
-              "But I didn't make this for one morning."
+              "${c.line3}"
             </div>
           </div>
         </div>

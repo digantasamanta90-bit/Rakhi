@@ -1,10 +1,4 @@
-/**
- * BEAT 02 — BUILDING SOMETHING FOR HER
- * Animated composition in early morning transitional light.
- * `rakhi_protocol.sh` log lines, overthinking calculation, photographs of Anwesha,
- * code fragments, and Rakhi motifs assemble in depth.
- * Timestamps accelerate. Centerpiece: "FOR ANWESHA".
- */
+import { content } from '../content/content.js';
 
 export class Scene02Creation {
   constructor({ manager, audio, particles }) {
@@ -16,6 +10,8 @@ export class Scene02Creation {
 
   enter(container) {
     return new Promise((resolve) => {
+      const c = content.scene02;
+
       container.innerHTML = `
         <div style="position:relative;width:100%;height:100%;overflow:hidden;display:flex;align-items:center;justify-content:center;perspective:900px;background:linear-gradient(180deg, #070c18 0%, #0f1c3f 50%, #1e293b 100%);">
           <!-- Floating creation fragments with warm parchment frames -->
@@ -31,7 +27,7 @@ export class Scene02Creation {
           <div id="frag-gift" style="position:absolute;opacity:0;bottom:16%;right:12%;font-size:2.0rem;filter:drop-shadow(0 4px 14px rgba(220,38,38,0.4));">🎁</div>
           
           <div id="frag-terminal" style="position:absolute;opacity:0;top:26%;left:6%;font-family:var(--font-mono);font-size:0.64rem;color:var(--sky-morning-cyan);background:rgba(15,23,42,0.92);padding:6px 12px;border-radius:6px;border:1px solid var(--surface-card-border);box-shadow:0 8px 20px rgba(0,0,0,0.5);">
-            ./rakhi_protocol.sh --target=Anwesha
+            ./rakhi_protocol.sh --target=${c.name}
           </div>
           
           <div id="frag-overthink" style="position:absolute;opacity:0;bottom:26%;right:6%;font-family:var(--font-mono);font-size:0.64rem;color:var(--rakhi-gold);background:rgba(15,23,42,0.92);padding:6px 12px;border-radius:6px;border:1px solid rgba(251,191,36,0.3);box-shadow:0 8px 20px rgba(0,0,0,0.5);">
@@ -49,7 +45,7 @@ export class Scene02Creation {
           <!-- Center reveal -->
           <div id="s2-center-block" style="display:flex;flex-direction:column;align-items:center;gap:12px;z-index:10;text-align:center;padding:0 20px;">
             <div class="text-whisper" id="s2-building" style="opacity:0;letter-spacing:0.18em;color:var(--cinema-text-muted);">BUILDING SOMETHING</div>
-            <div class="text-impact" id="s2-for" style="opacity:0;font-size:clamp(2rem,7.5vw,3.2rem);color:var(--cinema-text);">FOR ANWESHA</div>
+            <div class="text-impact" id="s2-for" style="opacity:0;font-size:clamp(2rem,7.5vw,3.2rem);color:var(--cinema-text);">FOR ${c.name.toUpperCase()}</div>
             <div class="text-emotional" id="s2-sub" style="opacity:0;font-size:clamp(0.95rem,3.4vw,1.2rem);color:var(--cinema-accent);">Every detail crafted with intention.</div>
           </div>
         </div>

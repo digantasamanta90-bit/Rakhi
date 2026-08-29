@@ -1,9 +1,4 @@
-/**
- * BEAT 07 — THE BROKEN KITKAT (COMIC TRAGEDY)
- * Spotlight hero presentation of KitKat Rich.
- * Slow-motion rotation → sudden slip/fall → CRACK impact → silence → comedic reveal.
- * "Of all the things."
- */
+import { content } from '../content/content.js';
 
 export class Scene07BrokenKitkat {
   constructor({ manager, audio, particles }) {
@@ -15,6 +10,8 @@ export class Scene07BrokenKitkat {
 
   enter(container) {
     return new Promise((resolve) => {
+      const c = content.scene07;
+
       container.innerHTML = `
         <div id="s7-viewport" style="position:relative;width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;overflow:hidden;background:radial-gradient(circle at 50% 40%, #070c18 0%, #0f172a 65%, #020617 100%);">
           
@@ -49,7 +46,7 @@ export class Scene07BrokenKitkat {
 
           <!-- Comedic Deadpan Dialogue -->
           <div class="text-dialogue" id="kitkat-msg" style="opacity:0;margin-top:12px;font-size:1.18rem;color:#f8fafc;z-index:10;font-style:italic;">
-            "Of all the things."
+            "${c.comedicClimax}"
           </div>
         </div>
       `;

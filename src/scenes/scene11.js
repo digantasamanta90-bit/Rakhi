@@ -24,6 +24,8 @@ export class Scene11Gifts {
 
   enter(container) {
     return new Promise((resolve) => {
+      const c = content.scene11;
+
       // 1. Procedural Storefronts for Continuous Parallax Stream (Layer 2)
       const shopsData = [
         { name: 'SWEET BAZAAR 🍬', awning: 'repeating-linear-gradient(90deg, #dc2626 0, #dc2626 12px, #ffffff 12px, #ffffff 24px)', color: '#7c2d12', signColor: '#fef08a' },
@@ -78,14 +80,14 @@ export class Scene11Gifts {
               <div style="position:relative;width:210px;height:140px;display:flex;align-items:center;justify-content:center;margin-bottom:12px;">
                 <img src="assets/gifts/kitkat.png" alt="KitKat Rich" id="g-kitkat-img" style="width:100%;height:auto;object-fit:contain;filter:drop-shadow(0 16px 36px rgba(0,0,0,0.85));" />
               </div>
-              <div class="gift-label" style="font-size:1.15rem;color:#f8fafc;font-family:var(--font-serif);font-weight:700;letter-spacing:0.02em;text-shadow:0 2px 10px rgba(0,0,0,0.8);">KitKat Rich 🍫</div>
-              <div class="text-whisper" style="font-size:0.7rem;color:var(--cinema-text-muted);margin-top:4px;letter-spacing:0.14em;">THE OFFICIAL SELECTION</div>
+              <div class="gift-label" style="font-size:1.15rem;color:#f8fafc;font-family:var(--font-serif);font-weight:700;letter-spacing:0.02em;text-shadow:0 2px 10px rgba(0,0,0,0.8);">${c.gift1.title}</div>
+              <div class="text-whisper" style="font-size:0.7rem;color:var(--cinema-text-muted);margin-top:4px;letter-spacing:0.14em;">${c.gift1.subtitle.toUpperCase()}</div>
             </div>
 
             <!-- Shot 2: Case File 04 Investigation Board (Dossier) -->
             <div id="g-casefile-board" style="position:absolute;width:315px;background:rgba(15,23,42,0.96);border:1px solid rgba(255,255,255,0.18);border-radius:14px;padding:18px 16px;box-shadow:0 18px 50px rgba(0,0,0,0.9);opacity:0;transform:scale(0.85);z-index:25;pointer-events:none;backdrop-filter:blur(12px);">
               <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;border-bottom:1px dashed rgba(255,255,255,0.2);padding-bottom:6px;">
-                <span class="text-timestamp-sm" style="color:#f8fafc;font-size:0.7rem;font-weight:700;letter-spacing:0.06em;">CASE FILE 04 // CHOCOLATE</span>
+                <span class="text-timestamp-sm" style="color:#f8fafc;font-size:0.7rem;font-weight:700;letter-spacing:0.06em;">${c.gift1.reportTitle}</span>
                 <span class="text-whisper" style="font-size:0.62rem;color:#ef4444;font-weight:700;">CLASSIFIED</span>
               </div>
               
@@ -96,22 +98,18 @@ export class Scene11Gifts {
               <!-- Candidate Evaluations -->
               <div style="display:flex;flex-direction:column;gap:6px;font-size:0.76rem;">
                 <div id="g-cand-1" style="display:flex;justify-content:space-between;padding:5px 8px;background:rgba(255,255,255,0.06);border-radius:4px;opacity:0;">
-                  <span style="color:#cbd5e1;">Dark Chocolate 85%</span>
-                  <span style="color:#ef4444;font-weight:700;">REJECTED ❌</span>
+                  <span style="color:#cbd5e1;">${c.gift1.candidates[0]}</span>
                 </div>
                 <div id="g-cand-2" style="display:flex;justify-content:space-between;padding:5px 8px;background:rgba(255,255,255,0.06);border-radius:4px;opacity:0;">
-                  <span style="color:#cbd5e1;">Overpriced Truffles</span>
-                  <span style="color:#f59e0b;font-weight:700;">SUSPICIOUS 🤔</span>
+                  <span style="color:#cbd5e1;">${c.gift1.candidates[1]}</span>
                 </div>
                 <div id="g-cand-3" style="display:flex;justify-content:space-between;padding:5px 8px;background:rgba(255,255,255,0.12);border-radius:4px;border:1px solid rgba(255,255,255,0.3);opacity:0;">
-                  <span style="color:#ffffff;font-weight:700;">KitKat Rich</span>
-                  <span style="color:#22c55e;font-weight:700;">APPROVED 🏆</span>
+                  <span style="color:#ffffff;font-weight:700;">${c.gift1.candidates[2]}</span>
                 </div>
               </div>
 
               <div id="g-case-footer" style="margin-top:10px;padding-top:6px;border-top:1px dashed rgba(255,255,255,0.2);font-size:0.7rem;color:#94a3b8;display:flex;justify-content:space-between;opacity:0;">
-                <span>Consultant: <strong style="color:#f8fafc;">Monojit</strong></span>
-                <span style="color:var(--cinema-text-muted);font-style:italic;">Professional Overthinker 🫡</span>
+                <span>${c.gift1.footerNote}</span>
               </div>
             </div>
 
@@ -120,8 +118,8 @@ export class Scene11Gifts {
               <div style="position:relative;width:210px;height:145px;display:flex;align-items:center;justify-content:center;margin-bottom:12px;">
                 <img src="assets/gifts/bellavita.png" alt="Bellavita" id="g-bellavita-img" style="width:100%;height:auto;object-fit:contain;filter:drop-shadow(0 16px 36px rgba(0,0,0,0.85));" />
               </div>
-              <div class="gift-label" style="font-size:1.15rem;color:#f8fafc;font-family:var(--font-serif);font-weight:700;letter-spacing:0.02em;text-shadow:0 2px 10px rgba(0,0,0,0.8);">Bellavita Collection 🌸</div>
-              <div class="text-whisper" style="font-size:0.7rem;color:var(--cinema-text-muted);margin-top:4px;letter-spacing:0.14em;">BECAUSE YOU DESERVE THE BEST</div>
+              <div class="gift-label" style="font-size:1.15rem;color:#f8fafc;font-family:var(--font-serif);font-weight:700;letter-spacing:0.02em;text-shadow:0 2px 10px rgba(0,0,0,0.8);">${c.gift2.title}</div>
+              <div class="text-whisper" style="font-size:0.7rem;color:var(--cinema-text-muted);margin-top:4px;letter-spacing:0.14em;">${c.gift2.subtitle.toUpperCase()}</div>
             </div>
 
             <!-- Narrative Lines (Bottom) -->

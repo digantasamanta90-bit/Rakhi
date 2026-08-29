@@ -1,10 +1,4 @@
-/**
- * BEAT 04 — 7:30 AM / THE CALL
- * World is fully awake with bright morning cyan sky and warm sunlight.
- * Clock hits 7:30:00. Real local ringtone (assets/music/ringtone.mp3) rings with BGM ducking.
- * Incoming call from Anwesha (`anwesha1.png`).
- * User taps to answer → Chat bubble: "Where are you?" → Leads into Panic.
- */
+import { content } from '../content/content.js';
 
 export class Scene04MissedCall {
   constructor({ manager, audio, particles }) {
@@ -17,6 +11,8 @@ export class Scene04MissedCall {
 
   enter(container) {
     return new Promise((resolve) => {
+      const c = content.scene04;
+
       container.innerHTML = `
         <div class="morning-sky-env" id="s4-viewport" style="position:relative;width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;overflow:hidden;">
           
@@ -35,7 +31,7 @@ export class Scene04MissedCall {
                 <img src="assets/portraits/anwesha1.png" alt="Anwesha" onerror="this.src='assets/portraits/anwesha_hero.png'">
               </div>
               <div class="incoming-tag" style="color:var(--rakhi-gold);">Incoming Call</div>
-              <div class="caller-name" style="color:#ffffff;">Anwesha 🧿</div>
+              <div class="caller-name" style="color:#ffffff;">${c.callerName} 🧿</div>
 
               <div class="call-actions" id="call-actions">
                 <button class="call-btn decline" id="decline-call" aria-label="Decline Call" style="background:#dc2626;">
@@ -49,7 +45,7 @@ export class Scene04MissedCall {
               <div class="chat-bubble" id="chat-msg" style="display:none;opacity:0;transform:translateY(15px);background:rgba(15,23,42,0.92);border:1px solid rgba(255,255,255,0.15);">
                 <div class="text-whisper" style="color:var(--rakhi-gold);margin-bottom:6px;font-size:0.62rem;">UTTER DISAPPOINTMENT • 7:30 AM</div>
                 <p class="text-dialogue" style="font-size:1.08rem;text-align:left;max-width:none;color:#f8fafc;font-style:italic;">
-                  "Where are you?"
+                  "${c.promptText}"
                 </p>
               </div>
             </div>

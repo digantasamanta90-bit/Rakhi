@@ -19,7 +19,7 @@ export class Scene13Letter {
 
   enter(container) {
     return new Promise((resolve) => {
-      const c = content.scene5;
+      const c = content.scene13;
 
       container.innerHTML = `
         <div class="tabletop-desk-env" id="s13-viewport" style="position:relative;width:100%;height:100%;overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:12px;perspective:1000px;background:radial-gradient(circle at 50% 30%, #451a03 0%, #1e293b 60%, #070c18 100%);">
@@ -31,7 +31,7 @@ export class Scene13Letter {
           <div class="letter-paper" id="l-paper" style="opacity:0;transform:translateY(30px) rotateX(8deg);z-index:10;position:relative;background:var(--surface-parchment);color:#1c1917;padding:16px 18px 14px 18px;border-radius:8px;box-shadow:0 16px 45px rgba(0,0,0,0.7);max-width:350px;width:94%;">
             <!-- Paper Header -->
             <div style="text-align:center;margin-bottom:8px;border-bottom:1px solid rgba(0,0,0,0.1);padding-bottom:6px;">
-              <div class="text-whisper" style="color:var(--rakhi-red);font-size:0.62rem;letter-spacing:0.14em;font-weight:700;">FOR ANWESHA // FROM DIGANTA</div>
+              <div class="text-whisper" style="color:var(--rakhi-red);font-size:0.62rem;letter-spacing:0.14em;font-weight:700;">${c.tag}</div>
               <h2 style="font-family:var(--font-serif);font-size:1.18rem;color:#78350f;font-style:italic;margin-top:2px;margin-bottom:0;">${c.header}</h2>
             </div>
 
@@ -88,7 +88,7 @@ export class Scene13Letter {
           <!-- Unobtrusive Thread Trigger -->
           <div id="l-cta-wrap" style="opacity:0;margin-top:12px;text-align:center;z-index:10;">
             <button class="btn-primary" id="l-next-btn" style="padding:8px 22px;font-size:0.82rem;background:var(--rakhi-red);color:#ffffff;border-radius:24px;border:none;cursor:pointer;font-weight:600;box-shadow:0 6px 18px rgba(220,38,38,0.4);">
-              <span>The Sacred Thread</span>
+              <span>${c.nextBtnText}</span>
               <span style="font-size:0.8rem;">→ 🧿</span>
             </button>
           </div>

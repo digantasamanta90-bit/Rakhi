@@ -1,11 +1,3 @@
-/**
- * BEAT 10 — ANWESHA / MEMORIES (ANTIQUE PHOTOGRAPH MEMORY BOX)
- * One-Focal-Object Rule: Each memory photograph has its own cinematic shot.
- * Photographs develop from soft blur, take center stage with intimate line-by-line reflections,
- * and recede gracefully for the next memory.
- * Golden & crimson silk thread weaves across the final memory, seamlessly leading into Gifts (Scene 11).
- */
-
 import { content } from '../content/content.js';
 
 export class Scene10Memories {
@@ -19,7 +11,7 @@ export class Scene10Memories {
 
   enter(container) {
     return new Promise((resolve) => {
-      const c = content.scene2;
+      const c = content.scene10;
 
       // Generate soft floating memory dust specks
       let dustHTML = '';
@@ -46,21 +38,21 @@ export class Scene10Memories {
             <div class="photo-memory" id="m-shot-1" style="width:165px;height:205px;position:absolute;opacity:0;filter:blur(14px);transform:scale(0.85) rotate(-3deg);z-index:5;cursor:pointer;background:var(--surface-parchment);padding:6px;box-shadow:0 14px 35px rgba(0,0,0,0.7);border-radius:4px;">
               <div class="photo-tape" style="background:rgba(220,38,38,0.7);width:52px;height:13px;top:-7px;"></div>
               <img src="assets/portraits/anwesha_hero.png" alt="Anwesha" style="width:100%;height:100%;object-fit:cover;border-radius:2px;" onerror="this.src='assets/portraits/anwesha1.png';">
-              <div class="photo-caption" style="font-size:0.75rem;color:var(--rakhi-red);font-weight:700;margin-top:6px;text-align:center;">Chotokhuki 🧿</div>
+              <div class="photo-caption" style="font-size:0.75rem;color:var(--rakhi-red);font-weight:700;margin-top:6px;text-align:center;">${c.memory1.caption}</div>
             </div>
 
             <!-- Shot 2: Second Memory (Intimate smile) -->
             <div class="photo-memory" id="m-shot-2" style="width:165px;height:205px;position:absolute;opacity:0;filter:blur(14px);transform:scale(0.85) rotate(4deg);z-index:5;cursor:pointer;background:var(--surface-parchment);padding:6px;box-shadow:0 14px 35px rgba(0,0,0,0.7);border-radius:4px;">
               <div class="photo-tape" style="background:rgba(251,191,36,0.7);width:52px;height:13px;top:-7px;"></div>
               <img src="assets/portraits/anwesha2.png" alt="Anwesha" style="width:100%;height:100%;object-fit:cover;border-radius:2px;" onerror="this.src='assets/portraits/anwesha5.png';">
-              <div class="photo-caption" style="font-size:0.75rem;color:var(--rakhi-gold);font-weight:700;margin-top:6px;text-align:center;">the favorite 🌸</div>
+              <div class="photo-caption" style="font-size:0.75rem;color:var(--rakhi-gold);font-weight:700;margin-top:6px;text-align:center;">${c.memory2.caption}</div>
             </div>
 
             <!-- Shot 3: Third Memory (Radiant portrait with woven thread) -->
             <div class="photo-memory" id="m-shot-3" style="width:170px;height:215px;position:absolute;opacity:0;filter:blur(14px);transform:scale(0.85) rotate(-2deg);z-index:5;cursor:pointer;background:var(--surface-parchment);padding:6px;box-shadow:0 16px 40px rgba(0,0,0,0.8);border-radius:4px;">
               <div class="photo-tape" style="background:rgba(220,38,38,0.8);width:58px;height:14px;top:-8px;"></div>
               <img src="assets/portraits/anwesha11.png" alt="Anwesha" style="width:100%;height:100%;object-fit:cover;border-radius:2px;" onerror="this.src='assets/portraits/anwesha12.png';">
-              <div class="photo-caption" style="font-weight:700;color:var(--rakhi-red);font-size:0.8rem;margin-top:6px;text-align:center;">Anwesha ❤️</div>
+              <div class="photo-caption" style="font-weight:700;color:var(--rakhi-red);font-size:0.8rem;margin-top:6px;text-align:center;">${c.memory3.caption}</div>
             </div>
 
             <!-- Thread Weaving SVG for Shot 3 -->
@@ -78,13 +70,13 @@ export class Scene10Memories {
             <!-- Memory Reflections (Single focused line per shot) -->
             <div style="position:absolute;bottom:15px;left:0;right:0;text-align:center;padding:0 20px;pointer-events:none;z-index:10;min-height:3.8em;display:flex;align-items:center;justify-content:center;">
               <p id="m-line-1" class="text-dialogue" style="opacity:0;font-size:clamp(1.02rem,3.5vw,1.18rem);color:#f8fafc;position:absolute;margin:0;font-style:italic;">
-                ${c.chosenSiblingLines[0]}
+                ${c.memory1.subtext}
               </p>
               <p id="m-line-2" class="text-emotional" style="opacity:0;font-size:clamp(1.05rem,3.6vw,1.22rem);color:#f8fafc;position:absolute;margin:0;font-style:italic;">
-                ${c.chosenSiblingLines[1]} ${c.chosenSiblingLines[2]}
+                ${c.memory2.subtext}
               </p>
               <p id="m-line-3" class="text-whisper" style="opacity:0;font-size:0.82rem;color:var(--rakhi-gold);letter-spacing:0.18em;position:absolute;margin:0;font-weight:700;">
-                WORTH MAKING RIDICULOUS WEBSITES FOR.
+                ${c.memory3.subtext}
               </p>
             </div>
           </div>

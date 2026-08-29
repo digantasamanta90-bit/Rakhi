@@ -1,11 +1,4 @@
-/**
- * BEAT 14 — THE THREAD (COSMIC CONNECTION VOID WITH MOVING STARFIELD)
- * Pure visual storytelling in deep atmospheric star void.
- * Moving, drifting star layers provide depth without distraction.
- * Morning fragments (4:30 AM, 5:30 AM, 7:30 AM, MISSED CALL, METRO, BROKEN KITKAT) orbit along the thread.
- * Fragments dissolve one by one, leaving only the unbroken sacred thread connecting Diganta & Anwesha.
- * Zero buttons, zero paragraph clutter. Transitions smoothly into Beat 15 (The Apology).
- */
+import { content } from '../content/content.js';
 
 export class Scene14Thread {
   constructor({ manager, audio, particles }) {
@@ -18,6 +11,8 @@ export class Scene14Thread {
 
   enter(container) {
     return new Promise((resolve) => {
+      const c = content.scene14;
+
       // Procedural Star Layers
       const starCount = 42;
       let starsLayer1 = '';
@@ -56,12 +51,12 @@ export class Scene14Thread {
 
           <!-- Morning Memory Fragments drifting in along the path -->
           <div id="t-frags-layer" style="position:relative;width:100%;max-width:340px;height:110px;display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:8px;z-index:10;margin-bottom:16px;">
-            <span class="text-timestamp-sm" id="tf-1" style="opacity:0;background:rgba(255,255,255,0.06);padding:4px 10px;border-radius:6px;border:1px solid rgba(255,255,255,0.15);color:#f8fafc;font-size:0.75rem;">4:30 AM</span>
-            <span class="text-timestamp-sm" id="tf-2" style="opacity:0;background:rgba(255,255,255,0.06);padding:4px 10px;border-radius:6px;border:1px solid rgba(255,255,255,0.15);color:#f8fafc;font-size:0.75rem;">5:30 AM</span>
-            <span class="text-timestamp-sm" id="tf-3" style="opacity:0;background:rgba(255,255,255,0.06);padding:4px 10px;border-radius:6px;border:1px solid rgba(255,255,255,0.15);color:#f8fafc;font-size:0.75rem;">7:30 AM</span>
-            <span class="text-timestamp-sm" id="tf-4" style="opacity:0;background:rgba(220,38,38,0.2);color:#ef4444;padding:4px 10px;border-radius:6px;border:1px solid rgba(220,38,38,0.4);font-weight:700;font-size:0.75rem;">MISSED CALL</span>
-            <span class="text-timestamp-sm" id="tf-5" style="opacity:0;background:rgba(255,255,255,0.06);padding:4px 10px;border-radius:6px;border:1px solid rgba(255,255,255,0.15);color:#f8fafc;font-size:0.75rem;">METRO</span>
-            <span class="text-timestamp-sm" id="tf-6" style="opacity:0;background:rgba(255,255,255,0.06);padding:4px 10px;border-radius:6px;border:1px solid rgba(255,255,255,0.15);color:#f8fafc;font-size:0.75rem;">BROKEN KITKAT</span>
+            <span class="text-timestamp-sm" id="tf-1" style="opacity:0;background:rgba(255,255,255,0.06);padding:4px 10px;border-radius:6px;border:1px solid rgba(255,255,255,0.15);color:#f8fafc;font-size:0.75rem;">${c.fragments[0]}</span>
+            <span class="text-timestamp-sm" id="tf-2" style="opacity:0;background:rgba(255,255,255,0.06);padding:4px 10px;border-radius:6px;border:1px solid rgba(255,255,255,0.15);color:#f8fafc;font-size:0.75rem;">${c.fragments[1]}</span>
+            <span class="text-timestamp-sm" id="tf-3" style="opacity:0;background:rgba(255,255,255,0.06);padding:4px 10px;border-radius:6px;border:1px solid rgba(255,255,255,0.15);color:#f8fafc;font-size:0.75rem;">${c.fragments[2]}</span>
+            <span class="text-timestamp-sm" id="tf-4" style="opacity:0;background:rgba(220,38,38,0.2);color:#ef4444;padding:4px 10px;border-radius:6px;border:1px solid rgba(220,38,38,0.4);font-weight:700;font-size:0.75rem;">${c.fragments[3]}</span>
+            <span class="text-timestamp-sm" id="tf-5" style="opacity:0;background:rgba(255,255,255,0.06);padding:4px 10px;border-radius:6px;border:1px solid rgba(255,255,255,0.15);color:#f8fafc;font-size:0.75rem;">${c.fragments[4]}</span>
+            <span class="text-timestamp-sm" id="tf-6" style="opacity:0;background:rgba(255,255,255,0.06);padding:4px 10px;border-radius:6px;border:1px solid rgba(255,255,255,0.15);color:#f8fafc;font-size:0.75rem;">${c.fragments[5]}</span>
           </div>
 
           <!-- Connection Node Staging (Diganta <---> Anwesha) -->
@@ -71,7 +66,7 @@ export class Scene14Thread {
               <div style="width:56px;height:56px;border-radius:50%;background:rgba(15,23,42,0.8);border:2px solid var(--sky-morning-cyan);overflow:hidden;box-shadow:0 6px 20px rgba(0,0,0,0.8);display:flex;align-items:center;justify-content:center;">
                 <img src="assets/portraits/diganta1.png" alt="Diganta" style="width:100%;height:100%;object-fit:cover;" onerror="this.src='assets/portraits/diganta1.png';">
               </div>
-              <span style="font-size:0.75rem;font-family:var(--font-mono);color:#cbd5e1;font-weight:600;">Diganta</span>
+              <span style="font-size:0.75rem;font-family:var(--font-mono);color:#cbd5e1;font-weight:600;">${c.digantaNode}</span>
             </div>
 
             <!-- Anwesha Node -->
@@ -79,7 +74,7 @@ export class Scene14Thread {
               <div style="width:56px;height:56px;border-radius:50%;background:rgba(15,23,42,0.8);border:2px solid var(--rakhi-gold);display:flex;align-items:center;justify-content:center;overflow:hidden;box-shadow:0 6px 20px rgba(0,0,0,0.8);">
                 <img src="assets/portraits/anwesha_hero.png" alt="Anwesha" style="width:100%;height:100%;object-fit:cover;" onerror="this.src='assets/portraits/anwesha12.png';">
               </div>
-              <span style="font-size:0.75rem;font-family:var(--font-mono);color:var(--rakhi-gold);font-weight:700;">Anwesha 🧿</span>
+              <span style="font-size:0.75rem;font-family:var(--font-mono);color:var(--rakhi-gold);font-weight:700;">${c.anweshaNode}</span>
             </div>
 
             <!-- Flowing Sacred Thread SVG -->

@@ -1,10 +1,4 @@
-/**
- * BEAT 06 — THE JOURNEY (REAL ANIMATED METRO CARRIAGE & PARALLAX)
- * Stylized animated Metro carriage with authentic interior architecture:
- * arched ceiling LEDs, route map, grab poles, hanging straps swaying with train inertia,
- * passenger seats, and broad panoramic window with multi-layer high-speed city parallax.
- * Dialogue: "You were waiting but I never made it till there."
- */
+import { content } from '../content/content.js';
 
 export class Scene06Journey {
   constructor({ manager, audio, particles }) {
@@ -16,6 +10,8 @@ export class Scene06Journey {
 
   enter(container) {
     return new Promise((resolve) => {
+      const c = content.scene06;
+
       // 1. Procedural Distant High-Rise Skyline (Layer 2)
       const distantBuildingsCount = 28;
       let distantBuildingsHTML = '';
@@ -76,7 +72,7 @@ export class Scene06Journey {
               <div style="display:flex;align-items:center;gap:6px;font-family:var(--font-mono);font-size:0.62rem;color:var(--rakhi-gold);letter-spacing:0.1em;">
                 <span style="color:#22c55e;">●</span><span>DEPARTURE</span>
                 <span style="color:#64748b;">───</span>
-                <span style="color:var(--rakhi-gold);animation:pulseGlow 1.2s infinite;">● CITY METRO</span>
+                <span style="color:var(--rakhi-gold);animation:pulseGlow 1.2s infinite;">● ${c.routeTag}</span>
                 <span style="color:#64748b;">───</span>
                 <span style="color:#94a3b8;">○ HOME</span>
               </div>
@@ -149,7 +145,7 @@ export class Scene06Journey {
           <!-- Thought Dialogue Overlay -->
           <div style="position:absolute;bottom:16%;left:50%;transform:translateX(-50%);z-index:40;text-align:center;width:88%;max-width:340px;pointer-events:none;">
             <p class="text-dialogue" id="s6-thought" style="opacity:0;font-size:clamp(1.05rem,3.6vw,1.25rem);color:#f8fafc;text-shadow:0 3px 16px rgba(0,0,0,0.95);margin:0 auto;font-style:italic;">
-              "You were waiting but I never made it till there."
+              "${c.dialogues[0]}"
             </p>
           </div>
         </div>
@@ -215,7 +211,7 @@ export class Scene06Journey {
         .to(thought, { opacity: 1, y: -4, duration: 0.7, ease: 'power2.out' }, 0.6)
         .to({}, { duration: 1.4 }) // let thought register
         
-        // Dissolve into Broken KitKat (Scene 07)
+        // Dissolve directly into Broken KitKat (Scene 07)
         .to(thought, { opacity: 0, duration: 0.4 }, 2.9)
         .to(viewport, { opacity: 0, scale: 0.96, duration: 0.5, ease: 'power2.in' }, 3.3);
     });

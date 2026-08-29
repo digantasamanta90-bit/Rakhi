@@ -18,7 +18,7 @@ export class Scene17PostCredits {
 
   enter(container) {
     return new Promise((resolve) => {
-      const c = content.scene8;
+      const c = content.scene17;
 
       container.innerHTML = `
         <div class="epilogue-desk-env" id="s17-viewport" style="position:relative;width:100%;height:100%;overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px;text-align:center;background:radial-gradient(circle at 50% 50%, #1e293b 0%, #0f172a 60%, #070c18 100%);">
@@ -42,10 +42,10 @@ export class Scene17PostCredits {
 
           <!-- Post-Credits Card Container -->
           <div id="pc-card" style="opacity:0;transform:scale(0.92);background:rgba(15,23,42,0.96);border:1px solid rgba(251,191,36,0.3);border-radius:18px;padding:24px 20px;max-width:320px;width:100%;box-shadow:0 16px 45px rgba(0,0,0,0.8);z-index:10;backdrop-filter:blur(10px);">
-            <div class="text-whisper" style="color:var(--rakhi-gold);letter-spacing:0.16em;margin-bottom:8px;font-size:0.68rem;font-weight:700;">EPILOGUE // POST-CREDITS</div>
+            <div class="text-whisper" style="color:var(--rakhi-gold);letter-spacing:0.16em;margin-bottom:8px;font-size:0.68rem;font-weight:700;">${c.tag}</div>
             
             <h3 style="font-family:var(--font-serif);font-size:1.35rem;color:#ffffff;margin-bottom:8px;font-style:italic;">
-              And that's the whole story. 🧿
+              ${c.title}
             </h3>
 
             <p style="font-size:0.86rem;color:#f8fafc;margin-bottom:18px;font-style:italic;line-height:1.45;">
@@ -54,10 +54,10 @@ export class Scene17PostCredits {
 
             <div style="display:flex;flex-direction:column;gap:10px;">
               <button class="btn-primary" id="pc-replay-btn" style="padding:12px 20px;font-size:0.9rem;width:100%;background:var(--rakhi-red);color:#ffffff;border:none;border-radius:24px;cursor:pointer;font-weight:700;box-shadow:0 6px 20px rgba(220,38,38,0.4);">
-                <span>Replay the Journey ↻</span>
+                <span>${c.replayBtn}</span>
               </button>
               <button class="btn-secondary" id="pc-restart-btn" style="font-size:0.8rem;padding:8px 16px;border:1px solid rgba(255,255,255,0.2);color:#cbd5e1;background:transparent;border-radius:20px;cursor:pointer;">
-                <span>Start from 4:30 AM</span>
+                <span>${c.restartBtn}</span>
               </button>
             </div>
           </div>
