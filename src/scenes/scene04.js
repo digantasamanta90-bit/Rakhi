@@ -84,12 +84,12 @@ export class Scene04MissedCall {
         chatMsg.style.display = 'block';
 
         gsap.to(chatMsg, {
-          opacity: 1, y: 0, duration: 0.8, ease: 'power2.out',
+          opacity: 1, y: 0, duration: 0.7, ease: 'power2.out',
           onComplete: () => {
             setTimeout(() => {
               this.manager.next();
               resolve();
-            }, 2600);
+            }, 1800);
           }
         });
       };

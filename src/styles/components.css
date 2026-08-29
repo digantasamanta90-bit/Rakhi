@@ -16,11 +16,11 @@
   font-weight: 600;
   letter-spacing: 0.02em;
   color: #ffffff;
-  background: linear-gradient(135deg, #4a2b42 0%, var(--text-plum-dark) 100%);
-  border: 1px solid rgba(200, 130, 148, 0.35);
+  background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
+  border: 1px solid rgba(251, 191, 36, 0.35);
   border-radius: 9999px;
   cursor: pointer;
-  box-shadow: 0 4px 16px rgba(61, 36, 54, 0.15), 0 1px 3px rgba(61, 36, 54, 0.08);
+  box-shadow: 0 4px 16px rgba(220, 38, 38, 0.35), 0 1px 3px rgba(0, 0, 0, 0.2);
   transition: transform 0.25s var(--ease-spring), box-shadow 0.25s var(--ease-soft), background 0.25s;
   outline: none;
   text-decoration: none;
@@ -31,8 +31,8 @@
 
 .btn-primary:hover {
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(61, 36, 54, 0.22);
-  background: linear-gradient(135deg, #56334e 0%, #351c2e 100%);
+  box-shadow: 0 6px 20px rgba(220, 38, 38, 0.5);
+  background: linear-gradient(135deg, #ef4444 0%, #b91c1c 100%);
 }
 
 .btn-primary:active {

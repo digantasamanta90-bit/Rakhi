@@ -20,7 +20,7 @@ export class Scene05Panic {
       const labels = ['PHONE', 'SHIRT', 'BAG', 'LAPTOP', 'CHARGER', 'WALLET', 'GIFT', 'SHOES'];
 
       container.innerHTML = `
-        <div id="panic-viewport" style="position:relative;width:100%;height:100%;overflow:hidden;background:linear-gradient(180deg, #1e1b4b 0%, #31102f 50%, #450a0a 100%);">
+        <div id="panic-viewport" style="position:relative;width:100%;height:100%;overflow:hidden;background:linear-gradient(180deg, #070c18 0%, #31102f 50%, #450a0a 100%);">
           
           <!-- Motion Speed Streaks -->
           <div id="panic-streaks" style="position:absolute;inset:0;pointer-events:none;opacity:0.45;">
@@ -55,10 +55,9 @@ export class Scene05Panic {
 
       this.tl = gsap.timeline({
         onComplete: () => {
-          setTimeout(() => {
-            this.manager.next();
-            resolve();
-          }, 1200);
+          gsap.set(viewport, { clearProps: 'x,y,transform' });
+          this.manager.next();
+          resolve();
         }
       });
 
@@ -72,8 +71,8 @@ export class Scene05Panic {
 
         this.tl.fromTo(el,
           { opacity: 0, x: startX, y: startY, scale: 0.3, rotation: Math.random() * 80 - 40 },
-          { opacity: 1, x: 0, y: 0, scale: 1, rotation: (Math.random() - 0.5) * 16, duration: 0.32, ease: 'back.out(1.6)' },
-          0.15 + i * 0.14
+          { opacity: 1, x: 0, y: 0, scale: 1, rotation: (Math.random() - 0.5) * 16, duration: 0.28, ease: 'back.out(1.6)' },
+          0.1 + i * 0.12
         );
       });
 
@@ -82,13 +81,16 @@ export class Scene05Panic {
       times.forEach((t, i) => {
         this.tl.call(() => {
           timerEl.textContent = t;
-        }, [], 1.4 + i * 0.28);
+        }, [], 1.1 + i * 0.22);
       });
 
-      // Screen tremor choreography
+      // Screen tremor choreography with clean zero-reset
       this.tl.to(viewport, {
-        x: 6, y: -4, duration: 0.04, repeat: 10, yoyo: true, ease: 'power1.inOut'
-      }, 1.8);
+        x: 5, y: -3, duration: 0.04, repeat: 10, yoyo: true, ease: 'power1.inOut',
+        onComplete: () => {
+          gsap.set(viewport, { x: 0, y: 0 });
+        }
+      }, 1.5);
 
       // Objects scatter outward in a fast vortex
       items.forEach((_, i) => {
@@ -100,21 +102,21 @@ export class Scene05Panic {
           y: Math.sin(angle) * 350,
           opacity: 0,
           scale: 0.4,
-          duration: 0.45,
+          duration: 0.4,
           ease: 'power2.in'
-        }, 3.6);
+        }, 2.9);
       });
 
       // Whip-pan climax impact: "METRO"
       this.tl
-        .to(timerEl, { opacity: 0, duration: 0.25 }, 3.8)
+        .to(timerEl, { opacity: 0, duration: 0.2 }, 3.1)
         .fromTo(rushEl, 
-          { opacity: 0, scale: 3.2 }, 
+          { opacity: 0, scale: 2.8 }, 
           { opacity: 1, scale: 1, duration: 0.25, ease: 'power4.out' }, 
-          4.0
+          3.2
         )
-        .to(rushEl, { scale: 1.05, duration: 0.8, ease: 'sine.inOut' })
-        .to(viewport, { opacity: 0, duration: 0.5, ease: 'power2.in' }, 4.9);
+        .to(rushEl, { scale: 1.04, duration: 0.7, ease: 'sine.inOut' }, 3.45)
+        .to(viewport, { opacity: 0, duration: 0.45, ease: 'power2.in' }, 4.15);
     });
   }
 

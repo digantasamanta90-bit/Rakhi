@@ -62,15 +62,15 @@ export class Scene09Ceiling {
       });
 
       this.tl
-        .to({}, { duration: 1.2 })
+        .to({}, { duration: 0.5 })
         
         // Line 1: "I messed up."
-        .to(msg1, { opacity: 1, y: -4, duration: 1.6, ease: 'power2.out' })
-        .to({}, { duration: 1.8 }) // stillness
+        .to(msg1, { opacity: 1, y: -4, duration: 0.8, ease: 'power2.out' })
+        .to({}, { duration: 1.2 }) // brief pause
         
         // Line 2: "I'm sorry."
-        .to(msg2, { opacity: 1, y: -4, duration: 1.6, ease: 'power2.out' })
-        .to({}, { duration: 2.2 }) // heavy pause
+        .to(msg2, { opacity: 1, y: -4, duration: 0.8, ease: 'power2.out' })
+        .to({}, { duration: 1.3 }) // emotional breath
         
         // Emotional Turning Point: "But I didn't make this for one morning."
         // Subtle warm light enters
@@ -85,15 +85,15 @@ export class Scene09Ceiling {
           if (sunbeam) {
             sunbeam.style.opacity = '0.5';
           }
-        }, [], 6.6)
-        .to(msg3, { opacity: 1, y: -4, duration: 1.8, ease: 'power2.out' }, 6.8)
-        .to({}, { duration: 2.6 }) // let the pivot breathe
+        }, [], 4.6)
+        .to(msg3, { opacity: 1, y: -4, duration: 0.9, ease: 'power2.out' }, 4.8)
+        .to({}, { duration: 1.6 }) // let the pivot register
         
-        // Camera descent into warm memory dust (Scene 10)
-        .to([msg1, msg2], { opacity: 0, y: -18, duration: 1.2, ease: 'power2.in' }, 11.2)
-        .to(fan, { opacity: 0, scale: 0.7, duration: 1.4, ease: 'power2.in' }, '<')
-        .to(msg3, { opacity: 0, y: -12, duration: 1.2, ease: 'power2.in' }, '<')
-        .to(viewport, { opacity: 0, scale: 0.96, duration: 1.0, ease: 'power2.inOut' });
+        // Camera descent directly into warm memory dust (Scene 10)
+        .to([msg1, msg2], { opacity: 0, y: -12, duration: 0.6, ease: 'power2.in' }, 7.3)
+        .to(fan, { opacity: 0, scale: 0.8, duration: 0.6, ease: 'power2.in' }, '<')
+        .to(msg3, { opacity: 0, y: -8, duration: 0.6, ease: 'power2.in' }, '<')
+        .to(viewport, { opacity: 0, scale: 0.96, duration: 0.5, ease: 'power2.inOut' }, 7.4);
     });
   }
 

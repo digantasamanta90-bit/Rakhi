@@ -1,12 +1,12 @@
 /**
- * CINEMATIC AUDIO CONTROLLER — RAKHI V4
+ * CINEMATIC AUDIO CONTROLLER — RAKHI V4.1
  * Pure audio discipline:
  * 1. Background Music: assets/music/monta re instrumental bgm.mp3 (Continuous emotional backbone)
  * 2. Real Alarm: assets/music/alarm.mp3 (Foreground audio with smooth BGM ducking)
  * 3. Real Ringtone: assets/music/ringtone.mp3 (Foreground audio with smooth BGM ducking)
  *
  * NO synthesized clutter, NO random chimes, NO beeps, NO sparkle sounds.
- * BGM plays continuously across scenes without resetting or stacking.
+ * BGM plays continuously from Scene 01 starter tap across scenes without resetting or stacking.
  */
 
 import { state } from './interactionState.js';
@@ -39,7 +39,7 @@ class AudioController {
   }
 
   /**
-   * Preloads the local master audio files safely without blocking page initialization
+   * Preloads the local master audio files safely
    */
   preloadLocalAudio() {
     try {
@@ -73,7 +73,7 @@ class AudioController {
         console.warn('Ringtone audio load warning:', e);
       };
     } catch (e) {
-      console.warn('Audio preloading error (handled gracefully):', e);
+      console.warn('Audio preloading error:', e);
     }
   }
 
@@ -117,7 +117,7 @@ class AudioController {
     state.audioStarted = true;
 
     // Never restart or duplicate BGM if already playing
-    if (this.isBgmPlaying) return;
+    if (this.isBgmPlaying && !this.bgmAudio.paused) return;
 
     try {
       this.bgmAudio.muted = this.isMuted;
@@ -147,6 +147,12 @@ class AudioController {
       this.bgmAudio.pause();
       this.isBgmPlaying = false;
     }
+    if (this.alarmAudio && !this.alarmAudio.paused) {
+      this.alarmAudio.pause();
+    }
+    if (this.ringtoneAudio && !this.ringtoneAudio.paused) {
+      this.ringtoneAudio.pause();
+    }
     if (this.ctx && this.ctx.state === 'running') {
       this.ctx.suspend().catch(() => {});
     }
@@ -156,6 +162,12 @@ class AudioController {
     if (this.isMuted) return;
     if (this.ctx && this.ctx.state === 'suspended') {
       await this.ctx.resume().catch(() => {});
+    }
+    if (this.alarmAudio && this.isAlarmPlaying && this.alarmAudio.paused) {
+      try { await this.alarmAudio.play(); } catch (e) {}
+    }
+    if (this.ringtoneAudio && this.isRingtonePlaying && this.ringtoneAudio.paused) {
+      try { await this.ringtoneAudio.play(); } catch (e) {}
     }
     if (this.bgmAudio && this.isPlaying && !this.isBgmPlaying) {
       try {
@@ -170,7 +182,7 @@ class AudioController {
    */
   duckBgm(duckVolume = 0.12, duration = 0.45) {
     this.isDucked = true;
-    if (this.bgmAudio && this.isBgmPlaying) {
+    if (this.bgmAudio) {
       if (window.gsap) {
         gsap.killTweensOf(this.bgmAudio);
         gsap.to(this.bgmAudio, {
@@ -189,7 +201,7 @@ class AudioController {
    */
   unduckBgm(targetVolume = 0.70, duration = 0.7) {
     this.isDucked = false;
-    if (this.bgmAudio && this.isBgmPlaying && !this.isMuted) {
+    if (this.bgmAudio && !this.isMuted) {
       if (window.gsap) {
         gsap.killTweensOf(this.bgmAudio);
         gsap.to(this.bgmAudio, {

@@ -17,7 +17,7 @@ export class Scene02Creation {
   enter(container) {
     return new Promise((resolve) => {
       container.innerHTML = `
-        <div style="position:relative;width:100%;height:100%;overflow:hidden;display:flex;align-items:center;justify-content:center;perspective:900px;background:linear-gradient(180deg, #0d1527 0%, #1e1b4b 60%, #311e38 100%);">
+        <div style="position:relative;width:100%;height:100%;overflow:hidden;display:flex;align-items:center;justify-content:center;perspective:900px;background:linear-gradient(180deg, #070c18 0%, #0f1c3f 50%, #1e293b 100%);">
           <!-- Floating creation fragments with warm parchment frames -->
           <div id="frag-photo1" style="position:absolute;opacity:0;width:78px;height:92px;background:var(--surface-parchment);padding:5px;box-shadow:0 10px 25px rgba(0,0,0,0.6);transform:rotate(-7deg) translateZ(30px);top:13%;left:8%;border-radius:4px;z-index:4;">
             <img src="assets/portraits/anwesha15.png" style="width:100%;height:100%;object-fit:cover;" onerror="this.src='assets/portraits/anwesha_hero.png'">
@@ -64,10 +64,8 @@ export class Scene02Creation {
 
       this.tl = gsap.timeline({
         onComplete: () => {
-          setTimeout(() => {
-            this.manager.next();
-            resolve();
-          }, 2200);
+          this.manager.next();
+          resolve();
         }
       });
 
@@ -76,9 +74,9 @@ export class Scene02Creation {
         const el = container.querySelector(`#${id}`);
         if (el) {
           this.tl.fromTo(el,
-            { opacity: 0, scale: 0.7, y: -20 + Math.random() * 40 },
-            { opacity: 1, scale: 1, y: 0, duration: 0.6, ease: 'back.out(1.3)' },
-            0.2 + i * 0.22
+            { opacity: 0, scale: 0.7, y: -15 + Math.random() * 30 },
+            { opacity: 1, scale: 1, y: 0, duration: 0.45, ease: 'back.out(1.3)' },
+            0.1 + i * 0.15
           );
         }
       });
@@ -87,23 +85,24 @@ export class Scene02Creation {
       timestamps.forEach((id, i) => {
         const el = container.querySelector(`#${id}`);
         if (el) {
-          this.tl.to(el, { opacity: 0.75, duration: 0.25 }, 1.6 + i * 0.3);
+          this.tl.to(el, { opacity: 0.75, duration: 0.18 }, 1.1 + i * 0.18);
         }
       });
 
       // Center text reveal with warm bloom
       this.tl
-        .to(building, { opacity: 1, duration: 0.8 }, 2.8)
-        .to(forEl, { opacity: 1, scale: 1, duration: 1.0, ease: 'power2.out' }, 3.3)
-        .to(sub, { opacity: 1, duration: 0.8 }, 4.0)
+        .to(building, { opacity: 1, duration: 0.5 }, 1.8)
+        .to(forEl, { opacity: 1, scale: 1, duration: 0.7, ease: 'power2.out' }, 2.1)
+        .to(sub, { opacity: 1, duration: 0.6 }, 2.6)
         
-        // Settle background fragments gently
+        // Hold for reading
+        .to({}, { duration: 1.4 })
+        
+        // Settle background fragments & dissolve directly into Scene 03 (Three Alarms)
         .to(frags.map(id => container.querySelector(`#${id}`)).filter(Boolean), {
-          opacity: 0.25, y: '+=12', duration: 1, stagger: 0.08
-        }, 4.6)
-        
-        // Dissolve into Scene 03 (Bedroom Alarms)
-        .to(centerBlock, { opacity: 0, y: -15, scale: 0.95, duration: 1.0, ease: 'power2.in' }, 6.0);
+          opacity: 0.2, y: '+=10', duration: 0.6, stagger: 0.05
+        }, 4.2)
+        .to(centerBlock, { opacity: 0, y: -10, scale: 0.96, duration: 0.6, ease: 'power2.in' }, 4.4);
     });
   }
 

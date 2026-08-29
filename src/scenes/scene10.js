@@ -80,7 +80,7 @@ export class Scene10Memories {
               <p id="m-line-1" class="text-dialogue" style="opacity:0;font-size:clamp(1.02rem,3.5vw,1.18rem);color:#f8fafc;position:absolute;margin:0;font-style:italic;">
                 ${c.chosenSiblingLines[0]}
               </p>
-              <p id="m-line-2" class="text-emotional" style="opacity:0;font-size:clamp(1.05rem,3.6vw,1.22rem);color:var(--rakhi-gold);position:absolute;margin:0;font-style:italic;">
+              <p id="m-line-2" class="text-emotional" style="opacity:0;font-size:clamp(1.05rem,3.6vw,1.22rem);color:#f8fafc;position:absolute;margin:0;font-style:italic;">
                 ${c.chosenSiblingLines[1]} ${c.chosenSiblingLines[2]}
               </p>
               <p id="m-line-3" class="text-whisper" style="opacity:0;font-size:0.82rem;color:var(--rakhi-gold);letter-spacing:0.18em;position:absolute;margin:0;font-weight:700;">
@@ -110,30 +110,31 @@ export class Scene10Memories {
 
       this.tl
         // --- SEQUENCE SHOT 1: Chotokhuki Hero Memory ---
-        .to(shot1, { opacity: 1, filter: 'blur(0px)', scale: 1, duration: 1.4, ease: 'power2.out', delay: 0.3 })
-        .to(line1, { opacity: 1, duration: 1.0, ease: 'power2.out' }, 0.8)
-        .to({}, { duration: 2.2 }) // breathe
+        .to(shot1, { opacity: 1, filter: 'blur(0px)', scale: 1, duration: 0.8, ease: 'power2.out', delay: 0.15 })
+        .to(line1, { opacity: 1, duration: 0.6, ease: 'power2.out' }, 0.4)
+        .to({}, { duration: 1.4 }) // breathe
         // Shot 1 recedes gracefully
-        .to(shot1, { opacity: 0, scale: 0.75, y: -20, filter: 'blur(8px)', duration: 0.9, ease: 'power2.in' }, 3.5)
-        .to(line1, { opacity: 0, duration: 0.6 }, 3.5)
+        .to(shot1, { opacity: 0, scale: 0.75, y: -15, filter: 'blur(6px)', duration: 0.5, ease: 'power2.in' }, 2.35)
+        .to(line1, { opacity: 0, duration: 0.35 }, 2.35)
 
         // --- SEQUENCE SHOT 2: Chosen Sibling Memory ---
-        .to(shot2, { opacity: 1, filter: 'blur(0px)', scale: 1, duration: 1.3, ease: 'power2.out' }, 4.3)
-        .to(line2, { opacity: 1, duration: 1.0, ease: 'power2.out' }, 4.7)
-        .to({}, { duration: 2.4 }) // breathe
+        .to(shot2, { opacity: 1, filter: 'blur(0px)', scale: 1, duration: 0.8, ease: 'power2.out' }, 2.9)
+        .to(line2, { opacity: 1, duration: 0.6, ease: 'power2.out' }, 3.1)
+        .to({}, { duration: 1.5 }) // breathe
         // Shot 2 recedes gracefully
-        .to(shot2, { opacity: 0, scale: 0.75, y: -20, filter: 'blur(8px)', duration: 0.9, ease: 'power2.in' }, 7.4)
-        .to(line2, { opacity: 0, duration: 0.6 }, 7.4)
+        .to(shot2, { opacity: 0, scale: 0.75, y: -15, filter: 'blur(6px)', duration: 0.5, ease: 'power2.in' }, 5.2)
+        .to(line2, { opacity: 0, duration: 0.35 }, 5.2)
 
         // --- SEQUENCE SHOT 3: Radiant Memory + Thread Weaving ---
-        .to(shot3, { opacity: 1, filter: 'blur(0px)', scale: 1, duration: 1.4, ease: 'back.out(1.2)' }, 8.2)
-        .to(threadWrap, { opacity: 1, duration: 0.5 }, 8.4)
-        .to(threadLine, { strokeDashoffset: 0, duration: 2.0, ease: 'power1.inOut' }, 8.4)
-        .to(line3, { opacity: 1, duration: 1.0, ease: 'power2.out' }, 8.8)
-        .to({}, { duration: 2.6 }) // breathe
-        // Smooth transition out into the physical gifts
-        .to([shot3, threadWrap, line3], { opacity: 0, y: -20, scale: 0.9, duration: 1.2, ease: 'power2.inOut' }, 12.0)
-        .to(viewport, { opacity: 0, duration: 0.8, ease: 'power2.in' }, 12.4);
+        .to(shot3, { opacity: 1, filter: 'blur(0px)', scale: 1, duration: 0.85, ease: 'back.out(1.2)' }, 5.8)
+        .to(threadWrap, { opacity: 1, duration: 0.35 }, 6.0)
+        .to(threadLine, { strokeDashoffset: 0, duration: 1.3, ease: 'power1.inOut' }, 6.0)
+        .to(line3, { opacity: 1, duration: 0.6, ease: 'power2.out' }, 6.3)
+        .to({}, { duration: 1.6 }) // breathe
+        
+        // Smooth transition directly into the physical gifts (Scene 11)
+        .to([shot3, threadWrap, line3], { opacity: 0, y: -15, scale: 0.92, duration: 0.6, ease: 'power2.inOut' }, 8.5)
+        .to(viewport, { opacity: 0, duration: 0.5, ease: 'power2.in' }, 8.7);
 
       // Tactile photo tap response
       [shot1, shot2, shot3].forEach(p => {

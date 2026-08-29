@@ -77,7 +77,7 @@ export class Scene16RakhiFinale {
                 <p id="f-apol-1" class="finale-sub" style="opacity:0;transform:translateY(8px);font-size:clamp(1.0rem,3.4vw,1.2rem);color:#cbd5e1;margin:0 0 4px 0;font-style:italic;">
                   A little late.
                 </p>
-                <p id="f-apol-2" class="finale-sub" style="opacity:0;transform:translateY(8px);font-size:clamp(1.1rem,3.8vw,1.35rem);color:var(--rakhi-gold);margin:0;font-style:italic;font-weight:600;">
+                <p id="f-apol-2" class="finale-sub" style="opacity:0;transform:translateY(8px);font-size:clamp(1.1rem,3.8vw,1.35rem);color:#f8fafc;margin:0;font-style:italic;font-weight:600;">
                   Still from the heart.
                 </p>
               </div>
@@ -149,41 +149,41 @@ export class Scene16RakhiFinale {
           .to({}, { duration: 0.5 })
 
           // STEP 3: "RAKHI TIED. FOREVER."
-          .to(line1, { opacity: 1, y: 0, duration: 0.7, ease: 'power2.out' })
-          .to({}, { duration: 1.8 })
-          .to(line1, { opacity: 0, y: -10, duration: 0.5, ease: 'power2.in' })
-          .to({}, { duration: 0.3 })
+          .to(line1, { opacity: 1, y: 0, duration: 0.6, ease: 'power2.out' })
+          .to({}, { duration: 1.2 })
+          .to(line1, { opacity: 0, y: -8, duration: 0.4, ease: 'power2.in' })
+          .to({}, { duration: 0.2 })
 
           // STEP 4: "FESTIVE BLESSINGS • FOREVER BOND"
-          .to(line2, { opacity: 1, y: 0, duration: 0.7, ease: 'power2.out' })
-          .to({}, { duration: 1.8 })
-          .to(line2, { opacity: 0, y: -10, duration: 0.5, ease: 'power2.in' })
-          .to({}, { duration: 0.4 })
+          .to(line2, { opacity: 1, y: 0, duration: 0.6, ease: 'power2.out' })
+          .to({}, { duration: 1.2 })
+          .to(line2, { opacity: 0, y: -8, duration: 0.4, ease: 'power2.in' })
+          .to({}, { duration: 0.25 })
 
           // STEP 5: MAIN GREETING ("HAPPY RAKHI," -> pause -> "ANWESHA ❤️")
-          .to(greetLead, { opacity: 1, y: 0, duration: 0.8, ease: 'power2.out' })
-          .to({}, { duration: 0.9 })
-          .to(greetName, { opacity: 1, scale: 1, duration: 0.9, ease: 'back.out(1.3)' })
-          .to({}, { duration: 2.6 })
-          .to([greetLead, greetName], { opacity: 0, y: -14, duration: 0.7, ease: 'power2.in' })
-          .to({}, { duration: 0.4 })
+          .to(greetLead, { opacity: 1, y: 0, duration: 0.7, ease: 'power2.out' })
+          .to({}, { duration: 0.6 })
+          .to(greetName, { opacity: 1, scale: 1, duration: 0.8, ease: 'back.out(1.3)' })
+          .to({}, { duration: 1.8 })
+          .to([greetLead, greetName], { opacity: 0, y: -10, duration: 0.5, ease: 'power2.in' })
+          .to({}, { duration: 0.25 })
 
           // STEP 6: SUPPORTING APOLOGY CALLBACK ("A little late." -> "Still from the heart.")
-          .to(apol1, { opacity: 1, y: 0, duration: 0.7, ease: 'power2.out' })
-          .to({}, { duration: 0.8 })
-          .to(apol2, { opacity: 1, y: 0, duration: 0.8, ease: 'power2.out' })
-          .to({}, { duration: 2.2 })
-          .to([apol1, apol2], { opacity: 0, duration: 0.6, ease: 'power2.in' })
-          .to({}, { duration: 0.3 })
+          .to(apol1, { opacity: 1, y: 0, duration: 0.6, ease: 'power2.out' })
+          .to({}, { duration: 0.6 })
+          .to(apol2, { opacity: 1, y: 0, duration: 0.7, ease: 'power2.out' })
+          .to({}, { duration: 1.4 })
+          .to([apol1, apol2], { opacity: 0, duration: 0.5, ease: 'power2.in' })
+          .to({}, { duration: 0.25 })
 
           // STEP 7: SIGNATURE ("— Diganta 🧿")
-          .to(signature, { opacity: 1, y: 0, duration: 0.9, ease: 'power2.out' })
-          .to({}, { duration: 2.2 })
-          .to(signature, { opacity: 0, duration: 0.8, ease: 'power2.in' })
-          .to({}, { duration: 0.4 })
+          .to(signature, { opacity: 1, y: 0, duration: 0.7, ease: 'power2.out' })
+          .to({}, { duration: 1.5 })
+          .to(signature, { opacity: 0, duration: 0.6, ease: 'power2.in' })
+          .to({}, { duration: 0.3 })
 
           // STEP 8: FINAL VISUAL BREATH
-          .to({}, { duration: 1.8 })
+          .to({}, { duration: 1.0 })
 
           // STEP 9: GRADUAL CELEBRATION RELEASE
           .call(() => {
@@ -195,24 +195,24 @@ export class Scene16RakhiFinale {
               this.achievements.show('Surprise Complete 🎉', 'Happy Rakhi, Anwesha! 🧿❤️', '🎉');
             }
           })
-          .to({}, { duration: 0.4 })
+          .to({}, { duration: 0.3 })
           // Staggered celebratory particle bursts
           .call(() => {
             if (this.particles) {
               this.particles.triggerBurst(window.innerWidth / 2, window.innerHeight * 0.35, 55);
             }
           })
-          .to({}, { duration: 0.35 })
+          .to({}, { duration: 0.3 })
           .call(() => {
             if (this.particles) {
               this.particles.triggerBurst(window.innerWidth * 0.25, window.innerHeight * 0.4, 30);
               this.particles.triggerBurst(window.innerWidth * 0.75, window.innerHeight * 0.4, 30);
             }
           })
-          .to({}, { duration: 1.4 })
+          .to({}, { duration: 1.0 })
 
           // STEP 10: POST-CREDITS EPILOGUE BUTTON
-          .to(postcreditsWrap, { opacity: 1, y: 0, duration: 0.9, ease: 'power2.out' });
+          .to(postcreditsWrap, { opacity: 1, y: 0, duration: 0.7, ease: 'power2.out' });
       };
 
       if (rakhiWrap) rakhiWrap.addEventListener('click', executeSequence);

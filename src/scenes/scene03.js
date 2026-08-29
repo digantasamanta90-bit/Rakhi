@@ -1,10 +1,10 @@
 /**
- * BEAT 03 — THREE ALARMS
- * Bedroom environment transitioning from pre-dawn to early morning light.
- * Glowing clock, window blinds with dawn light, subtle curtain drift.
- * Uses real local alarm audio (assets/music/alarm.mp3) with automatic BGM ducking.
- * 3 alarms: 5:30 AM → 5:45 AM → 6:00 AM.
- * Closes on: "…but my eyes never opened."
+ * BEAT 03 — THREE ALARMS (ARCHITECTURAL PANORAMIC WINDOW & LIVING HORIZON)
+ * Realistic large bedroom window overlooking the waking world:
+ * - Outside: Distant rooftops & tree silhouettes, moving dawn clouds, ascending sun.
+ * - Sky continuous progression: Deep Night (5:30) -> Sunrise Horizon (5:45) -> Full Radiant Daylight (6:00).
+ * - Alarm audio with instant trigger and smooth BGM ducking.
+ * - Zero dead pause transition directly into Scene 04.
  */
 
 export class Scene03Alarms {
@@ -20,22 +20,49 @@ export class Scene03Alarms {
   enter(container) {
     return new Promise((resolve) => {
       container.innerHTML = `
-        <div class="bedroom-dawn-env" id="s3-viewport" style="position:relative;width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;overflow:hidden;">
+        <div class="bedroom-dawn-env" id="s3-viewport" style="position:relative;width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;overflow:hidden;background:#070c18;">
           
-          <!-- Background Bedroom Window with shifting dawn tint -->
-          <div class="dawn-window-frame" id="s3-window">
-            ${Array.from({ length: 14 }).map(() => `<div class="window-blind-slat"></div>`).join('')}
-            <div class="dawn-curtain" id="s3-curtain"></div>
+          <!-- Master Architectural Panoramic Window -->
+          <div id="s3-window-frame" style="position:absolute;top:4%;left:6%;right:6%;bottom:10%;border-radius:12px;overflow:hidden;border:6px solid #1e293b;box-shadow:inset 0 0 50px rgba(0,0,0,0.85), 0 20px 60px rgba(0,0,0,0.9);background:#070c18;">
+            
+            <!-- Sky Gradient Layer (Continuously shifts from Deep Night -> Dawn -> Radiant Day) -->
+            <div id="s3-sky-gradient" style="position:absolute;inset:0;background:linear-gradient(180deg, #020617 0%, #0f172a 40%, #1e293b 75%, #334155 100%);transition:background 1.5s ease;"></div>
+
+            <!-- Rising Sun Disc -->
+            <div id="s3-rising-sun" style="position:absolute;bottom:-60px;left:52%;transform:translateX(-50%);width:95px;height:95px;border-radius:50%;background:radial-gradient(circle, #fef08a 0%, #fbbf24 60%, rgba(245,158,11,0) 85%);box-shadow:0 0 50px #fbbf24;opacity:0.25;transition:all 1.6s ease;z-index:2;"></div>
+
+            <!-- Moving Exterior Clouds Layer -->
+            <div class="clouds-drift-layer" style="position:absolute;inset:0;pointer-events:none;overflow:hidden;z-index:3;opacity:0.55;">
+              <div class="drifting-cloud cloud-speed-1" style="top:12%;left:-15%;width:340px;height:100px;background:radial-gradient(ellipse at 50% 50%, rgba(203,213,225,0.4) 0%, rgba(15,23,42,0) 70%);"></div>
+              <div class="drifting-cloud cloud-speed-2" style="top:28%;left:15%;width:380px;height:110px;background:radial-gradient(ellipse at 50% 50%, rgba(254,240,138,0.3) 0%, rgba(15,23,42,0) 70%);"></div>
+            </div>
+
+            <!-- Distant Horizon Silhouettes (Buildings, Rooftops, Tree Canopies, Antennae) -->
+            <div id="s3-horizon-silhouettes" style="position:absolute;bottom:0;left:0;right:0;height:35%;z-index:4;pointer-events:none;opacity:0.85;">
+              <svg viewBox="0 0 800 160" preserveAspectRatio="none" style="width:100%;height:100%;">
+                <!-- Far distant skyline -->
+                <path d="M 0 160 L 0 110 L 40 110 L 40 85 L 75 85 L 75 110 L 120 110 L 140 70 L 165 70 L 180 110 L 240 110 L 260 95 L 300 95 L 320 120 L 380 120 L 400 65 L 430 65 L 445 110 L 520 110 L 550 90 L 580 90 L 610 120 L 680 120 L 710 80 L 740 80 L 760 115 L 800 115 L 800 160 Z" fill="#090d16" opacity="0.75"/>
+                <!-- Near rooftop silhouettes & lush tree curves -->
+                <path d="M 0 160 L 0 130 Q 30 100 70 125 L 110 125 L 130 95 L 170 95 L 190 130 Q 230 90 280 135 L 350 135 L 370 105 L 420 105 L 450 140 Q 490 95 550 130 L 620 130 L 650 110 L 700 110 L 730 140 Q 770 115 800 130 L 800 160 Z" fill="#020617"/>
+              </svg>
+            </div>
+
+            <!-- Architectural Window Mullions / Panes Structure -->
+            <div style="position:absolute;top:0;bottom:0;left:50%;width:5px;background:#1e293b;transform:translateX(-50%);z-index:6;box-shadow:0 0 8px rgba(0,0,0,0.6);"></div>
+            <div style="position:absolute;left:0;right:0;top:48%;height:5px;background:#1e293b;z-index:6;box-shadow:0 0 8px rgba(0,0,0,0.6);"></div>
+
+            <!-- Glass Diagonal Morning Light Sheen -->
+            <div style="position:absolute;inset:0;background:linear-gradient(135deg, rgba(255,255,255,0.12) 0%, transparent 42%, rgba(254,240,138,0.06) 80%);pointer-events:none;z-index:7;"></div>
           </div>
 
-          <!-- Ambient Bedside Table Shadow -->
-          <div style="position:absolute;bottom:0;width:100%;height:35%;background:linear-gradient(180deg, transparent 0%, rgba(7,12,24,0.95) 60%);pointer-events:none;"></div>
+          <!-- Bottom Room Sill Shadow -->
+          <div style="position:absolute;bottom:0;width:100%;height:18%;background:linear-gradient(180deg, transparent 0%, #070c18 80%);z-index:10;pointer-events:none;"></div>
 
-          <!-- Center Digital Clock & Alarm UI -->
-          <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:10;gap:14px;padding:20px;text-align:center;">
+          <!-- Center Digital Clock & Alarm Interactive Card -->
+          <div id="s3-clock-box" style="position:relative;z-index:20;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;text-align:center;padding:14px 20px;background:rgba(15,23,42,0.9);border:1px solid rgba(255,255,255,0.18);border-radius:18px;box-shadow:0 16px 40px rgba(0,0,0,0.85);backdrop-filter:blur(10px);max-width:280px;width:82%;">
             
             <div class="alarm-icon-wrap" id="alarm-icon-box" style="position:relative;display:flex;align-items:center;justify-content:center;">
-              <svg class="alarm-icon-svg" id="alarm-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" style="width:52px;height:52px;color:var(--rakhi-red);filter:drop-shadow(0 0 16px rgba(220,38,38,0.6));">
+              <svg class="alarm-icon-svg" id="alarm-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" style="width:38px;height:38px;color:#f8fafc;filter:drop-shadow(0 0 10px rgba(255,255,255,0.4));">
                 <circle cx="12" cy="13" r="8"></circle>
                 <path d="M12 9v4l2 2"></path>
                 <path d="M5 3L2 6"></path>
@@ -43,22 +70,27 @@ export class Scene03Alarms {
               </svg>
             </div>
 
-            <div class="text-timestamp" id="alarm-time" style="font-size:clamp(2.4rem,9vw,4rem);color:var(--cinema-text);text-shadow:0 0 30px rgba(220,38,38,0.4);">
+            <!-- Time Display (Neutral Ivory) -->
+            <div class="text-timestamp" id="alarm-time" style="font-size:clamp(2.1rem,7.5vw,2.9rem);color:#f8fafc;font-family:var(--font-mono);font-weight:700;letter-spacing:0.04em;text-shadow:0 0 18px rgba(255,255,255,0.2);">
               5:30 AM
             </div>
             
-            <div class="text-whisper" id="alarm-label" style="color:var(--rakhi-gold);letter-spacing:0.18em;">
+            <div class="text-whisper" id="alarm-label" style="color:var(--cinema-text-muted);letter-spacing:0.18em;font-size:0.7rem;font-weight:600;">
               ALARM 1 OF 3
             </div>
 
-            <button class="alarm-dismiss-btn" id="dismiss-btn" style="margin-top:6px;min-width:140px;background:rgba(15,23,42,0.9);border:1.5px solid rgba(251,191,36,0.35);color:var(--cinema-text);box-shadow:0 6px 20px rgba(0,0,0,0.6);">
+            <button class="cinema-control-btn alarm-dismiss-btn" id="dismiss-btn" style="width:auto;height:auto;margin-top:4px;padding:7px 22px;border-radius:20px;background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.3);color:#f8fafc;font-size:0.82rem;font-weight:600;box-shadow:0 4px 16px rgba(0,0,0,0.5);cursor:pointer;">
               <span>Dismiss Alarm</span>
             </button>
+          </div>
 
-            <div class="text-dialogue" id="eyes-msg" style="opacity:0;margin-top:20px;font-style:italic;color:var(--cinema-accent);font-size:1.18rem;">
+          <!-- Emotional Reflection Dialogue -->
+          <div id="eyes-msg-box" style="position:absolute;bottom:12%;z-index:25;text-align:center;width:90%;max-width:340px;pointer-events:none;">
+            <div class="text-dialogue" id="eyes-msg" style="opacity:0;font-style:italic;color:#f8fafc;font-size:clamp(1.1rem,3.8vw,1.3rem);text-shadow:0 2px 14px rgba(0,0,0,0.9);">
               "…but my eyes never opened."
             </div>
           </div>
+
         </div>
       `;
 
@@ -67,25 +99,27 @@ export class Scene03Alarms {
       const labelEl = container.querySelector('#alarm-label');
       const dismissBtn = container.querySelector('#dismiss-btn');
       const eyesMsg = container.querySelector('#eyes-msg');
-      const windowFrame = container.querySelector('#s3-window');
+      const clockBox = container.querySelector('#s3-clock-box');
+      const skyGradient = container.querySelector('#s3-sky-gradient');
+      const risingSun = container.querySelector('#s3-rising-sun');
 
       const startAlarmRing = () => {
-        // Play actual local alarm audio with automatic BGM ducking
+        // Play trimmed local alarm audio immediately with automatic BGM ducking
         try {
           if (typeof this.audio.playAlarmSound === 'function') {
             this.audio.playAlarmSound();
           }
         } catch (e) {}
 
-        // Visual alarm ring animation & vibration
+        // Visual alarm ring animation & device vibration
         this.vibrateInterval = setInterval(() => {
           if (icon) {
-            gsap.fromTo(icon, { rotation: -14 }, { rotation: 14, duration: 0.05, repeat: 7, yoyo: true, ease: 'power1.inOut' });
+            gsap.fromTo(icon, { rotation: -12 }, { rotation: 12, duration: 0.05, repeat: 7, yoyo: true, ease: 'power1.inOut' });
           }
           if (typeof navigator !== 'undefined' && navigator.vibrate) {
-            try { navigator.vibrate([160, 90, 160]); } catch (e) {}
+            try { navigator.vibrate([140, 70, 140]); } catch (e) {}
           }
-        }, 800);
+        }, 750);
       };
 
       const stopAlarmRing = (unduck = false) => {
@@ -104,58 +138,78 @@ export class Scene03Alarms {
 
       const alarmTimes = ['5:30 AM', '5:45 AM', '6:00 AM'];
       const alarmLabels = ['ALARM 1 OF 3', 'ALARM 2 OF 3', 'ALARM 3 OF 3'];
-      const dawnTints = [
-        'linear-gradient(180deg, #1e1b4b 0%, #be185d 60%, #f59e0b 100%)',
-        'linear-gradient(180deg, #1e1b4b 0%, #d97706 60%, #fbbf24 100%)',
-        'linear-gradient(180deg, #0284c7 0%, #38bdf8 60%, #fef08a 100%)'
+      const dawnSkyTransitions = [
+        'linear-gradient(180deg, #020617 0%, #0f172a 40%, #1e1b4b 75%, #334155 100%)',
+        'linear-gradient(180deg, #0f172a 0%, #be185d 40%, #ea580c 70%, #fbbf24 100%)',
+        'linear-gradient(180deg, #0284c7 0%, #38bdf8 45%, #fed7aa 80%, #fef08a 100%)'
+      ];
+      const sunPositions = [
+        { bottom: '-50px', opacity: 0.3, scale: 1.0 },
+        { bottom: '25px', opacity: 0.8, scale: 1.3 },
+        { bottom: '48%', opacity: 1.0, scale: 1.7 }
       ];
 
-      // Trigger first alarm after short settling
+      // Trigger first alarm promptly after 250ms settling
       setTimeout(() => {
         startAlarmRing();
-      }, 500);
+      }, 250);
 
       dismissBtn.addEventListener('click', () => {
         this.alarmCount++;
 
         if (this.alarmCount < 3) {
-          // Temporarily stop ringing between alarm dismissals
+          // Temporarily pause alarm ringing between dismissals
           stopAlarmRing(false);
           
-          gsap.to([icon, timeEl, labelEl], { opacity: 0.25, scale: 0.95, duration: 0.3 });
+          gsap.to([icon, timeEl, labelEl], { opacity: 0.3, scale: 0.96, duration: 0.2 });
           
           setTimeout(() => {
             timeEl.textContent = alarmTimes[this.alarmCount];
             labelEl.textContent = alarmLabels[this.alarmCount];
             
-            // Advance dawn window light
-            if (windowFrame) {
-              windowFrame.style.background = dawnTints[this.alarmCount];
+            // Advance sky gradient and elevate rising sun
+            if (skyGradient) {
+              skyGradient.style.background = dawnSkyTransitions[this.alarmCount];
+            }
+            if (risingSun) {
+              risingSun.style.bottom = sunPositions[this.alarmCount].bottom;
+              risingSun.style.opacity = sunPositions[this.alarmCount].opacity;
+              risingSun.style.transform = `translateX(-50%) scale(${sunPositions[this.alarmCount].scale})`;
             }
 
-            gsap.to([icon, timeEl, labelEl], { opacity: 1, scale: 1, duration: 0.4 });
+            gsap.to([icon, timeEl, labelEl], { opacity: 1, scale: 1, duration: 0.3 });
             startAlarmRing();
-          }, 850);
+          }, 450);
         } else {
-          // Final dismissal
+          // Final 6:00 AM dismissal -> Full bright morning daylight!
           stopAlarmRing(true);
           dismissBtn.style.display = 'none';
 
-          gsap.to([icon, timeEl, labelEl], {
+          if (skyGradient) {
+            skyGradient.style.background = 'linear-gradient(180deg, #0284c7 0%, #38bdf8 45%, #fed7aa 100%)';
+          }
+          if (risingSun) {
+            risingSun.style.bottom = '55%';
+            risingSun.style.opacity = '1';
+            risingSun.style.transform = 'translateX(-50%) scale(2.0)';
+          }
+
+          gsap.to(clockBox, {
             opacity: 0,
             y: -15,
-            duration: 0.8,
+            duration: 0.5,
+            ease: 'power2.in',
             onComplete: () => {
               gsap.to(eyesMsg, {
                 opacity: 1,
                 y: 0,
-                duration: 1.6,
-                delay: 0.4,
+                duration: 0.9,
+                ease: 'power2.out',
                 onComplete: () => {
                   setTimeout(() => {
                     this.manager.next();
                     resolve();
-                  }, 2200);
+                  }, 1200);
                 }
               });
             }

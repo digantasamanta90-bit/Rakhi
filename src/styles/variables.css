@@ -11,7 +11,7 @@
   --sky-night-mid: #0f1c3f;
   --sky-night-moon: #e2e8f0;
   
-  --sky-dawn-blue: #1e1b4b;
+  --sky-dawn-blue: #0f1c3f;
   --sky-dawn-rose: #be185d;
   --sky-dawn-amber: #f59e0b;
   
@@ -65,6 +65,19 @@
   --cinema-border: rgba(255, 255, 255, 0.16);
   --cinema-gold: #fbbf24;
   --cinema-accent: #f43f5e;
+  /* 5. Legacy Compatibility Mappings (Ensure V4 palette everywhere) */
+  --text-plum-primary: #f8fafc;
+  --text-plum-dark: #f8fafc;
+  --text-plum-muted: #cbd5e1;
+  --text-plum-subtle: #94a3b8;
+  --rose-primary: #dc2626;
+  --rose-light: #f43f5e;
+  --gold-primary: #fbbf24;
+  --gold-light: #fef08a;
+  --border-delicate: rgba(255, 255, 255, 0.16);
+  --border-paper: rgba(255, 255, 255, 0.14);
+  --bg-paper-card: rgba(15, 23, 42, 0.92);
+  --bg-cream-soft: rgba(15, 23, 42, 0.85);
 
   /* Typography Families */
   --font-display: 'Fraunces', Georgia, serif;

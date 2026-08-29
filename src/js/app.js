@@ -94,9 +94,11 @@ document.addEventListener('DOMContentLoaded', () => {
     { name: 'Post-Credits', SceneClass: Scene17PostCredits }
   ]);
 
-  // 5. Bind Backward / Forward Navigation Controls
+  // 5. Bind Pause Button & Backward / Forward Navigation Controls
+  const pauseBtn = document.getElementById('pause-btn');
   const navPrevBtn = document.getElementById('nav-btn-prev');
   const navNextBtn = document.getElementById('nav-btn-next');
+  sceneManager.bindPauseControl({ pauseBtn });
   sceneManager.bindNavControls({ prevBtn: navPrevBtn, nextBtn: navNextBtn });
 
   // 6. Debug Navigation Panel

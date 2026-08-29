@@ -62,29 +62,30 @@ export class Scene15Apology {
       });
 
       this.tl
-        .to({}, { duration: 1.0 })
+        .to({}, { duration: 0.4 })
         // Thought 1: "I ruined Friday"
-        .to(at1, { opacity: 1, duration: 1.2, ease: 'power2.out' })
-        .to({}, { duration: 1.5 })
+        .to(at1, { opacity: 1, duration: 0.6, ease: 'power2.out' })
+        .to({}, { duration: 0.9 })
         // Thought 2: "I'm sorry for that."
-        .to(at2, { opacity: 1, duration: 1.2, ease: 'power2.out' })
-        .to({}, { duration: 1.8 })
+        .to(at2, { opacity: 1, duration: 0.6, ease: 'power2.out' })
+        .to({}, { duration: 1.1 })
         // Fade first two lines slightly to focus on resolution
-        .to([at1, at2], { opacity: 0.35, duration: 0.8 })
+        .to([at1, at2], { opacity: 0.3, duration: 0.4 })
         // Thought 3: "Not exactly how I imagined that day."
-        .to(at3, { opacity: 1, duration: 1.2, ease: 'power2.out' })
-        .to({}, { duration: 1.4 })
+        .to(at3, { opacity: 1, duration: 0.6, ease: 'power2.out' })
+        .to({}, { duration: 0.9 })
         // Thought 4: "But maybe that's okay."
-        .to(at4, { opacity: 1, duration: 1.3, ease: 'power2.out' })
-        .to({}, { duration: 1.5 })
-        // Thought 5 & 6: Resolution
-        .to(at5, { opacity: 1, duration: 1.2, ease: 'power2.out' })
-        .to({}, { duration: 1.2 })
-        .to(at6, { opacity: 1, scale: 1.04, duration: 1.4, ease: 'power2.out' })
-        .to({}, { duration: 2.6 }) // breathe and hold
-        // Golden bloom transition into Beat 16 (The Rakhi Finale)
-        .to(chamber, { opacity: 0, scale: 0.95, duration: 1.0, ease: 'power2.inOut' })
-        .to(viewport, { opacity: 0, duration: 0.8, ease: 'power2.in' }, "-=0.2");
+        .to(at4, { opacity: 1, duration: 0.7, ease: 'power2.out' })
+        .to({}, { duration: 0.9 })
+        // Thought 5: "Some moments don't happen the way you planned."
+        .to(at5, { opacity: 1, duration: 0.6, ease: 'power2.out' })
+        .to({}, { duration: 0.8 })
+        // Thought 6: "But I'll make sure the next one does."
+        .to(at6, { opacity: 1, scale: 1.03, duration: 0.9, ease: 'power2.out' })
+        .to({}, { duration: 1.6 }) // breathe and hold
+        // Golden bloom transition directly into Beat 16 (The Rakhi Finale)
+        .to(chamber, { opacity: 0, scale: 0.96, duration: 0.6, ease: 'power2.inOut' })
+        .to(viewport, { opacity: 0, duration: 0.5, ease: 'power2.in' }, "-=0.2");
     });
   }
 

@@ -21,7 +21,7 @@ export class Scene17PostCredits {
       const c = content.scene8;
 
       container.innerHTML = `
-        <div class="epilogue-desk-env" id="s17-viewport" style="position:relative;width:100%;height:100%;overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px;text-align:center;background:radial-gradient(circle at 50% 50%, #311e38 0%, #1e1b4b 60%, #0f172a 100%);">
+        <div class="epilogue-desk-env" id="s17-viewport" style="position:relative;width:100%;height:100%;overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px;text-align:center;background:radial-gradient(circle at 50% 50%, #1e293b 0%, #0f172a 60%, #070c18 100%);">
           
           <!-- Tabletop Ambient Grain -->
           <div class="golden-hour-beam" style="opacity:0.25;filter:blur(30px);"></div>
@@ -48,7 +48,7 @@ export class Scene17PostCredits {
               And that's the whole story. 🧿
             </h3>
 
-            <p style="font-size:0.86rem;color:var(--rakhi-gold);margin-bottom:18px;font-style:italic;line-height:1.45;">
+            <p style="font-size:0.86rem;color:#f8fafc;margin-bottom:18px;font-style:italic;line-height:1.45;">
               ${c.easterEgg}
             </p>
 

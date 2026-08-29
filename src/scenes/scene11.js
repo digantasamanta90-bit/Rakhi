@@ -1,12 +1,14 @@
 /**
- * BEAT 11 — THE PHYSICAL GIFTS & CASE FILE 04 INVESTIGATION
- * Procedural morning market street atmosphere with shopfronts, awnings, wires, and sunlight.
- * 1. KitKat Rich PNG descends with physical weight.
- * 2. Animated mini-cinematic investigation: Case File 04, candidates rejected,
- *    KitKat Rich approved, Monojit consultation on record.
- * 3. Bellavita fragrance box slides in with warm lighting sweep.
+ * BEAT 11 — THE PHYSICAL GIFTS & CASE FILE 04 (LIVING MARKET STREET PARALLAX)
+ * Camera travels through a bustling morning market street:
+ * - Layer 1: Distant buildings & warm morning sunbeam
+ * - Layer 2: Continuous parallax storefronts (Sweets, Gifts, Bakery, Flowers) passing camera
+ * - Layer 3: Overhead street wires and lamp posts rushing past in foreground
+ * Focal Objects:
+ * 1. KitKat Rich PNG descends in spotlight.
+ * 2. Case File 04 investigation board unfolds with candidate stamps & Monojit consultation.
+ * 3. Bellavita Collection perfume box slides in with warm lighting sweep.
  * 4. "I still wanted to give these to you myself. So here they are."
- * 5. Seamless transition into the Sibling Zone.
  */
 
 import { content } from '../content/content.js';
@@ -22,77 +24,112 @@ export class Scene11Gifts {
 
   enter(container) {
     return new Promise((resolve) => {
+      // 1. Procedural Storefronts for Continuous Parallax Stream (Layer 2)
+      const shopsData = [
+        { name: 'SWEET BAZAAR 🍬', awning: 'repeating-linear-gradient(90deg, #dc2626 0, #dc2626 12px, #ffffff 12px, #ffffff 24px)', color: '#7c2d12', signColor: '#fef08a' },
+        { name: 'GIFT STATION 🎁', awning: 'repeating-linear-gradient(90deg, #fbbf24 0, #fbbf24 12px, #1e293b 12px, #1e293b 24px)', color: '#1e293b', signColor: '#fbbf24' },
+        { name: 'BAKERY & CHAI ☕', awning: 'repeating-linear-gradient(90deg, #15803d 0, #15803d 12px, #fef08a 12px, #fef08a 24px)', color: '#78350f', signColor: '#ffffff' },
+        { name: 'FLOWER CORNER 🌸', awning: 'repeating-linear-gradient(90deg, #f43f5e 0, #f43f5e 12px, #ffffff 12px, #ffffff 24px)', color: '#451a03', signColor: '#fecdd3' },
+        { name: 'ROYAL CHOCOLATES 🍫', awning: 'repeating-linear-gradient(90deg, #d97706 0, #d97706 12px, #451a03 12px, #451a03 24px)', color: '#1e1b4b', signColor: '#fbbf24' },
+        { name: 'PERFUMERY 💐', awning: 'repeating-linear-gradient(90deg, #0284c7 0, #0284c7 12px, #ffffff 12px, #ffffff 24px)', color: '#0f172a', signColor: '#bae6fd' }
+      ];
+
+      let shopsHTML = shopsData.map((shop, i) => `
+        <div class="market-shop-card" style="flex-shrink:0;width:140px;height:165px;background:${shop.color};border:1.5px solid rgba(255,255,255,0.15);margin-right:20px;border-radius:6px;position:relative;display:flex;flex-direction:column;box-shadow:0 8px 24px rgba(0,0,0,0.6);align-self:flex-end;">
+          <!-- Striped Awning -->
+          <div style="width:100%;height:32px;background:${shop.awning};border-radius:4px 4px 0 0;box-shadow:0 4px 10px rgba(0,0,0,0.4);position:relative;">
+            <div style="position:absolute;bottom:-6px;left:0;right:0;height:6px;background:inherit;clip-path:polygon(0 0, 100% 0, 95% 100%, 85% 0, 75% 100%, 65% 0, 55% 100%, 45% 0, 35% 100%, 25% 0, 15% 100%, 5% 0, 0 100%);"></div>
+          </div>
+          <!-- Shop Signboard -->
+          <div style="margin:10px auto 4px auto;padding:3px 8px;background:rgba(0,0,0,0.7);border-radius:4px;border:1px solid rgba(255,255,255,0.2);color:${shop.signColor};font-family:var(--font-mono);font-size:0.65rem;font-weight:700;letter-spacing:0.06em;text-align:center;">
+            ${shop.name}
+          </div>
+          <!-- Storefront Display Window -->
+          <div style="flex:1;margin:4px 8px 8px 8px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:4px;display:flex;align-items:center;justify-content:center;color:#cbd5e1;font-size:1.2rem;">
+            ${i % 2 === 0 ? '✨' : '🛍️'}
+          </div>
+        </div>
+      `).join('');
+
       container.innerHTML = `
-        <div class="market-street-env" id="s11-viewport" style="position:relative;width:100%;height:100%;overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;perspective:900px;background:linear-gradient(180deg, #1e1b4b 0%, #311e38 50%, #451a03 100%);">
+        <div class="market-street-env" id="s11-viewport" style="position:relative;width:100%;height:100%;overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;background:radial-gradient(circle at 50% 35%, #451a03 0%, #1e293b 50%, #070c18 100%);">
           
-          <!-- Morning Market Street Wire & Shop Backdrop -->
-          <div class="overhead-wire-layer"></div>
-          <div class="market-backdrop-city" style="opacity:0.4;position:absolute;bottom:0;left:0;right:0;display:flex;justify-content:space-around;pointer-events:none;">
-            <div class="market-storefront"><div class="market-awning"></div><div class="market-shop-sign">SWEETS</div></div>
-            <div class="market-storefront" style="height:130px;"><div class="market-awning" style="background:repeating-linear-gradient(90deg, #fbbf24 0px, #fbbf24 10px, #1e293b 10px, #1e293b 20px);"></div><div class="market-shop-sign">GIFTS</div></div>
-            <div class="market-storefront"><div class="market-awning"></div><div class="market-shop-sign">BAKERY</div></div>
+          <!-- Morning Sunbeam Atmosphere -->
+          <div class="golden-hour-beam" style="opacity:0.35;filter:blur(30px);"></div>
+
+          <!-- Layer 3: Overhead Electrical Wires & Street Poles (Foreground Parallax) -->
+          <div id="mkt-overhead-wires" style="position:absolute;top:10%;left:0;width:300%;height:50px;pointer-events:none;z-index:5;will-change:transform;">
+            <svg viewBox="0 0 1200 50" preserveAspectRatio="none" style="width:100%;height:100%;">
+              <path d="M 0 10 Q 300 35 600 15 T 1200 20" stroke="rgba(255,255,255,0.25)" stroke-width="1.5" fill="none"/>
+              <path d="M 0 25 Q 300 45 600 30 T 1200 35" stroke="rgba(255,255,255,0.18)" stroke-width="1" fill="none"/>
+            </svg>
           </div>
 
-          <!-- Section A: Main Gift Stage Container -->
-          <div id="g-main-stage" style="position:relative;width:100%;max-width:360px;height:440px;display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:10;">
+          <!-- Layer 2: Living Street Parallax Stream (Shops pass the camera) -->
+          <div id="mkt-shops-stream" style="position:absolute;bottom:8%;left:0;width:350%;height:220px;display:flex;align-items:flex-end;pointer-events:none;z-index:4;will-change:transform;opacity:0.65;">
+            ${shopsHTML}
+          </div>
+
+          <!-- Section A: Main Focal Gift Stage Container (Center Spotlight) -->
+          <div id="g-main-stage" style="position:relative;width:100%;max-width:360px;height:440px;display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:20;">
             
             <!-- Shot 1: KitKat Hero Object (Real PNG Asset) -->
-            <div id="g-kitkat-view" style="position:absolute;display:flex;flex-direction:column;align-items:center;opacity:0;transform:translateY(-50px) scale(0.9);z-index:10;cursor:pointer;">
-              <div style="position:relative;width:190px;height:135px;display:flex;align-items:center;justify-content:center;">
-                <img src="assets/gifts/kitkat.png" alt="KitKat Rich" id="g-kitkat-img" style="width:100%;height:auto;object-fit:contain;filter:drop-shadow(0 16px 32px rgba(0,0,0,0.8));" />
+            <div id="g-kitkat-view" style="position:absolute;display:flex;flex-direction:column;align-items:center;opacity:0;transform:translateY(-40px) scale(0.9);z-index:20;cursor:pointer;">
+              <div style="position:relative;width:210px;height:140px;display:flex;align-items:center;justify-content:center;margin-bottom:12px;">
+                <img src="assets/gifts/kitkat.png" alt="KitKat Rich" id="g-kitkat-img" style="width:100%;height:auto;object-fit:contain;filter:drop-shadow(0 16px 36px rgba(0,0,0,0.85));" />
               </div>
-              <div class="gift-label" style="font-size:1.05rem;color:var(--rakhi-gold);margin-top:6px;font-family:var(--font-serif);font-weight:700;">KitKat Rich 🍫</div>
-              <div class="text-whisper" style="font-size:0.68rem;color:var(--cinema-text-muted);margin-top:2px;">THE OFFICIAL SELECTION</div>
+              <div class="gift-label" style="font-size:1.15rem;color:#f8fafc;font-family:var(--font-serif);font-weight:700;letter-spacing:0.02em;text-shadow:0 2px 10px rgba(0,0,0,0.8);">KitKat Rich 🍫</div>
+              <div class="text-whisper" style="font-size:0.7rem;color:var(--cinema-text-muted);margin-top:4px;letter-spacing:0.14em;">THE OFFICIAL SELECTION</div>
             </div>
 
-            <!-- Shot 2: Case File 04 Investigation Board (Tactile Parchment Dossier) -->
-            <div id="g-casefile-board" style="position:absolute;width:310px;background:rgba(15,23,42,0.96);border:1px solid rgba(251,191,36,0.3);border-radius:14px;padding:18px 16px;box-shadow:0 16px 45px rgba(0,0,0,0.8);opacity:0;transform:scale(0.85);z-index:20;pointer-events:none;backdrop-filter:blur(10px);">
+            <!-- Shot 2: Case File 04 Investigation Board (Dossier) -->
+            <div id="g-casefile-board" style="position:absolute;width:315px;background:rgba(15,23,42,0.96);border:1px solid rgba(255,255,255,0.18);border-radius:14px;padding:18px 16px;box-shadow:0 18px 50px rgba(0,0,0,0.9);opacity:0;transform:scale(0.85);z-index:25;pointer-events:none;backdrop-filter:blur(12px);">
               <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;border-bottom:1px dashed rgba(255,255,255,0.2);padding-bottom:6px;">
-                <span class="text-timestamp-sm" style="color:var(--rakhi-gold);font-size:0.68rem;">CASE FILE 04 // CHOCOLATE</span>
-                <span class="text-whisper" style="font-size:0.6rem;color:#ef4444;font-weight:700;">CLASSIFIED</span>
+                <span class="text-timestamp-sm" style="color:#f8fafc;font-size:0.7rem;font-weight:700;letter-spacing:0.06em;">CASE FILE 04 // CHOCOLATE</span>
+                <span class="text-whisper" style="font-size:0.62rem;color:#ef4444;font-weight:700;">CLASSIFIED</span>
               </div>
               
-              <div style="font-size:0.78rem;color:#cbd5e1;margin-bottom:8px;line-height:1.35;font-style:italic;">
+              <div style="font-size:0.8rem;color:#cbd5e1;margin-bottom:10px;line-height:1.4;font-style:italic;">
                 "Selecting this was not as simple as it should've been."
               </div>
 
               <!-- Candidate Evaluations -->
-              <div style="display:flex;flex-direction:column;gap:6px;font-size:0.75rem;">
-                <div id="g-cand-1" style="display:flex;justify-content:space-between;padding:4px 8px;background:rgba(255,255,255,0.05);border-radius:4px;opacity:0;">
-                  <span>Dark Chocolate 85%</span>
+              <div style="display:flex;flex-direction:column;gap:6px;font-size:0.76rem;">
+                <div id="g-cand-1" style="display:flex;justify-content:space-between;padding:5px 8px;background:rgba(255,255,255,0.06);border-radius:4px;opacity:0;">
+                  <span style="color:#cbd5e1;">Dark Chocolate 85%</span>
                   <span style="color:#ef4444;font-weight:700;">REJECTED ❌</span>
                 </div>
-                <div id="g-cand-2" style="display:flex;justify-content:space-between;padding:4px 8px;background:rgba(255,255,255,0.05);border-radius:4px;opacity:0;">
-                  <span>Overpriced Truffles</span>
-                  <span style="color:var(--rakhi-gold);font-weight:700;">SUSPICIOUS 🤔</span>
+                <div id="g-cand-2" style="display:flex;justify-content:space-between;padding:5px 8px;background:rgba(255,255,255,0.06);border-radius:4px;opacity:0;">
+                  <span style="color:#cbd5e1;">Overpriced Truffles</span>
+                  <span style="color:#f59e0b;font-weight:700;">SUSPICIOUS 🤔</span>
                 </div>
-                <div id="g-cand-3" style="display:flex;justify-content:space-between;padding:4px 8px;background:rgba(251,191,36,0.15);border-radius:4px;border:1px solid rgba(251,191,36,0.4);opacity:0;">
+                <div id="g-cand-3" style="display:flex;justify-content:space-between;padding:5px 8px;background:rgba(255,255,255,0.12);border-radius:4px;border:1px solid rgba(255,255,255,0.3);opacity:0;">
                   <span style="color:#ffffff;font-weight:700;">KitKat Rich</span>
                   <span style="color:#22c55e;font-weight:700;">APPROVED 🏆</span>
                 </div>
               </div>
 
-              <div id="g-case-footer" style="margin-top:10px;padding-top:6px;border-top:1px dashed rgba(255,255,255,0.2);font-size:0.68rem;color:#94a3b8;display:flex;justify-content:space-between;opacity:0;">
-                <span>Consultant: <strong>Monojit</strong></span>
-                <span style="color:var(--rakhi-gold);font-style:italic;">Professional Overthinker 🫡</span>
+              <div id="g-case-footer" style="margin-top:10px;padding-top:6px;border-top:1px dashed rgba(255,255,255,0.2);font-size:0.7rem;color:#94a3b8;display:flex;justify-content:space-between;opacity:0;">
+                <span>Consultant: <strong style="color:#f8fafc;">Monojit</strong></span>
+                <span style="color:var(--cinema-text-muted);font-style:italic;">Professional Overthinker 🫡</span>
               </div>
             </div>
 
             <!-- Shot 3: Bellavita Fragrance Object (Real PNG Asset) -->
-            <div id="g-bellavita-view" style="position:absolute;display:flex;flex-direction:column;align-items:center;opacity:0;transform:translateY(50px) scale(0.9);z-index:10;cursor:pointer;">
-              <div style="position:relative;width:190px;height:140px;display:flex;align-items:center;justify-content:center;">
-                <img src="assets/gifts/bellavita.png" alt="Bellavita" id="g-bellavita-img" style="width:100%;height:auto;object-fit:contain;filter:drop-shadow(0 16px 32px rgba(0,0,0,0.8));" />
+            <div id="g-bellavita-view" style="position:absolute;display:flex;flex-direction:column;align-items:center;opacity:0;transform:translateY(40px) scale(0.9);z-index:20;cursor:pointer;">
+              <div style="position:relative;width:210px;height:145px;display:flex;align-items:center;justify-content:center;margin-bottom:12px;">
+                <img src="assets/gifts/bellavita.png" alt="Bellavita" id="g-bellavita-img" style="width:100%;height:auto;object-fit:contain;filter:drop-shadow(0 16px 36px rgba(0,0,0,0.85));" />
               </div>
-              <div class="gift-label" style="font-size:1.05rem;color:var(--rakhi-gold);margin-top:6px;font-family:var(--font-serif);font-weight:700;">Bellavita Collection 🌸</div>
-              <div class="text-whisper" style="font-size:0.68rem;color:var(--cinema-text-muted);margin-top:2px;">BECAUSE YOU DESERVE THE BEST</div>
+              <div class="gift-label" style="font-size:1.15rem;color:#f8fafc;font-family:var(--font-serif);font-weight:700;letter-spacing:0.02em;text-shadow:0 2px 10px rgba(0,0,0,0.8);">Bellavita Collection 🌸</div>
+              <div class="text-whisper" style="font-size:0.7rem;color:var(--cinema-text-muted);margin-top:4px;letter-spacing:0.14em;">BECAUSE YOU DESERVE THE BEST</div>
             </div>
 
             <!-- Narrative Lines (Bottom) -->
-            <div id="g-narrative-zone" style="position:absolute;bottom:15px;text-align:center;padding:0 20px;z-index:15;pointer-events:none;">
-              <p id="g-line-1" class="text-dialogue" style="opacity:0;font-size:clamp(1.02rem,3.5vw,1.18rem);color:#f8fafc;margin:0;font-style:italic;">
+            <div id="g-narrative-zone" style="position:absolute;bottom:15px;text-align:center;padding:0 20px;z-index:25;pointer-events:none;">
+              <p id="g-line-1" class="text-dialogue" style="opacity:0;font-size:clamp(1.05rem,3.6vw,1.22rem);color:#f8fafc;margin:0;font-style:italic;text-shadow:0 2px 12px rgba(0,0,0,0.9);">
                 "I still wanted to give these to you myself."
               </p>
-              <p id="g-line-2" class="text-emotional" style="opacity:0;font-size:clamp(1.08rem,3.6vw,1.25rem);color:var(--rakhi-gold);margin:4px 0 0 0;font-style:italic;">
+              <p id="g-line-2" class="text-emotional" style="opacity:0;font-size:clamp(1.1rem,3.8vw,1.3rem);color:#f8fafc;margin:4px 0 0 0;font-style:italic;text-shadow:0 0 16px rgba(255,255,255,0.4);">
                 "So here they are."
               </p>
             </div>
@@ -100,6 +137,8 @@ export class Scene11Gifts {
         </div>
       `;
 
+      const shopsStream = container.querySelector('#mkt-shops-stream');
+      const wires = container.querySelector('#mkt-overhead-wires');
       const kitkatView = container.querySelector('#g-kitkat-view');
       const kitkatImg = container.querySelector('#g-kitkat-img');
       const casefileBoard = container.querySelector('#g-casefile-board');
@@ -122,34 +161,37 @@ export class Scene11Gifts {
       });
 
       this.tl
-        // --- 1. KitKat Hero Entrance ---
-        .to(kitkatView, { opacity: 1, y: 0, scale: 1, duration: 1.0, ease: 'bounce.out', delay: 0.2 })
-        .to(line1, { opacity: 1, duration: 0.8 }, 0.6)
-        .to({}, { duration: 1.2 })
+        // 1. Living Market Street Parallax Movement
+        .to(shopsStream, { x: '-60%', duration: 7.4, ease: 'none' }, 0)
+        .to(wires, { x: '-50%', duration: 5.0, ease: 'none', repeat: 1 }, 0)
 
-        // --- 2. Case File 04 Investigation Reveal ---
-        .to(kitkatView, { scale: 0.75, y: -60, opacity: 0.4, duration: 0.7, ease: 'power2.inOut' }, 2.4)
-        .to(casefileBoard, { opacity: 1, scale: 1, duration: 0.8, ease: 'back.out(1.2)' }, 2.5)
-        // Candidate stamps
-        .to(cand1, { opacity: 1, x: 0, duration: 0.4 }, 3.0)
-        .to(cand2, { opacity: 1, x: 0, duration: 0.4 }, 3.4)
-        .to(cand3, { opacity: 1, x: 0, duration: 0.5, ease: 'back.out(1.4)' }, 3.8)
-        .to(caseFooter, { opacity: 1, duration: 0.6 }, 4.3)
-        .to({}, { duration: 2.2 }) // let investigation breathe
+        // 2. KitKat Hero Entrance - Full Screen Presence
+        .to(kitkatView, { opacity: 1, y: 0, scale: 1, duration: 0.65, ease: 'back.out(1.2)' }, 0.15)
+        .to(line1, { opacity: 1, duration: 0.5 }, 0.35)
+        .to({}, { duration: 1.2 }) // Dedicated hero moment to view KitKat
 
-        // --- 3. Case File closes -> KitKat recedes -> Bellavita emerges ---
-        .to(casefileBoard, { opacity: 0, scale: 0.8, duration: 0.6, ease: 'power2.in' }, 6.8)
-        .to(kitkatView, { opacity: 0, duration: 0.5 }, 6.8)
-        .to(bellavitaView, { opacity: 1, y: 0, scale: 1, duration: 1.1, ease: 'power2.out' }, 7.2)
-        .to(line1, { opacity: 0, duration: 0.4 }, 7.2)
-        .to(line2, { opacity: 1, duration: 0.9, ease: 'power2.out' }, 7.6)
-        .to({}, { duration: 2.6 }) // hold
+        // 3. Case File 04 Investigation Reveal
+        .to(kitkatView, { scale: 0.75, y: -70, opacity: 0.2, duration: 0.45, ease: 'power2.inOut' }, 1.9)
+        .to(casefileBoard, { opacity: 1, scale: 1, duration: 0.5, ease: 'back.out(1.2)' }, 2.0)
+        .to(cand1, { opacity: 1, x: 0, duration: 0.25 }, 2.4)
+        .to(cand2, { opacity: 1, x: 0, duration: 0.25 }, 2.65)
+        .to(cand3, { opacity: 1, x: 0, duration: 0.35, ease: 'back.out(1.4)' }, 2.9)
+        .to(caseFooter, { opacity: 1, duration: 0.35 }, 3.25)
+        .to({}, { duration: 1.2 }) // Investigation reading pause
 
-        // --- 4. Transition toward Sibling Zone ---
-        .to(mainStage, { opacity: 0, scale: 0.92, y: -20, duration: 1.1, ease: 'power2.inOut' }, 11.0)
-        .to(viewport, { opacity: 0, duration: 0.8, ease: 'power2.in' }, 11.4);
+        // 4. Case File closes -> Bellavita Collection emerges
+        .to(casefileBoard, { opacity: 0, scale: 0.85, duration: 0.35, ease: 'power2.in' }, 4.6)
+        .to(kitkatView, { opacity: 0, duration: 0.25 }, 4.6)
+        .to(bellavitaView, { opacity: 1, y: 0, scale: 1, duration: 0.65, ease: 'power2.out' }, 4.85)
+        .to(line1, { opacity: 0, duration: 0.25 }, 4.85)
+        .to(line2, { opacity: 1, duration: 0.5, ease: 'power2.out' }, 5.1)
+        .to({}, { duration: 1.3 }) // Bellavita hero moment
 
-      // Tactile physical taps
+        // 5. Seamless Transition into Sibling Zone (Scene 12)
+        .to(mainStage, { opacity: 0, scale: 0.95, y: -12, duration: 0.5, ease: 'power2.inOut' }, 6.7)
+        .to(viewport, { opacity: 0, duration: 0.5, ease: 'power2.in' }, 6.9);
+
+      // Tactile physical taps on gift objects
       if (kitkatView) {
         kitkatView.addEventListener('click', (e) => {
           e.stopPropagation();

@@ -16,10 +16,10 @@ export class Scene07BrokenKitkat {
   enter(container) {
     return new Promise((resolve) => {
       container.innerHTML = `
-        <div id="s7-viewport" style="position:relative;width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;overflow:hidden;background:radial-gradient(circle at 50% 40%, #1e1b4b 0%, #0f172a 65%, #020617 100%);">
+        <div id="s7-viewport" style="position:relative;width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;overflow:hidden;background:radial-gradient(circle at 50% 40%, #070c18 0%, #0f172a 65%, #020617 100%);">
           
           <!-- Golden Spotlight Cone -->
-          <div style="position:absolute;top:-10%;left:50%;transform:translateX(-50%);width:280px;height:360px;background:radial-gradient(ellipse at 50% 0%, rgba(254,240,138,0.2) 0%, transparent 70%);pointer-events:none;filter:blur(16px);"></div>
+          <div style="position:absolute;top:-10%;left:50%;transform:translateX(-50%);width:280px;height:360px;background:radial-gradient(ellipse at 50% 0%, rgba(254,240,138,0.18) 0%, transparent 70%);pointer-events:none;filter:blur(16px);"></div>
 
           <!-- Staged KitKat Presentation Area -->
           <div id="kitkat-stage" style="position:relative;width:260px;height:160px;display:flex;align-items:center;justify-content:center;z-index:10;">
@@ -65,10 +65,9 @@ export class Scene07BrokenKitkat {
 
       this.tl = gsap.timeline({
         onComplete: () => {
-          setTimeout(() => {
-            this.manager.next();
-            resolve();
-          }, 2200);
+          gsap.set(viewport, { clearProps: 'x,y,transform' });
+          this.manager.next();
+          resolve();
         }
       });
 
@@ -76,35 +75,38 @@ export class Scene07BrokenKitkat {
         // 1. Hero presentation floating gently in spotlight
         .fromTo(wholeImg, 
           { opacity: 0, scale: 0.85, y: -20 }, 
-          { opacity: 1, scale: 1, y: -10, duration: 0.9, ease: 'back.out(1.2)' }, 
+          { opacity: 1, scale: 1, y: -10, duration: 0.6, ease: 'back.out(1.2)' }, 
           0.1
         )
-        .to(wholeImg, { y: -20, rotation: 3, duration: 1.2, ease: 'sine.inOut', yoyo: true, repeat: 1 })
+        .to(wholeImg, { y: -15, rotation: 2, duration: 0.7, ease: 'sine.inOut', yoyo: true, repeat: 1 })
         
         // 2. Sudden slip and drop
-        .to(wholeImg, { y: 48, rotation: 8, duration: 0.28, ease: 'power2.in' })
+        .to(wholeImg, { y: 48, rotation: 8, duration: 0.22, ease: 'power2.in' })
         
-        // 3. Impact & Fracture Switch!
+        // 3. Impact & Fracture Switch with clean shake reset
         .call(() => {
           wholeWrap.style.display = 'none';
           brokenWrap.style.display = 'block';
-          gsap.to(viewport, { x: 7, duration: 0.03, repeat: 6, yoyo: true, ease: 'power1.inOut' });
+          gsap.to(viewport, {
+            x: 6, duration: 0.03, repeat: 6, yoyo: true, ease: 'power1.inOut',
+            onComplete: () => { gsap.set(viewport, { x: 0, y: 0 }); }
+          });
         })
         
         // 4. Fracture pieces bounce and tilt
-        .fromTo(pieceLeft, { x: 0, y: 0, rotation: 0 }, { x: -20, y: 5, rotation: -7, duration: 0.4, ease: 'power2.out' })
-        .fromTo(pieceRight, { x: 0, y: 0, rotation: 0 }, { x: 20, y: -3, rotation: 6, duration: 0.4, ease: 'power2.out' }, '<')
+        .fromTo(pieceLeft, { x: 0, y: 0, rotation: 0 }, { x: -20, y: 5, rotation: -7, duration: 0.3, ease: 'power2.out' })
+        .fromTo(pieceRight, { x: 0, y: 0, rotation: 0 }, { x: 20, y: -3, rotation: 6, duration: 0.3, ease: 'power2.out' }, '<')
         
         // 5. CRACK slams onto screen
-        .fromTo(crackText, { opacity: 0, scale: 2.4 }, { opacity: 1, scale: 1, duration: 0.15, ease: 'power4.out' })
+        .fromTo(crackText, { opacity: 0, scale: 2.2 }, { opacity: 1, scale: 1, duration: 0.15, ease: 'power4.out' })
         
-        // 6. Deadpan silence pause
-        .to({}, { duration: 1.4 })
-        .to(crackText, { opacity: 0.25, duration: 0.6 })
-        .to(msg, { opacity: 1, duration: 1.0 })
+        // 6. Comedic deadpan dialogue reveals quickly
+        .to(crackText, { opacity: 0.25, duration: 0.35 }, "+=0.2")
+        .to(msg, { opacity: 1, duration: 0.5 }, "<")
+        .to({}, { duration: 1.1 }) // brief comedic hold to read
         
-        // 7. Fade out into Scene 08 (Going Home)
-        .to(viewport, { opacity: 0, duration: 0.8, ease: 'power2.in' }, "+=1.0");
+        // 7. Fade out directly into Scene 08 (Going Home)
+        .to(viewport, { opacity: 0, duration: 0.45, ease: 'power2.in' });
     });
   }
 

@@ -22,74 +22,74 @@ export class Scene13Letter {
       const c = content.scene5;
 
       container.innerHTML = `
-        <div class="tabletop-desk-env" id="s13-viewport" style="position:relative;width:100%;height:100%;overflow-y:auto;overflow-x:hidden;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding:calc(env(safe-area-inset-top,10px) + 20px) 16px 28px 16px;perspective:1000px;background:linear-gradient(180deg, #1e1b4b 0%, #311e38 50%, #451a03 100%);">
+        <div class="tabletop-desk-env" id="s13-viewport" style="position:relative;width:100%;height:100%;overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:12px;perspective:1000px;background:radial-gradient(circle at 50% 30%, #451a03 0%, #1e293b 60%, #070c18 100%);">
           
           <!-- Wooden Desk Grain & Sunlight Spot -->
           <div class="golden-hour-beam" style="opacity:0.3;filter:blur(25px);"></div>
 
-          <!-- Physical Parchment Sheet -->
-          <div class="letter-paper" id="l-paper" style="opacity:0;transform:translateY(40px) rotateX(12deg);z-index:10;position:relative;background:var(--surface-parchment);color:#1c1917;padding:24px 20px;border-radius:6px;box-shadow:0 16px 45px rgba(0,0,0,0.7);max-width:340px;width:100%;">
+          <!-- Physical Parchment Sheet (Compact to fit perfectly inside viewport) -->
+          <div class="letter-paper" id="l-paper" style="opacity:0;transform:translateY(30px) rotateX(8deg);z-index:10;position:relative;background:var(--surface-parchment);color:#1c1917;padding:16px 18px 14px 18px;border-radius:8px;box-shadow:0 16px 45px rgba(0,0,0,0.7);max-width:350px;width:94%;">
             <!-- Paper Header -->
-            <div style="text-align:center;margin-bottom:14px;border-bottom:1px solid rgba(0,0,0,0.1);padding-bottom:10px;">
-              <div class="text-whisper" style="color:var(--rakhi-red);font-size:0.68rem;letter-spacing:0.14em;font-weight:700;">FOR ANWESHA // FROM DIGANTA</div>
-              <h2 style="font-family:var(--font-serif);font-size:1.4rem;color:#78350f;font-style:italic;margin-top:4px;">${c.header}</h2>
+            <div style="text-align:center;margin-bottom:8px;border-bottom:1px solid rgba(0,0,0,0.1);padding-bottom:6px;">
+              <div class="text-whisper" style="color:var(--rakhi-red);font-size:0.62rem;letter-spacing:0.14em;font-weight:700;">FOR ANWESHA // FROM DIGANTA</div>
+              <h2 style="font-family:var(--font-serif);font-size:1.18rem;color:#78350f;font-style:italic;margin-top:2px;margin-bottom:0;">${c.header}</h2>
             </div>
 
             <!-- Letter Body with Thought-by-Thought Staggered Reveal -->
-            <div style="font-size:0.88rem;line-height:1.7;color:#292524;display:flex;flex-direction:column;gap:12px;">
-              <p id="l-p0" style="opacity:0;font-style:italic;color:#b45309;font-weight:600;">
+            <div style="font-size:0.78rem;line-height:1.42;color:#292524;display:flex;flex-direction:column;gap:6px;">
+              <p id="l-p0" style="opacity:0;font-style:italic;color:#b45309;font-weight:600;margin:0;">
                 ${c.leadQuote}
               </p>
-              <p id="l-p1" style="opacity:0;">
+              <p id="l-p1" style="opacity:0;margin:0;">
                 ${c.messageParagraphs[0]}
               </p>
-              <p id="l-p2" style="opacity:0;">
+              <p id="l-p2" style="opacity:0;margin:0;">
                 ${c.messageParagraphs[1]}
               </p>
-              <p id="l-p3" style="opacity:0;">
+              <p id="l-p3" style="opacity:0;margin:0;">
                 ${c.messageParagraphs[2]}
               </p>
-              <p id="l-p4" style="opacity:0;font-weight:600;color:#78350f;">
+              <p id="l-p4" style="opacity:0;font-weight:600;color:#78350f;margin:0;">
                 ${c.messageParagraphs[3]}
               </p>
-              <p id="l-p5" style="opacity:0;font-style:italic;color:#78716c;font-size:0.84rem;">
+              <p id="l-p5" style="opacity:0;font-style:italic;color:#78716c;font-size:0.75rem;margin:0;">
                 ${c.closingJoke}
               </p>
             </div>
 
             <!-- Handwritten Signature Block -->
-            <div id="l-sig" style="opacity:0;margin-top:18px;padding-top:12px;border-top:1px dashed rgba(0,0,0,0.2);display:flex;justify-content:space-between;align-items:flex-end;">
+            <div id="l-sig" style="opacity:0;margin-top:10px;padding-top:8px;border-top:1px dashed rgba(0,0,0,0.2);display:flex;justify-content:space-between;align-items:flex-end;">
               <div>
-                <button class="btn-secondary" id="l-keep-btn" style="font-size:0.75rem;padding:6px 14px;border-radius:20px;border:1px solid #b45309;color:#b45309;background:transparent;cursor:pointer;font-weight:600;">
+                <button class="btn-secondary" id="l-keep-btn" style="font-size:0.68rem;padding:4px 10px;border-radius:16px;border:1px solid #b45309;color:#b45309;background:transparent;cursor:pointer;font-weight:600;">
                   <span>${c.keepButton}</span>
                 </button>
-                <div id="l-keep-msg" style="display:none;font-size:0.75rem;color:#b45309;font-style:italic;margin-top:4px;">
+                <div id="l-keep-msg" style="display:none;font-size:0.7rem;color:#b45309;font-style:italic;margin-top:2px;">
                   ${c.keepSuccess}
                 </div>
               </div>
               <div style="text-align:right;">
-                <div style="font-size:0.72rem;color:#78716c;">${c.signature.prefix}</div>
-                <div class="handwritten-sig" style="font-size:1.25rem;color:#78350f;font-family:var(--font-serif);font-style:italic;font-weight:700;">${c.signature.author}</div>
+                <div style="font-size:0.68rem;color:#78716c;">${c.signature.prefix}</div>
+                <div class="handwritten-sig" style="font-size:1.15rem;color:#78350f;font-family:var(--font-serif);font-style:italic;font-weight:700;">${c.signature.author}</div>
               </div>
             </div>
 
             <!-- Unspooling Thread Strand from corner -->
-            <svg style="position:absolute;bottom:-15px;right:20px;width:120px;height:40px;overflow:visible;pointer-events:none;" viewBox="0 0 120 40">
+            <svg style="position:absolute;bottom:-12px;right:18px;width:110px;height:35px;overflow:visible;pointer-events:none;" viewBox="0 0 110 35">
               <defs>
                 <linearGradient id="threadGradScene13" x1="0%" y1="0%" x2="100%" y2="100%">
                   <stop offset="0%" stop-color="#dc2626" />
                   <stop offset="100%" stop-color="#fbbf24" />
                 </linearGradient>
               </defs>
-              <path id="l-thread-tail" d="M 10 5 Q 60 35 110 20" stroke="url(#threadGradScene13)" stroke-width="3" fill="none" stroke-linecap="round" stroke-dasharray="160" stroke-dashoffset="160" opacity="0.9" filter="drop-shadow(0 2px 6px rgba(220,38,38,0.5))" />
+              <path id="l-thread-tail" d="M 10 5 Q 55 30 100 15" stroke="url(#threadGradScene13)" stroke-width="2.8" fill="none" stroke-linecap="round" stroke-dasharray="140" stroke-dashoffset="140" opacity="0.9" filter="drop-shadow(0 2px 6px rgba(220,38,38,0.5))" />
             </svg>
           </div>
 
           <!-- Unobtrusive Thread Trigger -->
-          <div id="l-cta-wrap" style="opacity:0;margin-top:20px;text-align:center;z-index:10;">
-            <button class="btn-primary" id="l-next-btn" style="padding:10px 26px;font-size:0.9rem;background:var(--rakhi-red);color:#ffffff;border-radius:24px;border:none;cursor:pointer;font-weight:600;box-shadow:0 6px 20px rgba(220,38,38,0.4);">
+          <div id="l-cta-wrap" style="opacity:0;margin-top:12px;text-align:center;z-index:10;">
+            <button class="btn-primary" id="l-next-btn" style="padding:8px 22px;font-size:0.82rem;background:var(--rakhi-red);color:#ffffff;border-radius:24px;border:none;cursor:pointer;font-weight:600;box-shadow:0 6px 18px rgba(220,38,38,0.4);">
               <span>The Sacred Thread</span>
-              <span style="font-size:0.85rem;">→ 🧿</span>
+              <span style="font-size:0.8rem;">→ 🧿</span>
             </button>
           </div>
         </div>

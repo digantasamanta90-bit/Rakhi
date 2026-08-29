@@ -45,47 +45,53 @@
     <!-- Transition Flare / Bloom -->
     <div id="screen-flare" class="screen-flare" aria-hidden="true"></div>
 
-    <!-- Pause Indicator Overlay (Minimalist Ambient Cue) -->
-    <div id="pause-indicator" class="pause-indicator" role="status" aria-live="polite" aria-label="Experience Paused">
-      <span class="pause-icon" aria-hidden="true">Ⅱ</span>
-      <span class="pause-text">PAUSED</span>
-    </div>
-
-    <!-- Audio Toggle (Minimalist Floating Icon) -->
-    <button id="audio-toggle" class="audio-toggle" aria-label="Toggle sound">
-      <svg class="audio-icon-on" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
-        <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
-        <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
-        <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
-      </svg>
-      <svg class="audio-icon-off" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" style="display:none;">
-        <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
-        <line x1="23" y1="9" x2="17" y2="15"></line>
-        <line x1="17" y1="9" x2="23" y2="15"></line>
-      </svg>
-    </button>
-
     <!-- Master Scene Stage -->
     <main id="scene-stage"></main>
 
-    <!-- Backward / Forward Navigation Controls -->
-    <nav id="cinema-nav" class="cinema-nav" aria-label="Scene navigation">
-      <button id="nav-btn-prev" class="cinema-nav-btn prev" aria-label="Previous scene" title="Previous scene">
-        <span aria-hidden="true">‹</span>
+    <!-- Top-Left Dedicated Pause / Play Control -->
+    <div class="cinema-viewport-ctrl cinema-top-left">
+      <button id="pause-btn" class="cinema-control-btn cinema-pause-btn" aria-label="Pause film" title="Pause film">
+        <span class="icon-pause" aria-hidden="true">⏸</span>
+        <span class="icon-play" aria-hidden="true" style="display:none;">▶</span>
       </button>
-      <button id="nav-btn-next" class="cinema-nav-btn next" aria-label="Next scene" title="Next scene">
-        <span aria-hidden="true">›</span>
-      </button>
-    </nav>
+    </div>
 
-    <!-- Debug Navigation Panel (Development / Chapter jump) -->
-    <div id="debug-nav" class="debug-nav">
-      <button id="debug-toggle" class="debug-toggle" aria-label="Toggle scene navigator">☰</button>
+    <!-- Top-Right Sound Control -->
+    <div class="cinema-viewport-ctrl cinema-top-right">
+      <button id="audio-toggle" class="cinema-control-btn audio-toggle" aria-label="Toggle sound" title="Toggle sound">
+        <svg class="audio-icon-on" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+          <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+          <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
+          <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+        </svg>
+        <svg class="audio-icon-off" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" style="display:none;">
+          <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+          <line x1="23" y1="9" x2="17" y2="15"></line>
+          <line x1="17" y1="9" x2="23" y2="15"></line>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Bottom-Left Menu / Scene Navigator -->
+    <div id="debug-nav" class="cinema-viewport-ctrl cinema-bottom-left debug-nav">
+      <button id="debug-toggle" class="cinema-control-btn debug-toggle" aria-label="Toggle scene menu" title="Scene menu">☰</button>
       <div id="debug-panel" class="debug-panel" style="display:none;">
         <div class="debug-title">SCENE NAVIGATOR</div>
         <div id="debug-scene-list" class="debug-scene-list"></div>
         <button id="debug-restart" class="debug-btn">↻ Restart Film</button>
       </div>
+    </div>
+
+    <!-- Bottom-Right Navigation Controls (Previous / Next) -->
+    <div class="cinema-viewport-ctrl cinema-bottom-right">
+      <nav id="cinema-nav" class="cinema-nav-group" aria-label="Scene navigation">
+        <button id="nav-btn-prev" class="cinema-control-btn cinema-nav-btn prev" aria-label="Previous scene" title="Previous scene">
+          <span aria-hidden="true">‹</span>
+        </button>
+        <button id="nav-btn-next" class="cinema-control-btn cinema-nav-btn next" aria-label="Next scene" title="Next scene">
+          <span aria-hidden="true">›</span>
+        </button>
+      </nav>
     </div>
 
     <!-- Achievement Notification Toast -->
