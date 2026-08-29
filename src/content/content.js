@@ -161,11 +161,13 @@ export const content = {
   scene09: {
     line1: "I messed up.",
     line2: "I'm sorry.",
-    line3: "I made this same mistake on another morning",
+    line3: "You were waiting but I was not there",
+    line4: "I made this same mistake on another morning",
     timing: {
       line1Hold: 1.4,
       line2Hold: 1.5,
-      turningPointHold: 2.0
+      line3Hold: 1.6,
+      turningPointHold: 2.2
     }
   },
 
