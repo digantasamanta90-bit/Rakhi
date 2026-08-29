@@ -79,7 +79,7 @@ export const content = {
     callerName: "ANWESHA",
     location: "Metro Station Gate 2",
     callStatus: "1 MISSED CALL",
-    promptText: "Kothay tui???", 
+    promptText: "Kothay tui???",
     subtext: "Phone vibrating silently on the desk...",
     timing: {
       ringDuration: 2.4,
@@ -163,7 +163,7 @@ export const content = {
     line2: "I'm sorry.",
     line3: "I made this same mistake on another morning",
     timing: {
-       line1Hold: 1.4,
+      line1Hold: 1.4,
       line2Hold: 1.5,
       turningPointHold: 2.0
     }
@@ -180,7 +180,7 @@ export const content = {
     memory2: {
       caption: "The Chosen Sibling ❤️",
       subtext: "Not by blood. Just by one of those good turns life makes."
-    }, 
+    },
     memory3: {
       caption: "A Bond Across Any Distance ✨",
       subtext: "Some things don't depend on whether you showed up at 7:30."
@@ -211,7 +211,7 @@ export const content = {
     },
     gift2: {
       title: "Random Finds 🪻",
-      subtitle: "Because one gift was never going to be enough."
+      subtitle: "Because one was never enough."
     },
     timing: {
       kitkatSpotlight: 3.6,
@@ -219,7 +219,7 @@ export const content = {
       bellavitaSpotlight: 3.0
     }
   },
- 
+
   // ==========================================
   // BEAT 12 — THE SIBLING ZONE
   // ==========================================
@@ -298,9 +298,9 @@ export const content = {
     },
     nextBtnText: "The Sacred Thread",
     timing: {
-      paragraphCadence: 0.8
+      paragraphCadence: 0.8 
     }
-  },
+  }, 
 
   // ==========================================
   // BEAT 14 — THE THREAD (COSMIC CONNECTION)
