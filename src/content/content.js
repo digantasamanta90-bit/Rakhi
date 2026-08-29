@@ -120,7 +120,7 @@ export const content = {
       "Rushing through the city, holding the gifts tight..."
     ],
     timing: {
-      travelHold: 5.6
+      travelHold: 7.6
     }
   },
 
