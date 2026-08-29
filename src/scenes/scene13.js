@@ -1,10 +1,9 @@
 /**
- * BEAT 13 — THE LETTER
- * Intimate quietness. Visual noise stripped away.
+ * BEAT 13 — THE LETTER (TABLETOP DESK AMBIANCE)
+ * Intimate tabletop desk environment with warm wood grain and gentle morning sunlight beam.
  * Physical sheet of warm stationery paper unrolls in 3D perspective.
  * Thought-by-thought reveal with deliberate breathing room, handwritten signature,
  * and glowing thread unspooling from the corner into Scene 14.
- * Styled in the Velvet Night × Antique Memory aesthetic.
  */
 
 import { content } from '../content/content.js';
@@ -23,21 +22,22 @@ export class Scene13Letter {
       const c = content.scene5;
 
       container.innerHTML = `
-        <div style="position:relative;width:100%;height:100%;overflow-y:auto;overflow-x:hidden;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding:calc(env(safe-area-inset-top,10px) + 20px) 16px 28px 16px;perspective:1000px;">
-          <!-- Quiet velvet dark ambient backdrop -->
-          <div style="position:absolute;inset:0;background:radial-gradient(circle at 50% 30%, rgba(42,20,29,0.15) 0%, rgba(10,7,9,0.98) 80%);pointer-events:none;"></div>
+        <div class="tabletop-desk-env" id="s13-viewport" style="position:relative;width:100%;height:100%;overflow-y:auto;overflow-x:hidden;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding:calc(env(safe-area-inset-top,10px) + 20px) 16px 28px 16px;perspective:1000px;background:linear-gradient(180deg, #1e1b4b 0%, #311e38 50%, #451a03 100%);">
+          
+          <!-- Wooden Desk Grain & Sunlight Spot -->
+          <div class="golden-hour-beam" style="opacity:0.3;filter:blur(25px);"></div>
 
-          <!-- Physical Parchment Sheet (Floating in warm darkness) -->
-          <div class="letter-paper" id="l-paper" style="opacity:0;transform:translateY(40px) rotateX(15deg);z-index:10;position:relative;">
+          <!-- Physical Parchment Sheet -->
+          <div class="letter-paper" id="l-paper" style="opacity:0;transform:translateY(40px) rotateX(12deg);z-index:10;position:relative;background:var(--surface-parchment);color:#1c1917;padding:24px 20px;border-radius:6px;box-shadow:0 16px 45px rgba(0,0,0,0.7);max-width:340px;width:100%;">
             <!-- Paper Header -->
-            <div style="text-align:center;margin-bottom:14px;">
-              <div class="text-whisper" style="color:var(--faded-wine-text);font-size:0.65rem;letter-spacing:0.14em;">FOR ANWESHA // FROM DIGANTA</div>
-              <h2 class="font-display" style="font-size:1.35rem;color:var(--wine);font-style:italic;margin-top:2px;">${c.header}</h2>
+            <div style="text-align:center;margin-bottom:14px;border-bottom:1px solid rgba(0,0,0,0.1);padding-bottom:10px;">
+              <div class="text-whisper" style="color:var(--rakhi-red);font-size:0.68rem;letter-spacing:0.14em;font-weight:700;">FOR ANWESHA // FROM DIGANTA</div>
+              <h2 style="font-family:var(--font-serif);font-size:1.4rem;color:#78350f;font-style:italic;margin-top:4px;">${c.header}</h2>
             </div>
 
             <!-- Letter Body with Thought-by-Thought Staggered Reveal -->
-            <div style="font-size:0.84rem;line-height:1.68;color:var(--wine);display:flex;flex-direction:column;gap:11px;">
-              <p id="l-p0" style="opacity:0;font-style:italic;color:var(--muted-rose);font-weight:500;">
+            <div style="font-size:0.88rem;line-height:1.7;color:#292524;display:flex;flex-direction:column;gap:12px;">
+              <p id="l-p0" style="opacity:0;font-style:italic;color:#b45309;font-weight:600;">
                 ${c.leadQuote}
               </p>
               <p id="l-p1" style="opacity:0;">
@@ -49,41 +49,47 @@ export class Scene13Letter {
               <p id="l-p3" style="opacity:0;">
                 ${c.messageParagraphs[2]}
               </p>
-              <p id="l-p4" style="opacity:0;font-weight:500;color:var(--wine);">
+              <p id="l-p4" style="opacity:0;font-weight:600;color:#78350f;">
                 ${c.messageParagraphs[3]}
               </p>
-              <p id="l-p5" style="opacity:0;font-style:italic;color:var(--soft-muted-text);font-size:0.8rem;">
+              <p id="l-p5" style="opacity:0;font-style:italic;color:#78716c;font-size:0.84rem;">
                 ${c.closingJoke}
               </p>
             </div>
 
             <!-- Handwritten Signature Block -->
-            <div id="l-sig" style="opacity:0;margin-top:18px;padding-top:12px;border-top:1px dashed var(--parchment-border);display:flex;justify-content:space-between;align-items:flex-end;">
+            <div id="l-sig" style="opacity:0;margin-top:18px;padding-top:12px;border-top:1px dashed rgba(0,0,0,0.2);display:flex;justify-content:space-between;align-items:flex-end;">
               <div>
-                <button class="btn-secondary" id="l-keep-btn" style="font-size:0.72rem;padding:4px 12px;min-height:28px;border-color:var(--muted-rose);color:var(--muted-rose);background:rgba(155,93,112,0.08);">
+                <button class="btn-secondary" id="l-keep-btn" style="font-size:0.75rem;padding:6px 14px;border-radius:20px;border:1px solid #b45309;color:#b45309;background:transparent;cursor:pointer;font-weight:600;">
                   <span>${c.keepButton}</span>
                 </button>
-                <div id="l-keep-msg" style="display:none;font-size:0.72rem;color:var(--muted-rose);font-style:italic;margin-top:4px;">
+                <div id="l-keep-msg" style="display:none;font-size:0.75rem;color:#b45309;font-style:italic;margin-top:4px;">
                   ${c.keepSuccess}
                 </div>
               </div>
               <div style="text-align:right;">
-                <div style="font-size:0.7rem;color:var(--faded-wine-text);">${c.signature.prefix}</div>
-                <div class="handwritten-sig" style="font-size:1.15rem;color:var(--muted-rose);font-family:var(--font-display);font-style:italic;">${c.signature.author}</div>
+                <div style="font-size:0.72rem;color:#78716c;">${c.signature.prefix}</div>
+                <div class="handwritten-sig" style="font-size:1.25rem;color:#78350f;font-family:var(--font-serif);font-style:italic;font-weight:700;">${c.signature.author}</div>
               </div>
             </div>
 
             <!-- Unspooling Thread Strand from corner -->
             <svg style="position:absolute;bottom:-15px;right:20px;width:120px;height:40px;overflow:visible;pointer-events:none;" viewBox="0 0 120 40">
-              <path id="l-thread-tail" d="M 10 5 Q 60 35 110 20" stroke="url(#threadGrad)" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-dasharray="160" stroke-dashoffset="160" opacity="0.9" />
+              <defs>
+                <linearGradient id="threadGradScene13" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#dc2626" />
+                  <stop offset="100%" stop-color="#fbbf24" />
+                </linearGradient>
+              </defs>
+              <path id="l-thread-tail" d="M 10 5 Q 60 35 110 20" stroke="url(#threadGradScene13)" stroke-width="3" fill="none" stroke-linecap="round" stroke-dasharray="160" stroke-dashoffset="160" opacity="0.9" filter="drop-shadow(0 2px 6px rgba(220,38,38,0.5))" />
             </svg>
           </div>
 
           <!-- Unobtrusive Thread Trigger -->
-          <div id="l-cta-wrap" style="opacity:0;margin-top:16px;text-align:center;z-index:10;">
-            <button class="btn-primary" id="l-next-btn" style="padding:9px 24px;font-size:0.86rem;">
+          <div id="l-cta-wrap" style="opacity:0;margin-top:20px;text-align:center;z-index:10;">
+            <button class="btn-primary" id="l-next-btn" style="padding:10px 26px;font-size:0.9rem;background:var(--rakhi-red);color:#ffffff;border-radius:24px;border:none;cursor:pointer;font-weight:600;box-shadow:0 6px 20px rgba(220,38,38,0.4);">
               <span>The Sacred Thread</span>
-              <span style="font-size:0.8rem;">→ 🧿</span>
+              <span style="font-size:0.85rem;">→ 🧿</span>
             </button>
           </div>
         </div>
@@ -116,7 +122,6 @@ export class Scene13Letter {
         .to(p4, { opacity: 1, duration: 0.7 }, 3.1)
         .to(p5, { opacity: 1, duration: 0.7 }, 3.7)
         // Signature appears
-        .call(() => { try { this.audio.playSparkleSfx(); } catch(e) {} }, [], 4.2)
         .to(sig, { opacity: 1, duration: 0.8, ease: 'power2.out' }, 4.2)
         // Sacred thread unspools
         .to(threadTail, { strokeDashoffset: 0, duration: 1.5, ease: 'power1.inOut' }, 4.6)
@@ -126,7 +131,6 @@ export class Scene13Letter {
       if (keepBtn && keepMsg) {
         keepBtn.addEventListener('click', (e) => {
           e.stopPropagation();
-          try { this.audio.playSparkleSfx(); } catch(e) {}
           keepBtn.style.display = 'none';
           keepMsg.style.display = 'block';
           if (this.particles) {
@@ -140,12 +144,11 @@ export class Scene13Letter {
 
       // Transition smoothly into Scene 14 (The Thread)
       const proceedToThread = () => {
-        try { this.audio.playSparkleSfx(); } catch(e) {}
         gsap.to(paper, {
           opacity: 0,
           y: -25,
           scale: 0.95,
-          duration: 0.9,
+          duration: 0.8,
           ease: 'power2.inOut',
           onComplete: () => {
             this.manager.next();
@@ -163,3 +166,5 @@ export class Scene13Letter {
     return Promise.resolve();
   }
 }
+
+

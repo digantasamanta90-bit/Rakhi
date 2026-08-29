@@ -472,28 +472,32 @@ html, body {
   position: relative;
   width: 100%;
   height: 100%;
-  overflow: hidden;
+  overflow-y: auto;
+  overflow-x: hidden;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  perspective: 900px;
+  padding: calc(env(safe-area-inset-top, 10px) + 20px) 16px 28px 16px;
+  box-sizing: border-box;
 }
 
 .sibling-seq-stage {
   position: relative;
   width: 100%;
-  max-width: 360px;
-  height: 460px;
+  max-width: 340px;
+  min-height: 420px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  margin: auto 0;
 }
 
 .sibling-focal-item {
   position: absolute;
-  width: 290px;
+  width: 100%;
+  max-width: 340px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -502,14 +506,15 @@ html, body {
   pointer-events: none;
   text-align: center;
   z-index: 10;
+  box-sizing: border-box;
 }
 
 .sibling-focal-item.active {
-  pointer-events: auto;
+  pointer-events: auto !important;
 }
 
 .sibling-focal-card {
-  background: rgba(26, 13, 20, 0.95);
+  background: rgba(15, 23, 42, 0.96);
   border: 1px solid var(--cinema-border);
   border-radius: 16px;
   padding: 20px 18px;
@@ -518,46 +523,53 @@ html, body {
   position: relative;
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
+  box-sizing: border-box;
 }
 
 .sibling-polaroid-frame {
-  background: var(--parchment);
+  background: var(--surface-parchment);
   padding: 10px 10px 18px 10px;
   border-radius: 4px;
   box-shadow: 0 20px 50px rgba(0, 0, 0, 0.75);
   position: relative;
   color: var(--wine);
-  width: 200px;
+  width: 220px;
+  box-sizing: border-box;
 }
 
 .sibling-switch-box {
-  background: rgba(26, 13, 20, 0.96);
-  border: 1.5px solid rgba(183, 71, 77, 0.45);
+  background: rgba(15, 23, 42, 0.96);
+  border: 2px solid rgba(239, 68, 68, 0.5);
   border-radius: 18px;
   padding: 22px 18px;
-  box-shadow: 0 16px 50px rgba(183, 71, 77, 0.12), 0 12px 35px rgba(0, 0, 0, 0.8);
+  box-shadow: 0 16px 50px rgba(220, 38, 38, 0.15), 0 12px 35px rgba(0, 0, 0, 0.8);
   width: 100%;
   position: relative;
+  box-sizing: border-box;
 }
 
 .emergency-btn {
   font-family: var(--font-body);
-  font-size: 0.88rem;
+  font-size: 0.92rem;
   font-weight: 700;
   color: #fff;
-  background: linear-gradient(135deg, #B7474D 0%, #7A282D 100%);
-  border: 1.5px solid rgba(255, 255, 255, 0.2);
+  background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
+  border: 1.5px solid rgba(255, 255, 255, 0.25);
   border-radius: 9999px;
   padding: 12px 28px;
   cursor: pointer;
-  box-shadow: 0 6px 20px rgba(183, 71, 77, 0.4), inset 0 2px 4px rgba(255, 255, 255, 0.25);
-  transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+  pointer-events: auto !important;
+  box-shadow: 0 6px 20px rgba(220, 38, 38, 0.45), inset 0 2px 4px rgba(255, 255, 255, 0.25);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
   min-height: 48px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   letter-spacing: 0.04em;
+  user-select: none;
+  -webkit-user-select: none;
 }
+
 
 .emergency-btn:hover {
   transform: scale(1.05);
@@ -1007,6 +1019,842 @@ html, body {
   .film-grain { display: none; }
 }
 
+/* =========================================================
+   PROCEDURAL LIVING ENVIRONMENTS (17-BEAT CINEMATIC SPACES)
+   ========================================================= */
+
+/* --- SCENE 01: NIGHT SKY & MOON --- */
+.night-sky-env {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 65% 25%, #1f1224 0%, #0d0812 45%, #050306 100%);
+  overflow: hidden;
+}
+
+.moon-wrapper {
+  position: absolute;
+  top: 12%;
+  right: 14%;
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #fffdfa 0%, #e8d8be 55%, #bca585 100%);
+  box-shadow: 0 0 35px 12px rgba(232, 216, 190, 0.22), 0 0 70px 24px rgba(212, 176, 106, 0.08);
+}
+
+.moon-crater {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(138, 116, 92, 0.25);
+}
+
+.cloud-drift {
+  position: absolute;
+  background: radial-gradient(ellipse at 50% 50%, rgba(35, 20, 32, 0.65) 0%, rgba(20, 10, 18, 0) 70%);
+  border-radius: 50%;
+  pointer-events: none;
+  filter: blur(12px);
+}
+
+/* --- SCENE 03: BEDROOM PRE-DAWN --- */
+.bedroom-dawn-env {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 40%, #170d18 0%, #0c070e 65%, #050306 100%);
+  overflow: hidden;
+}
+
+.bedroom-window-frame {
+  position: absolute;
+  top: 10%;
+  right: 8%;
+  width: 110px;
+  height: 170px;
+  border: 4px solid rgba(42, 20, 29, 0.85);
+  border-radius: 4px;
+  background: linear-gradient(180deg, #24142b 0%, #3d2138 60%, #592e3a 100%);
+  box-shadow: 0 0 40px rgba(89, 46, 58, 0.2), inset 0 0 25px rgba(0, 0, 0, 0.6);
+  overflow: hidden;
+}
+
+.window-blind-slat {
+  width: 100%;
+  height: 12px;
+  border-bottom: 1px solid rgba(10, 7, 9, 0.7);
+  background: rgba(26, 13, 20, 0.45);
+}
+
+.curtain-drape {
+  position: absolute;
+  top: -5px;
+  width: 32px;
+  height: 180px;
+  background: linear-gradient(90deg, rgba(30, 14, 22, 0.95), rgba(48, 22, 35, 0.7));
+  border-radius: 0 0 12px 12px;
+  filter: blur(1px);
+}
+
+/* --- SCENE 04: MORNING SKY & SUNLIGHT --- */
+.morning-sky-env {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, #2c1a2e 0%, #4a283e 35%, #7a3e47 70%, #9e5b4c 100%);
+  overflow: hidden;
+}
+
+.morning-sun-glow {
+  position: absolute;
+  top: 8%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(245, 230, 200, 0.4) 0%, rgba(212, 176, 106, 0.18) 45%, transparent 70%);
+  filter: blur(16px);
+  pointer-events: none;
+}
+
+/* --- SCENE 06: METRO SEQUENCE --- */
+.metro-carriage-env {
+  position: absolute;
+  inset: 0;
+  background: #0d070b;
+  overflow: hidden;
+}
+
+.metro-carriage-interior {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.metro-ceiling-panel {
+  width: 100%;
+  height: 48px;
+  background: linear-gradient(180deg, #1f1019 0%, #150a11 100%);
+  border-bottom: 2px solid rgba(212, 176, 106, 0.2);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 0 20px;
+}
+
+.metro-light-bar {
+  width: 25%;
+  height: 6px;
+  background: #fff8e8;
+  border-radius: 3px;
+  box-shadow: 0 0 16px 4px rgba(255, 248, 232, 0.4);
+}
+
+.metro-handrail {
+  position: absolute;
+  top: 48px;
+  left: 10%;
+  right: 10%;
+  height: 4px;
+  background: linear-gradient(90deg, #8a7040, #d4b06a, #8a7040);
+  border-radius: 2px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);
+}
+
+.metro-strap {
+  position: absolute;
+  top: 52px;
+  width: 6px;
+  height: 38px;
+  background: rgba(183, 71, 77, 0.8);
+  border-radius: 0 0 10px 10px;
+}
+
+.metro-strap::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: -8px;
+  width: 22px;
+  height: 22px;
+  border: 3px solid #d4b06a;
+  border-radius: 50%;
+}
+
+.metro-window-viewport {
+  position: absolute;
+  top: 15%;
+  left: 6%;
+  right: 6%;
+  bottom: 20%;
+  border-radius: 18px;
+  overflow: hidden;
+  border: 5px solid #22121c;
+  box-shadow: inset 0 0 40px rgba(0, 0, 0, 0.85), 0 8px 30px rgba(0, 0, 0, 0.9);
+  background: #080407;
+}
+
+.metro-city-skyline {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 300%;
+  height: 65%;
+  display: flex;
+  align-items: flex-end;
+}
+
+.metro-station-pole {
+  position: absolute;
+  bottom: 0;
+  width: 6px;
+  height: 100%;
+  background: rgba(212, 176, 106, 0.4);
+  box-shadow: 0 0 14px rgba(212, 176, 106, 0.6);
+}
+
+.metro-tunnel-flash {
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 235, 180, 0.12);
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* --- SCENE 08: ROAD JOURNEY TO VILLAGE --- */
+.road-landscape-env {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  background: linear-gradient(180deg, #1c0e18 0%, #2f1725 30%, #2a221a 60%, #141b12 100%);
+  transition: background 3s ease;
+}
+
+.landscape-hills {
+  position: absolute;
+  bottom: 22%;
+  left: 0;
+  width: 250%;
+  height: 38%;
+}
+
+.landscape-trees-layer {
+  position: absolute;
+  bottom: 15%;
+  left: 0;
+  width: 250%;
+  height: 25%;
+  display: flex;
+  align-items: flex-end;
+  gap: 18px;
+}
+
+.landscape-tree {
+  flex-shrink: 0;
+  width: 28px;
+  height: 52px;
+  background: radial-gradient(circle at 50% 30%, #324a2c 0%, #1b2e17 80%);
+  border-radius: 50% 50% 20% 20%;
+}
+
+.landscape-hut {
+  flex-shrink: 0;
+  width: 42px;
+  height: 32px;
+  background: #3a241b;
+  position: relative;
+  border-radius: 2px;
+}
+
+.landscape-hut::before {
+  content: '';
+  position: absolute;
+  top: -16px;
+  left: -4px;
+  width: 50px;
+  height: 16px;
+  background: #593522;
+  clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+}
+
+.road-surface-layer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 20%;
+  background: linear-gradient(180deg, #1f1a14 0%, #0e0d0a 100%);
+  border-top: 2px solid rgba(212, 176, 106, 0.15);
+}
+
+.road-vehicle-badge {
+  position: absolute;
+  bottom: 12%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(26, 13, 20, 0.9);
+  border: 1px solid var(--cinema-border);
+  border-radius: 9999px;
+  padding: 5px 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--cinema-gold);
+  z-index: 15;
+}
+
+/* --- SCENE 09: CEILING HAZE & WINDOW BEAM --- */
+.ceiling-depressed-env {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 45%, #181d24 0%, #0f131a 50%, #07090d 100%);
+  overflow: hidden;
+}
+
+.window-sunbeam {
+  position: absolute;
+  top: -10%;
+  left: 15%;
+  width: 160px;
+  height: 120%;
+  background: linear-gradient(135deg, rgba(180, 205, 230, 0.08) 0%, rgba(212, 176, 106, 0.03) 50%, transparent 80%);
+  transform: rotate(18deg);
+  pointer-events: none;
+  filter: blur(18px);
+}
+
+.haze-fog-particle {
+  position: absolute;
+  background: radial-gradient(circle, rgba(140, 160, 185, 0.06) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+  filter: blur(8px);
+}
+
+/* --- SCENE 11: MORNING MARKET STREET --- */
+.market-street-env {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, #2b1724 0%, #442232 40%, #592e35 70%, #201217 100%);
+  overflow: hidden;
+}
+
+.market-backdrop-city {
+  position: absolute;
+  bottom: 28%;
+  left: 0;
+  width: 250%;
+  height: 45%;
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+}
+
+.market-shopfront {
+  flex-shrink: 0;
+  width: 80px;
+  height: 110px;
+  background: #24141e;
+  border: 1px solid rgba(212, 176, 106, 0.15);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 4px;
+}
+
+.market-awning {
+  position: absolute;
+  top: -12px;
+  left: -4px;
+  width: 88px;
+  height: 18px;
+  background: repeating-linear-gradient(90deg, #b7474d 0px, #b7474d 10px, #f3e8d5 10px, #f3e8d5 20px);
+  border-radius: 2px 2px 6px 6px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+.market-shop-sign {
+  position: absolute;
+  top: 14px;
+  left: 6px;
+  right: 6px;
+  height: 18px;
+  background: rgba(212, 176, 106, 0.2);
+  border: 1px solid rgba(212, 176, 106, 0.4);
+  border-radius: 3px;
+  font-family: var(--font-mono);
+  font-size: 0.55rem;
+  color: #d4b06a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-transform: uppercase;
+}
+
+.market-wire {
+  position: absolute;
+  top: 24%;
+  left: 0;
+  width: 100%;
+  height: 60px;
+  border-top: 1px solid rgba(232, 220, 203, 0.12);
+  border-radius: 50% / 12px 12px 0 0;
+  pointer-events: none;
+}
+
+/* --- SCENE 13: TABLETOP DESK --- */
+.tabletop-desk-env {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 30%, #301a18 0%, #1e0e13 55%, #0d060a 100%);
+  overflow: hidden;
+}
+
+.desk-wood-grain {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 70%;
+  background: repeating-linear-gradient(0deg, rgba(0, 0, 0, 0.12) 0px, rgba(0, 0, 0, 0.12) 2px, transparent 2px, transparent 18px);
+  pointer-events: none;
+}
+
+.desk-sunlight-spot {
+  position: absolute;
+  top: 15%;
+  left: 20%;
+  width: 220px;
+  height: 220px;
+  background: radial-gradient(circle, rgba(245, 225, 185, 0.14) 0%, rgba(212, 176, 106, 0.04) 55%, transparent 70%);
+  transform: rotate(-15deg);
+  filter: blur(20px);
+  pointer-events: none;
+}
+
+/* =========================================================
+   RAKHI V4 — LIVING PROCEDURAL ENVIRONMENTS & MOTION
+   ========================================================= */
+
+/* --- SCENE 01: LIVING NIGHT SKY --- */
+.night-sky-env {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, #070c18 0%, #0d1527 50%, #141f36 100%);
+  overflow: hidden;
+}
+
+.moon-wrapper {
+  position: absolute;
+  top: 10%;
+  right: 14%;
+  width: 86px;
+  height: 86px;
+  pointer-events: none;
+}
+
+.moon-disc {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #ffffff 0%, #f1f5f9 50%, #cbd5e1 100%);
+  box-shadow: 0 0 35px rgba(226, 232, 240, 0.65), 0 0 80px rgba(148, 163, 184, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+.moon-crater {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(148, 163, 184, 0.25);
+  box-shadow: inset 1px 1px 2px rgba(71, 85, 105, 0.4);
+}
+
+.clouds-drift-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.drifting-cloud {
+  position: absolute;
+  background: radial-gradient(ellipse at 50% 50%, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.03) 60%, transparent 80%);
+  filter: blur(14px);
+  border-radius: 50%;
+  animation: cloudDrift 28s linear infinite;
+}
+
+@keyframes cloudDrift {
+  0% { transform: translateX(-30%); }
+  100% { transform: translateX(110%); }
+}
+
+/* --- SCENE 03: BEDROOM AT DAWN --- */
+.bedroom-dawn-env {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, #101426 0%, #1e1b4b 55%, #311e38 100%);
+  overflow: hidden;
+}
+
+.dawn-window-frame {
+  position: absolute;
+  top: 8%;
+  right: 10%;
+  width: 130px;
+  height: 190px;
+  border: 4px solid rgba(255, 255, 255, 0.12);
+  border-radius: 4px;
+  background: linear-gradient(180deg, #1e1b4b 0%, #be185d 60%, #f59e0b 100%);
+  box-shadow: 0 0 40px rgba(245, 158, 11, 0.18);
+  overflow: hidden;
+}
+
+.window-blind-slat {
+  width: 100%;
+  height: 8px;
+  background: rgba(15, 23, 42, 0.65);
+  margin-bottom: 6px;
+  border-radius: 1px;
+}
+
+.dawn-curtain {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 38px;
+  height: 100%;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.03));
+  filter: blur(1px);
+  animation: curtainWave 6s ease-in-out infinite alternate;
+}
+
+@keyframes curtainWave {
+  0% { transform: skewX(-2deg); }
+  100% { transform: skewX(3deg); }
+}
+
+/* --- SCENE 04: BRIGHT MORNING SKY --- */
+.morning-sky-env {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, #0284c7 0%, #38bdf8 65%, #bae6fd 100%);
+  overflow: hidden;
+}
+
+.morning-sun-corona {
+  position: absolute;
+  top: -10%;
+  right: -5%;
+  width: 260px;
+  height: 260px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(254, 240, 138, 0.8) 0%, rgba(251, 191, 36, 0.35) 45%, transparent 70%);
+  filter: blur(16px);
+  pointer-events: none;
+}
+
+/* --- SCENE 06: REAL METRO CARRIAGE INTERIOR & PANORAMA --- */
+.metro-carriage-env {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, #1e293b 0%, #0f172a 100%);
+  overflow: hidden;
+}
+
+.metro-carriage-interior {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 5;
+}
+
+.metro-ceiling-light {
+  position: absolute;
+  top: 0;
+  left: 15%;
+  right: 15%;
+  height: 12px;
+  background: #ffffff;
+  box-shadow: 0 4px 20px rgba(255, 255, 255, 0.8), 0 0 35px rgba(56, 189, 248, 0.4);
+  border-bottom-left-radius: 6px;
+  border-bottom-right-radius: 6px;
+}
+
+.metro-handrail-top {
+  position: absolute;
+  top: 60px;
+  left: 5%;
+  right: 5%;
+  height: 5px;
+  background: linear-gradient(180deg, #cbd5e1, #64748b);
+  border-radius: 3px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+}
+
+.metro-strap {
+  position: absolute;
+  top: 65px;
+  width: 14px;
+  height: 55px;
+  background: #f59e0b;
+  border-radius: 2px;
+}
+
+.metro-strap::after {
+  content: '';
+  position: absolute;
+  bottom: -16px;
+  left: -5px;
+  width: 24px;
+  height: 24px;
+  border: 3.5px solid #cbd5e1;
+  border-radius: 50%;
+}
+
+.metro-window-viewport {
+  position: absolute;
+  top: 18%;
+  left: 8%;
+  right: 8%;
+  height: 38%;
+  border: 6px solid #334155;
+  border-radius: 12px;
+  background: #020617;
+  overflow: hidden;
+  box-shadow: inset 0 0 25px rgba(0, 0, 0, 0.9), 0 10px 30px rgba(0, 0, 0, 0.7);
+}
+
+.metro-city-skyline {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 300%;
+  height: 100%;
+  display: flex;
+  align-items: flex-end;
+  will-change: transform;
+  animation: metroCityScroll 9s linear infinite;
+}
+
+@keyframes metroCityScroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-66.6%); }
+}
+
+.metro-city-building {
+  width: 50px;
+  background: #1e293b;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  margin-right: 4px;
+  position: relative;
+}
+
+.metro-city-building::before {
+  content: '';
+  position: absolute;
+  top: 8px;
+  left: 6px;
+  right: 6px;
+  bottom: 8px;
+  background: repeating-linear-gradient(180deg, #f59e0b 0px, #f59e0b 3px, transparent 3px, transparent 10px);
+  opacity: 0.65;
+}
+
+/* --- SCENE 08: BUS & AUTO CONTINUOUS LANDSCAPE --- */
+.road-landscape-env {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, #38bdf8 0%, #86efac 60%, #15803d 100%);
+  overflow: hidden;
+}
+
+.landscape-sky {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 55%;
+  background: linear-gradient(180deg, #0284c7 0%, #7dd3fc 60%, #fed7aa 100%);
+}
+
+.landscape-hills {
+  position: absolute;
+  top: 40%;
+  left: 0;
+  width: 300%;
+  height: 25%;
+  background: radial-gradient(circle at 50% 100%, #166534 0%, #14532d 75%);
+  border-radius: 50% 50% 0 0;
+  animation: landscapeScroll 12s linear infinite;
+}
+
+.landscape-road {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 35%;
+  background: #334155;
+  border-top: 4px solid #15803d;
+}
+
+.road-dashes {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 300%;
+  height: 4px;
+  background: repeating-linear-gradient(90deg, #fef08a 0px, #fef08a 25px, transparent 25px, transparent 55px);
+  animation: roadDashes 1.8s linear infinite;
+}
+
+@keyframes roadDashes {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes landscapeScroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-66.6%); }
+}
+
+/* --- SCENE 09: DESATURATED GLOOMY CEILING --- */
+.ceiling-depressed-env {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 40%, #1e2530 0%, #0f141c 65%, #080a0f 100%);
+  overflow: hidden;
+}
+
+.gloom-fog-layer {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 50%, rgba(51, 65, 85, 0.25) 0%, transparent 70%);
+  filter: blur(25px);
+  pointer-events: none;
+  animation: fogDrift 14s ease-in-out infinite alternate;
+}
+
+@keyframes fogDrift {
+  0% { transform: scale(1) translateY(0); }
+  100% { transform: scale(1.1) translateY(-15px); }
+}
+
+/* --- SCENE 11: LIVING MARKET STREET --- */
+.market-street-env {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, #7dd3fc 0%, #fef08a 50%, #78350f 100%);
+  overflow: hidden;
+}
+
+.market-storefronts {
+  position: absolute;
+  bottom: 12%;
+  left: 0;
+  width: 300%;
+  height: 50%;
+  display: flex;
+  align-items: flex-end;
+  animation: marketScroll 10s linear infinite;
+}
+
+@keyframes marketScroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-66.6%); }
+}
+
+.market-shop {
+  width: 110px;
+  height: 140px;
+  background: #7c2d12;
+  margin-right: 18px;
+  border-radius: 4px;
+  position: relative;
+}
+
+.market-awning {
+  position: absolute;
+  top: -15px;
+  left: -8px;
+  right: -8px;
+  height: 25px;
+  background: repeating-linear-gradient(90deg, #dc2626 0px, #dc2626 12px, #fef08a 12px, #fef08a 24px);
+  border-radius: 3px 3px 6px 6px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+}
+
+/* --- SCENE 12: VIEWPORT-ANCHORED DO NOT PRESS BUTTON --- */
+.sibling-playground-env {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, #0f172a 0%, #1e1b4b 60%, #31102f 100%);
+  overflow: hidden;
+}
+
+.do-not-press-anchor {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  pointer-events: auto;
+}
+
+/* --- SCENE 14: THREAD COSMOS --- */
+.thread-cosmos-env {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 45%, #180914 0%, #0d050c 50%, #040204 100%);
+  overflow: hidden;
+}
+
+.cosmos-star-node {
+  position: absolute;
+  border-radius: 50%;
+  background: #f5e8d5;
+  box-shadow: 0 0 10px rgba(212, 176, 106, 0.8);
+}
+
+/* --- SCENE 15: GOLDEN APOLOGY --- */
+.apology-golden-env {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 40%, #361b1b 0%, #201015 50%, #0c0509 100%);
+  overflow: hidden;
+}
+
+.golden-hour-beam {
+  position: absolute;
+  top: -20%;
+  right: 10%;
+  width: 200px;
+  height: 140%;
+  background: linear-gradient(135deg, rgba(245, 215, 150, 0.16) 0%, rgba(212, 140, 106, 0.06) 60%, transparent 85%);
+  transform: rotate(24deg);
+  filter: blur(22px);
+  pointer-events: none;
+}
+
+/* --- SCENE 17: POST-CREDITS EPILOGUE --- */
+.epilogue-desk-env {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 40%, #22121c 0%, #130911 55%, #080407 100%);
+  overflow: hidden;
+}
+
 /* --- RESPONSIVE ADJUSTMENTS (Realme 11 5G Portrait) --- */
 @media (min-width: 768px) {
   .phone-mockup {
@@ -1016,3 +1864,5 @@ html, body {
     max-width: 400px;
   }
 }
+
+

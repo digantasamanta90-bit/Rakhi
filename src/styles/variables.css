@@ -1,52 +1,72 @@
 :root {
   /* =========================================================
-     VELVET NIGHT × ANTIQUE MEMORY — CORE PALETTE
-     Midnight room + old photographs + warm lamp light +
-     silk thread + parchment + antique gold + Indian festive warmth.
+     RAKHI V4 — DYNAMIC LIVING WORLD PALETTE
+     Colors evolve dynamically with time, environment, and emotion:
+     Night Blues -> Dawn Warmth -> Morning Cyan/Sunlight ->
+     Urban Steel -> Village Greenery -> Nostalgic Warmth -> Festive Bloom
      ========================================================= */
 
-  /* 1. Deep Dark Foundations */
-  --velvet-black: #0A0709;
-  --deep-plum: #1A0D14;
-  --wine: #2A141D;
-  --warm-wine: #3A211F;
+  /* 1. Time of Day & Environment World Tokens */
+  --sky-night-deep: #070c18;
+  --sky-night-mid: #0f1c3f;
+  --sky-night-moon: #e2e8f0;
+  
+  --sky-dawn-blue: #1e1b4b;
+  --sky-dawn-rose: #be185d;
+  --sky-dawn-amber: #f59e0b;
+  
+  --sky-morning-cyan: #38bdf8;
+  --sky-morning-blue: #0284c7;
+  --sky-morning-sun: #fbbf24;
+  
+  --world-urban-asphalt: #1e293b;
+  --world-urban-steel: #334155;
+  --world-urban-amber: #f59e0b;
+  --world-urban-neon: #38bdf8;
+  
+  --world-village-green: #15803d;
+  --world-village-leaf: #22c55e;
+  --world-village-earth: #78350f;
+  --world-village-sky: #7dd3fc;
+  --world-village-sun: #fef08a;
 
-  /* 2. Physical Surfaces & Parchment */
-  --parchment: #F3E8D5;
-  --warm-ivory: #E8DCCB;
-  --parchment-border: rgba(61, 36, 54, 0.12);
+  --world-gloom-slate: #1e2530;
+  --world-gloom-fog: #334155;
+  --world-gloom-beam: rgba(254, 240, 138, 0.12);
 
-  /* 3. Accents: Metallic Antique Gold & Rakhi Silk Red */
-  --antique-gold: #D4B06A;
-  --antique-gold-glow: rgba(212, 176, 106, 0.22);
-  --antique-gold-border: rgba(212, 176, 106, 0.28);
-  --rakhi-red: #B7474D;
-  --rakhi-red-subtle: rgba(183, 71, 77, 0.18);
-  --muted-rose: #9B5D70;
-  --muted-rose-subtle: rgba(155, 93, 112, 0.16);
+  --world-memory-sepia: #451a03;
+  --world-memory-amber: #d97706;
+  --world-memory-cream: #fef3c7;
+
+  --world-market-awning: #dc2626;
+  --world-market-wood: #7c2d12;
+  --world-market-sun: #fef08a;
+
+  /* 2. Physical Materials & Surfaces */
+  --surface-wood-desk: #2c1810;
+  --surface-wood-grain: #1a0e0a;
+  --surface-parchment: #fdf6e2;
+  --surface-parchment-text: #2d1810;
+  --surface-card-clean: rgba(15, 23, 42, 0.85);
+  --surface-card-border: rgba(255, 255, 255, 0.15);
+
+  /* 3. Sacred Rakhi Accents (Used Intentionally for Festive Climax) */
+  --rakhi-gold: #fbbf24;
+  --rakhi-gold-bright: #fef08a;
+  --rakhi-red: #dc2626;
+  --rakhi-crimson: #991b1b;
+  --rakhi-rose: #f43f5e;
+  --rakhi-silk-cords: linear-gradient(90deg, #dc2626, #fbbf24, #dc2626);
 
   /* 4. Text & Neutral System */
-  --soft-muted-text: #AA9A96;
-  --subtle-muted-text: #6E6060;
-  --faded-wine-text: #3D2436;
+  --cinema-text: #f8fafc;
+  --cinema-text-muted: #cbd5e1;
+  --cinema-text-subtle: #94a3b8;
+  --cinema-border: rgba(255, 255, 255, 0.16);
+  --cinema-gold: #fbbf24;
+  --cinema-accent: #f43f5e;
 
-  /* Standard Cinematic Aliases */
-  --cinema-black: var(--velvet-black);
-  --cinema-dark: var(--deep-plum);
-  --cinema-deep: var(--wine);
-  --cinema-warm: var(--warm-wine);
-  --cinema-text: var(--warm-ivory);
-  --cinema-text-muted: var(--soft-muted-text);
-  --cinema-text-subtle: var(--subtle-muted-text);
-  --cinema-accent: var(--muted-rose);
-  --cinema-gold: var(--antique-gold);
-  --cinema-red: var(--rakhi-red);
-  --cinema-glow: var(--muted-rose-subtle);
-  --cinema-border: rgba(212, 176, 106, 0.14);
-  --cinema-parchment: var(--parchment);
-  --cinema-card-bg: rgba(26, 13, 20, 0.92);
-
-  /* Typography Families (UNALTERED) */
+  /* Typography Families */
   --font-display: 'Fraunces', Georgia, serif;
   --font-body: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   --font-mono: 'JetBrains Mono', Consolas, monospace;
@@ -64,9 +84,9 @@
   --ease-soft: cubic-bezier(0.25, 1, 0.5, 1);
 
   /* Shadows */
-  --shadow-paper: 0 4px 18px rgba(10, 7, 9, 0.4), 0 1px 4px rgba(10, 7, 9, 0.2);
-  --shadow-float: 0 12px 36px rgba(10, 7, 9, 0.6), 0 2px 8px rgba(10, 7, 9, 0.3);
-  --shadow-modal: 0 24px 70px rgba(10, 7, 9, 0.8), 0 4px 16px rgba(10, 7, 9, 0.4);
+  --shadow-paper: 0 4px 18px rgba(0, 0, 0, 0.35), 0 1px 4px rgba(0, 0, 0, 0.2);
+  --shadow-float: 0 12px 36px rgba(0, 0, 0, 0.5), 0 2px 8px rgba(0, 0, 0, 0.25);
+  --shadow-modal: 0 24px 70px rgba(0, 0, 0, 0.75), 0 4px 16px rgba(0, 0, 0, 0.35);
 
   /* Z-Index */
   --z-bg: 0;
@@ -76,3 +96,4 @@
   --z-modal: 100;
   --z-toast: 150;
 }
+

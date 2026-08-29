@@ -1,9 +1,8 @@
 /**
- * BEAT 15 — THE APOLOGY
- * Dedicated quiet emotional chamber. Stillness and darkness.
- * Restrained, sincere thoughts appearing one by one with deliberate pauses.
- * Accountable, honest, free from emotional pressure. Leads naturally into Beat 16 (The Rakhi).
- * Styled in the Velvet Night × Antique Memory aesthetic.
+ * BEAT 15 — THE APOLOGY (GOLDEN HOUR SANCTUARY)
+ * Golden hour afternoon warmth, quiet stillness, and sincere thoughts appearing one by one.
+ * Accountable, honest, free from emotional pressure.
+ * Builds up with golden radiance leading directly into the Rakhi Finale (Beat 16).
  */
 
 export class Scene15Apology {
@@ -17,29 +16,30 @@ export class Scene15Apology {
   enter(container) {
     return new Promise((resolve) => {
       container.innerHTML = `
-        <div style="position:relative;width:100%;height:100%;overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;">
-          <!-- Quiet velvet dark ambient space -->
-          <div style="position:absolute;inset:0;background:radial-gradient(circle at 50% 50%, rgba(26,13,20,0.5) 0%, rgba(10,7,9,0.98) 75%);pointer-events:none;"></div>
+        <div class="apology-golden-env" id="s15-viewport" style="position:relative;width:100%;height:100%;overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;background:radial-gradient(circle at 50% 45%, #451a03 0%, #1e1b4b 60%, #0f172a 100%);">
+          
+          <!-- Golden Hour Light Beam -->
+          <div class="golden-hour-beam" style="opacity:0.45;filter:blur(30px);"></div>
 
           <!-- Paced thought lines (Single focal area) -->
-          <div id="a-text-chamber" style="position:relative;width:100%;max-width:320px;min-height:160px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:0 20px;z-index:10;">
-            <p class="text-dialogue" id="at-1" style="opacity:0;font-size:clamp(0.95rem,3.5vw,1.15rem);color:var(--cinema-text-muted);margin-bottom:8px;">
-              I ruined Friday
+          <div id="a-text-chamber" style="position:relative;width:100%;max-width:320px;min-height:180px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:0 20px;z-index:10;">
+            <p class="text-dialogue" id="at-1" style="opacity:0;font-size:clamp(1.02rem,3.5vw,1.2rem);color:#cbd5e1;margin-bottom:8px;font-style:italic;">
+              "I ruined Friday"
             </p>
-            <p class="text-dialogue" id="at-2" style="opacity:0;font-size:clamp(0.98rem,3.6vw,1.18rem);color:var(--cinema-text);margin-bottom:12px;">
-              I'm sorry for that.
+            <p class="text-dialogue" id="at-2" style="opacity:0;font-size:clamp(1.05rem,3.6vw,1.24rem);color:#f8fafc;margin-bottom:14px;font-style:italic;font-weight:600;">
+              "I'm sorry for that."
             </p>
-            <p class="text-dialogue" id="at-3" style="opacity:0;font-size:clamp(0.92rem,3.4vw,1.1rem);color:var(--cinema-text-muted);margin-bottom:6px;">
-              Not exactly how I imagined that day.
+            <p class="text-dialogue" id="at-3" style="opacity:0;font-size:clamp(0.98rem,3.4vw,1.15rem);color:#94a3b8;margin-bottom:8px;">
+              "Not exactly how I imagined that day."
             </p>
-            <p class="text-emotional" id="at-4" style="opacity:0;font-size:clamp(1.02rem,3.8vw,1.25rem);color:var(--cinema-accent);margin-bottom:6px;">
-              But maybe that's okay.
+            <p class="text-emotional" id="at-4" style="opacity:0;font-size:clamp(1.08rem,3.8vw,1.3rem);color:var(--rakhi-gold);margin-bottom:8px;font-style:italic;">
+              "But maybe that's okay."
             </p>
-            <p class="text-dialogue" id="at-5" style="opacity:0;font-size:clamp(0.92rem,3.4vw,1.1rem);color:var(--cinema-text-muted);margin-bottom:4px;">
-              Some moments don't happen the way you planned.
+            <p class="text-dialogue" id="at-5" style="opacity:0;font-size:clamp(0.98rem,3.4vw,1.15rem);color:#cbd5e1;margin-bottom:6px;">
+              "Some moments don't happen the way you planned."
             </p>
-            <p class="text-emotional" id="at-6" style="opacity:0;font-size:clamp(1.05rem,4vw,1.28rem);color:var(--cinema-gold);font-weight:600;">
-              But I'll make sure the next one does.
+            <p class="text-emotional" id="at-6" style="opacity:0;font-size:clamp(1.15rem,4vw,1.4rem);color:var(--rakhi-gold);font-weight:700;text-shadow:0 0 25px rgba(251,191,36,0.6);">
+              "But I'll make sure the next one does."
             </p>
           </div>
         </div>
@@ -52,6 +52,7 @@ export class Scene15Apology {
       const at5 = container.querySelector('#at-5');
       const at6 = container.querySelector('#at-6');
       const chamber = container.querySelector('#a-text-chamber');
+      const viewport = container.querySelector('#s15-viewport');
 
       this.tl = gsap.timeline({
         onComplete: () => {
@@ -61,28 +62,29 @@ export class Scene15Apology {
       });
 
       this.tl
-        .to({}, { duration: 1.2 })
-        // Thought 1: "I messed up."
+        .to({}, { duration: 1.0 })
+        // Thought 1: "I ruined Friday"
         .to(at1, { opacity: 1, duration: 1.2, ease: 'power2.out' })
-        .to({}, { duration: 1.6 })
-        // Thought 2: "I'm sorry."
+        .to({}, { duration: 1.5 })
+        // Thought 2: "I'm sorry for that."
         .to(at2, { opacity: 1, duration: 1.2, ease: 'power2.out' })
         .to({}, { duration: 1.8 })
-        // Fade first two lines slightly to bring in perspective
+        // Fade first two lines slightly to focus on resolution
         .to([at1, at2], { opacity: 0.35, duration: 0.8 })
-        // Thought 3: "Not exactly how I imagined this day."
+        // Thought 3: "Not exactly how I imagined that day."
         .to(at3, { opacity: 1, duration: 1.2, ease: 'power2.out' })
         .to({}, { duration: 1.4 })
         // Thought 4: "But maybe that's okay."
-        .to(at4, { opacity: 1, duration: 1.4, ease: 'power2.out' })
-        .to({}, { duration: 1.6 })
+        .to(at4, { opacity: 1, duration: 1.3, ease: 'power2.out' })
+        .to({}, { duration: 1.5 })
         // Thought 5 & 6: Resolution
         .to(at5, { opacity: 1, duration: 1.2, ease: 'power2.out' })
         .to({}, { duration: 1.2 })
-        .to(at6, { opacity: 1, duration: 1.4, ease: 'power2.out' })
-        .to({}, { duration: 2.8 }) // breathe and hold
-        // Smooth transition into Beat 16 (The Rakhi Finale)
-        .to(chamber, { opacity: 0, scale: 0.94, duration: 1.2, ease: 'power2.inOut' });
+        .to(at6, { opacity: 1, scale: 1.04, duration: 1.4, ease: 'power2.out' })
+        .to({}, { duration: 2.6 }) // breathe and hold
+        // Golden bloom transition into Beat 16 (The Rakhi Finale)
+        .to(chamber, { opacity: 0, scale: 0.95, duration: 1.0, ease: 'power2.inOut' })
+        .to(viewport, { opacity: 0, duration: 0.8, ease: 'power2.in' }, "-=0.2");
     });
   }
 
@@ -91,3 +93,5 @@ export class Scene15Apology {
     return Promise.resolve();
   }
 }
+
+
