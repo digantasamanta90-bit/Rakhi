@@ -216,22 +216,20 @@ export class Scene12SiblingZone {
         }
       };
 
-      // Sequential GSAP Timeline
+      // Sequential GSAP Timeline (Immediate continuous entry on frame 0.0s)
       this.tl = gsap.timeline();
 
       this.tl
-        // SHOT 1: Environment Settles
-        .to(envTag, { opacity: 1, duration: 0.7, ease: 'power2.out', delay: 0.1 })
-        .to({}, { duration: 0.3 })
-
-        // SHOT 2: DIGANTA OBJECT ENTERS
+        // Environment tag and first character card enter immediately
+        .to(envTag, { opacity: 1, duration: 0.4, ease: 'power2.out' }, 0)
         .call(() => {
           focalDiganta.style.pointerEvents = 'auto';
           setNarrative("Technically your brother. No refunds available.");
-        })
+        }, [], 0)
         .fromTo(focalDiganta, 
-          { opacity: 0, y: -25, scale: 0.9 }, 
-          { opacity: 1, y: 0, scale: 1, duration: 0.6, ease: 'back.out(1.3)' }
+          { opacity: 0, y: -20, scale: 0.9 }, 
+          { opacity: 1, y: 0, scale: 1, duration: 0.5, ease: 'back.out(1.2)' },
+          0.05
         )
         .to({}, { duration: 1.3 })
         .to(focalDiganta, { 

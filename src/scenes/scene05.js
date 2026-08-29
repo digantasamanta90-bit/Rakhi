@@ -1,8 +1,8 @@
 /**
  * BEAT 05 — PANIC (CINEMATIC WHIRLWIND)
  * Frantic morning rush montage before the journey.
- * Speed streaks, whip pans, rushing items (phone, shirt, bag, laptop,
- * charger, wallet, gift, shoes), rapid countdown timer, and screen tremor.
+ * Speed streaks, rushing items (phone, shirt, bag, laptop, charger, wallet, gift, shoes),
+ * rapid countdown timer, and isolated stage tremor that never displaces the viewport.
  * Climax impact leads straight into the Metro Journey (Scene 06).
  */
 
@@ -29,33 +29,39 @@ export class Scene05Panic {
             `).join('')}
           </div>
 
-          <!-- Countdown Timer -->
-          <div class="text-timestamp" id="panic-timer" style="position:absolute;top:10%;left:50%;transform:translateX(-50%);font-size:clamp(1.8rem,6vw,2.8rem);color:#f87171;z-index:10;letter-spacing:0.06em;text-shadow:0 0 20px rgba(239,68,68,0.7);">
-            15:00
-          </div>
-          
-          <!-- Whirlwind Objects -->
-          ${items.map((emoji, i) => `
-            <div class="panic-object" id="panic-${i}" style="position:absolute;font-size:clamp(1.6rem,5.5vw,2.6rem);top:${20 + (i % 4) * 16}%;left:${12 + (i % 3) * 32}%;z-index:5;display:flex;flex-direction:column;align-items:center;">
-              <span style="filter:drop-shadow(0 6px 16px rgba(0,0,0,0.8));">${emoji}</span>
-              <span style="font-size:0.58rem;text-align:center;color:var(--rakhi-gold);font-family:var(--font-mono);margin-top:2px;font-weight:600;letter-spacing:0.06em;background:rgba(15,23,42,0.85);padding:2px 6px;border-radius:4px;border:1px solid rgba(255,255,255,0.15);">${labels[i]}</span>
-            </div>
-          `).join('')}
+          <!-- Isolated Tremor Stage (Keeps outer viewport 100% stable and aligned) -->
+          <div id="panic-inner-stage" style="position:relative;width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;">
 
-          <!-- Impact Reveal Banner -->
-          <div class="text-impact" id="panic-rush" style="opacity:0;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:20;font-size:clamp(2.8rem,11vw,4.8rem);color:#ffffff;letter-spacing:0.08em;text-shadow:0 0 35px rgba(220,38,38,0.9);">
-            METRO
+            <!-- Countdown Timer -->
+            <div class="text-timestamp" id="panic-timer" style="position:absolute;top:10%;left:50%;transform:translateX(-50%);font-size:clamp(1.8rem,6vw,2.8rem);color:#f87171;z-index:10;letter-spacing:0.06em;text-shadow:0 0 20px rgba(239,68,68,0.7);">
+              15:00
+            </div>
+            
+            <!-- Whirlwind Objects -->
+            ${items.map((emoji, i) => `
+              <div class="panic-object" id="panic-${i}" style="position:absolute;font-size:clamp(1.6rem,5.5vw,2.6rem);top:${20 + (i % 4) * 16}%;left:${12 + (i % 3) * 32}%;z-index:5;display:flex;flex-direction:column;align-items:center;">
+                <span style="filter:drop-shadow(0 6px 16px rgba(0,0,0,0.8));">${emoji}</span>
+                <span style="font-size:0.58rem;text-align:center;color:var(--rakhi-gold);font-family:var(--font-mono);margin-top:2px;font-weight:600;letter-spacing:0.06em;background:rgba(15,23,42,0.85);padding:2px 6px;border-radius:4px;border:1px solid rgba(255,255,255,0.15);">${labels[i]}</span>
+              </div>
+            `).join('')}
+
+            <!-- Impact Reveal Banner -->
+            <div class="text-impact" id="panic-rush" style="opacity:0;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:20;font-size:clamp(2.8rem,11vw,4.8rem);color:#ffffff;letter-spacing:0.08em;text-shadow:0 0 35px rgba(220,38,38,0.9);">
+              METRO
+            </div>
+
           </div>
         </div>
       `;
 
       const viewport = container.querySelector('#panic-viewport');
+      const innerStage = container.querySelector('#panic-inner-stage');
       const timerEl = container.querySelector('#panic-timer');
       const rushEl = container.querySelector('#panic-rush');
 
       this.tl = gsap.timeline({
         onComplete: () => {
-          gsap.set(viewport, { clearProps: 'x,y,transform' });
+          gsap.set([viewport, innerStage], { clearProps: 'all' });
           this.manager.next();
           resolve();
         }
@@ -84,13 +90,11 @@ export class Scene05Panic {
         }, [], 1.1 + i * 0.22);
       });
 
-      // Screen tremor choreography with clean zero-reset
-      this.tl.to(viewport, {
-        x: 5, y: -3, duration: 0.04, repeat: 10, yoyo: true, ease: 'power1.inOut',
-        onComplete: () => {
-          gsap.set(viewport, { x: 0, y: 0 });
-        }
-      }, 1.5);
+      // Screen tremor choreography isolated strictly to inner stage
+      this.tl
+        .to(innerStage, { x: 5, y: -3, duration: 0.04, repeat: 8, yoyo: true, ease: 'power1.inOut' }, 1.5)
+        .to(innerStage, { x: 0, y: 0, duration: 0.05 }, 1.9)
+        .set(innerStage, { clearProps: 'transform' }, 1.95);
 
       // Objects scatter outward in a fast vortex
       items.forEach((_, i) => {
@@ -116,7 +120,7 @@ export class Scene05Panic {
           3.2
         )
         .to(rushEl, { scale: 1.04, duration: 0.7, ease: 'sine.inOut' }, 3.45)
-        .to(viewport, { opacity: 0, duration: 0.45, ease: 'power2.in' }, 4.15);
+        .to(viewport, { opacity: 0, duration: 0.4, ease: 'power2.in' }, 4.15);
     });
   }
 

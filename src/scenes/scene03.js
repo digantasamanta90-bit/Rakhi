@@ -58,11 +58,11 @@ export class Scene03Alarms {
           <!-- Bottom Room Sill Shadow -->
           <div style="position:absolute;bottom:0;width:100%;height:18%;background:linear-gradient(180deg, transparent 0%, #070c18 80%);z-index:10;pointer-events:none;"></div>
 
-          <!-- Center Digital Clock & Alarm Interactive Card -->
-          <div id="s3-clock-box" style="position:relative;z-index:20;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;text-align:center;padding:14px 20px;background:rgba(15,23,42,0.9);border:1px solid rgba(255,255,255,0.18);border-radius:18px;box-shadow:0 16px 40px rgba(0,0,0,0.85);backdrop-filter:blur(10px);max-width:280px;width:82%;">
+          <!-- Center Digital Clock & Alarm Interactive Floating Display (Completely Transparent / See-Through Window) -->
+          <div id="s3-clock-box" style="position:relative;z-index:20;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;text-align:center;padding:12px;background:transparent;border:none;box-shadow:none;backdrop-filter:none;max-width:320px;width:88%;">
             
             <div class="alarm-icon-wrap" id="alarm-icon-box" style="position:relative;display:flex;align-items:center;justify-content:center;">
-              <svg class="alarm-icon-svg" id="alarm-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" style="width:38px;height:38px;color:#f8fafc;filter:drop-shadow(0 0 10px rgba(255,255,255,0.4));">
+              <svg class="alarm-icon-svg" id="alarm-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" style="width:42px;height:42px;color:#f8fafc;filter:drop-shadow(0 2px 14px rgba(0,0,0,0.85));">
                 <circle cx="12" cy="13" r="8"></circle>
                 <path d="M12 9v4l2 2"></path>
                 <path d="M5 3L2 6"></path>
@@ -70,16 +70,16 @@ export class Scene03Alarms {
               </svg>
             </div>
 
-            <!-- Time Display (Neutral Ivory) -->
-            <div class="text-timestamp" id="alarm-time" style="font-size:clamp(2.1rem,7.5vw,2.9rem);color:#f8fafc;font-family:var(--font-mono);font-weight:700;letter-spacing:0.04em;text-shadow:0 0 18px rgba(255,255,255,0.2);">
+            <!-- Time Display (Neutral Ivory with Strong Contrast Text Shadow) -->
+            <div class="text-timestamp" id="alarm-time" style="font-size:clamp(2.4rem,8.5vw,3.4rem);color:#f8fafc;font-family:var(--font-mono);font-weight:700;letter-spacing:0.04em;text-shadow:0 3px 20px rgba(0,0,0,0.95), 0 0 30px rgba(0,0,0,0.8);">
               5:30 AM
             </div>
             
-            <div class="text-whisper" id="alarm-label" style="color:var(--cinema-text-muted);letter-spacing:0.18em;font-size:0.7rem;font-weight:600;">
+            <div class="text-whisper" id="alarm-label" style="color:rgba(255,255,255,0.85);letter-spacing:0.2em;font-size:0.75rem;font-weight:700;text-shadow:0 2px 12px rgba(0,0,0,0.9);">
               ALARM 1 OF 3
             </div>
 
-            <button class="cinema-control-btn alarm-dismiss-btn" id="dismiss-btn" style="width:auto;height:auto;margin-top:4px;padding:7px 22px;border-radius:20px;background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.3);color:#f8fafc;font-size:0.82rem;font-weight:600;box-shadow:0 4px 16px rgba(0,0,0,0.5);cursor:pointer;">
+            <button class="cinema-control-btn alarm-dismiss-btn" id="dismiss-btn" style="width:auto;height:auto;margin-top:6px;padding:9px 26px;border-radius:24px;background:rgba(15,23,42,0.45);border:1.5px solid rgba(255,255,255,0.4);color:#f8fafc;font-size:0.86rem;font-weight:600;box-shadow:0 6px 24px rgba(0,0,0,0.7);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);cursor:pointer;transition:transform 0.15s ease, background 0.2s ease;">
               <span>Dismiss Alarm</span>
             </button>
           </div>

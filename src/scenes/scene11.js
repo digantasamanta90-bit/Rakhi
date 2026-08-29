@@ -161,35 +161,35 @@ export class Scene11Gifts {
       });
 
       this.tl
-        // 1. Living Market Street Parallax Movement
-        .to(shopsStream, { x: '-60%', duration: 7.4, ease: 'none' }, 0)
-        .to(wires, { x: '-50%', duration: 5.0, ease: 'none', repeat: 1 }, 0)
+        // 1. Living Market Street Parallax Movement (Synchronized to 5.6s total duration)
+        .to(shopsStream, { x: '-60%', duration: 5.6, ease: 'none' }, 0)
+        .to(wires, { x: '-50%', duration: 3.5, ease: 'none', repeat: 1 }, 0)
 
         // 2. KitKat Hero Entrance - Full Screen Presence
-        .to(kitkatView, { opacity: 1, y: 0, scale: 1, duration: 0.65, ease: 'back.out(1.2)' }, 0.15)
-        .to(line1, { opacity: 1, duration: 0.5 }, 0.35)
-        .to({}, { duration: 1.2 }) // Dedicated hero moment to view KitKat
+        .to(kitkatView, { opacity: 1, y: 0, scale: 1, duration: 0.55, ease: 'back.out(1.2)' }, 0.1)
+        .to(line1, { opacity: 1, duration: 0.4 }, 0.25)
+        .to({}, { duration: 1.1 }) // Dedicated hero moment to view KitKat
 
         // 3. Case File 04 Investigation Reveal
-        .to(kitkatView, { scale: 0.75, y: -70, opacity: 0.2, duration: 0.45, ease: 'power2.inOut' }, 1.9)
-        .to(casefileBoard, { opacity: 1, scale: 1, duration: 0.5, ease: 'back.out(1.2)' }, 2.0)
-        .to(cand1, { opacity: 1, x: 0, duration: 0.25 }, 2.4)
-        .to(cand2, { opacity: 1, x: 0, duration: 0.25 }, 2.65)
-        .to(cand3, { opacity: 1, x: 0, duration: 0.35, ease: 'back.out(1.4)' }, 2.9)
-        .to(caseFooter, { opacity: 1, duration: 0.35 }, 3.25)
-        .to({}, { duration: 1.2 }) // Investigation reading pause
+        .to(kitkatView, { scale: 0.75, y: -65, opacity: 0.2, duration: 0.35, ease: 'power2.inOut' }, 1.7)
+        .to(casefileBoard, { opacity: 1, scale: 1, duration: 0.45, ease: 'back.out(1.2)' }, 1.8)
+        .to(cand1, { opacity: 1, x: 0, duration: 0.2 }, 2.1)
+        .to(cand2, { opacity: 1, x: 0, duration: 0.2 }, 2.3)
+        .to(cand3, { opacity: 1, x: 0, duration: 0.3, ease: 'back.out(1.4)' }, 2.5)
+        .to(caseFooter, { opacity: 1, duration: 0.3 }, 2.8)
+        .to({}, { duration: 1.0 }) // Investigation reading pause
 
         // 4. Case File closes -> Bellavita Collection emerges
-        .to(casefileBoard, { opacity: 0, scale: 0.85, duration: 0.35, ease: 'power2.in' }, 4.6)
-        .to(kitkatView, { opacity: 0, duration: 0.25 }, 4.6)
-        .to(bellavitaView, { opacity: 1, y: 0, scale: 1, duration: 0.65, ease: 'power2.out' }, 4.85)
-        .to(line1, { opacity: 0, duration: 0.25 }, 4.85)
-        .to(line2, { opacity: 1, duration: 0.5, ease: 'power2.out' }, 5.1)
-        .to({}, { duration: 1.3 }) // Bellavita hero moment
+        .to(casefileBoard, { opacity: 0, scale: 0.85, duration: 0.3, ease: 'power2.in' }, 4.0)
+        .to(kitkatView, { opacity: 0, duration: 0.2 }, 4.0)
+        .to(bellavitaView, { opacity: 1, y: 0, scale: 1, duration: 0.55, ease: 'power2.out' }, 4.2)
+        .to(line1, { opacity: 0, duration: 0.2 }, 4.2)
+        .to(line2, { opacity: 1, duration: 0.45, ease: 'power2.out' }, 4.4)
+        .to({}, { duration: 1.1 }) // Bellavita hero moment
 
-        // 5. Seamless Transition into Sibling Zone (Scene 12)
-        .to(mainStage, { opacity: 0, scale: 0.95, y: -12, duration: 0.5, ease: 'power2.inOut' }, 6.7)
-        .to(viewport, { opacity: 0, duration: 0.5, ease: 'power2.in' }, 6.9);
+        // 5. Seamless Transition directly into Sibling Zone (Scene 12) - No blank hold!
+        .to(mainStage, { opacity: 0, scale: 0.96, y: -10, duration: 0.4, ease: 'power2.inOut' }, 5.2)
+        .to(viewport, { opacity: 0, duration: 0.4, ease: 'power2.in' }, 5.2);
 
       // Tactile physical taps on gift objects
       if (kitkatView) {
