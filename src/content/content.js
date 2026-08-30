@@ -417,7 +417,7 @@ export const content = {
   scene14: {
     fragments: ["4:30 AM", "5:30 AM", "7:30 AM", "MISSED CALL", "METRO", "BROKEN KITKAT"],
     digantaNode: "Diganta",
-    anweshaNode: "Thread",
+    anweshaNode: "Anwesha",
     assets: {
       digantaPortrait: "assets/portraits/diganta1.png",
       anweshaPortrait: "assets/portraits/anwesha_hero.png",
