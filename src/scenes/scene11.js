@@ -22,10 +22,6 @@ export class Scene11Gifts {
         "So here they are."
       ];
 
-      const isDesktop = typeof window !== 'undefined' && (window.matchMedia ? window.matchMedia('(min-width: 768px)').matches : window.innerWidth >= 768);
-      const narrativeTopOffset = isDesktop
-        ? (layout.narrativeTopOffsetDesktop ?? "0px")
-        : (layout.narrativeTopOffset ?? "20px");
       const giftLabelGap = layout.giftLabelGap ?? "22px";
 
       // 1. Storefronts for Continuous Parallax Stream (Layer 2)
@@ -84,24 +80,17 @@ export class Scene11Gifts {
           <!-- Section A: Main Focal Gift Stage Container (Center Spotlight) -->
           <div id="g-main-stage" style="position:relative;width:100%;max-width:360px;height:440px;display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:20;">
             
-            <!-- Narrative Lines (Top of Gift Stage) -->
-            <div id="g-narrative-zone" style="position:absolute;top:${narrativeTopOffset};left:0;right:0;text-align:center;padding:0 20px;z-index:25;pointer-events:none;">
-              <p id="g-line-1" class="text-dialogue" style="opacity:0;font-size:clamp(1.05rem,3.6vw,1.22rem);color:#f8fafc;margin:0;font-style:italic;text-shadow:0 2px 12px rgba(0,0,0,0.9);">
+            <!-- Shot 1: KitKat Hero Object (Narrative + Image + Card with Equal Spacing) -->
+            <div id="g-kitkat-view" style="position:absolute;display:flex;flex-direction:column;align-items:center;opacity:0;transform:translateY(-40px) scale(0.9);z-index:20;cursor:pointer;">
+              <p id="g-line-1" class="text-dialogue" style="font-size:clamp(1.05rem,3.6vw,1.22rem);color:#f8fafc;margin:0 0 ${giftLabelGap} 0;font-style:italic;text-shadow:0 2px 12px rgba(0,0,0,0.9);text-align:center;">
                 "${narratives[0]}"
               </p>
-              <p id="g-line-2" class="text-emotional" style="opacity:0;font-size:clamp(1.1rem,3.8vw,1.3rem);color:#f8fafc;margin:4px 0 0 0;font-style:italic;text-shadow:0 0 16px rgba(255,255,255,0.4);">
-                "${narratives[1]}"
-              </p>
-            </div>
-
-            <!-- Shot 1: KitKat Hero Object (Real PNG Asset) -->
-            <div id="g-kitkat-view" style="position:absolute;display:flex;flex-direction:column;align-items:center;opacity:0;transform:translateY(-40px) scale(0.9);z-index:20;cursor:pointer;">
               <div style="position:relative;width:210px;height:140px;display:flex;align-items:center;justify-content:center;margin-bottom:${giftLabelGap};">
                 <img src="${kitkatImgPath}" alt="${caseData.title || 'KitKat Rich'}" id="g-kitkat-img" style="width:100%;height:auto;object-fit:contain;filter:drop-shadow(0 16px 36px rgba(0,0,0,0.85));" />
               </div>
               <div class="gift-label-wrap">
-                <div class="gift-label" style="font-size:1.15rem;color:#f8fafc;font-family:var(--font-serif);font-weight:700;letter-spacing:0.02em;text-shadow:0 2px 10px rgba(0,0,0,0.8);">${caseData.title}</div>
-                <div class="text-whisper" style="font-size:0.7rem;color:var(--cinema-text-muted);margin-top:4px;letter-spacing:0.14em;">${caseData.subtitle.toUpperCase()}</div>
+                <div class="gift-label" style="font-size:1.15rem;color:#f8fafc;font-family:var(--font-serif);font-weight:700;letter-spacing:0.02em;text-shadow:0 2px 10px rgba(0,0,0,0.8);text-align:center;">${caseData.title}</div>
+                <div class="text-whisper" style="font-size:0.7rem;color:var(--cinema-text-muted);margin-top:4px;letter-spacing:0.14em;text-align:center;">${caseData.subtitle.toUpperCase()}</div>
               </div>
             </div>
 
@@ -134,14 +123,17 @@ export class Scene11Gifts {
               </div>
             </div>
 
-            <!-- Shot 3: Bellavita Fragrance Object (Real PNG Asset) -->
+            <!-- Shot 3: Bellavita Fragrance Object (Narrative + Image + Card with Equal Spacing) -->
             <div id="g-bellavita-view" style="position:absolute;display:flex;flex-direction:column;align-items:center;opacity:0;transform:translateY(40px) scale(0.9);z-index:20;cursor:pointer;">
+              <p id="g-line-2" class="text-emotional" style="font-size:clamp(1.1rem,3.8vw,1.3rem);color:#f8fafc;margin:0 0 ${giftLabelGap} 0;font-style:italic;text-shadow:0 0 16px rgba(255,255,255,0.4);text-align:center;">
+                "${narratives[1]}"
+              </p>
               <div style="position:relative;width:210px;height:145px;display:flex;align-items:center;justify-content:center;margin-bottom:${giftLabelGap};">
                 <img src="${bellavitaImgPath}" alt="${gift2Data.title || 'Bellavita'}" id="g-bellavita-img" style="width:100%;height:auto;object-fit:contain;filter:drop-shadow(0 16px 36px rgba(0,0,0,0.85));" />
               </div>
               <div class="gift-label-wrap">
-                <div class="gift-label" style="font-size:1.15rem;color:#f8fafc;font-family:var(--font-serif);font-weight:700;letter-spacing:0.02em;text-shadow:0 2px 10px rgba(0,0,0,0.8);">${gift2Data.title}</div>
-                <div class="text-whisper" style="font-size:0.7rem;color:var(--cinema-text-muted);margin-top:4px;letter-spacing:0.14em;">${gift2Data.subtitle.toUpperCase()}</div>
+                <div class="gift-label" style="font-size:1.15rem;color:#f8fafc;font-family:var(--font-serif);font-weight:700;letter-spacing:0.02em;text-shadow:0 2px 10px rgba(0,0,0,0.8);text-align:center;">${gift2Data.title}</div>
+                <div class="text-whisper" style="font-size:0.7rem;color:var(--cinema-text-muted);margin-top:4px;letter-spacing:0.14em;text-align:center;">${gift2Data.subtitle.toUpperCase()}</div>
               </div>
             </div>
           </div>
@@ -178,7 +170,6 @@ export class Scene11Gifts {
 
         // 2. KitKat Hero Entrance - Full Screen Presence
         .to(kitkatView, { opacity: 1, y: 0, scale: 1, duration: 0.55, ease: 'back.out(1.2)' }, 0.1)
-        .to(line1, { opacity: 1, duration: 0.4 }, 0.25)
         .to({}, { duration: kkHold }, 0.65) // Dedicated hero moment to view KitKat
 
         // 3. Case File 04 Investigation Reveal
@@ -194,8 +185,6 @@ export class Scene11Gifts {
         .to(casefileBoard, { opacity: 0, scale: 0.85, duration: 0.3, ease: 'power2.in' }, 2.95 + kkHold + caseHold)
         .to(kitkatView, { opacity: 0, duration: 0.2 }, 2.95 + kkHold + caseHold)
         .to(bellavitaView, { opacity: 1, y: 0, scale: 1, duration: 0.55, ease: 'power2.out' }, 3.15 + kkHold + caseHold)
-        .to(line1, { opacity: 0, duration: 0.2 }, 3.15 + kkHold + caseHold)
-        .to(line2, { opacity: 1, duration: 0.45, ease: 'power2.out' }, 3.35 + kkHold + caseHold)
         .to({}, { duration: bvHold }, 3.8 + kkHold + caseHold) // Bellavita hero moment
 
         // 5. Seamless Transition directly into Sibling Zone (Scene 12)

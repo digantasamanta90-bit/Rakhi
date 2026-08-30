@@ -295,9 +295,7 @@ export const content = {
       bellavitaHeroHold: 3    // Bellavita collection hero moment
     },
     layout: {
-      narrativeTopOffset: "20px",        // Vertical position of narrative text over gift cards (mobile)
-      narrativeTopOffsetDesktop: "0px",  // Vertical position of narrative text on desktop with ample clearance
-      giftLabelGap: "22px"               // Breathing room between gift images and titles
+      giftLabelGap: "22px" // Equal vertical spacing between narrative line, gift image, and card
     }
   },
 
