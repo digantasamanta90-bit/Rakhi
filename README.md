@@ -1,12 +1,23 @@
 # A Developer's Apology
 
-> An interactive cinematic Rakhi experience built as a personal project.
+> What started as a simple Rakhi surprise became something far more personal.
 
-**A Developer's Apology** is a handcrafted interactive web experience created for Raksha Bandhan.
+This project began as a small interactive gift I planned to present to someone on a Friday.
 
-It started as a simple idea: make something personal instead of sending another ordinary message.
+Then I missed that Friday morning.
 
-It eventually became a 17-scene interactive short film combining storytelling, animation, music, interaction, photography, gifts, and frontend engineering into one continuous experience.
+What followed was not another simple apology message, but an attempt to turn that mistake into a story.
+
+**A Developer's Apology** is a cinematic, interactive web experience built around that story. What began as a tiny prototype gradually evolved into a multi-scene experience with animated environments, cinematic transitions, music, sound, interactive moments, responsive design, and a lot more experimentation than I originally intended.
+
+It was built with the help of AI-assisted development tools, but the creative direction, storytelling, visual decisions, iterations, testing, and the countless moments of *"this doesn't feel right, let's fix it"* came from the process of making it.
+
+This repository is the final result of that journey.
+
+And somewhere inside all the code is a simple apology that started the whole thing.
+
+🎬 **A Developer's Apology**  
+*From a missed morning to a little interactive film.*
 
 ---
 
