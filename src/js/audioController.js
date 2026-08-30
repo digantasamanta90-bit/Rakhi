@@ -58,6 +58,26 @@ class AudioController {
         console.warn('BGM audio load warning:', e);
       };
 
+      // Native audio element event listeners for authoritative state
+      this.bgmAudio.addEventListener('pause', () => {
+        this.isBgmPlaying = false;
+        if (typeof this.onPause === 'function') {
+          this.onPause();
+        }
+      });
+      this.bgmAudio.addEventListener('play', () => {
+        this.isBgmPlaying = true;
+        if (typeof this.onPlay === 'function') {
+          this.onPlay();
+        }
+      });
+      this.bgmAudio.addEventListener('ended', () => {
+        this.isBgmPlaying = false;
+        if (typeof this.onEnded === 'function') {
+          this.onEnded();
+        }
+      });
+
       // 2. Local Alarm Audio
       const alarmPath = encodeURI(cfg.alarm || 'assets/music/alarm.mp3');
       this.alarmAudio = new Audio(alarmPath);
@@ -129,7 +149,7 @@ class AudioController {
       this.bgmAudio.muted = this.isMuted;
       const targetVol = this.isDucked ? this.bgmDuckedVolume : this.bgmTargetVolume;
 
-      if (fadeInDuration > 0 && window.gsap) {
+      if (fadeInDuration > 0 && window.gsap && this.bgmAudio.currentTime === 0) {
         this.bgmAudio.volume = 0.001;
         await this.bgmAudio.play();
         this.isBgmPlaying = true;
@@ -175,11 +195,13 @@ class AudioController {
     if (this.ringtoneAudio && this.isRingtonePlaying && this.ringtoneAudio.paused) {
       try { await this.ringtoneAudio.play(); } catch (e) {}
     }
-    if (this.bgmAudio && this.isPlaying && !this.isBgmPlaying) {
+    if (this.bgmAudio && this.isPlaying && this.bgmAudio.paused) {
       try {
         await this.bgmAudio.play();
         this.isBgmPlaying = true;
-      } catch (e) {}
+      } catch (e) {
+        console.warn('BGM resume error:', e);
+      }
     }
   }
 

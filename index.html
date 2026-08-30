@@ -50,9 +50,14 @@
 
     <!-- Top-Left Dedicated Pause / Play Control -->
     <div class="cinema-viewport-ctrl cinema-top-left">
-      <button id="pause-btn" class="cinema-control-btn cinema-pause-btn" aria-label="Pause film" title="Pause film">
-        <span class="icon-pause" aria-hidden="true">⏸</span>
-        <span class="icon-play" aria-hidden="true" style="display:none;">▶</span>
+      <button id="pause-btn" class="cinema-control-btn cinema-pause-btn" aria-label="Start film" title="Start film">
+        <svg class="icon-pause" viewBox="0 0 24 24" width="14" height="14" fill="currentColor" aria-hidden="true" style="display:none;">
+          <rect x="6" y="4" width="4" height="16" rx="1"></rect>
+          <rect x="14" y="4" width="4" height="16" rx="1"></rect>
+        </svg>
+        <svg class="icon-play" viewBox="0 0 24 24" width="14" height="14" fill="currentColor" aria-hidden="true" style="display:block;margin-left:2px;">
+          <polygon points="7 4 19 12 7 20 7 4"></polygon>
+        </svg>
       </button>
     </div>
 

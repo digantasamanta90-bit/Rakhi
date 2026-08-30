@@ -4,6 +4,8 @@
  * global pause/resume architecture, gesture hold-to-pause, and forward/backward navigation.
  */
 
+import { state, PLAYBACK_STATE } from './interactionState.js';
+
 export class CinematicSceneManager {
   constructor({ stageElement, audioController, particleCanvas, achievementManager }) {
     this.stage = stageElement;
@@ -19,7 +21,6 @@ export class CinematicSceneManager {
     this.onPauseChangeCallbacks = [];
 
     // Global Pause State Machine
-    this.isPersistentPaused = false;
     this.isHoldPaused = false;
     this.holdTimer = null;
     this.holdStartX = 0;
@@ -32,10 +33,23 @@ export class CinematicSceneManager {
     this.navNextBtn = null;
 
     this.initHoldToPause();
+    this.initAudioSync();
+  }
+
+  get playbackState() {
+    return state.playbackState;
+  }
+
+  get isIdle() {
+    return state.playbackState === PLAYBACK_STATE.IDLE;
   }
 
   get isPaused() {
-    return this.isPersistentPaused || this.isHoldPaused;
+    return state.playbackState === PLAYBACK_STATE.PAUSED || this.isHoldPaused;
+  }
+
+  get isPlaying() {
+    return state.playbackState === PLAYBACK_STATE.PLAYING && !this.isHoldPaused;
   }
 
   registerScenes(sceneDefs) {
@@ -55,24 +69,90 @@ export class CinematicSceneManager {
     return this.scenes.length;
   }
 
+  initAudioSync() {
+    if (this.audio) {
+      // Synchronize when the audio element is paused externally (e.g. lockscreen / notification)
+      this.audio.onPause = () => {
+        if (state.playbackState === PLAYBACK_STATE.PLAYING && !this.isHoldPaused) {
+          this.pausePersistent();
+        }
+      };
+
+      // Setup MediaSession handlers if supported
+      if (typeof navigator !== 'undefined' && 'mediaSession' in navigator) {
+        try {
+          navigator.mediaSession.metadata = new MediaMetadata({
+            title: 'Monta Re (Instrumental)',
+            artist: 'For Anwesha, From Diganta',
+            album: 'Rakhi 2026'
+          });
+          navigator.mediaSession.setActionHandler('play', () => {
+            if (this.isIdle) {
+              this.startExperience();
+            } else if (this.isPaused) {
+              this.resumePersistent();
+            }
+          });
+          navigator.mediaSession.setActionHandler('pause', () => {
+            if (this.isPlaying) {
+              this.pausePersistent();
+            }
+          });
+        } catch (e) {}
+      }
+    }
+  }
+
+  updatePlaybackState(newState) {
+    state.setPlaybackState(newState);
+    if (typeof navigator !== 'undefined' && 'mediaSession' in navigator) {
+      try {
+        navigator.mediaSession.playbackState =
+          state.playbackState === PLAYBACK_STATE.PLAYING ? 'playing' :
+          (state.playbackState === PLAYBACK_STATE.PAUSED ? 'paused' : 'none');
+      } catch (e) {}
+    }
+    this.updatePauseButtonUI();
+  }
+
   // --- DUAL PAUSE / RESUME ARCHITECTURE ---
 
+  startExperience() {
+    this.updatePlaybackState(PLAYBACK_STATE.PLAYING);
+    if (window.gsap && gsap.globalTimeline) {
+      gsap.globalTimeline.resume();
+    }
+    if (this.currentInstance && typeof this.currentInstance.startSequence === 'function') {
+      this.currentInstance.startSequence();
+    } else {
+      try {
+        this.audio.startMusic(1.5);
+      } catch (e) {}
+    }
+  }
+
   pausePersistent() {
-    if (this.isPersistentPaused) return;
-    this.isPersistentPaused = true;
+    if (state.playbackState === PLAYBACK_STATE.PAUSED) return;
+    this.updatePlaybackState(PLAYBACK_STATE.PAUSED);
     this._applyPauseState();
   }
 
   resumePersistent() {
-    if (!this.isPersistentPaused) return;
-    this.isPersistentPaused = false;
+    if (state.playbackState === PLAYBACK_STATE.IDLE) {
+      this.startExperience();
+      return;
+    }
+    if (state.playbackState !== PLAYBACK_STATE.PAUSED && !this.isHoldPaused) return;
+    this.updatePlaybackState(PLAYBACK_STATE.PLAYING);
     if (!this.isHoldPaused) {
       this._applyResumeState();
     }
   }
 
   togglePause() {
-    if (this.isPersistentPaused) {
+    if (this.isIdle) {
+      this.startExperience();
+    } else if (this.isPaused) {
       this.resumePersistent();
     } else {
       this.pausePersistent();
@@ -88,7 +168,7 @@ export class CinematicSceneManager {
   resumeHold() {
     if (!this.isHoldPaused) return;
     this.isHoldPaused = false;
-    if (!this.isPersistentPaused) {
+    if (state.playbackState === PLAYBACK_STATE.PLAYING) {
       this._applyResumeState();
     }
   }
@@ -155,12 +235,15 @@ export class CinematicSceneManager {
     if (this.pauseBtn) {
       const pauseIcon = this.pauseBtn.querySelector('.icon-pause');
       const playIcon = this.pauseBtn.querySelector('.icon-play');
-      const isPaused = this.isPaused;
-      if (pauseIcon) pauseIcon.style.display = isPaused ? 'none' : 'inline-block';
-      if (playIcon) playIcon.style.display = isPaused ? 'inline-block' : 'none';
-      this.pauseBtn.setAttribute('aria-label', isPaused ? 'Resume film' : 'Pause film');
-      this.pauseBtn.setAttribute('title', isPaused ? 'Resume film' : 'Pause film');
-      this.pauseBtn.classList.toggle('active-paused', isPaused);
+      const isPausedOrIdle = this.isPaused || this.isIdle;
+
+      if (pauseIcon) pauseIcon.style.display = isPausedOrIdle ? 'none' : 'block';
+      if (playIcon) playIcon.style.display = isPausedOrIdle ? 'block' : 'none';
+
+      const label = this.isIdle ? 'Start film' : (this.isPaused ? 'Resume film' : 'Pause film');
+      this.pauseBtn.setAttribute('aria-label', label);
+      this.pauseBtn.setAttribute('title', label);
+      this.pauseBtn.classList.toggle('active-paused', this.isPaused);
     }
   }
 
@@ -198,7 +281,7 @@ export class CinematicSceneManager {
 
       // Start hold threshold timer (350ms)
       this.holdTimer = setTimeout(() => {
-        if (this.isHolding && !this.isPersistentPaused) {
+        if (this.isHolding && state.playbackState === PLAYBACK_STATE.PLAYING) {
           this.pauseHold();
         }
       }, 350);
@@ -251,16 +334,17 @@ export class CinematicSceneManager {
       this.resume();
     }
 
-    // Exit and clean up previous scene
-    if (this.currentInstance) {
+    // Exit and clean up previous scene immediately
+    const prevInstance = this.currentInstance;
+    this.currentInstance = null;
+    if (prevInstance) {
       try {
-        if (typeof this.currentInstance.exit === 'function') {
-          await this.currentInstance.exit();
+        if (typeof prevInstance.exit === 'function') {
+          prevInstance.exit();
         }
       } catch (e) {
         console.warn('Scene exit error:', e);
       }
-      this.currentInstance = null;
     }
 
     // Clear stage content
@@ -311,6 +395,16 @@ export class CinematicSceneManager {
   }
 
   restart() {
+    state.resetForReplay();
+    this.updatePauseButtonUI();
+    if (this.audio) {
+      this.audio.stopAlarmSound(false);
+      this.audio.stopRingtoneSound(false);
+      this.audio.pauseMusic();
+      if (this.audio.bgmAudio) {
+        this.audio.bgmAudio.currentTime = 0;
+      }
+    }
     this.goTo(0);
   }
 
@@ -356,3 +450,4 @@ export class CinematicSceneManager {
     }
   }
 }
+

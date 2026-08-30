@@ -8,10 +8,28 @@ export class Scene03Alarms {
     this.tl = null;
     this.alarmCount = 0;
     this.vibrateInterval = null;
+    this.timers = [];
+    this.isActive = false;
+  }
+
+  addTimeout(fn, delay) {
+    if (!this.isActive) return null;
+    const timer = setTimeout(() => {
+      const idx = this.timers.indexOf(timer);
+      if (idx !== -1) this.timers.splice(idx, 1);
+      if (!this.isActive) return;
+      fn();
+    }, delay);
+    this.timers.push(timer);
+    return timer;
   }
 
   enter(container) {
     return new Promise((resolve) => {
+      this.isActive = true;
+      this.alarmCount = 0;
+      this.timers = [];
+
       const c = content.scene03;
 
       container.innerHTML = `
@@ -105,6 +123,7 @@ export class Scene03Alarms {
       const diagHold = (t.dialogueHold ?? 1.2) * 1000;
 
       const startAlarmRing = () => {
+        if (!this.isActive) return;
         // Play trimmed local alarm audio immediately with automatic BGM ducking
         try {
           if (typeof this.audio.playAlarmSound === 'function') {
@@ -113,7 +132,15 @@ export class Scene03Alarms {
         } catch (e) {}
 
         // Visual alarm ring animation & device vibration
+        if (this.vibrateInterval) clearInterval(this.vibrateInterval);
         this.vibrateInterval = setInterval(() => {
+          if (!this.isActive) {
+            if (this.vibrateInterval) {
+              clearInterval(this.vibrateInterval);
+              this.vibrateInterval = null;
+            }
+            return;
+          }
           if (icon) {
             gsap.fromTo(icon, { rotation: -12 }, { rotation: 12, duration: 0.05, repeat: 7, yoyo: true, ease: 'power1.inOut' });
           }
@@ -124,9 +151,14 @@ export class Scene03Alarms {
       };
 
       const stopAlarmRing = (unduck = false) => {
-        if (this.vibrateInterval) clearInterval(this.vibrateInterval);
-        gsap.killTweensOf(icon);
-        gsap.set(icon, { rotation: 0 });
+        if (this.vibrateInterval) {
+          clearInterval(this.vibrateInterval);
+          this.vibrateInterval = null;
+        }
+        if (icon) {
+          gsap.killTweensOf(icon);
+          gsap.set(icon, { rotation: 0 });
+        }
         if (typeof navigator !== 'undefined' && navigator.vibrate) {
           try { navigator.vibrate(0); } catch (e) {}
         }
@@ -149,86 +181,112 @@ export class Scene03Alarms {
       ];
 
       // Trigger first alarm promptly after configured settling delay
-      setTimeout(() => {
+      this.addTimeout(() => {
+        if (!this.isActive) return;
         startAlarmRing();
       }, initDelay);
 
-      dismissBtn.addEventListener('click', () => {
-        this.alarmCount++;
+      if (dismissBtn) {
+        dismissBtn.addEventListener('click', () => {
+          if (!this.isActive) return;
+          this.alarmCount++;
 
-        if (this.alarmCount < 3) {
-          // Temporarily pause alarm ringing between dismissals
-          stopAlarmRing(false);
-          
-          gsap.to([icon, timeEl, labelEl], { opacity: 0.3, scale: 0.96, duration: 0.2 });
-          
-          setTimeout(() => {
-            timeEl.textContent = c.alarms[this.alarmCount].time;
-            labelEl.textContent = c.alarms[this.alarmCount].label;
+          if (this.alarmCount < 3) {
+            // Temporarily pause alarm ringing between dismissals
+            stopAlarmRing(false);
             
-            // Advance sky gradient and elevate rising sun
+            gsap.to([icon, timeEl, labelEl], { opacity: 0.3, scale: 0.96, duration: 0.2 });
+            
+            this.addTimeout(() => {
+              if (!this.isActive) return;
+              timeEl.textContent = c.alarms[this.alarmCount].time;
+              labelEl.textContent = c.alarms[this.alarmCount].label;
+              
+              // Advance sky gradient and elevate rising sun
+              if (skyGradient) {
+                skyGradient.style.background = dawnSkyTransitions[this.alarmCount];
+              }
+              if (risingSun) {
+                risingSun.style.bottom = sunPositions[this.alarmCount].bottom;
+                risingSun.style.opacity = sunPositions[this.alarmCount].opacity;
+                risingSun.style.transform = `translateX(-50%) scale(${sunPositions[this.alarmCount].scale})`;
+              }
+
+              gsap.to([icon, timeEl, labelEl], { opacity: 1, scale: 1, duration: 0.3 });
+              startAlarmRing();
+            }, transDelay);
+          } else {
+            // Final 6:00 AM dismissal -> Full bright morning daylight!
+            stopAlarmRing(true);
+            dismissBtn.style.display = 'none';
+
             if (skyGradient) {
-              skyGradient.style.background = dawnSkyTransitions[this.alarmCount];
+              skyGradient.style.background = 'linear-gradient(180deg, #0284c7 0%, #38bdf8 45%, #fed7aa 100%)';
             }
             if (risingSun) {
-              risingSun.style.bottom = sunPositions[this.alarmCount].bottom;
-              risingSun.style.opacity = sunPositions[this.alarmCount].opacity;
-              risingSun.style.transform = `translateX(-50%) scale(${sunPositions[this.alarmCount].scale})`;
+              risingSun.style.bottom = '55%';
+              risingSun.style.opacity = '1';
+              risingSun.style.transform = 'translateX(-50%) scale(2.0)';
             }
 
-            gsap.to([icon, timeEl, labelEl], { opacity: 1, scale: 1, duration: 0.3 });
-            startAlarmRing();
-          }, transDelay);
-        } else {
-          // Final 6:00 AM dismissal -> Full bright morning daylight!
-          stopAlarmRing(true);
-          dismissBtn.style.display = 'none';
-
-          if (skyGradient) {
-            skyGradient.style.background = 'linear-gradient(180deg, #0284c7 0%, #38bdf8 45%, #fed7aa 100%)';
+            gsap.to(clockBox, {
+              opacity: 0,
+              y: -15,
+              duration: 0.5,
+              ease: 'power2.in',
+              onComplete: () => {
+                if (!this.isActive) return;
+                gsap.to(eyesMsg, {
+                  opacity: 1,
+                  y: 0,
+                  duration: diagFade,
+                  ease: 'power2.out',
+                  onComplete: () => {
+                    if (!this.isActive) return;
+                    this.addTimeout(() => {
+                      if (!this.isActive) return;
+                      this.manager.next();
+                      resolve();
+                    }, diagHold);
+                  }
+                });
+              }
+            });
           }
-          if (risingSun) {
-            risingSun.style.bottom = '55%';
-            risingSun.style.opacity = '1';
-            risingSun.style.transform = 'translateX(-50%) scale(2.0)';
-          }
-
-          gsap.to(clockBox, {
-            opacity: 0,
-            y: -15,
-            duration: 0.5,
-            ease: 'power2.in',
-            onComplete: () => {
-              gsap.to(eyesMsg, {
-                opacity: 1,
-                y: 0,
-                duration: diagFade,
-                ease: 'power2.out',
-                onComplete: () => {
-                  setTimeout(() => {
-                    this.manager.next();
-                    resolve();
-                  }, diagHold);
-                }
-              });
-            }
-          });
-        }
-      });
+        });
+      }
     });
   }
 
   exit() {
-    if (this.vibrateInterval) clearInterval(this.vibrateInterval);
+    this.isActive = false;
+
+    // 1. Cancel all scene-owned timeouts
+    for (const timer of this.timers) {
+      clearTimeout(timer);
+    }
+    this.timers = [];
+
+    // 2. Stop vibration interval and device vibration
+    if (this.vibrateInterval) {
+      clearInterval(this.vibrateInterval);
+      this.vibrateInterval = null;
+    }
     if (typeof navigator !== 'undefined' && navigator.vibrate) {
       try { navigator.vibrate(0); } catch (e) {}
     }
+
+    // 3. Stop alarm audio immediately and unduck BGM
     try {
       if (typeof this.audio.stopAlarmSound === 'function') {
         this.audio.stopAlarmSound(true);
       }
     } catch (e) {}
+
+    // 4. Kill GSAP tweens/timelines on scene elements
     if (this.tl) this.tl.kill();
+    gsap.killTweensOf('#s3-viewport, #alarm-icon, #alarm-time, #alarm-label, #s3-clock-box, #eyes-msg, #dismiss-btn');
+
     return Promise.resolve();
   }
 }

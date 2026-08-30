@@ -8,7 +8,7 @@
  */
 
 import { content } from '../content/content.js';
-import { state } from '../js/interactionState.js';
+import { state, PLAYBACK_STATE } from '../js/interactionState.js';
 
 export class Scene01Clock {
   constructor({ manager, audio, particles }) {
@@ -18,6 +18,7 @@ export class Scene01Clock {
     this.tl = null;
     this.typeInterval = null;
     this.started = false;
+    this.startSequence = null;
   }
 
   enter(container) {
@@ -112,6 +113,10 @@ export class Scene01Clock {
       const startSequence = () => {
         if (this.started) return;
         this.started = true;
+        state.setPlaybackState(PLAYBACK_STATE.PLAYING);
+        if (this.manager && typeof this.manager.updatePlaybackState === 'function') {
+          this.manager.updatePlaybackState(PLAYBACK_STATE.PLAYING);
+        }
 
         // 1. Unlock Audio and Start Continuous BGM Immediately from 0:00
         try {
@@ -193,8 +198,10 @@ export class Scene01Clock {
           .to(moon, { opacity: 0.3, scale: 0.92, duration: 0.4, ease: 'power2.in' }, totalDuration - 0.4);
       };
 
-      // If audio already started (e.g. replaying), auto proceed quickly
-      if (state.audioStarted) {
+      this.startSequence = startSequence;
+
+      // If already playing (e.g. replaying or navigated from debug), auto proceed quickly
+      if (state.playbackState === PLAYBACK_STATE.PLAYING || state.audioStarted) {
         if (starterGate) starterGate.style.display = 'none';
         startSequence();
       } else {

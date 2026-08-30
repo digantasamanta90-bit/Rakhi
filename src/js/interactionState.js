@@ -3,12 +3,19 @@
  * Manages runtime session state, achievements, discoveries, and non-blocking exploration.
  */
 
+export const PLAYBACK_STATE = {
+  IDLE: 'IDLE',
+  PLAYING: 'PLAYING',
+  PAUSED: 'PAUSED'
+};
+
 class InteractionState {
   constructor() {
     this.currentScene = 1;
     this.isTransitioning = false;
     this.audioStarted = false;
     this.audioMuted = false;
+    this.playbackState = PLAYBACK_STATE.IDLE;
     
     this.discoveries = new Set();
     this.achievements = new Set();
@@ -27,6 +34,16 @@ class InteractionState {
 
   notify(event, data) {
     this.listeners.forEach(cb => cb(event, data));
+  }
+
+  setPlaybackState(newState) {
+    if (this.playbackState === newState) return;
+    const oldState = this.playbackState;
+    this.playbackState = newState;
+    if (newState === PLAYBACK_STATE.PLAYING) {
+      this.audioStarted = true;
+    }
+    this.notify('playback_state_changed', { state: newState, oldState });
   }
 
   showToast(title, description, icon = '✨') {
@@ -52,6 +69,8 @@ class InteractionState {
   resetForReplay() {
     this.currentScene = 1;
     this.isTransitioning = false;
+    this.audioStarted = false;
+    this.playbackState = PLAYBACK_STATE.IDLE;
     this.doNotPressCount = 0;
     this.finaleCompleted = false;
     this.achievements.clear();
