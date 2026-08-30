@@ -31,7 +31,7 @@ export class Scene04MissedCall {
                 <img src="assets/portraits/anwesha1.png" alt="Anwesha" onerror="this.src='assets/portraits/anwesha_hero.png'">
               </div>
               <div class="incoming-tag" style="color:var(--rakhi-gold);">Incoming Call</div>
-              <div class="caller-name" style="color:#ffffff;">${c.callerName} 🧿</div>
+              <div class="caller-name" style="color:#ffffff;">Anwesha </div>
 
               <div class="call-actions" id="call-actions">
                 <button class="call-btn decline" id="decline-call" aria-label="Decline Call" style="background:#dc2626;">
