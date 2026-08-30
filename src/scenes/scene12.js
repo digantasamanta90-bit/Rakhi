@@ -359,7 +359,7 @@ export class Scene12SiblingZone {
 
       // Tactile Mobile Device Vibration Trigger
       const triggerVibration = (pattern) => {
-        if (typeof navigator !== 'undefined' && typeof navigator.vibrate === 'function') {
+        if (typeof navigator !== 'undefined' && navigator.vibrate) {
           try {
             navigator.vibrate(pattern);
           } catch (err) {}
@@ -393,7 +393,7 @@ export class Scene12SiblingZone {
           }
           else if (this.pressCount === 3) {
             // PRESS 3: Full chaos gag + red alert + multi-pulse vibration
-            triggerVibration([180, 80, 180]);
+            triggerVibration([180, 70, 180]);
             switchTag.textContent = dnp.tag3 || "🔥 EMERGENCY LEVEL 3 // CHAOS OVERLOAD";
             switchTag.style.color = "#ef4444";
             switchStatus.textContent = `"${dnp.stage3}"`;
@@ -480,7 +480,7 @@ export class Scene12SiblingZone {
   }
 
   exit() {
-    if (typeof navigator !== 'undefined' && typeof navigator.vibrate === 'function') {
+    if (typeof navigator !== 'undefined' && navigator.vibrate) {
       try { navigator.vibrate(0); } catch (err) {}
     }
     if (this.tl) this.tl.kill();
