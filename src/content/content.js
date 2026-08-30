@@ -309,7 +309,7 @@ export const content = {
       title: "ME",
       description: "\"Professional overthinker. Occasional nuisance. Effort: unnecessarily high.\"",
       pill: "Will build entire apps instead of texting 🫡",
-      narrative: "Technically your brother. No refunds available.",
+      narrative: "Akta valo bou khuje de ebare",
       image: "assets/portraits/diganta1.png"
     },
     sisterCard: {
@@ -317,7 +317,7 @@ export const content = {
       title: "Anwesha 🧿",
       threatLevel: "THREAT: HIGH 🍫",
       description: "Will demand chocolate. Probably judging this scene.",
-      narrative: "Will demand KitKat. Probably judging this website right now.",
+      narrative: "Ebare amay return gift dis.",
       image: "assets/portraits/anwesha6.png",
       imageFallback: "assets/portraits/anwesha1.png"
     },
@@ -327,7 +327,7 @@ export const content = {
       image: "assets/portraits/monojit1.png",
       description: "\"The mastermind behind all of it. Found the photos, approved the chocolate, and started this whole sister story.\"",
       footnote: "Credit given. Don't let it go to his head 💀",
-      narrative: "Don't let the credit go to his head though. 💀"
+      narrative: "Biye ta kore ne ebar. 🙂"
     },
     statusCard: {
       badge: "OFFICIAL SIBLING DOSSIER // EVALUATION",
@@ -348,18 +348,18 @@ export const content = {
       tag4: "✨ SIBLING CONTRACT RATIFIED",
       buttonText: "DO NOT PRESS ⚠️",
       finalBtnText: "DO NOT PRESS (FINAL WARNING 🚨)",
-      stage0: "Seriously. Do not press it.",
-      stage1: "I literally told you not to.",
-      stage2: "Okay, now you're just doing it because I told you not to.",
-      stage3: "Fine. Achievement unlocked: Cannot Follow Instructions. 🚨",
+      stage0: "Kokhono to son amar kotha!!",
+      stage1: "Bolar poreo korli",
+      stage2: "Ki je, ektu kotha shunte parish na?! 😐",
+      stage3: "Ebare ami ar kichu bolbo na",
       revealTitle: "✨ MAXIMUM SIBLING CHAOS UNLOCKED",
       revealBody: "Alright, you've completely destroyed the warning protocol. Now comes the quiet part.",
       proceedBtnText: "A quiet note for you →"
     },
     motifs: [
-      { icon: "🧿", label: "Protection against bad vibes activated." },
-      { icon: "🍫", label: "Yes, the KitKat is still real. Go eat it!" },
-      { icon: "💻", label: "This is what happens when your brother learns HTML." },
+      { icon: "🧿", label: "Nojor na lage." },
+      { icon: "🍫", label: "Ha, KitKat ta kha ebare giye. 🙂" },
+      { icon: "💻", label: "Free er web developer. 💀" },
       { icon: "🏆", label: "Achievement unlocked: Survived the sibling website!" }
     ],
     toasts: {
@@ -389,7 +389,7 @@ export const content = {
       "The gifts are just small tokens, and this website is admittedly an overengineered delivery mechanism 😭, but the care behind it is 100% real.",
       "Stay happy, take care of yourself and of him. And most importantly don't change, stay this cheerful forever. I'm really glad to have you as my sister from another mother."
     ],
-    closingJoke: "And unfortunately for you... you're permanently stuck with me as your brother. 💀🧿",
+    closingJoke: "Ar tui hoyto bujhteo parbina exact koto ta effort ar time geche eta ke banate. But okay, just appreciation tao amar jonne enough 💝",
     keepButton: "KEEP THIS MESSAGE 🧿",
     keepSuccess: "Saved forever in memory 🧿",
     signature: {
@@ -417,7 +417,7 @@ export const content = {
   scene14: {
     fragments: ["4:30 AM", "5:30 AM", "7:30 AM", "MISSED CALL", "METRO", "BROKEN KITKAT"],
     digantaNode: "Diganta",
-    anweshaNode: "Anwesha 🧿",
+    anweshaNode: "Thread",
     assets: {
       digantaPortrait: "assets/portraits/diganta1.png",
       anweshaPortrait: "assets/portraits/anwesha_hero.png",
@@ -497,7 +497,7 @@ export const content = {
     restartBtn: "Start from 4:30 AM",
     replayModal: {
       title: "Replay the Journey? ↻",
-      question: "Are you sure? We'll take you back to 4:30 AM.",
+      question: "Are you sure? Back to 4:30 AM.",
       confirm: "YES, REPLAY →",
       cancel: "NO, LET ME EAT THE KITKAT 🍫"
     },
