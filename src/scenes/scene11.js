@@ -154,12 +154,7 @@ export class Scene11Gifts {
       const caseHold = t.casefileReadHold ?? 1.0;
       const bvHold = t.bellavitaHeroHold ?? 1.1;
 
-      this.tl = gsap.timeline({
-        onComplete: () => {
-          this.manager.next();
-          resolve();
-        }
-      });
+      this.tl = gsap.timeline();
 
       this.tl
         // 1. Living Market Street Parallax Movement
@@ -169,7 +164,7 @@ export class Scene11Gifts {
         // 2. KitKat Hero Entrance - Full Screen Presence
         .to(kitkatView, { opacity: 1, y: 0, scale: 1, duration: 0.55, ease: 'back.out(1.2)' }, 0.1)
         .to(line1, { opacity: 1, duration: 0.4 }, 0.25)
-        .to({}, { duration: kkHold }) // Dedicated hero moment to view KitKat
+        .to({}, { duration: kkHold }, 0.65) // Dedicated hero moment to view KitKat
 
         // 3. Case File 04 Investigation Reveal
         .to(kitkatView, { scale: 0.75, y: -65, opacity: 0.2, duration: 0.35, ease: 'power2.inOut' }, 0.65 + kkHold)
@@ -178,7 +173,7 @@ export class Scene11Gifts {
         .to(cand2, { opacity: 1, x: 0, duration: 0.2 }, 1.25 + kkHold)
         .to(cand3, { opacity: 1, x: 0, duration: 0.3, ease: 'back.out(1.4)' }, 1.45 + kkHold)
         .to(caseFooter, { opacity: 1, duration: 0.3 }, 1.75 + kkHold)
-        .to({}, { duration: caseHold }) // Investigation reading pause
+        .to({}, { duration: caseHold }, 2.05 + kkHold) // Investigation reading pause
 
         // 4. Case File closes -> Bellavita Collection emerges
         .to(casefileBoard, { opacity: 0, scale: 0.85, duration: 0.3, ease: 'power2.in' }, 2.95 + kkHold + caseHold)
@@ -186,11 +181,15 @@ export class Scene11Gifts {
         .to(bellavitaView, { opacity: 1, y: 0, scale: 1, duration: 0.55, ease: 'power2.out' }, 3.15 + kkHold + caseHold)
         .to(line1, { opacity: 0, duration: 0.2 }, 3.15 + kkHold + caseHold)
         .to(line2, { opacity: 1, duration: 0.45, ease: 'power2.out' }, 3.35 + kkHold + caseHold)
-        .to({}, { duration: bvHold }) // Bellavita hero moment
+        .to({}, { duration: bvHold }, 3.8 + kkHold + caseHold) // Bellavita hero moment
 
         // 5. Seamless Transition directly into Sibling Zone (Scene 12)
         .to(mainStage, { opacity: 0, scale: 0.96, y: -10, duration: 0.4, ease: 'power2.inOut' }, parDur - 0.4)
-        .to(viewport, { opacity: 0, duration: 0.4, ease: 'power2.in' }, parDur - 0.4);
+        .to(viewport, { opacity: 0, duration: 0.4, ease: 'power2.in' }, parDur - 0.4)
+        .call(() => {
+          this.manager.next();
+          resolve();
+        }, null, parDur);
 
       // Tactile physical taps on gift objects
       if (kitkatView) {

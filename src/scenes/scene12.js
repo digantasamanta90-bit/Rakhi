@@ -216,13 +216,13 @@ export class Scene12SiblingZone {
 
         if (level === 1) {
           shakeTl.to(switchCard, { x: -6, duration: 0.04, yoyo: true, repeat: 4 })
-                 .to(switchCard, { x: 0, duration: 0.04 });
+            .to(switchCard, { x: 0, duration: 0.04 });
         } else if (level === 2) {
           shakeTl.to(switchCard, { x: -9, y: -3, duration: 0.035, yoyo: true, repeat: 6 })
-                 .to(switchCard, { x: 0, y: 0, duration: 0.04 });
+            .to(switchCard, { x: 0, y: 0, duration: 0.04 });
         } else if (level === 3) {
           shakeTl.to(switchCard, { x: -14, y: -5, rotation: -1, duration: 0.03, yoyo: true, repeat: 8 })
-                 .to(switchCard, { x: 0, y: 0, rotation: 0, duration: 0.04 });
+            .to(switchCard, { x: 0, y: 0, rotation: 0, duration: 0.04 });
         }
       };
 
@@ -236,17 +236,17 @@ export class Scene12SiblingZone {
           focalDiganta.style.pointerEvents = 'auto';
           setNarrative(brother.narrative || "Technically your brother. No refunds available.");
         }, [], 0)
-        .fromTo(focalDiganta, 
-          { opacity: 0, y: -20, scale: 0.9 }, 
+        .fromTo(focalDiganta,
+          { opacity: 0, y: -20, scale: 0.9 },
           { opacity: 1, y: 0, scale: 1, duration: 0.5, ease: 'back.out(1.2)' },
           0.05
         )
         .to({}, { duration: cardHold })
-        .to(focalDiganta, { 
-          opacity: 0, 
-          y: 20, 
-          scale: 0.88, 
-          duration: cardTrans, 
+        .to(focalDiganta, {
+          opacity: 0,
+          y: 20,
+          scale: 0.88,
+          duration: cardTrans,
           ease: 'power2.in',
           onComplete: () => {
             focalDiganta.style.display = 'none';
@@ -265,10 +265,10 @@ export class Scene12SiblingZone {
           { opacity: 1, y: 0, scale: 1, rotation: -2, duration: 0.6, ease: 'power2.out' }
         )
         .to({}, { duration: cardHold + 0.1 })
-        .to(focalAnwesha, { 
-          opacity: 0, 
-          scale: 0.85, 
-          duration: cardTrans, 
+        .to(focalAnwesha, {
+          opacity: 0,
+          scale: 0.85,
+          duration: cardTrans,
           ease: 'power2.in',
           onComplete: () => {
             focalAnwesha.style.display = 'none';
@@ -287,10 +287,10 @@ export class Scene12SiblingZone {
           { opacity: 1, scale: 1, y: 0, duration: 0.6, ease: 'back.out(1.2)' }
         )
         .to({}, { duration: cardHold })
-        .to(focalMonojit, { 
-          opacity: 0, 
-          scale: 0.85, 
-          duration: cardTrans, 
+        .to(focalMonojit, {
+          opacity: 0,
+          scale: 0.85,
+          duration: cardTrans,
           ease: 'power2.in',
           onComplete: () => {
             focalMonojit.style.display = 'none';
@@ -309,10 +309,10 @@ export class Scene12SiblingZone {
           { opacity: 1, scale: 1, y: 0, duration: 0.6, ease: 'back.out(1.2)' }
         )
         .to({}, { duration: cardHold })
-        .to(focalStatus, { 
-          opacity: 0, 
-          scale: 0.85, 
-          duration: cardTrans, 
+        .to(focalStatus, {
+          opacity: 0,
+          scale: 0.85,
+          duration: cardTrans,
           ease: 'power2.in',
           onComplete: () => {
             focalStatus.style.display = 'none';
@@ -327,11 +327,11 @@ export class Scene12SiblingZone {
         })
         .fromTo(focalSwitch,
           { opacity: 0, y: -20, scale: 0.92 },
-          { 
-            opacity: 1, 
-            y: 0, 
-            scale: 1, 
-            duration: 0.7, 
+          {
+            opacity: 1,
+            y: 0,
+            scale: 1,
+            duration: 0.7,
             ease: 'back.out(1.3)',
             onComplete: () => {
               focalSwitch.style.pointerEvents = 'auto';
@@ -370,7 +370,7 @@ export class Scene12SiblingZone {
             switchStatus.style.color = "#f8fafc";
             triggerCardShake(1);
             gsap.fromTo(emergencyBtn, { scale: 0.94 }, { scale: 1, duration: 0.25, ease: 'elastic.out(1, 0.4)' });
-          } 
+          }
           else if (this.pressCount === 2) {
             // PRESS 2: Moderate room tremor + amber warning
             switchTag.textContent = dnp.tag2 || "🚨 WARNING LEVEL 2 // SIBLING RETALIATION IMMINENT";
@@ -379,7 +379,7 @@ export class Scene12SiblingZone {
             switchStatus.style.color = "var(--rakhi-gold)";
             triggerCardShake(2);
             gsap.fromTo(emergencyBtn, { scale: 0.90 }, { scale: 1, duration: 0.25, ease: 'elastic.out(1, 0.4)' });
-          } 
+          }
           else if (this.pressCount === 3) {
             // PRESS 3: Full chaos gag + red alert
             switchTag.textContent = dnp.tag3 || "🔥 EMERGENCY LEVEL 3 // CHAOS OVERLOAD";
@@ -394,7 +394,7 @@ export class Scene12SiblingZone {
 
             triggerCardShake(3);
             emergencyBtn.querySelector('span').textContent = dnp.finalBtnText || "DO NOT PRESS (FINAL WARNING 🚨)";
-          } 
+          }
           else {
             // PRESS 4: CLIMAX GAG EXPLOSION & HIDDEN REVEAL
             gsap.killTweensOf(switchCard);
@@ -422,8 +422,8 @@ export class Scene12SiblingZone {
             switchTag.style.color = "var(--rakhi-gold)";
 
             revealPanel.style.display = 'block';
-            gsap.fromTo(revealPanel, 
-              { opacity: 0, y: 12 }, 
+            gsap.fromTo(revealPanel,
+              { opacity: 0, y: 12 },
               { opacity: 1, y: 0, duration: 0.5, ease: 'power2.out' }
             );
           }
