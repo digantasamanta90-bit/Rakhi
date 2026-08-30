@@ -13,6 +13,7 @@ export class Scene11Gifts {
     return new Promise((resolve) => {
       const c = content.scene11;
       const t = c.timing || {};
+      const layout = c.layout || {};
       const assets = c.assets || {};
       const caseData = c.gift1 || {};
       const gift2Data = c.gift2 || {};
@@ -20,6 +21,9 @@ export class Scene11Gifts {
         "I still wanted to give these to you myself.",
         "So here they are."
       ];
+
+      const narrativeTopOffset = layout.narrativeTopOffset ?? "20px";
+      const giftLabelGap = layout.giftLabelGap ?? "22px";
 
       // 1. Storefronts for Continuous Parallax Stream (Layer 2)
       const shopsData = c.marketShops || [
@@ -73,9 +77,19 @@ export class Scene11Gifts {
           <!-- Section A: Main Focal Gift Stage Container (Center Spotlight) -->
           <div id="g-main-stage" style="position:relative;width:100%;max-width:360px;height:440px;display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:20;">
             
+            <!-- Narrative Lines (Top of Gift Stage) -->
+            <div id="g-narrative-zone" style="position:absolute;top:${narrativeTopOffset};left:0;right:0;text-align:center;padding:0 20px;z-index:25;pointer-events:none;">
+              <p id="g-line-1" class="text-dialogue" style="opacity:0;font-size:clamp(1.05rem,3.6vw,1.22rem);color:#f8fafc;margin:0;font-style:italic;text-shadow:0 2px 12px rgba(0,0,0,0.9);">
+                "${narratives[0]}"
+              </p>
+              <p id="g-line-2" class="text-emotional" style="opacity:0;font-size:clamp(1.1rem,3.8vw,1.3rem);color:#f8fafc;margin:4px 0 0 0;font-style:italic;text-shadow:0 0 16px rgba(255,255,255,0.4);">
+                "${narratives[1]}"
+              </p>
+            </div>
+
             <!-- Shot 1: KitKat Hero Object (Real PNG Asset) -->
             <div id="g-kitkat-view" style="position:absolute;display:flex;flex-direction:column;align-items:center;opacity:0;transform:translateY(-40px) scale(0.9);z-index:20;cursor:pointer;">
-              <div style="position:relative;width:210px;height:140px;display:flex;align-items:center;justify-content:center;margin-bottom:12px;">
+              <div style="position:relative;width:210px;height:140px;display:flex;align-items:center;justify-content:center;margin-bottom:${giftLabelGap};">
                 <img src="${kitkatImgPath}" alt="${caseData.title || 'KitKat Rich'}" id="g-kitkat-img" style="width:100%;height:auto;object-fit:contain;filter:drop-shadow(0 16px 36px rgba(0,0,0,0.85));" />
               </div>
               <div class="gift-label" style="font-size:1.15rem;color:#f8fafc;font-family:var(--font-serif);font-weight:700;letter-spacing:0.02em;text-shadow:0 2px 10px rgba(0,0,0,0.8);">${caseData.title}</div>
@@ -113,21 +127,11 @@ export class Scene11Gifts {
 
             <!-- Shot 3: Bellavita Fragrance Object (Real PNG Asset) -->
             <div id="g-bellavita-view" style="position:absolute;display:flex;flex-direction:column;align-items:center;opacity:0;transform:translateY(40px) scale(0.9);z-index:20;cursor:pointer;">
-              <div style="position:relative;width:210px;height:145px;display:flex;align-items:center;justify-content:center;margin-bottom:12px;">
+              <div style="position:relative;width:210px;height:145px;display:flex;align-items:center;justify-content:center;margin-bottom:${giftLabelGap};">
                 <img src="${bellavitaImgPath}" alt="${gift2Data.title || 'Bellavita'}" id="g-bellavita-img" style="width:100%;height:auto;object-fit:contain;filter:drop-shadow(0 16px 36px rgba(0,0,0,0.85));" />
               </div>
               <div class="gift-label" style="font-size:1.15rem;color:#f8fafc;font-family:var(--font-serif);font-weight:700;letter-spacing:0.02em;text-shadow:0 2px 10px rgba(0,0,0,0.8);">${gift2Data.title}</div>
               <div class="text-whisper" style="font-size:0.7rem;color:var(--cinema-text-muted);margin-top:4px;letter-spacing:0.14em;">${gift2Data.subtitle.toUpperCase()}</div>
-            </div>
-
-            <!-- Narrative Lines (Bottom) -->
-            <div id="g-narrative-zone" style="position:absolute;bottom:15px;text-align:center;padding:0 20px;z-index:25;pointer-events:none;">
-              <p id="g-line-1" class="text-dialogue" style="opacity:0;font-size:clamp(1.05rem,3.6vw,1.22rem);color:#f8fafc;margin:0;font-style:italic;text-shadow:0 2px 12px rgba(0,0,0,0.9);">
-                "${narratives[0]}"
-              </p>
-              <p id="g-line-2" class="text-emotional" style="opacity:0;font-size:clamp(1.1rem,3.8vw,1.3rem);color:#f8fafc;margin:4px 0 0 0;font-style:italic;text-shadow:0 0 16px rgba(255,255,255,0.4);">
-                "${narratives[1]}"
-              </p>
             </div>
           </div>
         </div>

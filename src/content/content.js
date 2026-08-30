@@ -292,6 +292,10 @@ export const content = {
       kitkatHeroHold: 2,      // Dedicated moment to appreciate KitKat
       casefileReadHold: 3,    // Investigation board reading pause
       bellavitaHeroHold: 3    // Bellavita collection hero moment
+    },
+    layout: {
+      narrativeTopOffset: "20px", // Vertical position of narrative text over gift cards
+      giftLabelGap: "22px"        // Breathing room between gift images and titles
     }
   },
 
