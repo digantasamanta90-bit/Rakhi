@@ -357,6 +357,15 @@ export class Scene12SiblingZone {
         gsap.fromTo(focalStatus, { scale: 1.04 }, { scale: 1, duration: 0.3 });
       });
 
+      // Tactile Mobile Device Vibration Trigger
+      const triggerVibration = (pattern) => {
+        if (typeof navigator !== 'undefined' && typeof navigator.vibrate === 'function') {
+          try {
+            navigator.vibrate(pattern);
+          } catch (err) {}
+        }
+      };
+
       // 4-STAGE ESCALATING BUTTON PRESS INTERACTION
       if (emergencyBtn) {
         emergencyBtn.addEventListener('click', (e) => {
@@ -364,7 +373,8 @@ export class Scene12SiblingZone {
           this.pressCount++;
 
           if (this.pressCount === 1) {
-            // PRESS 1: Mild warning
+            // PRESS 1: Mild warning + light tactile tap
+            triggerVibration([100]);
             switchTag.textContent = dnp.tag1 || "⚠️ WARNING LEVEL 1 // DISOBEDIENCE DETECTED";
             switchStatus.textContent = `"${dnp.stage1}"`;
             switchStatus.style.color = "#f8fafc";
@@ -372,7 +382,8 @@ export class Scene12SiblingZone {
             gsap.fromTo(emergencyBtn, { scale: 0.94 }, { scale: 1, duration: 0.25, ease: 'elastic.out(1, 0.4)' });
           }
           else if (this.pressCount === 2) {
-            // PRESS 2: Moderate room tremor + amber warning
+            // PRESS 2: Moderate room tremor + amber warning + stronger vibration
+            triggerVibration([140]);
             switchTag.textContent = dnp.tag2 || "🚨 WARNING LEVEL 2 // SIBLING RETALIATION IMMINENT";
             switchTag.style.color = "var(--rakhi-gold)";
             switchStatus.textContent = `"${dnp.stage2}"`;
@@ -381,7 +392,8 @@ export class Scene12SiblingZone {
             gsap.fromTo(emergencyBtn, { scale: 0.90 }, { scale: 1, duration: 0.25, ease: 'elastic.out(1, 0.4)' });
           }
           else if (this.pressCount === 3) {
-            // PRESS 3: Full chaos gag + red alert
+            // PRESS 3: Full chaos gag + red alert + multi-pulse vibration
+            triggerVibration([180, 80, 180]);
             switchTag.textContent = dnp.tag3 || "🔥 EMERGENCY LEVEL 3 // CHAOS OVERLOAD";
             switchTag.style.color = "#ef4444";
             switchStatus.textContent = `"${dnp.stage3}"`;
@@ -396,7 +408,8 @@ export class Scene12SiblingZone {
             emergencyBtn.querySelector('span').textContent = dnp.finalBtnText || "DO NOT PRESS (FINAL WARNING 🚨)";
           }
           else {
-            // PRESS 4: CLIMAX GAG EXPLOSION & HIDDEN REVEAL
+            // PRESS 4: CLIMAX GAG EXPLOSION & HIDDEN REVEAL + climax vibration
+            triggerVibration([220, 70, 220, 70, 260]);
             gsap.killTweensOf(switchCard);
             gsap.set(switchCard, { x: 0, y: 0, rotation: 0, clearProps: 'transform' });
 
@@ -467,6 +480,9 @@ export class Scene12SiblingZone {
   }
 
   exit() {
+    if (typeof navigator !== 'undefined' && typeof navigator.vibrate === 'function') {
+      try { navigator.vibrate(0); } catch (err) {}
+    }
     if (this.tl) this.tl.kill();
     return Promise.resolve();
   }

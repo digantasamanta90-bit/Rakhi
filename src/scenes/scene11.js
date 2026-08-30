@@ -26,7 +26,7 @@ export class Scene11Gifts {
       const giftLabelGap = layout.giftLabelGap ?? "22px";
 
       // 1. Storefronts for Continuous Parallax Stream (Layer 2)
-      const shopsData = c.marketShops || [
+      const baseShops = c.marketShops || [
         { name: 'SWEET BAZAAR 🍬', awning: 'repeating-linear-gradient(90deg, #dc2626 0, #dc2626 12px, #ffffff 12px, #ffffff 24px)', color: '#7c2d12', signColor: '#fef08a' },
         { name: 'GIFT STATION 🎁', awning: 'repeating-linear-gradient(90deg, #fbbf24 0, #fbbf24 12px, #1e293b 12px, #1e293b 24px)', color: '#1e293b', signColor: '#fbbf24' },
         { name: 'BAKERY & CHAI ☕', awning: 'repeating-linear-gradient(90deg, #15803d 0, #15803d 12px, #fef08a 12px, #fef08a 24px)', color: '#78350f', signColor: '#ffffff' },
@@ -34,6 +34,10 @@ export class Scene11Gifts {
         { name: 'ROYAL CHOCOLATES 🍫', awning: 'repeating-linear-gradient(90deg, #d97706 0, #d97706 12px, #451a03 12px, #451a03 24px)', color: '#1e1b4b', signColor: '#fbbf24' },
         { name: 'PERFUMERY 💐', awning: 'repeating-linear-gradient(90deg, #0284c7 0, #0284c7 12px, #ffffff 12px, #ffffff 24px)', color: '#0f172a', signColor: '#bae6fd' }
       ];
+
+      // Repeat shops 4 times (24 shops) so desktop and mobile viewports have an unbroken living stream throughout Scene 11
+      const repeatCount = 4;
+      const shopsData = Array.from({ length: baseShops.length * repeatCount }, (_, idx) => baseShops[idx % baseShops.length]);
 
       let shopsHTML = shopsData.map((shop, i) => `
         <div class="market-shop-card" style="flex-shrink:0;width:140px;height:165px;background:${shop.color};border:1.5px solid rgba(255,255,255,0.15);margin-right:20px;border-radius:6px;position:relative;display:flex;flex-direction:column;box-shadow:0 8px 24px rgba(0,0,0,0.6);align-self:flex-end;">
@@ -69,8 +73,8 @@ export class Scene11Gifts {
             </svg>
           </div>
 
-          <!-- Layer 2: Living Street Parallax Stream (Shops pass the camera) -->
-          <div id="mkt-shops-stream" style="position:absolute;bottom:8%;left:0;width:350%;height:220px;display:flex;align-items:flex-end;pointer-events:none;z-index:4;will-change:transform;opacity:0.65;">
+          <!-- Layer 2: Living Street Parallax Stream (Shops pass the camera continuously) -->
+          <div id="mkt-shops-stream" style="position:absolute;bottom:8%;left:0;width:max-content;white-space:nowrap;height:220px;display:flex;align-items:flex-end;pointer-events:none;z-index:4;will-change:transform;opacity:0.65;">
             ${shopsHTML}
           </div>
 
@@ -161,9 +165,9 @@ export class Scene11Gifts {
       this.tl = gsap.timeline();
 
       this.tl
-        // 1. Living Market Street Parallax Movement
-        .to(shopsStream, { x: '-60%', duration: parDur, ease: 'none' }, 0)
-        .to(wires, { x: '-50%', duration: 3.5, ease: 'none', repeat: 1 }, 0)
+        // 1. Living Market Street Parallax Movement (Continuous stream across all viewport sizes)
+        .to(shopsStream, { x: '-50%', duration: parDur, ease: 'none' }, 0)
+        .to(wires, { x: '-50%', duration: 3.5, ease: 'none', repeat: -1 }, 0)
 
         // 2. KitKat Hero Entrance - Full Screen Presence
         .to(kitkatView, { opacity: 1, y: 0, scale: 1, duration: 0.55, ease: 'back.out(1.2)' }, 0.1)
