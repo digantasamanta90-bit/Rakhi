@@ -71,6 +71,7 @@ class AudioController {
       // 3. Local Ringtone Audio
       const ringtonePath = encodeURI(cfg.ringtone || 'assets/music/ringtone.mp3');
       this.ringtoneAudio = new Audio(ringtonePath);
+      this.ringtoneStartTime = cfg.ringtoneStartTime ?? 2.0;
       this.ringtoneAudio.preload = 'auto';
       this.ringtoneAudio.loop = true;
       this.ringtoneAudio.volume = cfg.ringtoneVolume ?? 1.0;
@@ -260,7 +261,7 @@ class AudioController {
 
     try {
       this.ringtoneAudio.muted = this.isMuted;
-      this.ringtoneAudio.currentTime = 0;
+      this.ringtoneAudio.currentTime = this.ringtoneStartTime || 2.0;
       this.ringtoneAudio.volume = 1.0;
       this.ringtoneAudio.play().catch((e) => console.warn('Ringtone play error:', e));
       this.isRingtonePlaying = true;
@@ -277,7 +278,7 @@ class AudioController {
     if (this.ringtoneAudio) {
       try {
         this.ringtoneAudio.pause();
-        this.ringtoneAudio.currentTime = 0;
+        this.ringtoneAudio.currentTime = this.ringtoneStartTime || 2.0;
       } catch (e) {}
     }
     this.isRingtonePlaying = false;

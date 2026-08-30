@@ -16,19 +16,19 @@ export class Scene04MissedCall {
       const assets = c.assets || {};
 
       container.innerHTML = `
-        <div class="morning-sky-env" id="s4-viewport" style="position:relative;width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;overflow:hidden;">
+        <div class="morning-sky-env" id="s4-viewport" style="position:relative;width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;overflow:hidden;background:linear-gradient(180deg, #0284c7 0%, #38bdf8 55%, #fef08a 100%);">
           
-          <!-- Morning Sunlight Corona & Drifting Clouds -->
-          <div class="morning-sun-corona"></div>
-          <div class="drifting-cloud" style="top:12%;left:0;width:300px;height:90px;animation-duration:22s;"></div>
-          <div class="drifting-cloud" style="top:25%;left:0;width:340px;height:100px;animation-duration:30s;animation-delay:-10s;opacity:0.6;"></div>
+          <!-- Morning Sunlight Corona & Drifting Clouds (Crisp Sky) -->
+          <div class="morning-sun-corona" style="opacity:0.55;filter:none;"></div>
+          <div class="drifting-cloud" style="top:12%;left:0;width:240px;height:65px;filter:none;background:radial-gradient(ellipse at 50% 50%, rgba(255, 255, 255, 0.28) 0%, rgba(255, 255, 255, 0.08) 60%, transparent 80%);animation-duration:22s;"></div>
+          <div class="drifting-cloud" style="top:25%;left:0;width:280px;height:75px;filter:none;background:radial-gradient(ellipse at 50% 50%, rgba(255, 255, 255, 0.22) 0%, rgba(255, 255, 255, 0.05) 60%, transparent 80%);animation-duration:30s;animation-delay:-10s;opacity:0.7;"></div>
 
           <!-- Main Call Stage -->
           <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:10;gap:18px;padding:20px;width:100%;max-width:340px;">
             <div class="text-timestamp" id="s4-clock" style="font-size:clamp(2.2rem,8.5vw,3.6rem);color:#ffffff;text-shadow:0 0 25px rgba(251,191,36,0.4);">${c.clockSequence[0]}</div>
 
-            <!-- Phone UI Card -->
-            <div class="phone-mockup" id="phone-ui" style="opacity:0;transform:translateY(35px) scale(0.92);background:linear-gradient(145deg, #1e293b, #0f172a);border:1px solid rgba(255,255,255,0.18);">
+            <!-- Phone UI Card (Translucent Glassmorphic Style) -->
+            <div class="phone-mockup" id="phone-ui" style="opacity:0;transform:translateY(35px) scale(0.92);background:rgba(15,23,42,0.45);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,0.28);box-shadow:0 16px 40px rgba(0,0,0,0.35);">
               <div class="caller-avatar" style="border:2px solid var(--rakhi-gold);box-shadow:0 0 20px rgba(251,191,36,0.3);">
                 <img src="${assets.callerAvatar || 'assets/portraits/anwesha1.png'}" alt="${c.callerName || 'Anwesha'}" onerror="this.src='${assets.callerAvatarFallback || 'assets/portraits/anwesha_hero.png'}'">
               </div>
@@ -44,7 +44,7 @@ export class Scene04MissedCall {
                 </button>
               </div>
 
-              <div class="chat-bubble" id="chat-msg" style="display:none;opacity:0;transform:translateY(15px);background:rgba(15,23,42,0.92);border:1px solid rgba(255,255,255,0.15);">
+              <div class="chat-bubble" id="chat-msg" style="display:none;opacity:0;transform:translateY(15px);background:rgba(15,23,42,0.65);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,0.22);">
                 <div class="text-whisper" style="color:var(--rakhi-gold);margin-bottom:6px;font-size:0.62rem;">${c.promptTag}</div>
                 <p class="text-dialogue" style="font-size:1.08rem;text-align:left;max-width:none;color:#f8fafc;font-style:italic;">
                   "${c.promptText}"

@@ -33,7 +33,8 @@ export const content = {
     bgmTargetVolume: 0.70,
     bgmDuckedVolume: 0.12,
     alarmVolume: 1.0,
-    ringtoneVolume: 1.0
+    ringtoneVolume: 1.0,
+    ringtoneStartTime: 2.0 // Starts at 2.0s to bypass initial audio silence
   },
 
   // ==========================================
