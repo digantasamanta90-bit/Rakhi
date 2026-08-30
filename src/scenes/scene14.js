@@ -61,7 +61,7 @@ export class Scene14Thread {
             <span class="text-timestamp-sm" id="tf-6" style="opacity:0;background:rgba(255,255,255,0.06);padding:4px 10px;border-radius:6px;border:1px solid rgba(255,255,255,0.15);color:#f8fafc;font-size:0.75rem;">${c.fragments[5]}</span>
           </div>
 
-          <!-- Connection Node Staging (Diganta <---> Anwesha) -->
+          <!-- Connection Node Staging (Diganta <---> Thread
           <div id="t-bond-stage" style="opacity:0;position:relative;width:100%;max-width:340px;height:140px;display:flex;align-items:center;justify-content:space-between;z-index:10;padding:0 10px;">
             <!-- Diganta Node -->
             <div style="display:flex;flex-direction:column;align-items:center;gap:6px;z-index:5;">
