@@ -22,7 +22,10 @@ export class Scene11Gifts {
         "So here they are."
       ];
 
-      const narrativeTopOffset = layout.narrativeTopOffset ?? "20px";
+      const isDesktop = typeof window !== 'undefined' && (window.matchMedia ? window.matchMedia('(min-width: 768px)').matches : window.innerWidth >= 768);
+      const narrativeTopOffset = isDesktop
+        ? (layout.narrativeTopOffsetDesktop ?? "0px")
+        : (layout.narrativeTopOffset ?? "20px");
       const giftLabelGap = layout.giftLabelGap ?? "22px";
 
       // 1. Storefronts for Continuous Parallax Stream (Layer 2)
@@ -96,8 +99,10 @@ export class Scene11Gifts {
               <div style="position:relative;width:210px;height:140px;display:flex;align-items:center;justify-content:center;margin-bottom:${giftLabelGap};">
                 <img src="${kitkatImgPath}" alt="${caseData.title || 'KitKat Rich'}" id="g-kitkat-img" style="width:100%;height:auto;object-fit:contain;filter:drop-shadow(0 16px 36px rgba(0,0,0,0.85));" />
               </div>
-              <div class="gift-label" style="font-size:1.15rem;color:#f8fafc;font-family:var(--font-serif);font-weight:700;letter-spacing:0.02em;text-shadow:0 2px 10px rgba(0,0,0,0.8);">${caseData.title}</div>
-              <div class="text-whisper" style="font-size:0.7rem;color:var(--cinema-text-muted);margin-top:4px;letter-spacing:0.14em;">${caseData.subtitle.toUpperCase()}</div>
+              <div class="gift-label-wrap">
+                <div class="gift-label" style="font-size:1.15rem;color:#f8fafc;font-family:var(--font-serif);font-weight:700;letter-spacing:0.02em;text-shadow:0 2px 10px rgba(0,0,0,0.8);">${caseData.title}</div>
+                <div class="text-whisper" style="font-size:0.7rem;color:var(--cinema-text-muted);margin-top:4px;letter-spacing:0.14em;">${caseData.subtitle.toUpperCase()}</div>
+              </div>
             </div>
 
             <!-- Shot 2: Case File 04 Investigation Board (Dossier) -->
@@ -134,8 +139,10 @@ export class Scene11Gifts {
               <div style="position:relative;width:210px;height:145px;display:flex;align-items:center;justify-content:center;margin-bottom:${giftLabelGap};">
                 <img src="${bellavitaImgPath}" alt="${gift2Data.title || 'Bellavita'}" id="g-bellavita-img" style="width:100%;height:auto;object-fit:contain;filter:drop-shadow(0 16px 36px rgba(0,0,0,0.85));" />
               </div>
-              <div class="gift-label" style="font-size:1.15rem;color:#f8fafc;font-family:var(--font-serif);font-weight:700;letter-spacing:0.02em;text-shadow:0 2px 10px rgba(0,0,0,0.8);">${gift2Data.title}</div>
-              <div class="text-whisper" style="font-size:0.7rem;color:var(--cinema-text-muted);margin-top:4px;letter-spacing:0.14em;">${gift2Data.subtitle.toUpperCase()}</div>
+              <div class="gift-label-wrap">
+                <div class="gift-label" style="font-size:1.15rem;color:#f8fafc;font-family:var(--font-serif);font-weight:700;letter-spacing:0.02em;text-shadow:0 2px 10px rgba(0,0,0,0.8);">${gift2Data.title}</div>
+                <div class="text-whisper" style="font-size:0.7rem;color:var(--cinema-text-muted);margin-top:4px;letter-spacing:0.14em;">${gift2Data.subtitle.toUpperCase()}</div>
+              </div>
             </div>
           </div>
         </div>
