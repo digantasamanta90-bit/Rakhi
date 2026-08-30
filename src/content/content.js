@@ -309,7 +309,7 @@ export const content = {
       title: "ME",
       description: "\"Professional overthinker. Occasional nuisance. Effort: unnecessarily high.\"",
       pill: "Will build entire apps instead of texting 🫡",
-      narrative: "Akta valo bou khuje de ebare",
+      narrative: "Amar relationship tao dekh er por 🙂",
       image: "assets/portraits/diganta1.png"
     },
     sisterCard: {
@@ -327,7 +327,7 @@ export const content = {
       image: "assets/portraits/monojit1.png",
       description: "\"The mastermind behind all of it. Found the photos, approved the chocolate, and started this whole sister story.\"",
       footnote: "Credit given. Don't let it go to his head 💀",
-      narrative: "Biye ta kore ne ebar. 🙂"
+      narrative: "Biye tao kore ne ebar 🙂"
     },
     statusCard: {
       badge: "OFFICIAL SIBLING DOSSIER // EVALUATION",
