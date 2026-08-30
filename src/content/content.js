@@ -166,7 +166,7 @@ export const content = {
   scene07: {
     impactTag: "8:15 AM // THE IMPACT",
     impactText: "BROKE",
-    comedicClimax: "The Bad Luck Charm.💀",
+    comedicClimax: "Etai hoar baki chilo...",
     panicThought: "Anwesha is going to kill me.",
     assets: {
       kitkat: "assets/gifts/kitkat.png"
