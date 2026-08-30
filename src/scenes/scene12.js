@@ -23,6 +23,13 @@ export class Scene12SiblingZone {
   enter(container) {
     return new Promise((resolve) => {
       const c = content.scene12;
+      const t = c.timing || {};
+      const brother = c.brotherCard || {};
+      const sister = c.sisterCard || {};
+      const monojit = c.monojitCard || {};
+      const status = c.statusCard || {};
+      const dnp = c.doNotPress || {};
+      const toasts = c.toasts || {};
       this.resolveScene = resolve;
 
       container.innerHTML = `
@@ -40,15 +47,15 @@ export class Scene12SiblingZone {
             <div class="sibling-focal-item" id="sz-focal-diganta" style="position:absolute;opacity:0;width:100%;">
               <div class="sibling-focal-card" style="border:1px solid rgba(251,191,36,0.35);background:rgba(15,23,42,0.96);border-radius:16px;padding:20px;text-align:center;box-shadow:0 14px 40px rgba(0,0,0,0.75);">
                 <div style="width:56px;height:56px;margin:0 auto 10px auto;border-radius:50%;background:rgba(251,191,36,0.15);border:2px solid var(--rakhi-gold);overflow:hidden;box-shadow:0 0 16px rgba(251,191,36,0.35);display:flex;align-items:center;justify-content:center;">
-                  <img src="assets/portraits/diganta1.png" alt="Diganta" style="width:100%;height:100%;object-fit:cover;" onerror="this.src='assets/portraits/diganta1.png';">
+                  <img src="${brother.image || 'assets/portraits/diganta1.png'}" alt="${brother.title || 'Diganta'}" style="width:100%;height:100%;object-fit:cover;" onerror="this.src='assets/portraits/diganta1.png';">
                 </div>
-                <div class="text-whisper" style="color:var(--rakhi-gold);font-size:0.65rem;letter-spacing:0.14em;margin-bottom:4px;">${c.brotherCard.badge}</div>
-                <h3 style="font-family:var(--font-serif);font-size:1.3rem;color:#ffffff;margin:0 0 8px 0;font-style:italic;">${c.brotherCard.title}</h3>
+                <div class="text-whisper" style="color:var(--rakhi-gold);font-size:0.65rem;letter-spacing:0.14em;margin-bottom:4px;">${brother.badge}</div>
+                <h3 style="font-family:var(--font-serif);font-size:1.3rem;color:#ffffff;margin:0 0 8px 0;font-style:italic;">${brother.title}</h3>
                 <div style="font-size:0.82rem;color:#cbd5e1;line-height:1.45;margin-bottom:10px;">
-                  ${c.brotherCard.description}
+                  ${brother.description}
                 </div>
                 <div style="padding:4px 10px;background:rgba(251,191,36,0.15);border-radius:6px;font-size:0.72rem;color:var(--rakhi-gold);display:inline-block;font-weight:600;">
-                  ${c.brotherCard.pill}
+                  ${brother.pill}
                 </div>
               </div>
             </div>
@@ -57,14 +64,14 @@ export class Scene12SiblingZone {
             <div class="sibling-focal-item" id="sz-focal-anwesha" style="position:absolute;opacity:0;width:100%;">
               <div class="sibling-polaroid-frame" style="transform:rotate(-2deg);background:var(--surface-parchment);padding:8px 8px 14px 8px;border-radius:4px;box-shadow:0 16px 45px rgba(0,0,0,0.8);margin:0 auto;max-width:260px;">
                 <div style="width:100%;height:195px;border-radius:2px;overflow:hidden;background:#0f172a;margin-bottom:8px;">
-                  <img src="assets/portraits/anwesha6.png" alt="Anwesha" style="width:100%;height:100%;object-fit:cover;" onerror="this.src='assets/portraits/anwesha1.png';">
+                  <img src="${sister.image || 'assets/portraits/anwesha6.png'}" alt="${sister.title || 'Anwesha'}" style="width:100%;height:100%;object-fit:cover;" onerror="this.src='${sister.imageFallback || 'assets/portraits/anwesha1.png'}';">
                 </div>
                 <div style="display:flex;justify-content:space-between;align-items:baseline;padding:0 4px;">
-                  <span style="font-family:var(--font-serif);font-size:1.1rem;font-weight:700;color:var(--rakhi-red);">${c.sisterCard.title}</span>
-                  <span style="font-size:0.7rem;font-weight:700;color:var(--rakhi-red);letter-spacing:0.04em;">${c.sisterCard.threatLevel}</span>
+                  <span style="font-family:var(--font-serif);font-size:1.1rem;font-weight:700;color:var(--rakhi-red);">${sister.title}</span>
+                  <span style="font-size:0.7rem;font-weight:700;color:var(--rakhi-red);letter-spacing:0.04em;">${sister.threatLevel}</span>
                 </div>
                 <div style="font-size:0.74rem;color:#64748b;margin-top:3px;font-style:italic;">
-                  ${c.sisterCard.description}
+                  ${sister.description}
                 </div>
               </div>
             </div>
@@ -73,15 +80,15 @@ export class Scene12SiblingZone {
             <div class="sibling-focal-item" id="sz-focal-monojit" style="position:absolute;opacity:0;width:100%;">
               <div class="sibling-focal-card" style="border:1px solid rgba(251,191,36,0.35);background:rgba(15,23,42,0.96);border-radius:16px;padding:20px;text-align:center;box-shadow:0 14px 40px rgba(0,0,0,0.75);">
                 <div style="width:56px;height:56px;margin:0 auto 10px auto;border-radius:50%;background:rgba(251,191,36,0.15);border:2px solid var(--rakhi-gold);overflow:hidden;box-shadow:0 0 16px rgba(251,191,36,0.35);display:flex;align-items:center;justify-content:center;">
-                  <img src="${c.monojitCard.image}" alt="Monojit" style="width:100%;height:100%;object-fit:cover;" onerror="this.src='assets/portraits/monojit1.png';">
+                  <img src="${monojit.image}" alt="${monojit.title || 'Monojit'}" style="width:100%;height:100%;object-fit:cover;" onerror="this.src='assets/portraits/monojit1.png';">
                 </div>
-                <div class="text-whisper" style="color:var(--rakhi-gold);font-size:0.65rem;letter-spacing:0.14em;margin-bottom:4px;">${c.monojitCard.badge}</div>
-                <h3 style="font-family:var(--font-serif);font-size:1.3rem;color:#ffffff;margin:0 0 8px 0;font-style:italic;">${c.monojitCard.title}</h3>
+                <div class="text-whisper" style="color:var(--rakhi-gold);font-size:0.65rem;letter-spacing:0.14em;margin-bottom:4px;">${monojit.badge}</div>
+                <h3 style="font-family:var(--font-serif);font-size:1.3rem;color:#ffffff;margin:0 0 8px 0;font-style:italic;">${monojit.title}</h3>
                 <div style="font-size:0.82rem;color:#cbd5e1;line-height:1.45;margin-bottom:8px;">
-                  ${c.monojitCard.description}
+                  ${monojit.description}
                 </div>
                 <div style="font-size:0.74rem;color:#94a3b8;font-style:italic;">
-                  ${c.monojitCard.footnote}
+                  ${monojit.footnote}
                 </div>
               </div>
             </div>
@@ -90,23 +97,23 @@ export class Scene12SiblingZone {
             <div class="sibling-focal-item" id="sz-focal-status" style="position:absolute;opacity:0;width:100%;">
               <div class="sibling-focal-card" style="border:1px solid rgba(255,255,255,0.16);background:rgba(15,23,42,0.96);border-radius:16px;padding:20px;text-align:center;box-shadow:0 14px 40px rgba(0,0,0,0.75);">
                 <div class="text-whisper" style="color:var(--rakhi-gold);font-size:0.66rem;letter-spacing:0.16em;margin-bottom:6px;border-bottom:1px dashed rgba(255,255,255,0.2);padding-bottom:6px;">
-                  ${c.statusCard.badge}
+                  ${status.badge}
                 </div>
                 <div style="font-size:0.92rem;color:#ffffff;margin:8px 0 10px 0;line-height:1.4;">
-                  ${c.statusCard.status}
+                  ${status.status}
                 </div>
                 <div style="display:flex;flex-direction:column;gap:6px;font-size:0.76rem;text-align:left;background:rgba(255,255,255,0.06);padding:10px 12px;border-radius:8px;border:1px solid rgba(255,255,255,0.08);">
                   <div style="display:flex;justify-content:space-between;">
-                    <span style="color:#94a3b8;">Reliability</span>
-                    <span style="color:var(--rakhi-gold);">${c.statusCard.reliability}</span>
+                    <span style="color:#94a3b8;">${status.reliabilityLabel || 'Reliability'}</span>
+                    <span style="color:var(--rakhi-gold);">${status.reliability}</span>
                   </div>
                   <div style="display:flex;justify-content:space-between;">
-                    <span style="color:#94a3b8;">Refund Policy</span>
-                    <span style="color:#ef4444;font-weight:700;">${c.statusCard.refundPolicy}</span>
+                    <span style="color:#94a3b8;">${status.refundPolicyLabel || 'Refund Policy'}</span>
+                    <span style="color:#ef4444;font-weight:700;">${status.refundPolicy}</span>
                   </div>
                   <div style="display:flex;justify-content:space-between;">
-                    <span style="color:#94a3b8;">Sister Care</span>
-                    <span style="color:#22c55e;font-weight:700;">${c.statusCard.sisterCare}</span>
+                    <span style="color:#94a3b8;">${status.sisterCareLabel || 'Sister Care'}</span>
+                    <span style="color:#22c55e;font-weight:700;">${status.sisterCare}</span>
                   </div>
                 </div>
               </div>
@@ -117,26 +124,26 @@ export class Scene12SiblingZone {
               <div class="sibling-switch-box" id="sz-switch-card" style="background:rgba(15,23,42,0.98);border:2px solid rgba(239,68,68,0.55);border-radius:18px;padding:22px;text-align:center;box-shadow:0 16px 45px rgba(0,0,0,0.85);position:relative;width:100%;box-sizing:border-box;">
                 
                 <div id="sz-switch-tag" class="text-whisper" style="color:#ef4444;font-size:0.7rem;letter-spacing:0.18em;margin-bottom:10px;font-weight:700;">
-                  ⚠️ EMERGENCY LEVEL 0 // DO NOT TOUCH
+                  ${dnp.tag0 || '⚠️ EMERGENCY LEVEL 0 // DO NOT TOUCH'}
                 </div>
                 
                 <div id="sz-switch-status" style="font-size:0.9rem;color:#cbd5e1;margin-bottom:18px;line-height:1.4;min-height:2.4em;display:flex;align-items:center;justify-content:center;font-style:italic;">
-                  "${c.doNotPress.stage0}"
+                  "${dnp.stage0}"
                 </div>
 
                 <div id="sz-btn-wrapper" style="margin-bottom:4px;">
                   <button class="emergency-btn" id="sz-emergency-btn" style="background:linear-gradient(135deg,#dc2626 0%,#991b1b 100%);color:#ffffff;border:none;padding:12px 28px;border-radius:30px;font-weight:700;font-size:0.95rem;box-shadow:0 6px 20px rgba(220,38,38,0.55);cursor:pointer;pointer-events:auto;outline:none;">
-                    <span>${c.doNotPress.buttonText}</span>
+                    <span>${dnp.buttonText}</span>
                   </button>
                 </div>
 
                 <!-- Hidden Climax Gag / Reveal Container (Appears after 4th press) -->
                 <div id="sz-reveal-panel" style="display:none;opacity:0;margin-top:16px;padding-top:14px;border-top:1px dashed rgba(251,191,36,0.35);">
                   <div class="text-whisper" style="color:var(--rakhi-gold);font-size:0.76rem;letter-spacing:0.14em;margin-bottom:8px;font-weight:700;">
-                    ${c.doNotPress.revealTitle}
+                    ${dnp.revealTitle}
                   </div>
                   <p style="font-size:0.86rem;color:#cbd5e1;margin-bottom:14px;line-height:1.45;">
-                    ${c.doNotPress.revealBody}
+                    ${dnp.revealBody}
                   </p>
                   
                   <!-- Secret Motifs -->
@@ -145,7 +152,7 @@ export class Scene12SiblingZone {
                   </div>
 
                   <button class="btn-primary" id="sz-proceed-btn" style="font-size:0.92rem;padding:11px 28px;background:var(--rakhi-red);color:#ffffff;border-radius:24px;border:none;cursor:pointer;font-weight:600;box-shadow:0 6px 20px rgba(220,38,38,0.45);">
-                    <span>${c.doNotPress.proceedBtnText}</span>
+                    <span>${dnp.proceedBtnText}</span>
                   </button>
                 </div>
               </div>
@@ -180,6 +187,9 @@ export class Scene12SiblingZone {
       const revealPanel = container.querySelector('#sz-reveal-panel');
       const proceedBtn = container.querySelector('#sz-proceed-btn');
       const secretItems = container.querySelectorAll('.secret-item');
+
+      const cardHold = t.cardHold ?? 1.3;
+      const cardTrans = t.cardTransitionDuration ?? 0.4;
 
       // Helper to update narrative dialogue cleanly
       const setNarrative = (text) => {
@@ -216,7 +226,7 @@ export class Scene12SiblingZone {
         }
       };
 
-      // Sequential GSAP Timeline (Immediate continuous entry on frame 0.0s)
+      // Sequential GSAP Timeline
       this.tl = gsap.timeline();
 
       this.tl
@@ -224,19 +234,19 @@ export class Scene12SiblingZone {
         .to(envTag, { opacity: 1, duration: 0.4, ease: 'power2.out' }, 0)
         .call(() => {
           focalDiganta.style.pointerEvents = 'auto';
-          setNarrative("Technically your brother. No refunds available.");
+          setNarrative(brother.narrative || "Technically your brother. No refunds available.");
         }, [], 0)
         .fromTo(focalDiganta, 
           { opacity: 0, y: -20, scale: 0.9 }, 
           { opacity: 1, y: 0, scale: 1, duration: 0.5, ease: 'back.out(1.2)' },
           0.05
         )
-        .to({}, { duration: 1.3 })
+        .to({}, { duration: cardHold })
         .to(focalDiganta, { 
           opacity: 0, 
           y: 20, 
           scale: 0.88, 
-          duration: 0.4, 
+          duration: cardTrans, 
           ease: 'power2.in',
           onComplete: () => {
             focalDiganta.style.display = 'none';
@@ -248,17 +258,17 @@ export class Scene12SiblingZone {
         // SHOT 3: ANWESHA PORTRAIT ENTERS
         .call(() => {
           focalAnwesha.style.pointerEvents = 'auto';
-          setNarrative("Will demand KitKat. Probably judging this website right now.");
+          setNarrative(sister.narrative || "Will demand KitKat. Probably judging this website right now.");
         })
         .fromTo(focalAnwesha,
           { opacity: 0, y: 30, scale: 0.88, rotation: 6 },
           { opacity: 1, y: 0, scale: 1, rotation: -2, duration: 0.6, ease: 'power2.out' }
         )
-        .to({}, { duration: 1.4 })
+        .to({}, { duration: cardHold + 0.1 })
         .to(focalAnwesha, { 
           opacity: 0, 
           scale: 0.85, 
-          duration: 0.4, 
+          duration: cardTrans, 
           ease: 'power2.in',
           onComplete: () => {
             focalAnwesha.style.display = 'none';
@@ -270,17 +280,17 @@ export class Scene12SiblingZone {
         // SHOT 4: MONOJIT CATALYST TOKEN ENTERS
         .call(() => {
           focalMonojit.style.pointerEvents = 'auto';
-          setNarrative("Don't let the credit go to his head though. 💀");
+          setNarrative(monojit.narrative || "Don't let the credit go to his head though. 💀");
         })
         .fromTo(focalMonojit,
           { opacity: 0, scale: 0.88, y: -20 },
           { opacity: 1, scale: 1, y: 0, duration: 0.6, ease: 'back.out(1.2)' }
         )
-        .to({}, { duration: 1.3 })
+        .to({}, { duration: cardHold })
         .to(focalMonojit, { 
           opacity: 0, 
           scale: 0.85, 
-          duration: 0.4, 
+          duration: cardTrans, 
           ease: 'power2.in',
           onComplete: () => {
             focalMonojit.style.display = 'none';
@@ -292,17 +302,17 @@ export class Scene12SiblingZone {
         // SHOT 5: SIBLING STATUS DOSSIER ENTERS
         .call(() => {
           focalStatus.style.pointerEvents = 'auto';
-          setNarrative("Diagnosis confirmed. You're stuck with me forever.");
+          setNarrative(status.narrative || "Diagnosis confirmed. You're stuck with me forever.");
         })
         .fromTo(focalStatus,
           { opacity: 0, scale: 0.88, y: 20 },
           { opacity: 1, scale: 1, y: 0, duration: 0.6, ease: 'back.out(1.2)' }
         )
-        .to({}, { duration: 1.3 })
+        .to({}, { duration: cardHold })
         .to(focalStatus, { 
           opacity: 0, 
           scale: 0.85, 
-          duration: 0.4, 
+          duration: cardTrans, 
           ease: 'power2.in',
           onComplete: () => {
             focalStatus.style.display = 'none';
@@ -355,26 +365,26 @@ export class Scene12SiblingZone {
 
           if (this.pressCount === 1) {
             // PRESS 1: Mild warning
-            switchTag.textContent = "⚠️ WARNING LEVEL 1 // DISOBEDIENCE DETECTED";
-            switchStatus.textContent = `"${c.doNotPress.stage1}"`;
+            switchTag.textContent = dnp.tag1 || "⚠️ WARNING LEVEL 1 // DISOBEDIENCE DETECTED";
+            switchStatus.textContent = `"${dnp.stage1}"`;
             switchStatus.style.color = "#f8fafc";
             triggerCardShake(1);
             gsap.fromTo(emergencyBtn, { scale: 0.94 }, { scale: 1, duration: 0.25, ease: 'elastic.out(1, 0.4)' });
           } 
           else if (this.pressCount === 2) {
             // PRESS 2: Moderate room tremor + amber warning
-            switchTag.textContent = "🚨 WARNING LEVEL 2 // SIBLING RETALIATION IMMINENT";
+            switchTag.textContent = dnp.tag2 || "🚨 WARNING LEVEL 2 // SIBLING RETALIATION IMMINENT";
             switchTag.style.color = "var(--rakhi-gold)";
-            switchStatus.textContent = `"${c.doNotPress.stage2}"`;
+            switchStatus.textContent = `"${dnp.stage2}"`;
             switchStatus.style.color = "var(--rakhi-gold)";
             triggerCardShake(2);
             gsap.fromTo(emergencyBtn, { scale: 0.90 }, { scale: 1, duration: 0.25, ease: 'elastic.out(1, 0.4)' });
           } 
           else if (this.pressCount === 3) {
             // PRESS 3: Full chaos gag + red alert
-            switchTag.textContent = "🔥 EMERGENCY LEVEL 3 // CHAOS OVERLOAD";
+            switchTag.textContent = dnp.tag3 || "🔥 EMERGENCY LEVEL 3 // CHAOS OVERLOAD";
             switchTag.style.color = "#ef4444";
-            switchStatus.textContent = `"${c.doNotPress.stage3}"`;
+            switchStatus.textContent = `"${dnp.stage3}"`;
             switchStatus.style.color = "#ef4444";
 
             if (this.particles) {
@@ -383,7 +393,7 @@ export class Scene12SiblingZone {
             }
 
             triggerCardShake(3);
-            emergencyBtn.querySelector('span').textContent = "DO NOT PRESS (FINAL WARNING 🚨)";
+            emergencyBtn.querySelector('span').textContent = dnp.finalBtnText || "DO NOT PRESS (FINAL WARNING 🚨)";
           } 
           else {
             // PRESS 4: CLIMAX GAG EXPLOSION & HIDDEN REVEAL
@@ -396,14 +406,19 @@ export class Scene12SiblingZone {
             }
 
             if (this.achievements) {
-              this.achievements.show('Cannot Follow Instructions 🚨', 'Max sibling chaos unlocked!', '🚨');
+              const climaxToast = toasts.climaxAchievement || {
+                title: 'Cannot Follow Instructions 🚨',
+                description: 'Max sibling chaos unlocked!',
+                icon: '🚨'
+              };
+              this.achievements.show(climaxToast.title, climaxToast.description, climaxToast.icon);
             }
 
             // Hide emergency button & status smoothly
             emergencyBtn.style.display = 'none';
             switchStatus.style.display = 'none';
 
-            switchTag.textContent = "✨ SIBLING CONTRACT RATIFIED";
+            switchTag.textContent = dnp.tag4 || "✨ SIBLING CONTRACT RATIFIED";
             switchTag.style.color = "var(--rakhi-gold)";
 
             revealPanel.style.display = 'block';
@@ -425,7 +440,7 @@ export class Scene12SiblingZone {
           );
           const msg = item.getAttribute('data-msg');
           if (this.achievements) {
-            this.achievements.show('Secret Discovered', msg, item.textContent);
+            this.achievements.show(toasts.secretTitle || 'Secret Discovered', msg, item.textContent);
           }
         });
       });
@@ -456,4 +471,3 @@ export class Scene12SiblingZone {
     return Promise.resolve();
   }
 }
-

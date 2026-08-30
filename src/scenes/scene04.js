@@ -12,6 +12,8 @@ export class Scene04MissedCall {
   enter(container) {
     return new Promise((resolve) => {
       const c = content.scene04;
+      const t = c.timing || {};
+      const assets = c.assets || {};
 
       container.innerHTML = `
         <div class="morning-sky-env" id="s4-viewport" style="position:relative;width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;overflow:hidden;">
@@ -23,15 +25,15 @@ export class Scene04MissedCall {
 
           <!-- Main Call Stage -->
           <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:10;gap:18px;padding:20px;width:100%;max-width:340px;">
-            <div class="text-timestamp" id="s4-clock" style="font-size:clamp(2.2rem,8.5vw,3.6rem);color:#ffffff;text-shadow:0 0 25px rgba(251,191,36,0.4);">7:29:58</div>
+            <div class="text-timestamp" id="s4-clock" style="font-size:clamp(2.2rem,8.5vw,3.6rem);color:#ffffff;text-shadow:0 0 25px rgba(251,191,36,0.4);">${c.clockSequence[0]}</div>
 
             <!-- Phone UI Card -->
             <div class="phone-mockup" id="phone-ui" style="opacity:0;transform:translateY(35px) scale(0.92);background:linear-gradient(145deg, #1e293b, #0f172a);border:1px solid rgba(255,255,255,0.18);">
               <div class="caller-avatar" style="border:2px solid var(--rakhi-gold);box-shadow:0 0 20px rgba(251,191,36,0.3);">
-                <img src="assets/portraits/anwesha1.png" alt="Anwesha" onerror="this.src='assets/portraits/anwesha_hero.png'">
+                <img src="${assets.callerAvatar || 'assets/portraits/anwesha1.png'}" alt="${c.callerName || 'Anwesha'}" onerror="this.src='${assets.callerAvatarFallback || 'assets/portraits/anwesha_hero.png'}'">
               </div>
-              <div class="incoming-tag" style="color:var(--rakhi-gold);">Incoming Call</div>
-              <div class="caller-name" style="color:#ffffff;">Anwesha </div>
+              <div class="incoming-tag" style="color:var(--rakhi-gold);">${c.incomingCallTag}</div>
+              <div class="caller-name" style="color:#ffffff;">${c.callerName}</div>
 
               <div class="call-actions" id="call-actions">
                 <button class="call-btn decline" id="decline-call" aria-label="Decline Call" style="background:#dc2626;">
@@ -43,7 +45,7 @@ export class Scene04MissedCall {
               </div>
 
               <div class="chat-bubble" id="chat-msg" style="display:none;opacity:0;transform:translateY(15px);background:rgba(15,23,42,0.92);border:1px solid rgba(255,255,255,0.15);">
-                <div class="text-whisper" style="color:var(--rakhi-gold);margin-bottom:6px;font-size:0.62rem;">UTTER DISAPPOINTMENT • 7:30 AM</div>
+                <div class="text-whisper" style="color:var(--rakhi-gold);margin-bottom:6px;font-size:0.62rem;">${c.promptTag}</div>
                 <p class="text-dialogue" style="font-size:1.08rem;text-align:left;max-width:none;color:#f8fafc;font-style:italic;">
                   "${c.promptText}"
                 </p>
@@ -60,18 +62,22 @@ export class Scene04MissedCall {
       const callActions = container.querySelector('#call-actions');
       const chatMsg = container.querySelector('#chat-msg');
 
+      const tickInt = t.tickInterval ?? 0.9;
+      const phoneEnter = t.phoneEnterDuration ?? 0.75;
+      const reactHold = (t.reactionHold ?? 1.8) * 1000;
+
       this.tl = gsap.timeline();
 
       this.tl
-        .to({}, { duration: 0.9 })
-        .call(() => { clockEl.textContent = '7:29:59'; })
-        .to({}, { duration: 0.9 })
+        .to({}, { duration: tickInt })
+        .call(() => { clockEl.textContent = c.clockSequence[1]; })
+        .to({}, { duration: tickInt })
         .call(() => {
-          clockEl.textContent = '7:30:00';
+          clockEl.textContent = c.clockSequence[2];
           clockEl.style.color = '#dc2626';
         })
         .to({}, { duration: 0.4 })
-        .to(phoneUi, { opacity: 1, y: 0, scale: 1, duration: 0.75, ease: 'back.out(1.3)' })
+        .to(phoneUi, { opacity: 1, y: 0, scale: 1, duration: phoneEnter, ease: 'back.out(1.3)' })
         .call(() => { this.startRinging(phoneUi); });
 
       const handleAnswer = () => {
@@ -85,7 +91,7 @@ export class Scene04MissedCall {
             setTimeout(() => {
               this.manager.next();
               resolve();
-            }, 1800);
+            }, reactHold);
           }
         });
       };
@@ -96,6 +102,10 @@ export class Scene04MissedCall {
   }
 
   startRinging(phoneUi) {
+    const c = content.scene04;
+    const t = c.timing || {};
+    const vibInt = t.vibrateInterval ?? 1300;
+
     // Start actual local ringtone audio with automatic BGM ducking
     try {
       if (typeof this.audio.playRingtoneSound === 'function') {
@@ -113,7 +123,7 @@ export class Scene04MissedCall {
     };
 
     triggerPhoneVibrateAnim();
-    this.ringInterval = setInterval(triggerPhoneVibrateAnim, 1300);
+    this.ringInterval = setInterval(triggerPhoneVibrateAnim, vibInt);
   }
 
   stopRinging(unduck = true) {
@@ -134,5 +144,3 @@ export class Scene04MissedCall {
     return Promise.resolve();
   }
 }
-
-

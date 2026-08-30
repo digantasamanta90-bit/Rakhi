@@ -19,6 +19,9 @@ export class Scene17PostCredits {
   enter(container) {
     return new Promise((resolve) => {
       const c = content.scene17;
+      const t = c.timing || {};
+      const assets = c.assets || {};
+      const kitkatImg = assets.kitkat || 'assets/gifts/kitkat.png';
 
       container.innerHTML = `
         <div class="epilogue-desk-env" id="s17-viewport" style="position:relative;width:100%;height:100%;overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px;text-align:center;background:radial-gradient(circle at 50% 50%, #1e293b 0%, #0f172a 60%, #070c18 100%);">
@@ -30,11 +33,11 @@ export class Scene17PostCredits {
           <div id="pc-kitkat-rest" style="position:relative;width:160px;height:95px;margin-bottom:18px;opacity:0;">
             <!-- Left piece -->
             <div style="position:absolute;left:0;top:0;width:85px;height:95px;overflow:hidden;transform:rotate(-6deg);">
-              <img src="assets/gifts/kitkat.png" alt="KitKat Piece" style="width:150px;height:auto;object-fit:contain;position:absolute;left:0;top:5px;clip-path:polygon(0 0, 53% 0, 43% 100%, 0 100%);filter:drop-shadow(0 6px 14px rgba(0,0,0,0.8));" />
+              <img src="${kitkatImg}" alt="KitKat Piece" style="width:150px;height:auto;object-fit:contain;position:absolute;left:0;top:5px;clip-path:polygon(0 0, 53% 0, 43% 100%, 0 100%);filter:drop-shadow(0 6px 14px rgba(0,0,0,0.8));" />
             </div>
             <!-- Right piece -->
             <div style="position:absolute;right:0;top:4px;width:85px;height:95px;overflow:hidden;transform:rotate(5deg);">
-              <img src="assets/gifts/kitkat.png" alt="KitKat Piece" style="width:150px;height:auto;object-fit:contain;position:absolute;right:0;top:5px;clip-path:polygon(43% 0, 100% 0, 100% 100%, 53% 100%);filter:drop-shadow(0 6px 14px rgba(0,0,0,0.8));" />
+              <img src="${kitkatImg}" alt="KitKat Piece" style="width:150px;height:auto;object-fit:contain;position:absolute;right:0;top:5px;clip-path:polygon(43% 0, 100% 0, 100% 100%, 53% 100%);filter:drop-shadow(0 6px 14px rgba(0,0,0,0.8));" />
             </div>
             <!-- Falling Crumb -->
             <div id="pc-crumb" style="position:absolute;bottom:8px;left:48%;width:4px;height:4px;border-radius:50%;background:#ef4444;opacity:0;"></div>
@@ -93,15 +96,19 @@ export class Scene17PostCredits {
       const confirmReplay = container.querySelector('#pc-confirm-replay');
       const cancelReplay = container.querySelector('#pc-cancel-replay');
 
+      const enterDel = t.kitkatEnterDelay ?? 0.2;
+      const crumbDel = t.crumbDropDelay ?? 0.9;
+      const cardDel = t.cardEnterDelay ?? 1.4;
+
       this.tl = gsap.timeline();
 
       this.tl
         // 1. Broken KitKat on tabletop appears softly
-        .to(kitkatRest, { opacity: 1, duration: 1.0, ease: 'power2.out', delay: 0.2 })
+        .to(kitkatRest, { opacity: 1, duration: 1.0, ease: 'power2.out', delay: enterDel })
         // 2. Single crumb drops
-        .fromTo(crumb, { opacity: 0, y: -8 }, { opacity: 1, y: 4, duration: 0.4, ease: 'power2.in' }, 0.9)
+        .fromTo(crumb, { opacity: 0, y: -8 }, { opacity: 1, y: 4, duration: 0.4, ease: 'power2.in' }, crumbDel)
         // 3. Post-credits card appears
-        .to(card, { opacity: 1, scale: 1, duration: 0.9, ease: 'back.out(1.2)' }, 1.4);
+        .to(card, { opacity: 1, scale: 1, duration: 0.9, ease: 'back.out(1.2)' }, cardDel);
 
       if (replayBtn && replayModal) {
         replayBtn.addEventListener('click', () => {
@@ -135,5 +142,3 @@ export class Scene17PostCredits {
     return Promise.resolve();
   }
 }
-
-

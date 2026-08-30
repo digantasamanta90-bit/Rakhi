@@ -1,16 +1,3 @@
-/**
- * BEAT 11 — THE PHYSICAL GIFTS & CASE FILE 04 (LIVING MARKET STREET PARALLAX)
- * Camera travels through a bustling morning market street:
- * - Layer 1: Distant buildings & warm morning sunbeam
- * - Layer 2: Continuous parallax storefronts (Sweets, Gifts, Bakery, Flowers) passing camera
- * - Layer 3: Overhead street wires and lamp posts rushing past in foreground
- * Focal Objects:
- * 1. KitKat Rich PNG descends in spotlight.
- * 2. Case File 04 investigation board unfolds with candidate stamps & Monojit consultation.
- * 3. Bellavita Collection perfume box slides in with warm lighting sweep.
- * 4. "I still wanted to give these to you myself. So here they are."
- */
-
 import { content } from '../content/content.js';
 
 export class Scene11Gifts {
@@ -25,9 +12,17 @@ export class Scene11Gifts {
   enter(container) {
     return new Promise((resolve) => {
       const c = content.scene11;
+      const t = c.timing || {};
+      const assets = c.assets || {};
+      const caseData = c.gift1 || {};
+      const gift2Data = c.gift2 || {};
+      const narratives = c.narratives || [
+        "I still wanted to give these to you myself.",
+        "So here they are."
+      ];
 
-      // 1. Procedural Storefronts for Continuous Parallax Stream (Layer 2)
-      const shopsData = [
+      // 1. Storefronts for Continuous Parallax Stream (Layer 2)
+      const shopsData = c.marketShops || [
         { name: 'SWEET BAZAAR 🍬', awning: 'repeating-linear-gradient(90deg, #dc2626 0, #dc2626 12px, #ffffff 12px, #ffffff 24px)', color: '#7c2d12', signColor: '#fef08a' },
         { name: 'GIFT STATION 🎁', awning: 'repeating-linear-gradient(90deg, #fbbf24 0, #fbbf24 12px, #1e293b 12px, #1e293b 24px)', color: '#1e293b', signColor: '#fbbf24' },
         { name: 'BAKERY & CHAI ☕', awning: 'repeating-linear-gradient(90deg, #15803d 0, #15803d 12px, #fef08a 12px, #fef08a 24px)', color: '#78350f', signColor: '#ffffff' },
@@ -52,6 +47,9 @@ export class Scene11Gifts {
           </div>
         </div>
       `).join('');
+
+      const kitkatImgPath = assets.kitkat || 'assets/gifts/kitkat.png';
+      const bellavitaImgPath = assets.bellavita || 'assets/gifts/bellavita.png';
 
       container.innerHTML = `
         <div class="market-street-env" id="s11-viewport" style="position:relative;width:100%;height:100%;overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;background:radial-gradient(circle at 50% 35%, #451a03 0%, #1e293b 50%, #070c18 100%);">
@@ -78,57 +76,57 @@ export class Scene11Gifts {
             <!-- Shot 1: KitKat Hero Object (Real PNG Asset) -->
             <div id="g-kitkat-view" style="position:absolute;display:flex;flex-direction:column;align-items:center;opacity:0;transform:translateY(-40px) scale(0.9);z-index:20;cursor:pointer;">
               <div style="position:relative;width:210px;height:140px;display:flex;align-items:center;justify-content:center;margin-bottom:12px;">
-                <img src="assets/gifts/kitkat.png" alt="KitKat Rich" id="g-kitkat-img" style="width:100%;height:auto;object-fit:contain;filter:drop-shadow(0 16px 36px rgba(0,0,0,0.85));" />
+                <img src="${kitkatImgPath}" alt="${caseData.title || 'KitKat Rich'}" id="g-kitkat-img" style="width:100%;height:auto;object-fit:contain;filter:drop-shadow(0 16px 36px rgba(0,0,0,0.85));" />
               </div>
-              <div class="gift-label" style="font-size:1.15rem;color:#f8fafc;font-family:var(--font-serif);font-weight:700;letter-spacing:0.02em;text-shadow:0 2px 10px rgba(0,0,0,0.8);">${c.gift1.title}</div>
-              <div class="text-whisper" style="font-size:0.7rem;color:var(--cinema-text-muted);margin-top:4px;letter-spacing:0.14em;">${c.gift1.subtitle.toUpperCase()}</div>
+              <div class="gift-label" style="font-size:1.15rem;color:#f8fafc;font-family:var(--font-serif);font-weight:700;letter-spacing:0.02em;text-shadow:0 2px 10px rgba(0,0,0,0.8);">${caseData.title}</div>
+              <div class="text-whisper" style="font-size:0.7rem;color:var(--cinema-text-muted);margin-top:4px;letter-spacing:0.14em;">${caseData.subtitle.toUpperCase()}</div>
             </div>
 
             <!-- Shot 2: Case File 04 Investigation Board (Dossier) -->
             <div id="g-casefile-board" style="position:absolute;width:315px;background:rgba(15,23,42,0.96);border:1px solid rgba(255,255,255,0.18);border-radius:14px;padding:18px 16px;box-shadow:0 18px 50px rgba(0,0,0,0.9);opacity:0;transform:scale(0.85);z-index:25;pointer-events:none;backdrop-filter:blur(12px);">
               <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;border-bottom:1px dashed rgba(255,255,255,0.2);padding-bottom:6px;">
-                <span class="text-timestamp-sm" style="color:#f8fafc;font-size:0.7rem;font-weight:700;letter-spacing:0.06em;">${c.gift1.reportTitle}</span>
-                <span class="text-whisper" style="font-size:0.62rem;color:#ef4444;font-weight:700;">CLASSIFIED</span>
+                <span class="text-timestamp-sm" style="color:#f8fafc;font-size:0.7rem;font-weight:700;letter-spacing:0.06em;">${caseData.reportTitle}</span>
+                <span class="text-whisper" style="font-size:0.62rem;color:#ef4444;font-weight:700;">${caseData.classifiedTag || 'CLASSIFIED'}</span>
               </div>
               
               <div style="font-size:0.8rem;color:#cbd5e1;margin-bottom:10px;line-height:1.4;font-style:italic;">
-                "Selecting this was not as simple as it should've been."
+                ${caseData.subtext || '"Selecting this was not as simple as it should\'ve been."'}
               </div>
 
               <!-- Candidate Evaluations -->
               <div style="display:flex;flex-direction:column;gap:6px;font-size:0.76rem;">
                 <div id="g-cand-1" style="display:flex;justify-content:space-between;padding:5px 8px;background:rgba(255,255,255,0.06);border-radius:4px;opacity:0;">
-                  <span style="color:#cbd5e1;">${c.gift1.candidates[0]}</span>
+                  <span style="color:#cbd5e1;">${caseData.candidates[0]}</span>
                 </div>
                 <div id="g-cand-2" style="display:flex;justify-content:space-between;padding:5px 8px;background:rgba(255,255,255,0.06);border-radius:4px;opacity:0;">
-                  <span style="color:#cbd5e1;">${c.gift1.candidates[1]}</span>
+                  <span style="color:#cbd5e1;">${caseData.candidates[1]}</span>
                 </div>
                 <div id="g-cand-3" style="display:flex;justify-content:space-between;padding:5px 8px;background:rgba(255,255,255,0.12);border-radius:4px;border:1px solid rgba(255,255,255,0.3);opacity:0;">
-                  <span style="color:#ffffff;font-weight:700;">${c.gift1.candidates[2]}</span>
+                  <span style="color:#ffffff;font-weight:700;">${caseData.candidates[2]}</span>
                 </div>
               </div>
 
               <div id="g-case-footer" style="margin-top:10px;padding-top:6px;border-top:1px dashed rgba(255,255,255,0.2);font-size:0.7rem;color:#94a3b8;display:flex;justify-content:space-between;opacity:0;">
-                <span>${c.gift1.footerNote}</span>
+                <span>${caseData.footerNote}</span>
               </div>
             </div>
 
             <!-- Shot 3: Bellavita Fragrance Object (Real PNG Asset) -->
             <div id="g-bellavita-view" style="position:absolute;display:flex;flex-direction:column;align-items:center;opacity:0;transform:translateY(40px) scale(0.9);z-index:20;cursor:pointer;">
               <div style="position:relative;width:210px;height:145px;display:flex;align-items:center;justify-content:center;margin-bottom:12px;">
-                <img src="assets/gifts/bellavita.png" alt="Bellavita" id="g-bellavita-img" style="width:100%;height:auto;object-fit:contain;filter:drop-shadow(0 16px 36px rgba(0,0,0,0.85));" />
+                <img src="${bellavitaImgPath}" alt="${gift2Data.title || 'Bellavita'}" id="g-bellavita-img" style="width:100%;height:auto;object-fit:contain;filter:drop-shadow(0 16px 36px rgba(0,0,0,0.85));" />
               </div>
-              <div class="gift-label" style="font-size:1.15rem;color:#f8fafc;font-family:var(--font-serif);font-weight:700;letter-spacing:0.02em;text-shadow:0 2px 10px rgba(0,0,0,0.8);">${c.gift2.title}</div>
-              <div class="text-whisper" style="font-size:0.7rem;color:var(--cinema-text-muted);margin-top:4px;letter-spacing:0.14em;">${c.gift2.subtitle.toUpperCase()}</div>
+              <div class="gift-label" style="font-size:1.15rem;color:#f8fafc;font-family:var(--font-serif);font-weight:700;letter-spacing:0.02em;text-shadow:0 2px 10px rgba(0,0,0,0.8);">${gift2Data.title}</div>
+              <div class="text-whisper" style="font-size:0.7rem;color:var(--cinema-text-muted);margin-top:4px;letter-spacing:0.14em;">${gift2Data.subtitle.toUpperCase()}</div>
             </div>
 
             <!-- Narrative Lines (Bottom) -->
             <div id="g-narrative-zone" style="position:absolute;bottom:15px;text-align:center;padding:0 20px;z-index:25;pointer-events:none;">
               <p id="g-line-1" class="text-dialogue" style="opacity:0;font-size:clamp(1.05rem,3.6vw,1.22rem);color:#f8fafc;margin:0;font-style:italic;text-shadow:0 2px 12px rgba(0,0,0,0.9);">
-                "I still wanted to give these to you myself."
+                "${narratives[0]}"
               </p>
               <p id="g-line-2" class="text-emotional" style="opacity:0;font-size:clamp(1.1rem,3.8vw,1.3rem);color:#f8fafc;margin:4px 0 0 0;font-style:italic;text-shadow:0 0 16px rgba(255,255,255,0.4);">
-                "So here they are."
+                "${narratives[1]}"
               </p>
             </div>
           </div>
@@ -151,6 +149,11 @@ export class Scene11Gifts {
       const mainStage = container.querySelector('#g-main-stage');
       const viewport = container.querySelector('#s11-viewport');
 
+      const parDur = t.parallaxDuration ?? 5.6;
+      const kkHold = t.kitkatHeroHold ?? 1.1;
+      const caseHold = t.casefileReadHold ?? 1.0;
+      const bvHold = t.bellavitaHeroHold ?? 1.1;
+
       this.tl = gsap.timeline({
         onComplete: () => {
           this.manager.next();
@@ -159,35 +162,35 @@ export class Scene11Gifts {
       });
 
       this.tl
-        // 1. Living Market Street Parallax Movement (Synchronized to 5.6s total duration)
-        .to(shopsStream, { x: '-60%', duration: 5.6, ease: 'none' }, 0)
+        // 1. Living Market Street Parallax Movement
+        .to(shopsStream, { x: '-60%', duration: parDur, ease: 'none' }, 0)
         .to(wires, { x: '-50%', duration: 3.5, ease: 'none', repeat: 1 }, 0)
 
         // 2. KitKat Hero Entrance - Full Screen Presence
         .to(kitkatView, { opacity: 1, y: 0, scale: 1, duration: 0.55, ease: 'back.out(1.2)' }, 0.1)
         .to(line1, { opacity: 1, duration: 0.4 }, 0.25)
-        .to({}, { duration: 1.1 }) // Dedicated hero moment to view KitKat
+        .to({}, { duration: kkHold }) // Dedicated hero moment to view KitKat
 
         // 3. Case File 04 Investigation Reveal
-        .to(kitkatView, { scale: 0.75, y: -65, opacity: 0.2, duration: 0.35, ease: 'power2.inOut' }, 1.7)
-        .to(casefileBoard, { opacity: 1, scale: 1, duration: 0.45, ease: 'back.out(1.2)' }, 1.8)
-        .to(cand1, { opacity: 1, x: 0, duration: 0.2 }, 2.1)
-        .to(cand2, { opacity: 1, x: 0, duration: 0.2 }, 2.3)
-        .to(cand3, { opacity: 1, x: 0, duration: 0.3, ease: 'back.out(1.4)' }, 2.5)
-        .to(caseFooter, { opacity: 1, duration: 0.3 }, 2.8)
-        .to({}, { duration: 1.0 }) // Investigation reading pause
+        .to(kitkatView, { scale: 0.75, y: -65, opacity: 0.2, duration: 0.35, ease: 'power2.inOut' }, 0.65 + kkHold)
+        .to(casefileBoard, { opacity: 1, scale: 1, duration: 0.45, ease: 'back.out(1.2)' }, 0.75 + kkHold)
+        .to(cand1, { opacity: 1, x: 0, duration: 0.2 }, 1.05 + kkHold)
+        .to(cand2, { opacity: 1, x: 0, duration: 0.2 }, 1.25 + kkHold)
+        .to(cand3, { opacity: 1, x: 0, duration: 0.3, ease: 'back.out(1.4)' }, 1.45 + kkHold)
+        .to(caseFooter, { opacity: 1, duration: 0.3 }, 1.75 + kkHold)
+        .to({}, { duration: caseHold }) // Investigation reading pause
 
         // 4. Case File closes -> Bellavita Collection emerges
-        .to(casefileBoard, { opacity: 0, scale: 0.85, duration: 0.3, ease: 'power2.in' }, 4.0)
-        .to(kitkatView, { opacity: 0, duration: 0.2 }, 4.0)
-        .to(bellavitaView, { opacity: 1, y: 0, scale: 1, duration: 0.55, ease: 'power2.out' }, 4.2)
-        .to(line1, { opacity: 0, duration: 0.2 }, 4.2)
-        .to(line2, { opacity: 1, duration: 0.45, ease: 'power2.out' }, 4.4)
-        .to({}, { duration: 1.1 }) // Bellavita hero moment
+        .to(casefileBoard, { opacity: 0, scale: 0.85, duration: 0.3, ease: 'power2.in' }, 2.95 + kkHold + caseHold)
+        .to(kitkatView, { opacity: 0, duration: 0.2 }, 2.95 + kkHold + caseHold)
+        .to(bellavitaView, { opacity: 1, y: 0, scale: 1, duration: 0.55, ease: 'power2.out' }, 3.15 + kkHold + caseHold)
+        .to(line1, { opacity: 0, duration: 0.2 }, 3.15 + kkHold + caseHold)
+        .to(line2, { opacity: 1, duration: 0.45, ease: 'power2.out' }, 3.35 + kkHold + caseHold)
+        .to({}, { duration: bvHold }) // Bellavita hero moment
 
-        // 5. Seamless Transition directly into Sibling Zone (Scene 12) - No blank hold!
-        .to(mainStage, { opacity: 0, scale: 0.96, y: -10, duration: 0.4, ease: 'power2.inOut' }, 5.2)
-        .to(viewport, { opacity: 0, duration: 0.4, ease: 'power2.in' }, 5.2);
+        // 5. Seamless Transition directly into Sibling Zone (Scene 12)
+        .to(mainStage, { opacity: 0, scale: 0.96, y: -10, duration: 0.4, ease: 'power2.inOut' }, parDur - 0.4)
+        .to(viewport, { opacity: 0, duration: 0.4, ease: 'power2.in' }, parDur - 0.4);
 
       // Tactile physical taps on gift objects
       if (kitkatView) {
@@ -211,5 +214,3 @@ export class Scene11Gifts {
     return Promise.resolve();
   }
 }
-
-

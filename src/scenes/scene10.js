@@ -12,6 +12,10 @@ export class Scene10Memories {
   enter(container) {
     return new Promise((resolve) => {
       const c = content.scene10;
+      const t = c.timing || {};
+      const m1 = c.memory1 || {};
+      const m2 = c.memory2 || {};
+      const m3 = c.memory3 || {};
 
       // Generate soft floating memory dust specks
       let dustHTML = '';
@@ -37,22 +41,22 @@ export class Scene10Memories {
             <!-- Shot 1: First Memory (Hero Portrait) -->
             <div class="photo-memory" id="m-shot-1" style="width:165px;height:205px;position:absolute;opacity:0;filter:blur(14px);transform:scale(0.85) rotate(-3deg);z-index:5;cursor:pointer;background:var(--surface-parchment);padding:6px;box-shadow:0 14px 35px rgba(0,0,0,0.7);border-radius:4px;">
               <div class="photo-tape" style="background:rgba(220,38,38,0.7);width:52px;height:13px;top:-7px;"></div>
-              <img src="assets/portraits/anwesha_hero.png" alt="Anwesha" style="width:100%;height:100%;object-fit:cover;border-radius:2px;" onerror="this.src='assets/portraits/anwesha1.png';">
-              <div class="photo-caption" style="font-size:0.75rem;color:var(--rakhi-red);font-weight:700;margin-top:6px;text-align:center;">${c.memory1.caption}</div>
+              <img src="${m1.image || 'assets/portraits/anwesha_hero.png'}" alt="Anwesha" style="width:100%;height:100%;object-fit:cover;border-radius:2px;" onerror="this.src='${m1.fallback || 'assets/portraits/anwesha1.png'}';">
+              <div class="photo-caption" style="font-size:0.75rem;color:var(--rakhi-red);font-weight:700;margin-top:6px;text-align:center;">${m1.caption}</div>
             </div>
 
             <!-- Shot 2: Second Memory (Intimate smile) -->
             <div class="photo-memory" id="m-shot-2" style="width:165px;height:205px;position:absolute;opacity:0;filter:blur(14px);transform:scale(0.85) rotate(4deg);z-index:5;cursor:pointer;background:var(--surface-parchment);padding:6px;box-shadow:0 14px 35px rgba(0,0,0,0.7);border-radius:4px;">
               <div class="photo-tape" style="background:rgba(251,191,36,0.7);width:52px;height:13px;top:-7px;"></div>
-              <img src="assets/portraits/anwesha2.png" alt="Anwesha" style="width:100%;height:100%;object-fit:cover;border-radius:2px;" onerror="this.src='assets/portraits/anwesha5.png';">
-              <div class="photo-caption" style="font-size:0.75rem;color:var(--rakhi-gold);font-weight:700;margin-top:6px;text-align:center;">${c.memory2.caption}</div>
+              <img src="${m2.image || 'assets/portraits/anwesha2.png'}" alt="Anwesha" style="width:100%;height:100%;object-fit:cover;border-radius:2px;" onerror="this.src='${m2.fallback || 'assets/portraits/anwesha5.png'}';">
+              <div class="photo-caption" style="font-size:0.75rem;color:var(--rakhi-gold);font-weight:700;margin-top:6px;text-align:center;">${m2.caption}</div>
             </div>
 
             <!-- Shot 3: Third Memory (Radiant portrait with woven thread) -->
             <div class="photo-memory" id="m-shot-3" style="width:170px;height:215px;position:absolute;opacity:0;filter:blur(14px);transform:scale(0.85) rotate(-2deg);z-index:5;cursor:pointer;background:var(--surface-parchment);padding:6px;box-shadow:0 16px 40px rgba(0,0,0,0.8);border-radius:4px;">
               <div class="photo-tape" style="background:rgba(220,38,38,0.8);width:58px;height:14px;top:-8px;"></div>
-              <img src="assets/portraits/anwesha11.png" alt="Anwesha" style="width:100%;height:100%;object-fit:cover;border-radius:2px;" onerror="this.src='assets/portraits/anwesha12.png';">
-              <div class="photo-caption" style="font-weight:700;color:var(--rakhi-red);font-size:0.8rem;margin-top:6px;text-align:center;">${c.memory3.caption}</div>
+              <img src="${m3.image || 'assets/portraits/anwesha11.png'}" alt="Anwesha" style="width:100%;height:100%;object-fit:cover;border-radius:2px;" onerror="this.src='${m3.fallback || 'assets/portraits/anwesha12.png'}';">
+              <div class="photo-caption" style="font-weight:700;color:var(--rakhi-red);font-size:0.8rem;margin-top:6px;text-align:center;">${m3.caption}</div>
             </div>
 
             <!-- Thread Weaving SVG for Shot 3 -->
@@ -70,13 +74,13 @@ export class Scene10Memories {
             <!-- Memory Reflections (Single focused line per shot) -->
             <div style="position:absolute;bottom:15px;left:0;right:0;text-align:center;padding:0 20px;pointer-events:none;z-index:10;min-height:3.8em;display:flex;align-items:center;justify-content:center;">
               <p id="m-line-1" class="text-dialogue" style="opacity:0;font-size:clamp(1.02rem,3.5vw,1.18rem);color:#f8fafc;position:absolute;margin:0;font-style:italic;">
-                ${c.memory1.subtext}
+                ${m1.subtext}
               </p>
               <p id="m-line-2" class="text-emotional" style="opacity:0;font-size:clamp(1.05rem,3.6vw,1.22rem);color:#f8fafc;position:absolute;margin:0;font-style:italic;">
-                ${c.memory2.subtext}
+                ${m2.subtext}
               </p>
               <p id="m-line-3" class="text-whisper" style="opacity:0;font-size:0.82rem;color:var(--rakhi-gold);letter-spacing:0.18em;position:absolute;margin:0;font-weight:700;">
-                ${c.memory3.subtext}
+                ${m3.subtext}
               </p>
             </div>
           </div>
@@ -93,6 +97,11 @@ export class Scene10Memories {
       const line3 = container.querySelector('#m-line-3');
       const viewport = container.querySelector('#s10-viewport');
 
+      const p1Hold = t.photo1Hold ?? 1.4;
+      const p2Hold = t.photo2Hold ?? 1.5;
+      const p3Hold = t.photo3Hold ?? 1.6;
+      const threadDraw = t.threadDrawDuration ?? 1.3;
+
       this.tl = gsap.timeline({
         onComplete: () => {
           this.manager.next();
@@ -104,29 +113,29 @@ export class Scene10Memories {
         // --- SEQUENCE SHOT 1: Chotokhuki Hero Memory ---
         .to(shot1, { opacity: 1, filter: 'blur(0px)', scale: 1, duration: 0.8, ease: 'power2.out', delay: 0.15 })
         .to(line1, { opacity: 1, duration: 0.6, ease: 'power2.out' }, 0.4)
-        .to({}, { duration: 1.4 }) // breathe
+        .to({}, { duration: p1Hold }) // breathe
         // Shot 1 recedes gracefully
-        .to(shot1, { opacity: 0, scale: 0.75, y: -15, filter: 'blur(6px)', duration: 0.5, ease: 'power2.in' }, 2.35)
-        .to(line1, { opacity: 0, duration: 0.35 }, 2.35)
+        .to(shot1, { opacity: 0, scale: 0.75, y: -15, filter: 'blur(6px)', duration: 0.5, ease: 'power2.in' }, 0.95 + p1Hold)
+        .to(line1, { opacity: 0, duration: 0.35 }, 0.95 + p1Hold)
 
         // --- SEQUENCE SHOT 2: Chosen Sibling Memory ---
-        .to(shot2, { opacity: 1, filter: 'blur(0px)', scale: 1, duration: 0.8, ease: 'power2.out' }, 2.9)
-        .to(line2, { opacity: 1, duration: 0.6, ease: 'power2.out' }, 3.1)
-        .to({}, { duration: 1.5 }) // breathe
+        .to(shot2, { opacity: 1, filter: 'blur(0px)', scale: 1, duration: 0.8, ease: 'power2.out' }, 1.5 + p1Hold)
+        .to(line2, { opacity: 1, duration: 0.6, ease: 'power2.out' }, 1.7 + p1Hold)
+        .to({}, { duration: p2Hold }) // breathe
         // Shot 2 recedes gracefully
-        .to(shot2, { opacity: 0, scale: 0.75, y: -15, filter: 'blur(6px)', duration: 0.5, ease: 'power2.in' }, 5.2)
-        .to(line2, { opacity: 0, duration: 0.35 }, 5.2)
+        .to(shot2, { opacity: 0, scale: 0.75, y: -15, filter: 'blur(6px)', duration: 0.5, ease: 'power2.in' }, 2.3 + p1Hold + p2Hold)
+        .to(line2, { opacity: 0, duration: 0.35 }, 2.3 + p1Hold + p2Hold)
 
         // --- SEQUENCE SHOT 3: Radiant Memory + Thread Weaving ---
-        .to(shot3, { opacity: 1, filter: 'blur(0px)', scale: 1, duration: 0.85, ease: 'back.out(1.2)' }, 5.8)
-        .to(threadWrap, { opacity: 1, duration: 0.35 }, 6.0)
-        .to(threadLine, { strokeDashoffset: 0, duration: 1.3, ease: 'power1.inOut' }, 6.0)
-        .to(line3, { opacity: 1, duration: 0.6, ease: 'power2.out' }, 6.3)
-        .to({}, { duration: 1.6 }) // breathe
+        .to(shot3, { opacity: 1, filter: 'blur(0px)', scale: 1, duration: 0.85, ease: 'back.out(1.2)' }, 2.9 + p1Hold + p2Hold)
+        .to(threadWrap, { opacity: 1, duration: 0.35 }, 3.1 + p1Hold + p2Hold)
+        .to(threadLine, { strokeDashoffset: 0, duration: threadDraw, ease: 'power1.inOut' }, 3.1 + p1Hold + p2Hold)
+        .to(line3, { opacity: 1, duration: 0.6, ease: 'power2.out' }, 3.4 + p1Hold + p2Hold)
+        .to({}, { duration: p3Hold }) // breathe
         
         // Smooth transition directly into the physical gifts (Scene 11)
-        .to([shot3, threadWrap, line3], { opacity: 0, y: -15, scale: 0.92, duration: 0.6, ease: 'power2.inOut' }, 8.5)
-        .to(viewport, { opacity: 0, duration: 0.5, ease: 'power2.in' }, 8.7);
+        .to([shot3, threadWrap, line3], { opacity: 0, y: -15, scale: 0.92, duration: 0.6, ease: 'power2.inOut' }, 4.3 + p1Hold + p2Hold + p3Hold)
+        .to(viewport, { opacity: 0, duration: 0.5, ease: 'power2.in' }, 4.5 + p1Hold + p2Hold + p3Hold);
 
       // Tactile photo tap response
       [shot1, shot2, shot3].forEach(p => {
@@ -147,5 +156,3 @@ export class Scene10Memories {
     return Promise.resolve();
   }
 }
-
-

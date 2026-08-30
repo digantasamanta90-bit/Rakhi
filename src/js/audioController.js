@@ -10,6 +10,7 @@
  */
 
 import { state } from './interactionState.js';
+import { content } from '../content/content.js';
 
 class AudioController {
   constructor() {
@@ -24,9 +25,10 @@ class AudioController {
     this.alarmAudio = null;
     this.ringtoneAudio = null;
 
-    // Target volume settings
-    this.bgmTargetVolume = 0.70;
-    this.bgmDuckedVolume = 0.12;
+    // Target volume settings from Single Source of Truth
+    const cfg = (content && content.audio) || {};
+    this.bgmTargetVolume = cfg.bgmTargetVolume ?? 0.70;
+    this.bgmDuckedVolume = cfg.bgmDuckedVolume ?? 0.12;
 
     // Track active states
     this.isBgmPlaying = false;
@@ -43,8 +45,11 @@ class AudioController {
    */
   preloadLocalAudio() {
     try {
+      if (typeof window === 'undefined' || typeof Audio === 'undefined') return;
+      const cfg = (content && content.audio) || {};
+
       // 1. Cinematic Background Score (Continuous Backbone)
-      const bgmPath = encodeURI('assets/music/monta re instrumental bgm.mp3');
+      const bgmPath = encodeURI(cfg.bgm || 'assets/music/monta re instrumental bgm.mp3');
       this.bgmAudio = new Audio(bgmPath);
       this.bgmAudio.preload = 'auto';
       this.bgmAudio.loop = true;
@@ -54,21 +59,21 @@ class AudioController {
       };
 
       // 2. Local Alarm Audio
-      const alarmPath = encodeURI('assets/music/alarm.mp3');
+      const alarmPath = encodeURI(cfg.alarm || 'assets/music/alarm.mp3');
       this.alarmAudio = new Audio(alarmPath);
       this.alarmAudio.preload = 'auto';
       this.alarmAudio.loop = true;
-      this.alarmAudio.volume = 1.0;
+      this.alarmAudio.volume = cfg.alarmVolume ?? 1.0;
       this.alarmAudio.onerror = (e) => {
         console.warn('Alarm audio load warning:', e);
       };
 
       // 3. Local Ringtone Audio
-      const ringtonePath = encodeURI('assets/music/ringtone.mp3');
+      const ringtonePath = encodeURI(cfg.ringtone || 'assets/music/ringtone.mp3');
       this.ringtoneAudio = new Audio(ringtonePath);
       this.ringtoneAudio.preload = 'auto';
       this.ringtoneAudio.loop = true;
-      this.ringtoneAudio.volume = 1.0;
+      this.ringtoneAudio.volume = cfg.ringtoneVolume ?? 1.0;
       this.ringtoneAudio.onerror = (e) => {
         console.warn('Ringtone audio load warning:', e);
       };

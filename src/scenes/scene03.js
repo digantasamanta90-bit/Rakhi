@@ -82,7 +82,7 @@ export class Scene03Alarms {
           <!-- Emotional Reflection Dialogue -->
           <div id="eyes-msg-box" style="position:absolute;bottom:12%;z-index:25;text-align:center;width:90%;max-width:340px;pointer-events:none;">
             <div class="text-dialogue" id="eyes-msg" style="opacity:0;font-style:italic;color:#f8fafc;font-size:clamp(1.1rem,3.8vw,1.3rem);text-shadow:0 2px 14px rgba(0,0,0,0.9);">
-              "…but my eyes never opened."
+              "${c.dialogue}"
             </div>
           </div>
 
@@ -97,6 +97,12 @@ export class Scene03Alarms {
       const clockBox = container.querySelector('#s3-clock-box');
       const skyGradient = container.querySelector('#s3-sky-gradient');
       const risingSun = container.querySelector('#s3-rising-sun');
+
+      const t = c.timing || {};
+      const initDelay = (t.initialDelay ?? 0.25) * 1000;
+      const transDelay = (t.dismissTransition ?? 0.45) * 1000;
+      const diagFade = t.dialogueFadeDuration ?? 0.9;
+      const diagHold = (t.dialogueHold ?? 1.2) * 1000;
 
       const startAlarmRing = () => {
         // Play trimmed local alarm audio immediately with automatic BGM ducking
@@ -142,10 +148,10 @@ export class Scene03Alarms {
         { bottom: '48%', opacity: 1.0, scale: 1.7 }
       ];
 
-      // Trigger first alarm promptly after 250ms settling
+      // Trigger first alarm promptly after configured settling delay
       setTimeout(() => {
         startAlarmRing();
-      }, 250);
+      }, initDelay);
 
       dismissBtn.addEventListener('click', () => {
         this.alarmCount++;
@@ -172,7 +178,7 @@ export class Scene03Alarms {
 
             gsap.to([icon, timeEl, labelEl], { opacity: 1, scale: 1, duration: 0.3 });
             startAlarmRing();
-          }, 450);
+          }, transDelay);
         } else {
           // Final 6:00 AM dismissal -> Full bright morning daylight!
           stopAlarmRing(true);
@@ -196,13 +202,13 @@ export class Scene03Alarms {
               gsap.to(eyesMsg, {
                 opacity: 1,
                 y: 0,
-                duration: 0.9,
+                duration: diagFade,
                 ease: 'power2.out',
                 onComplete: () => {
                   setTimeout(() => {
                     this.manager.next();
                     resolve();
-                  }, 1200);
+                  }, diagHold);
                 }
               });
             }

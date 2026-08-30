@@ -20,6 +20,12 @@ export class Scene13Letter {
   enter(container) {
     return new Promise((resolve) => {
       const c = content.scene13;
+      const t = c.timing || {};
+      const toast = c.toast || {
+        title: 'Memory Saved',
+        description: 'Saved forever in memory 🧿',
+        icon: '🧿'
+      };
 
       container.innerHTML = `
         <div class="tabletop-desk-env" id="s13-viewport" style="position:relative;width:100%;height:100%;overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:12px;perspective:1000px;background:radial-gradient(circle at 50% 30%, #451a03 0%, #1e293b 60%, #070c18 100%);">
@@ -89,7 +95,7 @@ export class Scene13Letter {
           <div id="l-cta-wrap" style="opacity:0;margin-top:12px;text-align:center;z-index:10;">
             <button class="btn-primary" id="l-next-btn" style="padding:8px 22px;font-size:0.82rem;background:var(--rakhi-red);color:#ffffff;border-radius:24px;border:none;cursor:pointer;font-weight:600;box-shadow:0 6px 18px rgba(220,38,38,0.4);">
               <span>${c.nextBtnText}</span>
-              <span style="font-size:0.8rem;">→ 🧿</span>
+              <span style="font-size:0.8rem;">${c.nextBtnArrow || '→ 🧿'}</span>
             </button>
           </div>
         </div>
@@ -109,23 +115,32 @@ export class Scene13Letter {
       const keepBtn = container.querySelector('#l-keep-btn');
       const keepMsg = container.querySelector('#l-keep-msg');
 
+      const enterDel = t.paperEnterDelay ?? 0.2;
+      const cadence = t.paragraphCadence ?? 0.6;
+      const sigDel = t.signatureDelay ?? 0.5;
+      const unspoolDur = t.threadUnspoolDuration ?? 1.5;
+
       this.tl = gsap.timeline();
+
+      const paragraphs = [p0, p1, p2, p3, p4, p5];
 
       this.tl
         // Paper unrolls and enters in 3D perspective
-        .to(paper, { opacity: 1, y: 0, rotateX: 0, duration: 1.2, ease: 'power2.out', delay: 0.2 })
-        // Thought-by-thought progressive reveal
-        .to(p0, { opacity: 1, duration: 0.7 }, 0.7)
-        .to(p1, { opacity: 1, duration: 0.7 }, 1.3)
-        .to(p2, { opacity: 1, duration: 0.7 }, 1.9)
-        .to(p3, { opacity: 1, duration: 0.7 }, 2.5)
-        .to(p4, { opacity: 1, duration: 0.7 }, 3.1)
-        .to(p5, { opacity: 1, duration: 0.7 }, 3.7)
+        .to(paper, { opacity: 1, y: 0, rotateX: 0, duration: 1.2, ease: 'power2.out', delay: enterDel });
+
+      // Thought-by-thought progressive reveal using live cadence
+      paragraphs.forEach((p, idx) => {
+        this.tl.to(p, { opacity: 1, duration: 0.7 }, 0.7 + idx * cadence);
+      });
+
+      const endOfParagraphs = 0.7 + paragraphs.length * cadence;
+
+      this.tl
         // Signature appears
-        .to(sig, { opacity: 1, duration: 0.8, ease: 'power2.out' }, 4.2)
+        .to(sig, { opacity: 1, duration: 0.8, ease: 'power2.out' }, endOfParagraphs + sigDel)
         // Sacred thread unspools
-        .to(threadTail, { strokeDashoffset: 0, duration: 1.5, ease: 'power1.inOut' }, 4.6)
-        .to(ctaWrap, { opacity: 1, duration: 0.8 }, 5.0);
+        .to(threadTail, { strokeDashoffset: 0, duration: unspoolDur, ease: 'power1.inOut' }, endOfParagraphs + sigDel + 0.4)
+        .to(ctaWrap, { opacity: 1, duration: 0.8 }, endOfParagraphs + sigDel + 0.8);
 
       // Keep this message interaction
       if (keepBtn && keepMsg) {
@@ -137,7 +152,7 @@ export class Scene13Letter {
             this.particles.triggerBurst(window.innerWidth / 2, window.innerHeight * 0.7, 18);
           }
           if (this.achievements) {
-            this.achievements.show('Memory Saved', 'Saved forever in memory 🧿', '🧿');
+            this.achievements.show(toast.title, toast.description, toast.icon);
           }
         });
       }
@@ -166,5 +181,3 @@ export class Scene13Letter {
     return Promise.resolve();
   }
 }
-
-

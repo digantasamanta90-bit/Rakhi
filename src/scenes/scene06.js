@@ -70,11 +70,11 @@ export class Scene06Journey {
               
               <!-- Digital Route Line -->
               <div style="display:flex;align-items:center;gap:6px;font-family:var(--font-mono);font-size:0.62rem;color:var(--rakhi-gold);letter-spacing:0.1em;">
-                <span style="color:#22c55e;">●</span><span>DEPARTURE</span>
+                <span style="color:#22c55e;">●</span><span>${c.departureLabel || 'DEPARTURE'}</span>
                 <span style="color:#64748b;">───</span>
                 <span style="color:var(--rakhi-gold);animation:pulseGlow 1.2s infinite;">● ${c.routeTag}</span>
                 <span style="color:#64748b;">───</span>
-                <span style="color:#94a3b8;">○ HOME</span>
+                <span style="color:#94a3b8;">○ ${c.arrivalLabel || 'HOME'}</span>
               </div>
             </div>
 
@@ -164,6 +164,11 @@ export class Scene06Journey {
       const strap3 = container.querySelector('#m-strap-3');
       const thought = container.querySelector('#s6-thought');
 
+      const t = c.timing || {};
+      const travelDur = t.travelDuration ?? 3.8;
+      const thoughtDel = t.thoughtDelay ?? 0.6;
+      const thoughtHld = t.thoughtHold ?? 1.4;
+
       this.ambientTweens = [];
 
       // Continuous train track vibration physics
@@ -193,27 +198,27 @@ export class Scene06Journey {
       // Metro Multi-Layer Parallax Travel Choreography
       this.tl
         // Distant Skyline moves moderately
-        .to(distantSkyline, { x: '-40%', duration: 3.8, ease: 'none' }, 0)
-        
+        .to(distantSkyline, { x: '-40%', duration: travelDur, ease: 'none' }, 0)
+
         // Midground City moves fast
-        .to(midCity, { x: '-55%', duration: 3.6, ease: 'none' }, 0)
-        
+        .to(midCity, { x: '-55%', duration: travelDur * 0.95, ease: 'none' }, 0)
+
         // Foreground Girders & Light Streaks rush past rapidly
         .to(girders, { x: '-60%', duration: 1.8, ease: 'none', repeat: 1 }, 0)
         .to(streaks, { x: '-65%', duration: 1.2, ease: 'none', repeat: 2 }, 0)
-        
+
         // Occasional tunnel flashes & LED light flickers
         .to(flash, { opacity: 0.5, duration: 0.1, yoyo: true, repeat: 1 }, 1.0)
         .to(led, { opacity: 0.45, duration: 0.06, yoyo: true, repeat: 2 }, 1.0)
         .to(flash, { opacity: 0.4, duration: 0.1, yoyo: true, repeat: 1 }, 2.2)
-        
+
         // Emotional dialogue reveals
-        .to(thought, { opacity: 1, y: -4, duration: 0.7, ease: 'power2.out' }, 0.6)
-        .to({}, { duration: 1.4 }) // let thought register
-        
+        .to(thought, { opacity: 1, y: -4, duration: 0.7, ease: 'power2.out' }, thoughtDel)
+        .to({}, { duration: thoughtHld }) // let thought register
+
         // Dissolve directly into Broken KitKat (Scene 07)
-        .to(thought, { opacity: 0, duration: 0.4 }, 2.9)
-        .to(viewport, { opacity: 0, scale: 0.96, duration: 0.5, ease: 'power2.in' }, 3.3);
+        .to(thought, { opacity: 0, duration: 0.4 }, travelDur - 0.9)
+        .to(viewport, { opacity: 0, scale: 0.96, duration: 0.5, ease: 'power2.in' }, travelDur - 0.5);
     });
   }
 

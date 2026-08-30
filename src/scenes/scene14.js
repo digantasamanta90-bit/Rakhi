@@ -12,6 +12,8 @@ export class Scene14Thread {
   enter(container) {
     return new Promise((resolve) => {
       const c = content.scene14;
+      const t = c.timing || {};
+      const assets = c.assets || {};
 
       // Procedural Star Layers
       const starCount = 42;
@@ -64,7 +66,7 @@ export class Scene14Thread {
             <!-- Diganta Node -->
             <div style="display:flex;flex-direction:column;align-items:center;gap:6px;z-index:5;">
               <div style="width:56px;height:56px;border-radius:50%;background:rgba(15,23,42,0.8);border:2px solid var(--sky-morning-cyan);overflow:hidden;box-shadow:0 6px 20px rgba(0,0,0,0.8);display:flex;align-items:center;justify-content:center;">
-                <img src="assets/portraits/diganta1.png" alt="Diganta" style="width:100%;height:100%;object-fit:cover;" onerror="this.src='assets/portraits/diganta1.png';">
+                <img src="${assets.digantaPortrait || 'assets/portraits/diganta1.png'}" alt="${c.digantaNode || 'Diganta'}" style="width:100%;height:100%;object-fit:cover;" onerror="this.src='assets/portraits/diganta1.png';">
               </div>
               <span style="font-size:0.75rem;font-family:var(--font-mono);color:#cbd5e1;font-weight:600;">${c.digantaNode}</span>
             </div>
@@ -72,7 +74,7 @@ export class Scene14Thread {
             <!-- Anwesha Node -->
             <div style="display:flex;flex-direction:column;align-items:center;gap:6px;z-index:5;">
               <div style="width:56px;height:56px;border-radius:50%;background:rgba(15,23,42,0.8);border:2px solid var(--rakhi-gold);display:flex;align-items:center;justify-content:center;overflow:hidden;box-shadow:0 6px 20px rgba(0,0,0,0.8);">
-                <img src="assets/portraits/anwesha_hero.png" alt="Anwesha" style="width:100%;height:100%;object-fit:cover;" onerror="this.src='assets/portraits/anwesha12.png';">
+                <img src="${assets.anweshaPortrait || 'assets/portraits/anwesha_hero.png'}" alt="${c.anweshaNode || 'Anwesha'}" style="width:100%;height:100%;object-fit:cover;" onerror="this.src='${assets.anweshaFallback || 'assets/portraits/anwesha12.png'}';">
               </div>
               <span style="font-size:0.75rem;font-family:var(--font-mono);color:var(--rakhi-gold);font-weight:700;">${c.anweshaNode}</span>
             </div>
@@ -107,6 +109,11 @@ export class Scene14Thread {
       const sacredThread = container.querySelector('#t-sacred-thread');
       const viewport = container.querySelector('#s14-viewport');
 
+      const fragStagger = t.fragmentStagger ?? 0.1;
+      const fragHold = t.fragmentHold ?? 1.5;
+      const threadDraw = t.threadDrawDuration ?? 1.8;
+      const threadHld = t.threadHold ?? 2.0;
+
       // Continuous subtle cosmic starfield drift
       if (stars1) {
         this.starTweens.push(
@@ -128,15 +135,15 @@ export class Scene14Thread {
 
       this.tl
         // 1. Morning fragments drift in along the thread
-        .fromTo(frags, { opacity: 0, y: 10 }, { opacity: 0.85, y: 0, duration: 0.5, stagger: 0.1, delay: 0.2 })
-        .to({}, { duration: 1.5 }) // breathe
+        .fromTo(frags, { opacity: 0, y: 10 }, { opacity: 0.85, y: 0, duration: 0.5, stagger: fragStagger, delay: 0.2 })
+        .to({}, { duration: fragHold }) // breathe
         // 2. Fragments dissolve into the unbroken thread
         .to(frags, { opacity: 0, scale: 0.75, duration: 0.5, stagger: 0.06 })
         .to(fragsLayer, { display: 'none', duration: 0.1 })
         // 3. Thread draws connecting Diganta & Anwesha
         .to(bondStage, { opacity: 1, duration: 0.8, ease: 'power2.out' })
-        .to(sacredThread, { strokeDashoffset: 0, duration: 1.8, ease: 'power1.inOut' }, 2.8)
-        .to({}, { duration: 2.0 }) // hold
+        .to(sacredThread, { strokeDashoffset: 0, duration: threadDraw, ease: 'power1.inOut' }, `+=${0.1}`)
+        .to({}, { duration: threadHld }) // hold
         // 4. Smooth transition into Beat 15 (The Apology)
         .to(bondStage, { opacity: 0, scale: 0.94, duration: 0.8, ease: 'power2.inOut' })
         .to(viewport, { opacity: 0, duration: 0.6, ease: 'power2.in' });
@@ -155,5 +162,3 @@ export class Scene14Thread {
     return Promise.resolve();
   }
 }
-
-

@@ -119,11 +119,12 @@ export class Scene01Clock {
         } catch (e) {}
 
         // 2. Dissolve Starter Gateway Invitation
+        const starterFade = (c.timing && c.timing.starterFadeDuration) || 0.35;
         if (starterGate) {
           starterGate.style.pointerEvents = 'none';
           gsap.to(starterGate, {
             opacity: 0,
-            duration: 0.35,
+            duration: starterFade,
             ease: 'power2.out',
             onComplete: () => {
               starterGate.style.display = 'none';
@@ -132,15 +133,17 @@ export class Scene01Clock {
         }
 
         // 3. Build & Run Cinematic Timeline (Living sky, deliberate time passing)
-        const totalDuration = 4.4;
+        const cadence = (c.timing && c.timing.clockCadence) || 0.85;
+        const finallyHold = (c.timing && c.timing.finallyHold) || 1.4;
+        const typeSpeed = (c.timing && c.timing.typeSpeed) || 60;
+        const totalDuration = 0.15 + cadence * 3 + 0.6 + finallyHold + 0.4;
+
         this.tl = gsap.timeline({
           onComplete: () => {
             this.manager.next();
             resolve();
           }
         });
-
-        const cadence = c.timing.clockCadence || 0.65;
 
         this.tl
           // Active environmental cloud movement across the entire shot
@@ -179,11 +182,11 @@ export class Scene01Clock {
                 clearInterval(this.typeInterval);
                 this.typeInterval = null;
               }
-            }, 60);
+            }, typeSpeed);
           }, [], 0.15 + cadence * 3 + 0.3)
           
           // Hold for reading while sky continues to live
-          .to({}, { duration: c.timing.finallyHold || 1.4 }, 0.15 + cadence * 3 + 0.6)
+          .to({}, { duration: finallyHold }, 0.15 + cadence * 3 + 0.6)
           
           // Cinematic dissolve directly into Beat 02
           .to([dateEl, clockEl, textWrap], { opacity: 0, y: -8, duration: 0.4, ease: 'power2.in' }, totalDuration - 0.4)

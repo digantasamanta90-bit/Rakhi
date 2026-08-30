@@ -11,6 +11,7 @@ export class Scene05Panic {
   enter(container) {
     return new Promise((resolve) => {
       const c = content.scene05;
+      const t = c.timing || {};
       const items = c.items;
 
       container.innerHTML = `
@@ -53,6 +54,11 @@ export class Scene05Panic {
       const timerEl = container.querySelector('#panic-timer');
       const rushEl = container.querySelector('#panic-rush');
 
+      const objStagger = t.objectStagger ?? 0.12;
+      const tickInt = t.tickInterval ?? 0.22;
+      const rushDur = t.rushDuration ?? 0.7;
+      const transDur = t.transitionDuration ?? 0.4;
+
       this.tl = gsap.timeline({
         onComplete: () => {
           gsap.set([viewport, innerStage], { clearProps: 'all' });
@@ -72,16 +78,16 @@ export class Scene05Panic {
         this.tl.fromTo(el,
           { opacity: 0, x: startX, y: startY, scale: 0.3, rotation: Math.random() * 80 - 40 },
           { opacity: 1, x: 0, y: 0, scale: 1, rotation: (Math.random() - 0.5) * 16, duration: 0.28, ease: 'back.out(1.6)' },
-          0.1 + i * 0.12
+          0.1 + i * objStagger
         );
       });
 
-      // Accelerated Countdown ticks
-      const times = ['14:32', '11:15', '08:40', '05:22', '02:08', '00:45', '00:10', '00:00'];
-      times.forEach((t, i) => {
+      // Accelerated Countdown ticks from content.js
+      const times = c.timerTicks || ['14:32', '11:15', '08:40', '05:22', '02:08', '00:45', '00:10', '00:00'];
+      times.forEach((tick, i) => {
         this.tl.call(() => {
-          timerEl.textContent = t;
-        }, [], 1.1 + i * 0.22);
+          timerEl.textContent = tick;
+        }, [], 1.1 + i * tickInt);
       });
 
       // Screen tremor choreography isolated strictly to inner stage
@@ -113,8 +119,8 @@ export class Scene05Panic {
           { opacity: 1, scale: 1, duration: 0.25, ease: 'power4.out' }, 
           3.2
         )
-        .to(rushEl, { scale: 1.04, duration: 0.7, ease: 'sine.inOut' }, 3.45)
-        .to(viewport, { opacity: 0, duration: 0.4, ease: 'power2.in' }, 4.15);
+        .to(rushEl, { scale: 1.04, duration: rushDur, ease: 'sine.inOut' }, 3.45)
+        .to(viewport, { opacity: 0, duration: transDur, ease: 'power2.in' }, 3.45 + rushDur);
     });
   }
 
@@ -123,5 +129,3 @@ export class Scene05Panic {
     return Promise.resolve();
   }
 }
-
-

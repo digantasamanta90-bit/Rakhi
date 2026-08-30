@@ -3,6 +3,7 @@
  * Bootstraps the 17-beat cinematic interactive film with CinematicSceneManager.
  */
 
+import { content } from '../content/content.js';
 import { ParticleCanvas } from '../components/ParticleCanvas.js';
 import { AchievementManager } from '../components/AchievementToast.js';
 import { audio } from './audioController.js';
@@ -29,6 +30,19 @@ import { Scene16RakhiFinale } from '../scenes/scene16.js';
 import { Scene17PostCredits } from '../scenes/scene17.js';
 
 document.addEventListener('DOMContentLoaded', () => {
+  // Sync document meta from content single source of truth
+  if (content.meta) {
+    if (content.meta.title) document.title = content.meta.title;
+    if (content.meta.description) {
+      const descEl = document.querySelector('meta[name="description"]');
+      if (descEl) descEl.setAttribute('content', content.meta.description);
+    }
+    if (content.meta.themeColor) {
+      const themeEl = document.querySelector('meta[name="theme-color"]');
+      if (themeEl) themeEl.setAttribute('content', content.meta.themeColor);
+    }
+  }
+
   // 1. Ambient Particle Canvas
   const particleCanvas = new ParticleCanvas('particle-canvas');
   window.appParticleCanvas = particleCanvas;

@@ -11,42 +11,44 @@ export class Scene02Creation {
   enter(container) {
     return new Promise((resolve) => {
       const c = content.scene02;
+      const t = c.timing || {};
+      const assets = c.assets || {};
 
       container.innerHTML = `
         <div style="position:relative;width:100%;height:100%;overflow:hidden;display:flex;align-items:center;justify-content:center;perspective:900px;background:linear-gradient(180deg, #070c18 0%, #0f1c3f 50%, #1e293b 100%);">
           <!-- Floating creation fragments with warm parchment frames -->
           <div id="frag-photo1" style="position:absolute;opacity:0;width:78px;height:92px;background:var(--surface-parchment);padding:5px;box-shadow:0 10px 25px rgba(0,0,0,0.6);transform:rotate(-7deg) translateZ(30px);top:13%;left:8%;border-radius:4px;z-index:4;">
-            <img src="assets/portraits/anwesha15.png" style="width:100%;height:100%;object-fit:cover;" onerror="this.src='assets/portraits/anwesha_hero.png'">
+            <img src="${assets.photo1 || 'assets/portraits/anwesha15.png'}" style="width:100%;height:100%;object-fit:cover;" onerror="this.src='${assets.photo1Fallback || 'assets/portraits/anwesha_hero.png'}'">
           </div>
           
           <div id="frag-photo2" style="position:absolute;opacity:0;width:72px;height:86px;background:var(--surface-parchment);padding:5px;box-shadow:0 10px 25px rgba(0,0,0,0.6);transform:rotate(6deg) translateZ(20px);top:17%;right:8%;border-radius:4px;z-index:4;">
-            <img src="assets/portraits/anwesha7.png" style="width:100%;height:100%;object-fit:cover;" onerror="this.src='assets/portraits/anwesha_calm.png'">
+            <img src="${assets.photo2 || 'assets/portraits/anwesha7.png'}" style="width:100%;height:100%;object-fit:cover;" onerror="this.src='${assets.photo2Fallback || 'assets/portraits/anwesha_calm.png'}'">
           </div>
           
           <div id="frag-rakhi" style="position:absolute;opacity:0;bottom:18%;left:12%;font-size:2.4rem;filter:drop-shadow(0 4px 14px rgba(251,191,36,0.4));">🧿</div>
           <div id="frag-gift" style="position:absolute;opacity:0;bottom:16%;right:12%;font-size:2.0rem;filter:drop-shadow(0 4px 14px rgba(220,38,38,0.4));">🎁</div>
           
           <div id="frag-terminal" style="position:absolute;opacity:0;top:26%;left:6%;font-family:var(--font-mono);font-size:0.64rem;color:var(--sky-morning-cyan);background:rgba(15,23,42,0.92);padding:6px 12px;border-radius:6px;border:1px solid var(--surface-card-border);box-shadow:0 8px 20px rgba(0,0,0,0.5);">
-            ./rakhi_protocol.sh --target=${c.name}
+            ${c.terminalCmd || `./rakhi_protocol.sh --target=${c.name}`}
           </div>
           
           <div id="frag-overthink" style="position:absolute;opacity:0;bottom:26%;right:6%;font-family:var(--font-mono);font-size:0.64rem;color:var(--rakhi-gold);background:rgba(15,23,42,0.92);padding:6px 12px;border-radius:6px;border:1px solid rgba(251,191,36,0.3);box-shadow:0 8px 20px rgba(0,0,0,0.5);">
-            Calculating overthinking level: ∞
+            ${c.overthinkText || 'Calculating overthinking level: ∞'}
           </div>
 
           <!-- Accelerating Timestamps -->
           <div id="timestamps" style="position:absolute;top:8%;right:8%;text-align:right;z-index:6;">
-            <div class="text-timestamp-sm" id="ts1" style="opacity:0;">11:48 PM</div>
-            <div class="text-timestamp-sm" id="ts2" style="opacity:0;">01:17 AM</div>
-            <div class="text-timestamp-sm" id="ts3" style="opacity:0;">02:53 AM</div>
-            <div class="text-timestamp-sm" id="ts4" style="opacity:0;color:var(--cinema-gold);font-weight:600;">04:30 AM</div>
+            <div class="text-timestamp-sm" id="ts1" style="opacity:0;">${c.timestamps[0]}</div>
+            <div class="text-timestamp-sm" id="ts2" style="opacity:0;">${c.timestamps[1]}</div>
+            <div class="text-timestamp-sm" id="ts3" style="opacity:0;">${c.timestamps[2]}</div>
+            <div class="text-timestamp-sm" id="ts4" style="opacity:0;color:var(--cinema-gold);font-weight:600;">${c.timestamps[3]}</div>
           </div>
 
           <!-- Center reveal -->
           <div id="s2-center-block" style="display:flex;flex-direction:column;align-items:center;gap:12px;z-index:10;text-align:center;padding:0 20px;">
-            <div class="text-whisper" id="s2-building" style="opacity:0;letter-spacing:0.18em;color:var(--cinema-text-muted);">BUILDING SOMETHING</div>
-            <div class="text-impact" id="s2-for" style="opacity:0;font-size:clamp(2rem,7.5vw,3.2rem);color:var(--cinema-text);">FOR ${c.name.toUpperCase()}</div>
-            <div class="text-emotional" id="s2-sub" style="opacity:0;font-size:clamp(0.95rem,3.4vw,1.2rem);color:var(--cinema-accent);">Every detail crafted with intention.</div>
+            <div class="text-whisper" id="s2-building" style="opacity:0;letter-spacing:0.18em;color:var(--cinema-text-muted);">${c.whisper}</div>
+            <div class="text-impact" id="s2-for" style="opacity:0;font-size:clamp(2rem,7.5vw,3.2rem);color:var(--cinema-text);">${c.forTitle || `FOR ${c.name.toUpperCase()}`}</div>
+            <div class="text-emotional" id="s2-sub" style="opacity:0;font-size:clamp(0.95rem,3.4vw,1.2rem);color:var(--cinema-accent);">${c.subtitle}</div>
           </div>
         </div>
       `;
@@ -57,6 +59,11 @@ export class Scene02Creation {
       const forEl = container.querySelector('#s2-for');
       const sub = container.querySelector('#s2-sub');
       const centerBlock = container.querySelector('#s2-center-block');
+
+      const fragStagger = t.fragmentStagger ?? 0.15;
+      const tsStagger = t.timestampStagger ?? 0.18;
+      const textHold = t.textHold ?? 1.4;
+      const transDur = t.transitionDuration ?? 0.6;
 
       this.tl = gsap.timeline({
         onComplete: () => {
@@ -72,7 +79,7 @@ export class Scene02Creation {
           this.tl.fromTo(el,
             { opacity: 0, scale: 0.7, y: -15 + Math.random() * 30 },
             { opacity: 1, scale: 1, y: 0, duration: 0.45, ease: 'back.out(1.3)' },
-            0.1 + i * 0.15
+            0.1 + i * fragStagger
           );
         }
       });
@@ -81,7 +88,7 @@ export class Scene02Creation {
       timestamps.forEach((id, i) => {
         const el = container.querySelector(`#${id}`);
         if (el) {
-          this.tl.to(el, { opacity: 0.75, duration: 0.18 }, 1.1 + i * 0.18);
+          this.tl.to(el, { opacity: 0.75, duration: 0.18 }, 1.1 + i * tsStagger);
         }
       });
 
@@ -92,13 +99,13 @@ export class Scene02Creation {
         .to(sub, { opacity: 1, duration: 0.6 }, 2.6)
         
         // Hold for reading
-        .to({}, { duration: 1.4 })
+        .to({}, { duration: textHold })
         
         // Settle background fragments & dissolve directly into Scene 03 (Three Alarms)
         .to(frags.map(id => container.querySelector(`#${id}`)).filter(Boolean), {
-          opacity: 0.2, y: '+=10', duration: 0.6, stagger: 0.05
-        }, 4.2)
-        .to(centerBlock, { opacity: 0, y: -10, scale: 0.96, duration: 0.6, ease: 'power2.in' }, 4.4);
+          opacity: 0.2, y: '+=10', duration: transDur, stagger: 0.05
+        }, "+=0.2")
+        .to(centerBlock, { opacity: 0, y: -10, scale: 0.96, duration: transDur, ease: 'power2.in' }, "<");
     });
   }
 
@@ -107,5 +114,3 @@ export class Scene02Creation {
     return Promise.resolve();
   }
 }
-
-

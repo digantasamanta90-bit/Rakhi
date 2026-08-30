@@ -11,6 +11,7 @@ export class Scene15Apology {
   enter(container) {
     return new Promise((resolve) => {
       const c = content.scene15;
+      const t = c.timing || {};
 
       container.innerHTML = `
         <div class="apology-golden-env" id="s15-viewport" style="position:relative;width:100%;height:100%;overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;background:radial-gradient(circle at 50% 45%, #451a03 0%, #1e1b4b 60%, #0f172a 100%);">
@@ -51,6 +52,13 @@ export class Scene15Apology {
       const chamber = container.querySelector('#a-text-chamber');
       const viewport = container.querySelector('#s15-viewport');
 
+      const t1Hold = t.thought1Hold ?? 0.9;
+      const t2Hold = t.thought2Hold ?? 1.1;
+      const t3Hold = t.thought3Hold ?? 0.9;
+      const t4Hold = t.thought4Hold ?? 0.9;
+      const t5Hold = t.thought5Hold ?? 0.8;
+      const finalHold = t.finalThoughtHold ?? 1.6;
+
       this.tl = gsap.timeline({
         onComplete: () => {
           this.manager.next();
@@ -62,24 +70,24 @@ export class Scene15Apology {
         .to({}, { duration: 0.4 })
         // Thought 1: "I ruined Friday"
         .to(at1, { opacity: 1, duration: 0.6, ease: 'power2.out' })
-        .to({}, { duration: 0.9 })
+        .to({}, { duration: t1Hold })
         // Thought 2: "I'm sorry for that."
         .to(at2, { opacity: 1, duration: 0.6, ease: 'power2.out' })
-        .to({}, { duration: 1.1 })
+        .to({}, { duration: t2Hold })
         // Fade first two lines slightly to focus on resolution
         .to([at1, at2], { opacity: 0.3, duration: 0.4 })
         // Thought 3: "Not exactly how I imagined that day."
         .to(at3, { opacity: 1, duration: 0.6, ease: 'power2.out' })
-        .to({}, { duration: 0.9 })
+        .to({}, { duration: t3Hold })
         // Thought 4: "But maybe that's okay."
         .to(at4, { opacity: 1, duration: 0.7, ease: 'power2.out' })
-        .to({}, { duration: 0.9 })
+        .to({}, { duration: t4Hold })
         // Thought 5: "Some moments don't happen the way you planned."
         .to(at5, { opacity: 1, duration: 0.6, ease: 'power2.out' })
-        .to({}, { duration: 0.8 })
+        .to({}, { duration: t5Hold })
         // Thought 6: "But I'll make sure the next one does."
         .to(at6, { opacity: 1, scale: 1.03, duration: 0.9, ease: 'power2.out' })
-        .to({}, { duration: 1.6 }) // breathe and hold
+        .to({}, { duration: finalHold }) // breathe and hold
         // Golden bloom transition directly into Beat 16 (The Rakhi Finale)
         .to(chamber, { opacity: 0, scale: 0.96, duration: 0.6, ease: 'power2.inOut' })
         .to(viewport, { opacity: 0, duration: 0.5, ease: 'power2.in' }, "-=0.2");
@@ -91,5 +99,3 @@ export class Scene15Apology {
     return Promise.resolve();
   }
 }
-
-

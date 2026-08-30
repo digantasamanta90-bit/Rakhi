@@ -1,11 +1,41 @@
 /**
- * MASTER CONTENT CONFIGURATION — RAKHI 17-SCENE FILM
- * Centralized, decoupled source of truth for all user-facing text, timestamps,
- * narrative dialogs, character dossiers, letter paragraphs, thread fragments,
- * finale text, and high-level editorial timing knobs.
+ * MASTER CONTENT CONFIGURATION — RAKHI 17-SCENE CINEMATIC FILM
+ * 
+ * TRUE SINGLE SOURCE OF TRUTH for:
+ * A. User-facing narrative & UI text
+ * B. Editorial timing & pacing knobs
+ * C. Asset paths (portraits, gifts, fallback images)
+ * D. Audio mappings & volume targets
+ * E. Interaction thresholds & configuration
+ * 
+ * Edit values in this file to customize text, timing, assets, and story beats.
  */
 
 export const content = {
+  // ==========================================
+  // GLOBAL METADATA
+  // ==========================================
+  meta: {
+    title: "For Anwesha, From Your Brother 🧿",
+    description: "A personalized interactive Rakhi gift experience for Anwesha from Diganta.",
+    recipient: "Anwesha",
+    author: "Diganta",
+    themeColor: "#0A0709"
+  },
+
+  // ==========================================
+  // AUDIO CONFIGURATION
+  // ==========================================
+  audio: {
+    bgm: "assets/music/monta re instrumental bgm.mp3",
+    alarm: "assets/music/alarm.mp3",
+    ringtone: "assets/music/ringtone.mp3",
+    bgmTargetVolume: 0.70,
+    bgmDuckedVolume: 0.12,
+    alarmVolume: 1.0,
+    ringtoneVolume: 1.0
+  },
+
   // ==========================================
   // BEAT 01 — THE DAWN DESK (4:30 AM)
   // ==========================================
@@ -15,37 +45,35 @@ export const content = {
     clockSequence: ["4:27", "4:28", "4:29", "4:30 AM"],
     finallyText: "Finally.",
     timing: {
-      clockCadence: 0.85, // Time spent on each timestamp while sky & clouds drift
-      finallyHold: 1.4    // Time before transition into Scene 02
+      clockCadence: 0.85,       // Seconds per clock tick (4:27 -> 4:28 -> 4:29 -> 4:30)
+      typeSpeed: 60,            // Milliseconds per character for typewriter
+      finallyHold: 1.4,         // Seconds holding "Finally." before scene dissolve
+      starterFadeDuration: 0.35 // Dissolve speed for starter gateway overlay
     }
   },
 
   // ==========================================
-  // BEAT 02 — SIBLING REVELATION
+  // BEAT 02 — BUILDING IT (CREATION FRAGMENTS)
   // ==========================================
   scene02: {
-    envTag: "BEAT 02 // SIBLING REVELATION",
-    preTitle: "Okay...",
-    subTitle: "Now you can look.",
     name: "Anwesha",
-    greeting: "Happy Raksha Bandhan. 🧿",
-    chosenSiblingLines: [
-      "You know, technically, you're not my sister by blood.",
-      "But somehow, somewhere along the way...",
-      "you became my sister anyway. ❤️"
-    ],
-    monojitCreditLines: [
-      "And honestly, I have to give Monojit some credit for that.",
-      "If it wasn't for him, I probably wouldn't have ended up with a sister like you.",
-      "So I suppose I should thank him.",
-      "Just this once. Don't get used to it. 💀"
-    ],
-    closingJoke: "Anyway... since apparently having a sister wasn't enough, I decided to build an entire story about it.",
+    whisper: "BUILDING SOMETHING",
+    forTitle: "FOR ANWESHA",
+    subtitle: "Every detail crafted with intention.",
+    terminalCmd: "./rakhi_protocol.sh --target=Anwesha",
+    overthinkText: "Calculating overthinking level: ∞",
+    timestamps: ["11:48 PM", "01:17 AM", "02:53 AM", "04:30 AM"],
+    assets: {
+      photo1: "assets/portraits/anwesha15.png",
+      photo1Fallback: "assets/portraits/anwesha_hero.png",
+      photo2: "assets/portraits/anwesha7.png",
+      photo2Fallback: "assets/portraits/anwesha_calm.png"
+    },
     timing: {
-      shot1Hold: 1.6,
-      shot2Hold: 1.8,
-      shot3Hold: 1.8,
-      shot4Hold: 2.0
+      fragmentStagger: 0.15,    // Stagger duration between flying creation elements
+      timestampStagger: 0.18,   // Stagger duration for timestamps reveal
+      textHold: 1.4,            // Reading hold after title & subtitle appear
+      transitionDuration: 0.6   // Dissolve duration into Scene 03
     }
   },
 
@@ -59,15 +87,12 @@ export const content = {
       { time: "6:00 AM", label: "ALARM 3 OF 3" }
     ],
     dismissBtnText: "Dismiss Alarm",
-    narratives: {
-      postAlarm1: "Just five more minutes...",
-      postAlarm2: "Okay, getting up for real now...",
-      finalDismissed: "Woke up. Determined to make it on time."
-    },
+    dialogue: "…but my eyes never opened.",
     timing: {
-      alarm1Wait: 2.4,
-      alarm2Wait: 2.2,
-      alarm3Wait: 2.6
+      initialDelay: 0.25,       // Delay before first alarm rings (seconds)
+      dismissTransition: 0.45,  // Transition time between alarm dismissals
+      dialogueFadeDuration: 0.9,// Fade-in speed for emotional dialogue
+      dialogueHold: 1.2         // Reading hold before advancing to Scene 04
     }
   },
 
@@ -75,15 +100,20 @@ export const content = {
   // BEAT 04 — THE 7:30 CALL (MISSED CALL)
   // ==========================================
   scene04: {
-    time: "7:30 AM",
-    callerName: "ANWESHA",
-    location: "Metro Station Gate 2",
-    callStatus: "1 MISSED CALL",
+    clockSequence: ["7:29:58", "7:29:59", "7:30:00"],
+    incomingCallTag: "Incoming Call",
+    callerName: "Anwesha ",
+    promptTag: "UTTER DISAPPOINTMENT • 7:30 AM",
     promptText: "Kothay tui???",
-    subtext: "Phone vibrating silently on the desk...",
+    assets: {
+      callerAvatar: "assets/portraits/anwesha1.png",
+      callerAvatarFallback: "assets/portraits/anwesha_hero.png"
+    },
     timing: {
-      ringDuration: 2.4,
-      reactionHold: 1.6
+      tickInterval: 0.9,        // Seconds per clock tick before 7:30:00
+      phoneEnterDuration: 0.75, // Phone card entrance animation duration
+      vibrateInterval: 1300,    // Milliseconds between phone ring shakes
+      reactionHold: 1.8         // Reading hold after call response before next scene
     }
   },
 
@@ -105,8 +135,10 @@ export const content = {
     ],
     climaxBanner: "METRO",
     timing: {
-      rushDuration: 2.8,
-      impactHold: 0.8
+      objectStagger: 0.12,      // Entrance stagger between panicked items
+      tickInterval: 0.22,       // Accelerated countdown tick speed (seconds)
+      rushDuration: 0.7,        // Climax banner display duration
+      transitionDuration: 0.4   // Exit dissolve speed
     }
   },
 
@@ -114,13 +146,17 @@ export const content = {
   // BEAT 06 — THE METRO JOURNEY
   // ==========================================
   scene06: {
+    departureLabel: "SAHID KHUDIRAM",
     routeTag: "BLUE LINE // TRANSIT TO DESTINATION",
+    arrivalLabel: "RABINDRASADAN",
     dialogues: [
       "7:45 AM // The morning metro...",
       "Rushing through the city, holding the gifts tight..."
     ],
     timing: {
-      travelHold: 7.6
+      travelDuration: 3.8,      // Total metro travel sequence duration (seconds)
+      thoughtDelay: 0.6,        // Delay before dialogue appears
+      thoughtHold: 1.4          // Duration for passenger reflection dialogue
     }
   },
 
@@ -129,12 +165,18 @@ export const content = {
   // ==========================================
   scene07: {
     impactTag: "8:15 AM // THE IMPACT",
-    leadReaction: "Oh no.",
+    impactText: "BROKE",
     comedicClimax: "The Bad Luck Charm.💀",
     panicThought: "Anwesha is going to kill me.",
+    assets: {
+      kitkat: "assets/gifts/kitkat.png"
+    },
     timing: {
-      crackReactionHold: 1.8,
-      jokeHold: 2.0
+      heroHold: 0.7,            // Time chocolate floats in golden spotlight
+      dropSpeed: 0.22,          // Speed of slip and drop animation
+      crackReactionHold: 0.2,   // Pause before comedy text reveals
+      jokeHold: 1.1,            // Deadpan comedic reading hold (seconds)
+      transitionDuration: 0.45  // Fade out into Scene 08
     }
   },
 
@@ -143,15 +185,20 @@ export const content = {
   // ==========================================
   scene08: {
     stages: [
-      { mode: "BUS", tag: "CITY TRANSIT // CHAOTIC TRAFFIC", bg: "urban" },
+      { mode: "BUS", tag: "KOLKATA // CHAOTIC TRAFFIC", bg: "urban" },
       { mode: "AUTO", tag: "OUTSKIRTS // GREENERY BEGINS", bg: "outskirts" },
-      { mode: "WALK", tag: "VILLAGE ROAD // QUIET BREEZE", bg: "village" },
+      { mode: "WALK", tag: "BARGACHIA // QUIET BREEZE", bg: "village" },
       { mode: "ARRIVAL", tag: "HOME 🏡 // JOURNEY ENDS", bg: "home" }
     ],
+    dialogues: [
+      "The world outside slowed down.",
+      "Or maybe I just stopped noticing it."
+    ],
     timing: {
-      busDuration: 4,
-      autoDuration: 4,
-      arrivalDuration: 3
+      travelDuration: 4.8,      // Total multi-stage travel duration (seconds)
+      autoTransitionTime: 1.8,  // Point at which Bus shifts to Auto-Rickshaw
+      villageTransitionTime: 3.4,// Point at which village road is reached
+      arrivalHold: 0.9          // Reading hold on HOME milestone
     }
   },
 
@@ -164,10 +211,10 @@ export const content = {
     line3: "You were waiting but I was not there",
     line4: "I made this same mistake on another morning",
     timing: {
-      line1Hold: 1.4,
-      line2Hold: 1.5,
-      line3Hold: 1.6,
-      turningPointHold: 2.2
+      line1Hold: 1.4,           // Hold for line 1
+      line2Hold: 1.5,           // Hold for line 2
+      line3Hold: 1.6,           // Hold for line 3
+      turningPointHold: 2.2     // Hold for warm turning point resolution line
     }
   },
 
@@ -177,20 +224,27 @@ export const content = {
   scene10: {
     memory1: {
       caption: "Chotokhuki 🧿",
-      subtext: "The little girl who grew up too fast."
+      subtext: "The little girl who grew up too fast.",
+      image: "assets/portraits/anwesha_hero.png",
+      fallback: "assets/portraits/anwesha1.png"
     },
     memory2: {
       caption: "The Chosen Sibling ❤️",
-      subtext: "Not by blood. Just by one of those good turns life makes."
+      subtext: "Not by blood. Just by one of those good turns life makes.",
+      image: "assets/portraits/anwesha2.png",
+      fallback: "assets/portraits/anwesha5.png"
     },
     memory3: {
       caption: "A Bond Across Any Distance ✨",
-      subtext: "Some things don't depend on whether you showed up at 7:30."
+      subtext: "Some things don't depend on whether you showed up at 7:30.",
+      image: "assets/portraits/anwesha11.png",
+      fallback: "assets/portraits/anwesha12.png"
     },
     timing: {
-      photo1Hold: 3.0,
-      photo2Hold: 3.0,
-      photo3Hold: 3.4
+      photo1Hold: 1.4,          // Reading hold for first memory
+      photo2Hold: 1.5,          // Reading hold for second memory
+      photo3Hold: 1.6,          // Reading hold for third memory + thread weaving
+      threadDrawDuration: 1.3   // Sacred thread drawing speed
     }
   },
 
@@ -199,10 +253,20 @@ export const content = {
   // ==========================================
   scene11: {
     marketTag: "MORNING BAZAAR // GIFT PROCUREMENT",
+    marketShops: [
+      { name: 'SWEET BAZAAR 🍬', awning: 'repeating-linear-gradient(90deg, #dc2626 0, #dc2626 12px, #ffffff 12px, #ffffff 24px)', color: '#7c2d12', signColor: '#fef08a' },
+      { name: 'GIFT STATION 🎁', awning: 'repeating-linear-gradient(90deg, #fbbf24 0, #fbbf24 12px, #1e293b 12px, #1e293b 24px)', color: '#1e293b', signColor: '#fbbf24' },
+      { name: 'BAKERY & CHAI ☕', awning: 'repeating-linear-gradient(90deg, #15803d 0, #15803d 12px, #fef08a 12px, #fef08a 24px)', color: '#78350f', signColor: '#ffffff' },
+      { name: 'FLOWER CORNER 🌸', awning: 'repeating-linear-gradient(90deg, #f43f5e 0, #f43f5e 12px, #ffffff 12px, #ffffff 24px)', color: '#451a03', signColor: '#fecdd3' },
+      { name: 'ROYAL CHOCOLATES 🍫', awning: 'repeating-linear-gradient(90deg, #d97706 0, #d97706 12px, #451a03 12px, #451a03 24px)', color: '#1e1b4b', signColor: '#fbbf24' },
+      { name: 'PERFUMERY 💐', awning: 'repeating-linear-gradient(90deg, #0284c7 0, #0284c7 12px, #ffffff 12px, #ffffff 24px)', color: '#0f172a', signColor: '#bae6fd' }
+    ],
     gift1: {
       title: "KitKat Rich 🍫",
       subtitle: "The Official Chocolate Selection",
       reportTitle: "CASE FILE 04 // GIFT RESEARCH REPORT",
+      classifiedTag: "CLASSIFIED",
+      subtext: "\"Selecting this was not as simple as it should've been.\"",
       subject: "Subject: Anwesha 🧿",
       candidates: [
         "Chocolate A ❌ (Too sweet)",
@@ -215,10 +279,19 @@ export const content = {
       title: "Random Finds 🪻",
       subtitle: "Because one was never enough."
     },
+    narratives: [
+      "I still wanted to give these to you myself.",
+      "So here they are."
+    ],
+    assets: {
+      kitkat: "assets/gifts/kitkat.png",
+      bellavita: "assets/gifts/bellavita.png"
+    },
     timing: {
-      kitkatSpotlight: 3.6,
-      casefileReadHold: 3.8,
-      bellavitaSpotlight: 3.0
+      parallaxDuration: 11,     // Full street parallax cycle duration (seconds)
+      kitkatHeroHold: 2,      // Dedicated moment to appreciate KitKat
+      casefileReadHold: 3,    // Investigation board reading pause
+      bellavitaHeroHold: 3    // Bellavita collection hero moment
     }
   },
 
@@ -232,14 +305,17 @@ export const content = {
       title: "ME",
       description: "\"Professional overthinker. Occasional nuisance. Effort: unnecessarily high.\"",
       pill: "Will build entire apps instead of texting 🫡",
-      narrative: "Technically your brother. No refunds available."
+      narrative: "Technically your brother. No refunds available.",
+      image: "assets/portraits/diganta1.png"
     },
     sisterCard: {
       badge: "THE SISTER",
       title: "Anwesha 🧿",
       threatLevel: "THREAT: HIGH 🍫",
       description: "Will demand chocolate. Probably judging this scene.",
-      narrative: "Will demand KitKat. Probably judging this website right now."
+      narrative: "Will demand KitKat. Probably judging this website right now.",
+      image: "assets/portraits/anwesha6.png",
+      imageFallback: "assets/portraits/anwesha1.png"
     },
     monojitCard: {
       badge: "CATALYST OF RECORD",
@@ -252,13 +328,22 @@ export const content = {
     statusCard: {
       badge: "OFFICIAL SIBLING DOSSIER // EVALUATION",
       status: "Brother Status: PERMANENT 💀",
+      reliabilityLabel: "Reliability",
       reliability: "Questionable 🤔",
+      refundPolicyLabel: "Refund Policy",
       refundPolicy: "0% Available ❌",
+      sisterCareLabel: "Sister Care",
       sisterCare: "100% Guaranteed ❤️",
       narrative: "Diagnosis confirmed. You're stuck with me forever."
     },
     doNotPress: {
+      tag0: "⚠️ EMERGENCY LEVEL 0 // DO NOT TOUCH",
+      tag1: "⚠️ WARNING LEVEL 1 // DISOBEDIENCE DETECTED",
+      tag2: "🚨 WARNING LEVEL 2 // SIBLING RETALIATION IMMINENT",
+      tag3: "🔥 EMERGENCY LEVEL 3 // CHAOS OVERLOAD",
+      tag4: "✨ SIBLING CONTRACT RATIFIED",
       buttonText: "DO NOT PRESS ⚠️",
+      finalBtnText: "DO NOT PRESS (FINAL WARNING 🚨)",
       stage0: "Seriously. Do not press it.",
       stage1: "I literally told you not to.",
       stage2: "Okay, now you're just doing it because I told you not to.",
@@ -273,8 +358,17 @@ export const content = {
       { icon: "💻", label: "This is what happens when your brother learns HTML." },
       { icon: "🏆", label: "Achievement unlocked: Survived the sibling website!" }
     ],
+    toasts: {
+      climaxAchievement: {
+        title: "Cannot Follow Instructions 🚨",
+        description: "Max sibling chaos unlocked!",
+        icon: "🚨"
+      },
+      secretTitle: "Secret Discovered"
+    },
     timing: {
-      cardHold: 1.8
+      cardHold: 1.3,            // Reading hold for each sequential character dossier
+      cardTransitionDuration: 0.4 // Transition speed between character cards
     }
   },
 
@@ -299,10 +393,19 @@ export const content = {
       author: "Diganta 🧿"
     },
     nextBtnText: "The Sacred Thread",
+    nextBtnArrow: "→ 🧿",
+    toast: {
+      title: "Memory Saved",
+      description: "Saved forever in memory 🧿",
+      icon: "🧿"
+    },
     timing: {
-      paragraphCadence: 0.8 
+      paperEnterDelay: 0.2,     // Delay before paper unrolls
+      paragraphCadence: 0.6,    // Interval between progressive thought reveals (seconds)
+      signatureDelay: 0.5,      // Delay after paragraphs before signature appears
+      threadUnspoolDuration: 1.5 // Duration for corner thread to draw
     }
-  }, 
+  },
 
   // ==========================================
   // BEAT 14 — THE THREAD (COSMIC CONNECTION)
@@ -311,9 +414,16 @@ export const content = {
     fragments: ["4:30 AM", "5:30 AM", "7:30 AM", "MISSED CALL", "METRO", "BROKEN KITKAT"],
     digantaNode: "Diganta",
     anweshaNode: "Anwesha 🧿",
+    assets: {
+      digantaPortrait: "assets/portraits/diganta1.png",
+      anweshaPortrait: "assets/portraits/anwesha_hero.png",
+      anweshaFallback: "assets/portraits/anwesha12.png"
+    },
     timing: {
-      fragmentHold: 1.8,
-      threadDrawHold: 2.2
+      fragmentStagger: 0.1,     // Stagger between memory fragment badges
+      fragmentHold: 1.5,        // Reading hold for fragments
+      threadDrawDuration: 1.8,  // Duration of cosmic thread drawing between nodes
+      threadHold: 2.0           // Hold after connection is established
     }
   },
 
@@ -330,8 +440,12 @@ export const content = {
       "But I'll make sure the next one does."
     ],
     timing: {
-      thoughtCadence: 0.9,
-      finalThoughtHold: 2.0
+      thought1Hold: 0.9,
+      thought2Hold: 1.1,
+      thought3Hold: 0.9,
+      thought4Hold: 0.9,
+      thought5Hold: 0.8,
+      finalThoughtHold: 1.6
     }
   },
 
@@ -350,10 +464,21 @@ export const content = {
     apologyCallback2: "But still from the heart.",
     signature: "— Diganta",
     postCreditsBtn: "Epilogue: The Story Continues →",
+    assets: {
+      portraitBadge: "assets/portraits/anwesha12.png"
+    },
+    toast: {
+      title: "Surprise Complete 🎉",
+      description: "Happy Rakhi, Anwesha! 🧿❤️",
+      icon: "🎉"
+    },
     timing: {
-      lineHold: 1.5,
-      greetingHold: 2.2,
-      celebrationHold: 2.0
+      line1Hold: 1.2,           // Reading hold for "RAKHI TIED. FOREVER."
+      line2Hold: 1.2,           // Reading hold for "FESTIVE BLESSINGS..."
+      greetingHold: 1.8,        // Reading hold for emotional centerpiece name
+      apologyHold: 1.4,         // Reading hold for apology callback
+      signatureHold: 1.5,       // Reading hold for handwritten signature
+      celebrationHold: 1.0      // Particle burst and light bloom duration
     }
   },
 
@@ -371,7 +496,14 @@ export const content = {
       question: "Are you sure? We'll take you back to 4:30 AM.",
       confirm: "YES, REPLAY →",
       cancel: "NO, LET ME EAT THE KITKAT 🍫"
+    },
+    assets: {
+      kitkat: "assets/gifts/kitkat.png"
+    },
+    timing: {
+      kitkatEnterDuration: 1.0, // Broken kitkat fade in duration
+      crumbDelay: 0.9,          // Timing of deadpan crumb fall
+      cardEnterDelay: 1.4       // Timing of card appearance
     }
   }
 };
-

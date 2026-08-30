@@ -24,7 +24,7 @@ export class Scene08GoingHome {
 
       // 2. Procedural Progressive Midground (City Buildings -> Outskirt Poles -> Village Trees & Huts)
       let environmentHTML = '';
-      
+
       // Phase A: City (Items 0 to 8)
       for (let i = 0; i < 9; i++) {
         const h = 80 + Math.random() * 60;
@@ -186,10 +186,10 @@ export class Scene08GoingHome {
           <!-- Dialogue Overlays -->
           <div style="position:absolute;top:22%;left:50%;transform:translateX(-50%);z-index:30;display:flex;flex-direction:column;align-items:center;gap:12px;padding:20px;text-align:center;width:90%;max-width:360px;pointer-events:none;">
             <div class="text-dialogue" id="gh-msg1" style="opacity:0;font-size:1.15rem;color:#f8fafc;font-style:italic;text-shadow:0 2px 14px rgba(0,0,0,0.9);">
-              "The world outside slowed down."
+              "${c.dialogues[0]}"
             </div>
             <div class="text-dialogue" id="gh-msg2" style="opacity:0;font-size:1.15rem;color:#f8fafc;font-style:italic;text-shadow:0 2px 14px rgba(0,0,0,0.9);">
-              "Or maybe I just stopped noticing it."
+              "${c.dialogues[1]}"
             </div>
             <div class="text-whisper" id="gh-arrival" style="opacity:0;color:var(--rakhi-gold);font-size:1.45rem;letter-spacing:0.25em;font-weight:800;text-shadow:0 0 25px rgba(251,191,36,0.75);font-family:var(--font-serif);">
               ${c.stages[3].tag}
@@ -210,6 +210,12 @@ export class Scene08GoingHome {
       const msg1 = container.querySelector('#gh-msg1');
       const msg2 = container.querySelector('#gh-msg2');
       const arrival = container.querySelector('#gh-arrival');
+
+      const t = c.timing || {};
+      const travelDur = t.travelDuration ?? 4.8;
+      const autoTime = t.autoTransitionTime ?? 1.8;
+      const villageTime = t.villageTransitionTime ?? 3.4;
+      const arrHold = t.arrivalHold ?? 0.9;
 
       // Wheel continuous spinning around exact (0, 0) hub
       const wheels = [
@@ -248,16 +254,16 @@ export class Scene08GoingHome {
 
       this.tl
         // 1. Vehicle moves forward onto the road with travel inertia
-        .fromTo(vehicleStage, { x: -20 }, { x: 25, duration: 4.8, ease: 'sine.inOut' }, 0)
+        .fromTo(vehicleStage, { x: -20 }, { x: 25, duration: travelDur, ease: 'sine.inOut' }, 0)
 
         // 2. Scenery and road dashing high-speed parallax
         .to(dashes, { x: '-60%', duration: 0.8, ease: 'none', repeat: 5 }, 0)
-        .to(hills, { x: '-35%', duration: 4.8, ease: 'none' }, 0)
-        .to(scenery, { x: '-65%', duration: 4.6, ease: 'none' }, 0)
-        
-        // 3. First Dialogue: "The world outside slowed down."
+        .to(hills, { x: '-35%', duration: travelDur, ease: 'none' }, 0)
+        .to(scenery, { x: '-65%', duration: travelDur * 0.96, ease: 'none' }, 0)
+
+        // 3. First Dialogue
         .to(msg1, { opacity: 1, duration: 0.7, ease: 'power2.out' }, 0.3)
-        
+
         // 4. Outskirts Transition: Bus transitions to Auto-Rickshaw
         .call(() => {
           gsap.to(busVehicle, {
@@ -269,29 +275,29 @@ export class Scene08GoingHome {
               badge.textContent = `${c.stages[1].mode} // ${c.stages[1].tag}`;
             }
           });
-        }, [], 1.8)
-        
+        }, [], autoTime)
+
         // 5. Color grading shifts into rural greenery & warm sunlight
         .to(sky, {
           background: 'linear-gradient(180deg, #0284c7 0%, #7dd3fc 45%, #fef08a 100%)',
           duration: 1.2
-        }, 2.0)
-        
-        // 6. Second Dialogue: "Or maybe I just stopped noticing it."
-        .to(msg2, { opacity: 1, duration: 0.7, ease: 'power2.out' }, 2.2)
-        
+        }, autoTime + 0.2)
+
+        // 6. Second Dialogue
+        .to(msg2, { opacity: 1, duration: 0.7, ease: 'power2.out' }, autoTime + 0.4)
+
         // 7. Village road arrival
         .call(() => {
           badge.textContent = `${c.stages[2].mode} // ${c.stages[2].tag}`;
-        }, [], 3.4)
-        
+        }, [], villageTime)
+
         // 8. Clear dialogue and reveal HOME milestone
-        .to([msg1, msg2, badge], { opacity: 0, duration: 0.4 }, 3.6)
-        .to(arrival, { opacity: 1, scale: 1.05, duration: 0.6, ease: 'power2.out' }, 3.8)
-        .to({}, { duration: 0.9 })
-        
+        .to([msg1, msg2, badge], { opacity: 0, duration: 0.4 }, villageTime + 0.2)
+        .to(arrival, { opacity: 1, scale: 1.05, duration: 0.6, ease: 'power2.out' }, villageTime + 0.4)
+        .to({}, { duration: arrHold })
+
         // 9. Dissolve directly into Scene 09 (The Ceiling)
-        .to(viewport, { opacity: 0, scale: 0.96, duration: 0.5, ease: 'power2.in' }, 4.7);
+        .to(viewport, { opacity: 0, scale: 0.96, duration: 0.5, ease: 'power2.in' }, travelDur - 0.1);
     });
   }
 

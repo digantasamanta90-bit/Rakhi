@@ -11,6 +11,9 @@ export class Scene07BrokenKitkat {
   enter(container) {
     return new Promise((resolve) => {
       const c = content.scene07;
+      const t = c.timing || {};
+      const assets = c.assets || {};
+      const kitkatImgPath = assets.kitkat || 'assets/gifts/kitkat.png';
 
       container.innerHTML = `
         <div id="s7-viewport" style="position:relative;width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;overflow:hidden;background:radial-gradient(circle at 50% 40%, #070c18 0%, #0f172a 65%, #020617 100%);">
@@ -23,25 +26,25 @@ export class Scene07BrokenKitkat {
             
             <!-- Whole KitKat (Real PNG Asset) -->
             <div id="kitkat-whole-wrap" style="position:relative;width:210px;height:130px;display:flex;align-items:center;justify-content:center;">
-              <img src="assets/gifts/kitkat.png" id="kitkat-whole-img" alt="KitKat Rich" style="width:100%;height:auto;object-fit:contain;filter:drop-shadow(0 14px 30px rgba(0,0,0,0.85));" />
+              <img src="${kitkatImgPath}" id="kitkat-whole-img" alt="KitKat Rich" style="width:100%;height:auto;object-fit:contain;filter:drop-shadow(0 14px 30px rgba(0,0,0,0.85));" />
             </div>
 
             <!-- Broken KitKat Pieces (Real PNG Asset with precise fracture clipping) -->
             <div id="kitkat-broken-wrap" style="display:none;position:relative;width:230px;height:140px;">
               <!-- Left piece -->
               <div id="kitkat-piece-left" style="position:absolute;left:0;top:0;width:120px;height:140px;overflow:hidden;">
-                <img src="assets/gifts/kitkat.png" alt="KitKat Left" style="width:210px;height:auto;object-fit:contain;filter:drop-shadow(0 12px 24px rgba(0,0,0,0.85));position:absolute;left:0;top:8px;clip-path:polygon(0 0, 53% 0, 43% 100%, 0 100%);" />
+                <img src="${kitkatImgPath}" alt="KitKat Left" style="width:210px;height:auto;object-fit:contain;filter:drop-shadow(0 12px 24px rgba(0,0,0,0.85));position:absolute;left:0;top:8px;clip-path:polygon(0 0, 53% 0, 43% 100%, 0 100%);" />
               </div>
               <!-- Right piece -->
               <div id="kitkat-piece-right" style="position:absolute;right:0;top:0;width:120px;height:140px;overflow:hidden;">
-                <img src="assets/gifts/kitkat.png" alt="KitKat Right" style="width:210px;height:auto;object-fit:contain;filter:drop-shadow(0 12px 24px rgba(0,0,0,0.85));position:absolute;right:0;top:8px;clip-path:polygon(43% 0, 100% 0, 100% 100%, 53% 100%);" />
+                <img src="${kitkatImgPath}" alt="KitKat Right" style="width:210px;height:auto;object-fit:contain;filter:drop-shadow(0 12px 24px rgba(0,0,0,0.85));position:absolute;right:0;top:8px;clip-path:polygon(43% 0, 100% 0, 100% 100%, 53% 100%);" />
               </div>
             </div>
           </div>
 
           <!-- Impact Typography -->
           <div class="text-impact" id="crack-text" style="opacity:0;color:#ef4444;font-size:clamp(2.4rem,10vw,4.2rem);letter-spacing:0.16em;margin-top:16px;z-index:10;text-shadow:0 0 25px rgba(239,68,68,0.7);">
-            BROKE
+            ${c.impactText || 'BROKE'}
           </div>
 
           <!-- Comedic Deadpan Dialogue -->
@@ -60,6 +63,12 @@ export class Scene07BrokenKitkat {
       const crackText = container.querySelector('#crack-text');
       const msg = container.querySelector('#kitkat-msg');
 
+      const heroHold = t.heroHold ?? 0.7;
+      const dropSpd = t.dropSpeed ?? 0.22;
+      const crackHold = t.crackReactionHold ?? 0.2;
+      const jokeHld = t.jokeHold ?? 1.1;
+      const transDur = t.transitionDuration ?? 0.45;
+
       this.tl = gsap.timeline({
         onComplete: () => {
           gsap.set(viewport, { clearProps: 'x,y,transform' });
@@ -75,10 +84,10 @@ export class Scene07BrokenKitkat {
           { opacity: 1, scale: 1, y: -10, duration: 0.6, ease: 'back.out(1.2)' }, 
           0.1
         )
-        .to(wholeImg, { y: -15, rotation: 2, duration: 0.7, ease: 'sine.inOut', yoyo: true, repeat: 1 })
+        .to(wholeImg, { y: -15, rotation: 2, duration: heroHold, ease: 'sine.inOut', yoyo: true, repeat: 1 })
         
         // 2. Sudden slip and drop
-        .to(wholeImg, { y: 48, rotation: 8, duration: 0.22, ease: 'power2.in' })
+        .to(wholeImg, { y: 48, rotation: 8, duration: dropSpd, ease: 'power2.in' })
         
         // 3. Impact & Fracture Switch with clean shake reset
         .call(() => {
@@ -98,12 +107,12 @@ export class Scene07BrokenKitkat {
         .fromTo(crackText, { opacity: 0, scale: 2.2 }, { opacity: 1, scale: 1, duration: 0.15, ease: 'power4.out' })
         
         // 6. Comedic deadpan dialogue reveals quickly
-        .to(crackText, { opacity: 0.25, duration: 0.35 }, "+=0.2")
+        .to(crackText, { opacity: 0.25, duration: 0.35 }, `+=${crackHold}`)
         .to(msg, { opacity: 1, duration: 0.5 }, "<")
-        .to({}, { duration: 1.1 }) // brief comedic hold to read
+        .to({}, { duration: jokeHld }) // brief comedic hold to read
         
         // 7. Fade out directly into Scene 08 (Going Home)
-        .to(viewport, { opacity: 0, duration: 0.45, ease: 'power2.in' });
+        .to(viewport, { opacity: 0, duration: transDur, ease: 'power2.in' });
     });
   }
 
@@ -112,5 +121,3 @@ export class Scene07BrokenKitkat {
     return Promise.resolve();
   }
 }
-
-

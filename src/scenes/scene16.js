@@ -29,6 +29,13 @@ export class Scene16RakhiFinale {
   enter(container) {
     return new Promise((resolve) => {
       const c = content.scene16;
+      const t = c.timing || {};
+      const assets = c.assets || {};
+      const toast = c.toast || {
+        title: 'Surprise Complete 🎉',
+        description: 'Happy Rakhi, Anwesha! 🧿❤️',
+        icon: '🎉'
+      };
 
       container.innerHTML = `
         <div style="position:relative;width:100%;height:100%;overflow-y:auto;overflow-x:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:calc(env(safe-area-inset-top,10px) + 20px) 16px 36px 16px;background:linear-gradient(180deg, #1e1b4b 0%, #450a0a 50%, #78350f 100%);">
@@ -40,7 +47,7 @@ export class Scene16RakhiFinale {
             
             <!-- STEP 2: Anwesha Hero Portrait -->
             <div id="f-portrait-badge" style="opacity:0;transform:scale(0.8) translateY(-20px);width:80px;height:80px;border-radius:50%;border:3px solid var(--rakhi-gold);overflow:hidden;box-shadow:0 0 25px rgba(251,191,36,0.4);margin-bottom:12px;cursor:pointer;">
-              <img src="assets/portraits/anwesha12.png" alt="Anwesha" style="width:100%;height:100%;object-fit:cover;" onerror="this.src='assets/portraits/anwesha12.png';">
+              <img src="${assets.portraitBadge || 'assets/portraits/anwesha12.png'}" alt="Anwesha" style="width:100%;height:100%;object-fit:cover;" onerror="this.src='${assets.portraitBadgeFallback || 'assets/portraits/anwesha12.png'}';">
             </div>
 
             <!-- STEP 1: The Master Rakhi Medallion -->
@@ -118,12 +125,20 @@ export class Scene16RakhiFinale {
       const apol2 = container.querySelector('#f-apol-2');
       const signature = container.querySelector('#f-signature');
 
+      const rakhiHold = t.rakhiCompleteHold ?? 1.2;
+      const l1Hold = t.line1Hold ?? 1.2;
+      const l2Hold = t.line2Hold ?? 1.2;
+      const greetHold = t.greetingHold ?? 1.8;
+      const apolHold = t.apologyHold ?? 1.4;
+      const sigHold = t.signatureHold ?? 1.5;
+      const breathHold = t.visualBreathHold ?? 1.0;
+
       this.tl = gsap.timeline();
 
       // STEP 1: Rakhi completes as sole focal object
       this.tl
         .to(rakhiWrap, { opacity: 1, scale: 1, y: 0, duration: 1.2, ease: 'bounce.out', delay: 0.2 })
-        .to({}, { duration: 1.2 })
+        .to({}, { duration: rakhiHold })
 
         // STEP 2: Portrait enters & settles
         .to(portraitBadge, { opacity: 1, scale: 1, y: 0, duration: 1.0, ease: 'back.out(1.2)' })
@@ -152,13 +167,13 @@ export class Scene16RakhiFinale {
 
           // STEP 3: "RAKHI TIED. FOREVER."
           .to(line1, { opacity: 1, y: 0, duration: 0.6, ease: 'power2.out' })
-          .to({}, { duration: 1.2 })
+          .to({}, { duration: l1Hold })
           .to(line1, { opacity: 0, y: -8, duration: 0.4, ease: 'power2.in' })
           .to({}, { duration: 0.2 })
 
           // STEP 4: "FESTIVE BLESSINGS • FOREVER BOND"
           .to(line2, { opacity: 1, y: 0, duration: 0.6, ease: 'power2.out' })
-          .to({}, { duration: 1.2 })
+          .to({}, { duration: l2Hold })
           .to(line2, { opacity: 0, y: -8, duration: 0.4, ease: 'power2.in' })
           .to({}, { duration: 0.25 })
 
@@ -166,7 +181,7 @@ export class Scene16RakhiFinale {
           .to(greetLead, { opacity: 1, y: 0, duration: 0.7, ease: 'power2.out' })
           .to({}, { duration: 0.6 })
           .to(greetName, { opacity: 1, scale: 1, duration: 0.8, ease: 'back.out(1.3)' })
-          .to({}, { duration: 1.8 })
+          .to({}, { duration: greetHold })
           .to([greetLead, greetName], { opacity: 0, y: -10, duration: 0.5, ease: 'power2.in' })
           .to({}, { duration: 0.25 })
 
@@ -174,18 +189,18 @@ export class Scene16RakhiFinale {
           .to(apol1, { opacity: 1, y: 0, duration: 0.6, ease: 'power2.out' })
           .to({}, { duration: 0.6 })
           .to(apol2, { opacity: 1, y: 0, duration: 0.7, ease: 'power2.out' })
-          .to({}, { duration: 1.4 })
+          .to({}, { duration: apolHold })
           .to([apol1, apol2], { opacity: 0, duration: 0.5, ease: 'power2.in' })
           .to({}, { duration: 0.25 })
 
           // STEP 7: SIGNATURE ("— Diganta 🧿")
           .to(signature, { opacity: 1, y: 0, duration: 0.7, ease: 'power2.out' })
-          .to({}, { duration: 1.5 })
+          .to({}, { duration: sigHold })
           .to(signature, { opacity: 0, duration: 0.6, ease: 'power2.in' })
           .to({}, { duration: 0.3 })
 
           // STEP 8: FINAL VISUAL BREATH
-          .to({}, { duration: 1.0 })
+          .to({}, { duration: breathHold })
 
           // STEP 9: GRADUAL CELEBRATION RELEASE
           .call(() => {
@@ -194,7 +209,7 @@ export class Scene16RakhiFinale {
               glow.style.background = 'radial-gradient(circle at 50% 40%, rgba(251,191,36,0.35) 0%, rgba(220,38,38,0.25) 45%, rgba(15,23,42,0.95) 85%)';
             }
             if (this.achievements) {
-              this.achievements.show('Surprise Complete 🎉', 'Happy Rakhi, Anwesha! 🧿❤️', '🎉');
+              this.achievements.show(toast.title, toast.description, toast.icon);
             }
           })
           .to({}, { duration: 0.3 })
@@ -242,4 +257,3 @@ export class Scene16RakhiFinale {
     return Promise.resolve();
   }
 }
-
