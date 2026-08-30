@@ -27,6 +27,10 @@ export class CinematicSceneManager {
     this.holdStartY = 0;
     this.isHolding = false;
 
+    // Mobile / Page Lifecycle Auto-Pause & Resume Checkpoint State
+    this.wasPlayingBeforeHidden = false;
+    this.isPageHidden = false;
+
     // Navigation and Pause UI References
     this.pauseBtn = null;
     this.navPrevBtn = null;
@@ -34,6 +38,7 @@ export class CinematicSceneManager {
 
     this.initHoldToPause();
     this.initAudioSync();
+    this.initPageLifecycle();
   }
 
   get playbackState() {
@@ -73,6 +78,8 @@ export class CinematicSceneManager {
     if (this.audio) {
       // Synchronize when the audio element is paused externally (e.g. lockscreen / notification)
       this.audio.onPause = () => {
+        // If paused because the page was hidden / auto-paused, do not treat as external manual pause
+        if (this.isPageHidden || this.wasPlayingBeforeHidden) return;
         if (state.playbackState === PLAYBACK_STATE.PLAYING && !this.isHoldPaused) {
           this.pausePersistent();
         }
@@ -94,11 +101,56 @@ export class CinematicSceneManager {
             }
           });
           navigator.mediaSession.setActionHandler('pause', () => {
+            this.wasPlayingBeforeHidden = false;
             if (this.isPlaying) {
               this.pausePersistent();
             }
           });
         } catch (e) {}
+      }
+    }
+  }
+
+  initPageLifecycle() {
+    const handleVisibilityChange = () => {
+      if (document.visibilityState === 'hidden') {
+        this.handlePageHidden();
+      } else if (document.visibilityState === 'visible') {
+        this.handlePageVisible();
+      }
+    };
+
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+    window.addEventListener('pagehide', () => this.handlePageHidden());
+    window.addEventListener('pageshow', () => {
+      if (document.visibilityState === 'visible') {
+        this.handlePageVisible();
+      }
+    });
+  }
+
+  handlePageHidden() {
+    if (this.isPageHidden) return;
+    this.isPageHidden = true;
+
+    // Only auto-pause if actively PLAYING (not IDLE and not manually PAUSED)
+    if (state.playbackState === PLAYBACK_STATE.PLAYING && !this.isHoldPaused) {
+      this.wasPlayingBeforeHidden = true;
+      this._applyPauseState();
+    } else {
+      this.wasPlayingBeforeHidden = false;
+    }
+  }
+
+  handlePageVisible() {
+    if (!this.isPageHidden) return;
+    this.isPageHidden = false;
+
+    // Auto-resume from exact checkpoint ONLY if actively playing before page was hidden
+    if (this.wasPlayingBeforeHidden) {
+      this.wasPlayingBeforeHidden = false;
+      if (state.playbackState === PLAYBACK_STATE.PLAYING && !this.isHoldPaused) {
+        this._applyResumeState();
       }
     }
   }
@@ -118,6 +170,7 @@ export class CinematicSceneManager {
   // --- DUAL PAUSE / RESUME ARCHITECTURE ---
 
   startExperience() {
+    this.wasPlayingBeforeHidden = false;
     this.updatePlaybackState(PLAYBACK_STATE.PLAYING);
     if (window.gsap && gsap.globalTimeline) {
       gsap.globalTimeline.resume();
@@ -132,12 +185,14 @@ export class CinematicSceneManager {
   }
 
   pausePersistent() {
+    this.wasPlayingBeforeHidden = false;
     if (state.playbackState === PLAYBACK_STATE.PAUSED) return;
     this.updatePlaybackState(PLAYBACK_STATE.PAUSED);
     this._applyPauseState();
   }
 
   resumePersistent() {
+    this.wasPlayingBeforeHidden = false;
     if (state.playbackState === PLAYBACK_STATE.IDLE) {
       this.startExperience();
       return;
@@ -395,6 +450,8 @@ export class CinematicSceneManager {
   }
 
   restart() {
+    this.wasPlayingBeforeHidden = false;
+    this.isPageHidden = false;
     state.resetForReplay();
     this.updatePauseButtonUI();
     if (this.audio) {
