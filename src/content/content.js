@@ -225,7 +225,7 @@ export const content = {
   scene10: {
     memory1: {
       caption: "Chotokhuki 🧿",
-      subtext: "The little girl who grew up too fast.",
+      subtext: "Boddo taratari boro hoye geli.",
       image: "assets/portraits/anwesha_hero.png",
       fallback: "assets/portraits/anwesha1.png"
     },
@@ -250,7 +250,7 @@ export const content = {
   },
 
   // ==========================================
-  // BEAT 11 — THE GIFTS (KITKAT + BELLAVITA)
+  // BEAT 11 — THE GIFTS (MILKYBAR + BELLAVITA)
   // ==========================================
   scene11: {
     marketTag: "MORNING BAZAAR // GIFT PROCUREMENT",
@@ -259,20 +259,20 @@ export const content = {
       { name: 'GIFT STATION 🎁', awning: 'repeating-linear-gradient(90deg, #fbbf24 0, #fbbf24 12px, #1e293b 12px, #1e293b 24px)', color: '#1e293b', signColor: '#fbbf24' },
       { name: 'BAKERY & CHAI ☕', awning: 'repeating-linear-gradient(90deg, #15803d 0, #15803d 12px, #fef08a 12px, #fef08a 24px)', color: '#78350f', signColor: '#ffffff' },
       { name: 'FLOWER CORNER 🌸', awning: 'repeating-linear-gradient(90deg, #f43f5e 0, #f43f5e 12px, #ffffff 12px, #ffffff 24px)', color: '#451a03', signColor: '#fecdd3' },
-      { name: 'ROYAL CHOCOLATES 🍫', awning: 'repeating-linear-gradient(90deg, #d97706 0, #d97706 12px, #451a03 12px, #451a03 24px)', color: '#1e1b4b', signColor: '#fbbf24' },
+      { name: 'MILKY CHOCOLATES 🍫', awning: 'repeating-linear-gradient(90deg, #fbbf24 0, #fbbf24 12px, #2563eb 12px, #2563eb 24px)', color: '#172554', signColor: '#fef08a' },
       { name: 'PERFUMERY 💐', awning: 'repeating-linear-gradient(90deg, #0284c7 0, #0284c7 12px, #ffffff 12px, #ffffff 24px)', color: '#0f172a', signColor: '#bae6fd' }
     ],
     gift1: {
-      title: "KitKat Rich 🍫",
-      subtitle: "The Official Chocolate Selection",
+      title: "Milkybar",
+      subtitle: "The Official White Chocolate Selection",
       reportTitle: "CASE FILE 04 // GIFT RESEARCH REPORT",
       classifiedTag: "CLASSIFIED",
       subtext: "\"Selecting this was not as simple as it should've been.\"",
       subject: "Subject: Anwesha 🧿",
       candidates: [
-        "Chocolate A ❌ (Too sweet)",
-        "Chocolate B 🤔 (Dubious quality)",
-        "KitKat Rich 🏆 (Approved by Monojit)"
+        "Silk ❌ (Too sweet)",
+        "KitKat 🤔 (Approved by Monojit but was broken)",
+        "Milkybar 🏆 (The only backup)"
       ],
       footerNote: "Assistant Researcher: Monojit (Second opinion was legally required 💀)"
     },
@@ -285,14 +285,17 @@ export const content = {
       "So here they are."
     ],
     assets: {
+      chocolate: "assets/gifts/milkybar.png",
+      milkybar: "assets/gifts/milkybar.png",
       kitkat: "assets/gifts/kitkat.png",
       bellavita: "assets/gifts/bellavita.png"
     },
     timing: {
       parallaxDuration: 11,     // Full street parallax cycle duration (seconds)
-      kitkatHeroHold: 2,      // Dedicated moment to appreciate KitKat
-      casefileReadHold: 3,    // Investigation board reading pause
-      bellavitaHeroHold: 3    // Bellavita collection hero moment
+      chocolateHeroHold: 2,     // Dedicated moment to appreciate Milkybar
+      kitkatHeroHold: 2,        // Backward compatibility alias
+      casefileReadHold: 3,      // Investigation board reading pause
+      bellavitaHeroHold: 3      // Bellavita collection hero moment
     },
     layout: {
       giftLabelGap: "22px" // Equal vertical spacing between narrative line, gift image, and card
@@ -358,7 +361,7 @@ export const content = {
     },
     motifs: [
       { icon: "🧿", label: "Nojor na lage." },
-      { icon: "🍫", label: "Ha, KitKat ta kha ebare giye. 🙂" },
+      { icon: "🍫", label: "Ha, Milkybar ta kha ebare giye. 🙂" },
       { icon: "💻", label: "Free er web developer. 💀" },
       { icon: "🏆", label: "Achievement unlocked: Survived the sibling website!" }
     ],
@@ -492,19 +495,19 @@ export const content = {
   scene17: {
     tag: "EPILOGUE // POST-CREDITS",
     title: "And that's the whole story. 🧿",
-    easterEgg: "Psst... Go eat the KitKat before it melts. 🍫😭",
+    easterEgg: "Psst... Go eat the Milkybar before it melts. 🍫😭",
     replayBtn: "Replay the Journey ↻",
     restartBtn: "Start from 4:30 AM",
     replayModal: {
       title: "Replay the Journey? ↻",
       question: "Are you sure? Back to 4:30 AM.",
       confirm: "YES, REPLAY →",
-      cancel: "NO, LET ME EAT THE KITKAT 🍫"
+      cancel: "NO, LET ME EAT THE MILKYBAR 🍫"
     },
     assets: {
       kitkat: "assets/gifts/kitkat.png"
-    },
-    timing: {
+    }, 
+    timing: { 
       kitkatEnterDuration: 1.0, // Broken kitkat fade in duration
       crumbDelay: 0.9,          // Timing of deadpan crumb fall
       cardEnterDelay: 1.4       // Timing of card appearance

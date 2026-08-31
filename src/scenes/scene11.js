@@ -1,4 +1,5 @@
 import { content } from '../content/content.js';
+import { renderMilkybarIconSvg, replaceMilkybarIcon } from '../components/MilkybarVisual.js';
 
 export class Scene11Gifts {
   constructor({ manager, audio, particles, achievements }) {
@@ -30,7 +31,7 @@ export class Scene11Gifts {
         { name: 'GIFT STATION 🎁', awning: 'repeating-linear-gradient(90deg, #fbbf24 0, #fbbf24 12px, #1e293b 12px, #1e293b 24px)', color: '#1e293b', signColor: '#fbbf24' },
         { name: 'BAKERY & CHAI ☕', awning: 'repeating-linear-gradient(90deg, #15803d 0, #15803d 12px, #fef08a 12px, #fef08a 24px)', color: '#78350f', signColor: '#ffffff' },
         { name: 'FLOWER CORNER 🌸', awning: 'repeating-linear-gradient(90deg, #f43f5e 0, #f43f5e 12px, #ffffff 12px, #ffffff 24px)', color: '#451a03', signColor: '#fecdd3' },
-        { name: 'ROYAL CHOCOLATES 🍫', awning: 'repeating-linear-gradient(90deg, #d97706 0, #d97706 12px, #451a03 12px, #451a03 24px)', color: '#1e1b4b', signColor: '#fbbf24' },
+        { name: 'MILKY CHOCOLATES 🍫', awning: 'repeating-linear-gradient(90deg, #fbbf24 0, #fbbf24 12px, #2563eb 12px, #2563eb 24px)', color: '#172554', signColor: '#fef08a' },
         { name: 'PERFUMERY 💐', awning: 'repeating-linear-gradient(90deg, #0284c7 0, #0284c7 12px, #ffffff 12px, #ffffff 24px)', color: '#0f172a', signColor: '#bae6fd' }
       ];
 
@@ -46,7 +47,7 @@ export class Scene11Gifts {
           </div>
           <!-- Shop Signboard -->
           <div style="margin:10px auto 4px auto;padding:3px 8px;background:rgba(0,0,0,0.7);border-radius:4px;border:1px solid rgba(255,255,255,0.2);color:${shop.signColor};font-family:var(--font-mono);font-size:0.65rem;font-weight:700;letter-spacing:0.06em;text-align:center;">
-            ${shop.name}
+            ${replaceMilkybarIcon(shop.name, 13)}
           </div>
           <!-- Storefront Display Window -->
           <div style="flex:1;margin:4px 8px 8px 8px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:4px;display:flex;align-items:center;justify-content:center;color:#cbd5e1;font-size:1.2rem;">
@@ -55,11 +56,11 @@ export class Scene11Gifts {
         </div>
       `).join('');
 
-      const kitkatImgPath = assets.kitkat || 'assets/gifts/kitkat.png';
+      const chocImgPath = assets.chocolate || assets.milkybar || assets.kitkat || 'assets/gifts/milkybar.png';
       const bellavitaImgPath = assets.bellavita || 'assets/gifts/bellavita.png';
 
       container.innerHTML = `
-        <div class="market-street-env" id="s11-viewport" style="position:relative;width:100%;height:100%;overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;background:radial-gradient(circle at 50% 35%, #451a03 0%, #1e293b 50%, #070c18 100%);">
+        <div class="market-street-env" id="s11-viewport" style="position:relative;width:100%;height:100%;overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;background:radial-gradient(circle at 50% 35%, #1e3a8a 0%, #0f172a 50%, #070c18 100%);">
           
           <!-- Morning Sunbeam Atmosphere -->
           <div class="golden-hour-beam" style="opacity:0.35;filter:blur(30px);"></div>
@@ -80,25 +81,25 @@ export class Scene11Gifts {
           <!-- Section A: Main Focal Gift Stage Container (Center Spotlight) -->
           <div id="g-main-stage" style="position:relative;width:100%;max-width:360px;height:440px;display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:20;">
             
-            <!-- Shot 1: KitKat Hero Object (Narrative + Image + Card with Equal Spacing) -->
-            <div id="g-kitkat-view" style="position:absolute;display:flex;flex-direction:column;align-items:center;opacity:0;transform:translateY(-40px) scale(0.9);z-index:20;cursor:pointer;">
+            <!-- Shot 1: Milkybar Hero Object (Narrative + Image + Card with Equal Spacing) -->
+            <div id="g-chocolate-view" style="position:absolute;display:flex;flex-direction:column;align-items:center;opacity:0;transform:translateY(-40px) scale(0.9);z-index:20;cursor:pointer;">
               <p id="g-line-1" class="text-dialogue" style="font-size:clamp(1.05rem,3.6vw,1.22rem);color:#f8fafc;margin:0 0 ${giftLabelGap} 0;font-style:italic;text-shadow:0 2px 12px rgba(0,0,0,0.9);text-align:center;">
                 "${narratives[0]}"
               </p>
               <div style="position:relative;width:210px;height:140px;display:flex;align-items:center;justify-content:center;margin-bottom:${giftLabelGap};">
-                <img src="${kitkatImgPath}" alt="${caseData.title || 'KitKat Rich'}" id="g-kitkat-img" style="width:100%;height:auto;object-fit:contain;filter:drop-shadow(0 16px 36px rgba(0,0,0,0.85));" />
+                <img src="${chocImgPath}" alt="${caseData.title || 'Milkybar'}" id="g-chocolate-img" style="width:100%;height:auto;object-fit:contain;filter:drop-shadow(0 16px 36px rgba(0,0,0,0.85));" />
               </div>
-              <div class="gift-label-wrap">
-                <div class="gift-label" style="font-size:1.15rem;color:#f8fafc;font-family:var(--font-serif);font-weight:700;letter-spacing:0.02em;text-shadow:0 2px 10px rgba(0,0,0,0.8);text-align:center;">${caseData.title}</div>
-                <div class="text-whisper" style="font-size:0.7rem;color:var(--cinema-text-muted);margin-top:4px;letter-spacing:0.14em;text-align:center;">${caseData.subtitle.toUpperCase()}</div>
+              <div class="gift-label-wrap" style="border-color:rgba(250,204,21,0.4);background:rgba(15,23,42,0.7);box-shadow:0 4px 20px rgba(0,0,0,0.5),0 0 15px rgba(250,204,21,0.12);">
+                <div class="gift-label" style="font-size:1.18rem;color:#fffdf5;font-family:var(--font-serif);font-weight:700;letter-spacing:0.02em;text-shadow:0 2px 10px rgba(0,0,0,0.8);text-align:center;">${replaceMilkybarIcon(caseData.title, 18)}</div>
+                <div class="text-whisper" style="font-size:0.7rem;color:#93c5fd;margin-top:4px;letter-spacing:0.14em;text-align:center;font-weight:600;">${caseData.subtitle.toUpperCase()}</div>
               </div>
             </div>
 
             <!-- Shot 2: Case File 04 Investigation Board (Dossier) -->
-            <div id="g-casefile-board" style="position:absolute;width:315px;background:rgba(15,23,42,0.96);border:1px solid rgba(255,255,255,0.18);border-radius:14px;padding:18px 16px;box-shadow:0 18px 50px rgba(0,0,0,0.9);opacity:0;transform:scale(0.85);z-index:25;pointer-events:none;backdrop-filter:blur(12px);">
+            <div id="g-casefile-board" style="position:absolute;width:315px;background:rgba(15,23,42,0.96);border:1px solid rgba(250,204,21,0.35);border-radius:14px;padding:18px 16px;box-shadow:0 18px 50px rgba(0,0,0,0.9),0 0 20px rgba(37,99,235,0.08);opacity:0;transform:scale(0.85);z-index:25;pointer-events:none;backdrop-filter:blur(12px);">
               <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;border-bottom:1px dashed rgba(255,255,255,0.2);padding-bottom:6px;">
                 <span class="text-timestamp-sm" style="color:#f8fafc;font-size:0.7rem;font-weight:700;letter-spacing:0.06em;">${caseData.reportTitle}</span>
-                <span class="text-whisper" style="font-size:0.62rem;color:#ef4444;font-weight:700;">${caseData.classifiedTag || 'CLASSIFIED'}</span>
+                <span class="text-whisper" style="font-size:0.62rem;color:#38bdf8;font-weight:700;letter-spacing:0.06em;">${caseData.classifiedTag || 'CLASSIFIED'}</span>
               </div>
               
               <div style="font-size:0.8rem;color:#cbd5e1;margin-bottom:10px;line-height:1.4;font-style:italic;">
@@ -113,8 +114,8 @@ export class Scene11Gifts {
                 <div id="g-cand-2" style="display:flex;justify-content:space-between;padding:5px 8px;background:rgba(255,255,255,0.06);border-radius:4px;opacity:0;">
                   <span style="color:#cbd5e1;">${caseData.candidates[1]}</span>
                 </div>
-                <div id="g-cand-3" style="display:flex;justify-content:space-between;padding:5px 8px;background:rgba(255,255,255,0.12);border-radius:4px;border:1px solid rgba(255,255,255,0.3);opacity:0;">
-                  <span style="color:#ffffff;font-weight:700;">${caseData.candidates[2]}</span>
+                <div id="g-cand-3" style="display:flex;justify-content:space-between;padding:5px 8px;background:rgba(250,204,21,0.12);border-radius:4px;border:1px solid rgba(250,204,21,0.4);opacity:0;box-shadow:0 0 12px rgba(250,204,21,0.1);">
+                  <span style="color:#fffdf5;font-weight:700;">${replaceMilkybarIcon(caseData.candidates[2], 14)}</span>
                 </div>
               </div>
 
@@ -142,8 +143,8 @@ export class Scene11Gifts {
 
       const shopsStream = container.querySelector('#mkt-shops-stream');
       const wires = container.querySelector('#mkt-overhead-wires');
-      const kitkatView = container.querySelector('#g-kitkat-view');
-      const kitkatImg = container.querySelector('#g-kitkat-img');
+      const chocView = container.querySelector('#g-chocolate-view, #g-kitkat-view');
+      const chocImg = container.querySelector('#g-chocolate-img, #g-kitkat-img');
       const casefileBoard = container.querySelector('#g-casefile-board');
       const cand1 = container.querySelector('#g-cand-1');
       const cand2 = container.querySelector('#g-cand-2');
@@ -157,7 +158,7 @@ export class Scene11Gifts {
       const viewport = container.querySelector('#s11-viewport');
 
       const parDur = t.parallaxDuration ?? 5.6;
-      const kkHold = t.kitkatHeroHold ?? 1.1;
+      const chocHold = t.chocolateHeroHold ?? t.kitkatHeroHold ?? 1.1;
       const caseHold = t.casefileReadHold ?? 1.0;
       const bvHold = t.bellavitaHeroHold ?? 1.1;
 
@@ -168,24 +169,24 @@ export class Scene11Gifts {
         .to(shopsStream, { x: '-50%', duration: parDur, ease: 'none' }, 0)
         .to(wires, { x: '-50%', duration: 3.5, ease: 'none', repeat: -1 }, 0)
 
-        // 2. KitKat Hero Entrance - Full Screen Presence
-        .to(kitkatView, { opacity: 1, y: 0, scale: 1, duration: 0.55, ease: 'back.out(1.2)' }, 0.1)
-        .to({}, { duration: kkHold }, 0.65) // Dedicated hero moment to view KitKat
+        // 2. Milkybar Hero Entrance - Full Screen Presence
+        .to(chocView, { opacity: 1, y: 0, scale: 1, duration: 0.55, ease: 'back.out(1.2)' }, 0.1)
+        .to({}, { duration: chocHold }, 0.65) // Dedicated hero moment to view Milkybar
 
         // 3. Case File 04 Investigation Reveal
-        .to(kitkatView, { scale: 0.75, y: -65, opacity: 0.2, duration: 0.35, ease: 'power2.inOut' }, 0.65 + kkHold)
-        .to(casefileBoard, { opacity: 1, scale: 1, duration: 0.45, ease: 'back.out(1.2)' }, 0.75 + kkHold)
-        .to(cand1, { opacity: 1, x: 0, duration: 0.2 }, 1.05 + kkHold)
-        .to(cand2, { opacity: 1, x: 0, duration: 0.2 }, 1.25 + kkHold)
-        .to(cand3, { opacity: 1, x: 0, duration: 0.3, ease: 'back.out(1.4)' }, 1.45 + kkHold)
-        .to(caseFooter, { opacity: 1, duration: 0.3 }, 1.75 + kkHold)
-        .to({}, { duration: caseHold }, 2.05 + kkHold) // Investigation reading pause
+        .to(chocView, { scale: 0.75, y: -65, opacity: 0.2, duration: 0.35, ease: 'power2.inOut' }, 0.65 + chocHold)
+        .to(casefileBoard, { opacity: 1, scale: 1, duration: 0.45, ease: 'back.out(1.2)' }, 0.75 + chocHold)
+        .to(cand1, { opacity: 1, x: 0, duration: 0.2 }, 1.05 + chocHold)
+        .to(cand2, { opacity: 1, x: 0, duration: 0.2 }, 1.25 + chocHold)
+        .to(cand3, { opacity: 1, x: 0, duration: 0.3, ease: 'back.out(1.4)' }, 1.45 + chocHold)
+        .to(caseFooter, { opacity: 1, duration: 0.3 }, 1.75 + chocHold)
+        .to({}, { duration: caseHold }, 2.05 + chocHold) // Investigation reading pause
 
         // 4. Case File closes -> Bellavita Collection emerges
-        .to(casefileBoard, { opacity: 0, scale: 0.85, duration: 0.3, ease: 'power2.in' }, 2.95 + kkHold + caseHold)
-        .to(kitkatView, { opacity: 0, duration: 0.2 }, 2.95 + kkHold + caseHold)
-        .to(bellavitaView, { opacity: 1, y: 0, scale: 1, duration: 0.55, ease: 'power2.out' }, 3.15 + kkHold + caseHold)
-        .to({}, { duration: bvHold }, 3.8 + kkHold + caseHold) // Bellavita hero moment
+        .to(casefileBoard, { opacity: 0, scale: 0.85, duration: 0.3, ease: 'power2.in' }, 2.95 + chocHold + caseHold)
+        .to(chocView, { opacity: 0, duration: 0.2 }, 2.95 + chocHold + caseHold)
+        .to(bellavitaView, { opacity: 1, y: 0, scale: 1, duration: 0.55, ease: 'power2.out' }, 3.15 + chocHold + caseHold)
+        .to({}, { duration: bvHold }, 3.8 + chocHold + caseHold) // Bellavita hero moment
 
         // 5. Seamless Transition directly into Sibling Zone (Scene 12)
         .to(mainStage, { opacity: 0, scale: 0.96, y: -10, duration: 0.4, ease: 'power2.inOut' }, parDur - 0.4)
@@ -196,10 +197,17 @@ export class Scene11Gifts {
         }, null, parDur);
 
       // Tactile physical taps on gift objects
-      if (kitkatView) {
-        kitkatView.addEventListener('click', (e) => {
+      if (chocView) {
+        chocView.addEventListener('click', (e) => {
           e.stopPropagation();
-          gsap.fromTo(kitkatImg, { scale: 1.15 }, { scale: 1, duration: 0.4, ease: 'elastic.out(1, 0.4)' });
+          gsap.fromTo(chocImg, { scale: 1.15 }, { scale: 1, duration: 0.4, ease: 'elastic.out(1, 0.4)' });
+        });
+      }
+
+      if (bellavitaView) {
+        bellavitaView.addEventListener('click', (e) => {
+          e.stopPropagation();
+          gsap.fromTo(bellavitaImg, { scale: 1.15 }, { scale: 1, duration: 0.4, ease: 'elastic.out(1, 0.4)' });
         });
       }
 

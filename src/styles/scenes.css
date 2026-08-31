@@ -273,7 +273,7 @@
   font-weight: 500;
 }
 
-/* --- SCENE 4: DUAL GIFTS (KITKAT RICH + BELLAVITA) --- */
+/* --- DUAL GIFTS (MILKYBAR + BELLAVITA) --- */
 #scene-04 {
   background: radial-gradient(circle at 50% 25%, #fff9f5 0%, #f7ede3 55%, #ede0d4 100%);
 }
@@ -301,8 +301,8 @@
 }
 
 .gift-feature-card.chocolate {
-  border-color: var(--choco-border);
-  background: linear-gradient(135deg, #fffcf9 0%, var(--choco-card) 100%);
+  border-color: rgba(250, 204, 21, 0.35);
+  background: linear-gradient(135deg, #fffdf8 0%, rgba(254, 240, 138, 0.18) 60%, rgba(37, 99, 235, 0.08) 100%);
 }
 
 .gift-feature-card.perfume {

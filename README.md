@@ -137,7 +137,7 @@ The experience moves through a living market environment before revealing the gi
 
 The gift sequence includes:
 
-- KitKat
+- Milkybar (the backup that saved the day)
 - Research / case-file presentation
 - Bellavita
 
@@ -205,7 +205,7 @@ Fog, shadows, subdued motion, and slower pacing.
 
 **Gifts**
 
-A moving market environment that gives the gift reveals a sense of place.
+A moving market environment with a candy-inspired palette (warm yellow, creamy white, and soft royal blue for Milkybar) that gives the gift reveals a sense of place.
 
 **Finale**
 
@@ -298,70 +298,78 @@ Scene Logic
 Animation / Rendering
         ↓
 Global Scene + Audio Management
-content.js
+```
 
-The project uses content.js as the centralized source of truth for editable content and configuration.
+### `content.js`
+
+The project uses `content.js` as the centralized source of truth for editable content and configuration.
 
 This includes things such as:
 
-User-facing text
-Narrative
-Scene labels
-Timestamps
-Gift information
-Sibling information
-Letter content
-Finale text
-Audio references
-Asset references
-Editorial timing
-Scene-specific configuration
-Relevant interaction configuration
+- User-facing text
+- Narrative
+- Scene labels
+- Timestamps
+- Gift information & candidate evaluations
+- Sibling information
+- Letter content
+- Finale text
+- Audio references
+- Asset references
+- Editorial timing
+- Scene-specific configuration
+- Relevant interaction configuration
 
 This makes it possible to edit the experience without digging through animation implementation.
 
-Scene Files
+### Scene Files
 
 Scene files handle:
 
-Rendering
-DOM construction
-GSAP choreography
-Scene-specific interactions
-Animation lifecycle
-Visual implementation
-Global Systems
+- Rendering
+- DOM construction
+- GSAP choreography
+- Scene-specific interactions
+- Animation lifecycle
+- Visual implementation
+
+### Global Systems
 
 Global systems handle:
 
-Scene management
-Navigation
-Audio
-Pause/resume
-Global controls
-Application state
+- Scene management
+- Navigation
+- Audio
+- Pause/resume
+- Global controls
+- Application state
 
 The goal is to keep the story editable without turning the scene implementation into a giant collection of hardcoded text.
 
-🛠️ Technology
+---
+
+## 🛠️ Technology
 
 The project is primarily built using:
 
-HTML
-CSS
-JavaScript
-GSAP
-SVG
-Web Audio / HTML audio capabilities
-Browser APIs
-Local image and audio assets
+- HTML
+- CSS
+- JavaScript (ES Modules)
+- GSAP 3
+- SVG (Custom Illustrations & Inline Vector Icons)
+- Web Audio / HTML audio capabilities
+- Browser APIs
+- Local image and audio assets
 
 The project intentionally relies heavily on handcrafted frontend implementation rather than using a conventional website template.
 
-📁 Project Structure
+---
+
+## 📁 Project Structure
 
 The exact structure may evolve, but the project broadly follows this architecture:
 
+```text
 Rakhi/
 │
 ├── assets/
@@ -371,6 +379,12 @@ Rakhi/
 │   └── audio/
 │
 ├── src/
+│   ├── components/
+│   │   ├── MilkybarVisual.js
+│   │   ├── KitKatVisual.js
+│   │   ├── ParticleCanvas.js
+│   │   └── AchievementToast.js
+│   │
 │   ├── scenes/
 │   │   ├── scene01.js
 │   │   ├── scene02.js
@@ -381,61 +395,63 @@ Rakhi/
 │   ├── content/
 │   │   └── content.js
 │   │
+│   ├── styles/
+│   │   ├── variables.css
+│   │   ├── typography.css
+│   │   ├── global.css
+│   │   ├── components.css
+│   │   ├── animations.css
+│   │   ├── scenes.css
+│   │   └── cinematic.css
+│   │
 │   └── js/
-│       └── CinematicSceneManager.js
+│       ├── app.js
+│       ├── CinematicSceneManager.js
+│       ├── audioController.js
+│       └── interactionState.js
 │
 ├── index.html
-├── styles.css
-└── ...
+└── README.md
+```
 
 The actual repository structure may contain additional supporting files and assets.
 
-🎯 Design Principles
+---
+
+## 🎯 Design Principles
 
 The project follows a few principles throughout development.
 
-1. Story before features
+1. **Story before features**  
+   Every animation should have a reason to exist.
 
-Every animation should have a reason to exist.
+2. **Motion should communicate**  
+   Movement is not added simply because something can be animated.  
+   The environment helps communicate:
+   - time
+   - location
+   - emotion
+   - transition
+   - perspective
 
-2. Motion should communicate
+3. **No unnecessary sound effects**  
+   The project intentionally keeps the soundscape restrained. The BGM, alarm, and ringtone are enough.
 
-Movement is not added simply because something can be animated.
+4. **No dead screens**  
+   Transitions should feel continuous. If a scene needs more time, the environment should continue doing something meaningful.
 
-The environment should help communicate:
+5. **The user should never feel lost**  
+   Controls, navigation, and interaction should remain predictable even while the environment is moving.
 
-time
-location
-emotion
-transition
-perspective
-3. No unnecessary sound effects
+6. **Mobile matters**  
+   The experience is designed with mobile portrait viewing in mind. Viewport-safe positioning and interaction are treated as first-class concerns.
 
-The project intentionally keeps the soundscape restrained.
+7. **Personalization should feel intentional**  
+   Photos, names, gifts, memories, and messages are integrated into the experience rather than simply inserted into generic cards.
 
-The BGM, alarm, and ringtone are enough.
+---
 
-4. No dead screens
-
-Transitions should feel continuous.
-
-If a scene needs more time, the environment should continue doing something meaningful.
-
-5. The user should never feel lost
-
-Controls, navigation, and interaction should remain predictable even while the environment is moving.
-
-6. Mobile matters
-
-The experience is designed with mobile portrait viewing in mind.
-
-Viewport-safe positioning and interaction are treated as first-class concerns.
-
-7. Personalization should feel intentional
-
-Photos, names, gifts, memories, and messages are integrated into the experience rather than simply inserted into generic cards.
-
-🔊 Browser Considerations
+## 🔊 Browser Considerations
 
 Modern browsers restrict autoplay of audio.
 
@@ -445,48 +461,52 @@ On supported mobile devices, the alarm and ringtone moments can also use device 
 
 If vibration is unsupported, the experience continues normally without it.
 
-🚀 Running Locally
+---
+
+## 🚀 Running Locally
 
 Clone or download the private repository and serve the project through a local development server.
 
-For example, using VS Code with Live Server:
+For example, using VS Code with Live Server or Python:
 
-Open project
-→ Start Live Server
-→ Open index.html
+```bash
+# Python 3
+python -m http.server 8080
+```
+
+Open `http://localhost:8080` in your browser.
 
 The project is intended to run as a browser-based frontend experience.
 
-🧪 Development Philosophy
+---
 
-This project went through multiple iterations.
+## 🧪 Development Philosophy
 
-Some versions focused on:
+This project went through multiple iterations focused on:
 
-visual design
-scene choreography
-audio
-interaction
-cinematography
-responsive behavior
-timing
-content architecture
-performance
-transition handling
+- visual design
+- scene choreography
+- audio
+- interaction
+- cinematography
+- responsive behavior
+- timing
+- content architecture
+- performance
+- transition handling
 
 A recurring lesson throughout development was that something being technically implemented does not necessarily mean the user can actually perceive it correctly.
 
 For example:
-
-An animation existing in the code does not mean the scene feels animated.
-
-A configured delay does not mean the scene needs a pause.
-
-A transition completing does not mean the user should ever see an empty frame.
+- An animation existing in the code does not mean the scene feels animated.
+- A configured delay does not mean the scene needs a pause.
+- A transition completing does not mean the user should ever see an empty frame.
 
 The final experience is therefore judged primarily from the user's perspective.
 
-🔒 Privacy
+---
+
+## 🔒 Privacy
 
 This repository is intentionally private.
 
@@ -494,7 +514,9 @@ The project contains personal material, photographs, messages, and other assets 
 
 It is a personal project and is not intended to be published as a public template or reusable product.
 
-❤️ Why This Exists
+---
+
+## ❤️ Why This Exists
 
 This started as a small personal project.
 
@@ -504,19 +526,21 @@ The scope grew naturally as the project evolved.
 
 What began as:
 
-"I should make something for Rakhi."
+> *"I should make something for Rakhi."*
 
 eventually became:
 
-A Developer's Apology
+> **A Developer's Apology**
 
 The project is less about demonstrating a particular framework and more about exploring what can happen when frontend development is treated as a medium for storytelling.
 
 It is an experiment in combining:
 
-code + animation + music + memory + interaction + emotion.
+`code + animation + music + memory + interaction + emotion`
 
-📝 Status
+---
+
+## 📝 Status
 
 Completed.
 
@@ -526,23 +550,19 @@ Further improvements may happen in the future, because developers apparently can
 
 But the current experience is the intended version.
 
-👨‍💻 Author
+---
 
-Diganta
+## 👨‍💻 Author
 
-A student, developer, and the person who probably spent far too much time arguing with a GSAP timeline.
+**Diganta**  
+*A student, developer, and the person who probably spent far too much time arguing with a GSAP timeline.*
 
-🎬 Final Note
+---
+
+## 🎬 Final Note
 
 This project was never meant to be a normal website.
 
 It was meant to be experienced.
 
-A Developer's Apology.
-
-
-One thing I deliberately did here: I didn't make it sound like a commercial open-source project with fake badges, installation requirements, contribution guidelines, licenses, and “future roadmap” nonsense. Since this is staying private and is essentially your personal artifact, the README should document **what you built and why**, not pretend you're maintaining React 2.0. 😭
-
-And honestly, that final line in the README feels right:
-
-> **It was meant to be experienced.**
+> **A Developer's Apology**

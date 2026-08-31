@@ -6,6 +6,7 @@
  */
 
 import { content } from '../content/content.js';
+import { replaceMilkybarIcon } from '../components/MilkybarVisual.js';
 
 export class Scene17PostCredits {
   constructor({ manager, audio, particles, achievements }) {
@@ -52,14 +53,14 @@ export class Scene17PostCredits {
             </h3>
 
             <p style="font-size:0.86rem;color:#f8fafc;margin-bottom:18px;font-style:italic;line-height:1.45;">
-              ${c.easterEgg}
+              ${replaceMilkybarIcon(c.easterEgg, 15)}
             </p>
 
             <div style="display:flex;flex-direction:column;gap:10px;">
-              <button class="btn-primary" id="pc-replay-btn" style="padding:12px 20px;font-size:0.9rem;width:100%;background:var(--rakhi-red);color:#ffffff;border:none;border-radius:24px;cursor:pointer;font-weight:700;box-shadow:0 6px 20px rgba(220,38,38,0.4);">
+              <button class="btn-primary" id="pc-replay-btn" style="padding:12px 20px;font-size:0.9rem;width:100%;background:linear-gradient(135deg, #FFFDF0 0%, #FEF08A 30%, #FACC15 100%);color:#0f172a;border:1px solid rgba(37,99,235,0.35);border-radius:24px;cursor:pointer;font-weight:700;box-shadow:0 6px 20px rgba(250,204,21,0.38), 0 0 12px rgba(37,99,235,0.15);">
                 <span>${c.replayBtn}</span>
               </button>
-              <button class="btn-secondary" id="pc-restart-btn" style="font-size:0.8rem;padding:8px 16px;border:1px solid rgba(255,255,255,0.2);color:#cbd5e1;background:transparent;border-radius:20px;cursor:pointer;">
+              <button class="btn-secondary" id="pc-restart-btn" style="font-size:0.8rem;padding:8px 16px;border:1px solid rgba(147,197,253,0.3);color:#93c5fd;background:transparent;border-radius:20px;cursor:pointer;">
                 <span>${c.restartBtn}</span>
               </button>
             </div>
@@ -68,19 +69,19 @@ export class Scene17PostCredits {
 
         <!-- Replay Modal -->
         <div class="modal-overlay" id="pc-replay-modal" role="dialog" aria-modal="true" aria-label="Replay Confirmation">
-          <div class="modal-content" style="background:rgba(15,23,42,0.98);color:#f8fafc;border:1px solid rgba(251,191,36,0.3);text-align:center;padding:24px;border-radius:16px;">
-            <h3 style="font-family:var(--font-serif);font-size:1.3rem;color:var(--rakhi-gold);margin-bottom:8px;">
+          <div class="modal-content" style="background:rgba(15,23,42,0.98);color:#f8fafc;border:1px solid rgba(250,204,21,0.35);text-align:center;padding:24px;border-radius:16px;box-shadow:0 18px 50px rgba(0,0,0,0.9), 0 0 20px rgba(37,99,235,0.12);">
+            <h3 style="font-family:var(--font-serif);font-size:1.3rem;color:#fef08a;margin-bottom:8px;">
               ${c.replayModal.title}
             </h3>
             <p class="text-dialogue" style="font-size:0.9rem;margin-bottom:18px;color:#cbd5e1;">
               ${c.replayModal.question}
             </p>
             <div style="display:flex;gap:10px;justify-content:center;">
-              <button class="btn-primary" id="pc-confirm-replay" style="margin:0;padding:10px 20px;font-size:0.86rem;background:var(--rakhi-red);color:#ffffff;border-radius:20px;border:none;cursor:pointer;font-weight:600;">
+              <button class="btn-primary" id="pc-confirm-replay" style="margin:0;padding:10px 20px;font-size:0.86rem;background:linear-gradient(135deg, #FFFDF0 0%, #FEF08A 30%, #FACC15 100%);color:#0f172a;border:1px solid rgba(37,99,235,0.35);border-radius:20px;cursor:pointer;font-weight:700;box-shadow:0 4px 16px rgba(250,204,21,0.35);">
                 ${c.replayModal.confirm}
               </button>
-              <button class="btn-secondary" id="pc-cancel-replay" style="font-size:0.86rem;padding:10px 18px;border:1px solid rgba(255,255,255,0.2);color:#cbd5e1;background:transparent;border-radius:20px;cursor:pointer;">
-                ${c.replayModal.cancel}
+              <button class="btn-secondary" id="pc-cancel-replay" style="font-size:0.86rem;padding:10px 18px;border:1px solid rgba(147,197,253,0.3);color:#93c5fd;background:transparent;border-radius:20px;cursor:pointer;">
+                ${replaceMilkybarIcon(c.replayModal.cancel, 15)}
               </button>
             </div>
           </div>

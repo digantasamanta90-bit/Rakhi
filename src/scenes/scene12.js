@@ -8,6 +8,7 @@
  */
 
 import { content } from '../content/content.js';
+import { renderMilkybarIconSvg, replaceMilkybarIcon } from '../components/MilkybarVisual.js';
 
 export class Scene12SiblingZone {
   constructor({ manager, audio, particles, achievements }) {
@@ -68,7 +69,7 @@ export class Scene12SiblingZone {
                 </div>
                 <div style="display:flex;justify-content:space-between;align-items:baseline;padding:0 4px;">
                   <span style="font-family:var(--font-serif);font-size:1.1rem;font-weight:700;color:var(--rakhi-red);">${sister.title}</span>
-                  <span style="font-size:0.7rem;font-weight:700;color:var(--rakhi-red);letter-spacing:0.04em;">${sister.threatLevel}</span>
+                  <span style="font-size:0.7rem;font-weight:700;color:var(--rakhi-red);letter-spacing:0.04em;">${replaceMilkybarIcon(sister.threatLevel, 14)}</span>
                 </div>
                 <div style="font-size:0.74rem;color:#64748b;margin-top:3px;font-style:italic;">
                   ${sister.description}
@@ -147,8 +148,12 @@ export class Scene12SiblingZone {
                   </p>
                   
                   <!-- Secret Motifs -->
-                  <div style="font-size:1.6rem;gap:1.2rem;display:flex;justify-content:center;margin-bottom:16px;">
-                    ${c.motifs.map(m => `<span class="secret-item" data-msg="${m.label}" role="button" aria-label="${m.icon}" style="cursor:pointer;display:inline-block;transition:transform 0.2s;user-select:none;">${m.icon}</span>`).join('')}
+                  <div style="font-size:1.6rem;gap:1.2rem;display:flex;justify-content:center;align-items:center;margin-bottom:16px;">
+                    ${c.motifs.map(m => {
+                      const isChoc = m.icon === '🍫';
+                      const iconDisplay = isChoc ? renderMilkybarIconSvg({ size: 28 }) : m.icon;
+                      return `<span class="secret-item" data-msg="${m.label}" role="button" aria-label="${m.label}" style="cursor:pointer;display:inline-flex;align-items:center;justify-content:center;transition:transform 0.2s;user-select:none;">${iconDisplay}</span>`;
+                    }).join('')}
                   </div>
 
                   <button class="btn-primary" id="sz-proceed-btn" style="font-size:0.92rem;padding:11px 28px;background:var(--rakhi-red);color:#ffffff;border-radius:24px;border:none;cursor:pointer;font-weight:600;box-shadow:0 6px 20px rgba(220,38,38,0.45);">
@@ -258,7 +263,7 @@ export class Scene12SiblingZone {
         // SHOT 3: ANWESHA PORTRAIT ENTERS
         .call(() => {
           focalAnwesha.style.pointerEvents = 'auto';
-          setNarrative(sister.narrative || "Will demand KitKat. Probably judging this website right now.");
+          setNarrative(sister.narrative || "Will demand Milkybar. Probably judging this website right now.");
         })
         .fromTo(focalAnwesha,
           { opacity: 0, y: 30, scale: 0.88, rotation: 6 },
