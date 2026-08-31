@@ -167,11 +167,11 @@ export const content = {
   scene07: {
     impactTag: "8:15 AM // THE IMPACT",
     impactText: "BROKE",
-    comedicClimax: "Etai hoar baki chilo...",
+    comedicClimax: "Sudhu etai hoar baki chilo 💔",
     panicThought: "Anwesha is going to kill me.",
     assets: {
       kitkat: "assets/gifts/kitkat.png"
-    },
+    }, 
     timing: {
       heroHold: 0.7,            // Time chocolate floats in golden spotlight
       dropSpeed: 0.22,          // Speed of slip and drop animation
@@ -329,7 +329,7 @@ export const content = {
       title: "Monojit",
       image: "assets/portraits/monojit1.png",
       description: "\"The mastermind behind all of it. Found the photos, approved the chocolate, and started this whole sister story.\"",
-      footnote: "Credit given. Don't let it go to his head 💀",
+      footnote: "Credit dilam but o jeno jante na pare",
       narrative: "Biye tao kore ne ebar 🙂"
     },
     statusCard: {
@@ -392,7 +392,7 @@ export const content = {
       "The gifts are just small tokens, and this website is admittedly an overengineered delivery mechanism 😭, but the care behind it is 100% real.",
       "Stay happy, take care of yourself and of him. And most importantly don't change, stay this cheerful forever. I'm really glad to have you as my sister from another mother."
     ],
-    closingJoke: "Ar tui hoyto bujhteo parbina exact koto ta effort ar time geche eta ke banate. But okay, just appreciation tao amar jonne enough 💝",
+    closingJoke: "Ar tui hoyto bujhteo parbina exact koto ta effort ar time geche eta ke banate. But okay, just appreciation tao amar jonne enough 💝. Btw toke ami pore kokhono kitkat khaiye debo",
     keepButton: "KEEP THIS MESSAGE 🧿",
     keepSuccess: "Saved forever in memory 🧿",
     signature: {
